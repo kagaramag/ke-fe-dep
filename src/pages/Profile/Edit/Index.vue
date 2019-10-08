@@ -1,0 +1,88 @@
+<template>
+  <div id="ProfileEdit">
+    <component :is="layout">
+      <div class="profile">
+        <h2>Profile</h2>
+
+        <UserInfo :profile="profile" />
+        <div class="divider my-4" />
+        <div v-if="profile.user.role==='parent'">
+          <Parent :profile="profile" />
+          <div class="divider my-4" />
+        </div>
+
+        <div v-if="profile.user.role==='tutor'">
+          <Tutor :profile="profile" />
+          <div class="divider my-4" />
+        </div>
+      </div>
+    </component>
+  </div>
+</template>
+
+<script>
+import Vue from "vue";
+import { mapGetters, mapActions } from "vuex";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+
+library.add(fas);
+library.add(fab);
+
+Vue.component("icon", FontAwesomeIcon);
+const account_layout = "account";
+
+import UserInfo from "./UserInfo";
+import Parent from "./Parent";
+import Tutor from "./Tutor";
+
+export default {
+  name: "ProfileEdit",
+  props: ["data"],
+  components: {
+    UserInfo,
+    Parent,
+    Tutor
+  },
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || account_layout) + "-layout";
+    },
+    profile() {
+      return this.$store.getters.profile;
+    },
+    ...mapGetters(["profile"])
+  },
+  created() {
+    this.info = {
+      firstName: this.profile.user.firstName,
+      lastName: this.profile.user.lastName,
+      bio: this.profile.user.bio
+    };
+  }
+};
+</script>
+
+<style scoped>
+.profile {
+  width: 100%;
+  margin: 0;
+}
+.profile .bio {
+  font-weight: 100;
+}
+
+.post-link {
+  border-radius: 0 !important;
+  border: 5px solid #ececec;
+  margin: auto 0%;
+  padding: 0%;
+  width: 100%;
+  position: relative;
+}
+.post-link a {
+  display: block;
+}
+</style>
