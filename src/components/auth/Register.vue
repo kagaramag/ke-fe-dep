@@ -55,8 +55,13 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
           </div>
-          <button type="submit" @click.prevent @click="register" class="btn rounded-pill border border-primary px-4 d-block col">Register</button> <br/>
-          Already have account?
+          <button
+            type="submit"
+            @click.prevent
+            @click="register"
+            class="btn rounded-pill border border-primary px-4 d-block col"
+          >Register</button>
+          <br />Already have account?
           <router-link :to="'/login'">Login</router-link>
         </form>
       </div>
@@ -112,7 +117,7 @@ export default {
 }
 .register h2 {
   text-align: center;
-  font-weight: 100
+  font-weight: 100;
 }
 .register {
   margin-bottom: 50px;
