@@ -45,7 +45,7 @@
           type="submit"
           @click.prevent
           @click="updateUser"
-          class="btn btn-primary bg-primary"
+          class="btn btn-primary bg-primary rounded-pill px-4"
         >Submit</button>
         <div class="float-right m-1">
           <b-spinner v-show="false"></b-spinner>
