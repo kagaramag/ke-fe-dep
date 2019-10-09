@@ -82,7 +82,7 @@
             </li>
             <li class="nav-item">
               <router-link
-                class="nav-link bg-primary radius-1 text-light"
+                class="nav-link rounded-pill border border-primary  px-4"
                 :to="'/register'"
               >Register</router-link>
             </li>

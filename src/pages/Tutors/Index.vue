@@ -6,7 +6,7 @@
 
         <!-- List of Tutors -->
         <h2 class="m-y-5">Find Tutors</h2>
-        <div class="grabtutors" v-if="tutors">
+        <div class="grabtutors mb-5" v-if="tutors">
           <div class="row">
             <div v-for="tutor in tutors.tutors" class="col-sm-6 col-md-4" :key="tutor.index">
               <div class="card shadow-1">
@@ -25,8 +25,14 @@
                   </div>
                   <div class="col-8 px-0">
                     <h3
-                      class="text-truncate mt-2 mb-0"
+                      class="text-truncate mb-0"
                     >{{tutor.lastName | capitalize}} {{tutor.firstName | firstLetter}}.</h3>
+                   <div v-if="tutor.username === 'cuv.voxer' || tutor.username === 'asman.bonah'">
+                    <span style="color:#09835a">Verified <icon class="icon" icon="check-square" /> </span>
+                   </div>
+                   <div v-else>
+                    <span style="color:#cdcdcd">Verified <icon class="icon" icon="check-square" /> </span>
+                   </div>
                     <div class="text-muted">@{{tutor.username}}</div>
                   </div>
                 </div>
@@ -39,25 +45,17 @@
                 </div>
                 <div class="divider bg-light my-1"></div>
                 <div class="row text-center">
-                  <div class="col-4">
+                  <div class="col-7">
                     <div class="summary-info">
-                      <b>Rank</b>
-                      <br />
-                      <span>7</span>
+                      <router-link class="btn btn-outline-dark m-2 d-block col rounded-pill" :to="`/profile/${tutor.username}`">View</router-link>
                     </div>
                   </div>
-                  <div class="col-4">
+                  <div class="col-5">
                     <div class="summary-info">
-                      <router-link class="btn btn-outline-primary my-2 rounded-pill" :to="`/profile/${tutor.username}`">View</router-link>
+                      <small>Rank</small>
+                      <div class="bold">7</div>
                     </div>
                   </div>
-                  <span class="col-4">
-                    <span class="summary-info">
-                      <b>Price</b>
-                      <br />
-                      <span>10K</span>
-                    </span>
-                  </span>
                 </div>
               </div>
             </div>
@@ -105,7 +103,7 @@ export default {
 .post-link {
   /* margin-bottom: 20px !important; */
   border-radius: 0 !important;
-  border: 5px solid #ececec;
+  border: 5px solid #09835a;
   margin: auto 0%;
   padding: 0%;
   width: 100%;

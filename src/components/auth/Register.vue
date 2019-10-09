@@ -4,16 +4,8 @@
       <Loading v-if="profile.loading" />
       <div class="box">
         <form class="p-4">
-          <h1>Register to continue...</h1>
-          <h2 class="bold">I am a...</h2>
-          <div class="row p-2">
-            <div class="col bg-white radius-5 m-1 shadow-2">
-              <div class="p-1 my-2 bold">Parent of Guadian<br><small class="text-muted">Find best tutors for your kids</small></div>
-            </div>
-            <div class="col bg-white radius-5 m-1 shadow-2">
-              <div class="p-1 my-2 bold">Tutor<br><small class="text-muted">Increase your income</small></div>
-            </div>
-          </div>
+          <h1 class="bold">Welcome</h1>
+          <h2>Register to continue...</h2>
           <div class="row" v-if="profile && profile.errors">
             <div
               class="alert alert-danger"
@@ -63,7 +55,7 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
           </div>
-          <button type="submit" @click.prevent @click="register" class="btn btn-primary">Register</button>
+          <button type="submit" @click.prevent @click="register" class="btn rounded-pill border border-primary px-4 d-block col">Register</button> <br/>
           Already have account?
           <router-link :to="'/login'">Login</router-link>
         </form>
@@ -91,7 +83,6 @@ export default {
       user: {
         lastName: "",
         firstName: "",
-        role: "normal",
         email: "",
         password: ""
       }
@@ -116,12 +107,12 @@ export default {
 
 <style scoped>
 .register h1 {
-  font-size: 20px;
+  text-align: center;
   padding: 20px 0;
 }
 .register h2 {
-  font-size: 30px;
-  font-weight: 800;
+  text-align: center;
+  font-weight: 100
 }
 .register {
   margin-bottom: 50px;
