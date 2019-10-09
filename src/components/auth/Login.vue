@@ -27,8 +27,8 @@
           <label for="password">Password</label>
           <input type="password" class="form-control" v-model="user.password" id="password" />
         </div>
-        <button type="submit" @click.prevent @click="login" class="btn btn-primary">Login</button>
-        Haven't account yet?
+        <button type="submit" @click.prevent @click="login" class="btn rounded-pill border border-primary px-4 d-block col">Login</button> <br />
+        Haven\'t account yet?
         <router-link :to="'/register'">Register</router-link>
       </form>
     </div>
