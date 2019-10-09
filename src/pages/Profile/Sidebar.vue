@@ -30,7 +30,7 @@
             </button>
           </div>
           <span class="float-right">
-            <b-button id="show-btn" class="btn btn-light" @click="$bvModal.show('register')">
+            <b-button id="show-btn" class="btn btn-light" @click="$bvModal.show('profilepic')">
               <icon class="icon" icon="edit" />Edit profile picture
             </b-button>
           </span>
@@ -185,35 +185,20 @@
     </div>
 
     <!-- MODAL FOR EDITING PROFILE PHOTO -->
-    <b-modal id="register" hide-footer>
+    <b-modal id="profilepic" hide-footer>
       <template v-slot:modal-title>Change profile picture</template>
-      <!-- <div
-          class="alert alert-danger"
-          role="alert"
-          v-if="register_kid.errors[0] && register_kid.errors[0].error"
-      >{{register_kid.errors[0].error}}</div>-->
+
       <div class="row mx-auto">
         <div class="col-4 px-2">
-          <span v-if="file">
-            <img
-              :src="file"
-              style="width:150px;height:150px; border-radius:50%"
-              class="d-block ui-w-100 rounded-circle profile d-block mx-auto"
-              alt="Tutor"
-            />
-          </span>
-          <span v-else>
-            <img
-              src="@/assets/images/profile.png"
-              style="max-width:160px;"
-              class="d-block ui-w-100 rounded-circle profile d-block mx-auto"
-              alt="Tutor"
-            />
-          </span>
+          <img
+            :src="file ? file : avatar"
+            style="width:150px;height:150px; border-radius:50%"
+            class="d-block ui-w-100 rounded-circle profile d-block mx-auto"
+            alt="Tutor"
+          />
         </div>
 
         <div class="col-8 my-auto">
-          <!-- Styled -->
           <b-form-file
             accept="image/jpeg, image/png"
             @change="GetImage"
@@ -243,7 +228,8 @@ export default {
   props: ["fetch_user", "profile"],
   data() {
     return {
-      file: null
+      file: null,
+      avatar: require("@/assets/images/profile.png")
     };
   },
 
