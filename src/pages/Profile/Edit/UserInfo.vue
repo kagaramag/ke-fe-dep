@@ -101,7 +101,7 @@ export default {
       this.profileUpdated = true;
       setTimeout(() => {
         this.profileUpdated = false;
-      }, 3000);
+      }, 2000);
     },
     ...mapActions(["UPDATE_PROFILE"])
   }
