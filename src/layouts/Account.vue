@@ -14,7 +14,7 @@
           <slot :fetch_user="fetch_user" :profile="profile" />
         </div>
         <div class="col d-none d-sm-block d-md-block">
-          <AdminMenu />
+          <!-- <AdminMenu /> -->
         </div>
       </div>
     </div>

@@ -69,6 +69,7 @@ export default {
 
     },
     REGISTER_KID_FAILURE(state, payload) {
+      console.log('error', payload)
       state.register_kid.loading = false
       state.register_kid.errors = [payload, ...state.register_kid.errors]
     },
@@ -125,6 +126,7 @@ export default {
         })
     },
     REGISTER_KID: (context, payload) => {
+      console.log('what', payload)
       context.commit('RESET_ERROR')
       context.commit('SITE_LOADING', true)
       context.commit('REGISTERED', false)

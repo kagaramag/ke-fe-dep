@@ -11,6 +11,7 @@
         >
           <div v-if="val.status ==='requested'" class="requested" />
           <div v-if="val.status ==='accepted'" class="accepted" />
+          <div v-if="val.status ==='rejected'" class="rejected" />
           <router-link :to="`/profile/${profile.user.username}/tutoring/${val.id}`">
             <div class="row">
               <div class="media p-3 my-1 mx-3" style="position:relative">
@@ -54,6 +55,14 @@
                     </h5>- For more information regarding start the job, you can contact
                     <b>{{val.kid.parent.firstName}}</b>
                     <br />- If you need more help, don't hesitate to visit our contact page
+                  </div>
+                  <div v-if="val.status === 'rejected'" class="mb-3">
+                    <h5 class="py-2" style="font-size:18px">
+                      You have rejected this the request of <b>{{val.kid.parent.lastName}} {{val.kid.parent.firstName}}</b> to 
+                      tutor his kid <b>{{val.kid.names}}</b>
+                    <b>{{val.kid.parent.firstName}}</b>
+                    <br />- If you need more help, don't hesitate to visit our contact page
+                    </h5>
                   </div>
                 </div>
               </div>

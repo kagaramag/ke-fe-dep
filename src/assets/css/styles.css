@@ -388,5 +388,25 @@ form {
   width: 6px;
   height: 100%;
   content: "";
-  background: rgb(182, 76, 5);
+  background: rgb(223, 137, 26);
 }
+.wrap-one-tutering .rejected {
+  position: absolute;
+  left: 1px;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  content: "";
+  background: rgb(190, 27, 15);
+}
+.wrap-one-tutering .notfound {
+  position: absolute;
+  left: 1px;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  content: "";
+  background: rgb(16, 194, 218);
+}
+
+.error{ color: #da3333 }
