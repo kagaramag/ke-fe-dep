@@ -1,9 +1,7 @@
 <template>
   <component :is="layout">
-    <div class="login">
+    <div class="register">
       <Loading v-if="profile.loading" />
-      <h1 class="bold">Welcome</h1>
-      <h2>Sign in to continue...</h2>
       <div class="box">
         <form class="p-4">
           <div class="row" v-if="profile && profile.errors">
@@ -14,29 +12,25 @@
             >{{error}}</div>
           </div>
           <div class="form-group">
-            <label for="email">Your email</label>
-            <input
-              type="email"
-              class="form-control"
-              v-model="user.email"
-              id="email"
-              autocomplete="off"
-            />
-          </div>
-          <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Confirm Password</label>
+            <input
+              type="password"
+              class="form-control"
+              v-model="user.confirmpassword"
+              id="password"
+            />
           </div>
           <button
             type="submit"
             @click.prevent
-            @click="login"
+            @click="reset"
             class="btn rounded-pill border border-primary px-4 d-block col"
-          >Login</button>
-          <br />Haven\'t account yet?
-          <router-link :to="'/register'">Register</router-link>
-          <br />
-          <router-link :to="'/reset'">Reset Password</router-link>
+          >Confirm</button>
         </form>
       </div>
       <br />
@@ -56,12 +50,12 @@ export default {
   components: {
     Loading
   },
-  name: "login",
+  name: "register",
   data() {
     return {
       user: {
-        email: "",
-        password: ""
+        password: "",
+        confirmpassword: ""
       }
     };
   },
@@ -74,24 +68,24 @@ export default {
     }
   },
   methods: {
-    login() {
-      this.LOGIN_USER(this.user);
+    reset() {
+      this.CONFIRM_PASSWORD(this.user);
     },
-    ...mapActions(["LOGIN_USER"])
+    ...mapActions(["CONFIRM_PASSWORD"])
   }
 };
 </script>
 
 <style scoped>
-.login h1 {
+.register h1 {
   text-align: center;
   padding: 20px 0;
 }
-.login h2 {
+.register h2 {
   text-align: center;
   font-weight: 100;
 }
-.login {
+.register {
   margin-bottom: 50px;
 }
 .alert {

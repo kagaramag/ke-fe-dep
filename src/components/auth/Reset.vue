@@ -3,7 +3,7 @@
     <div class="login">
       <Loading v-if="profile.loading" />
       <h1 class="bold">Welcome</h1>
-      <h2>Sign in to continue...</h2>
+      <h2>Reset Your Password</h2>
       <div class="box">
         <form class="p-4">
           <div class="row" v-if="profile && profile.errors">
@@ -23,20 +23,15 @@
               autocomplete="off"
             />
           </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" v-model="user.password" id="password" />
-          </div>
+
           <button
             type="submit"
             @click.prevent
             @click="login"
             class="btn rounded-pill border border-primary px-4 d-block col"
-          >Login</button>
-          <br />Haven\'t account yet?
-          <router-link :to="'/register'">Register</router-link>
-          <br />
-          <router-link :to="'/reset'">Reset Password</router-link>
+          >Reset Password</button>
+          <br />Remembered your password?
+          <router-link :to="'/login'">Login</router-link>
         </form>
       </div>
       <br />
@@ -60,8 +55,7 @@ export default {
   data() {
     return {
       user: {
-        email: "",
-        password: ""
+        email: ""
       }
     };
   },
@@ -75,9 +69,8 @@ export default {
   },
   methods: {
     login() {
-      this.LOGIN_USER(this.user);
-    },
-    ...mapActions(["LOGIN_USER"])
+      this.$router.push("/confirm");
+    }
   }
 };
 </script>
