@@ -88,6 +88,9 @@ export default {
       localStorage.token = null;
       router.push({ path: "/login" });
     },
+    UPDATE_PROFILE(state, payload) {
+      state.profile = { ...state.profile, ...payload };
+    },
     GET_PROFILE_LOADING(state, payload) {
       state.fetch_user.loading = payload;
     },
@@ -124,6 +127,11 @@ export default {
           console.log(error);
         });
     },
+    UPDATE_PROFILE: (context, payload) => {
+      context.commit("UPDATE_PROFILE");
+      AxiosHelper.put("/users", payload);
+    },
+
     GET_PROFILE: context => {
       context.commit("GET_PROFILE");
     },
