@@ -60,12 +60,6 @@
             <span>Profile</span>
           </router-link>
         </b-list-group-item>
-        <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/location`">
-            <icon class="icon" icon="map-marker" />
-            <span>Location</span>
-          </router-link>
-        </b-list-group-item>
       </b-list-group>
       <!-- TUTOR NAV CARD START -->
       <b-list-group

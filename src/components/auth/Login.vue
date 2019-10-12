@@ -33,7 +33,7 @@
             @click="login"
             class="btn rounded-pill border border-primary px-4 d-block col"
           >Login</button>
-          <br />Haven\'t account yet?
+          <br />Don't have account yet?
           <router-link :to="'/register'">Register</router-link>
           <br />
           <router-link :to="'/reset'">Reset Password</router-link>

@@ -121,7 +121,7 @@ export default {
     CONFIRM_PASSWORD: (context, payload) => {
       AxiosHelper.patch(`/auth/reset/${payload.redirect}`, payload.passwords)
         .then(response => {
-          console.log("patching data", response.data);
+          context.commit("FETCH_USER_SUCCESS", response.data);
         })
         .catch(error => {
           console.log(error);
@@ -129,7 +129,13 @@ export default {
     },
     UPDATE_PROFILE: (context, payload) => {
       context.commit("UPDATE_PROFILE");
-      AxiosHelper.put("/users", payload);
+      AxiosHelper.put("/users", payload)
+        .then(response => {
+          context.commit("FETCH_USER_SUCCESS", response.data);
+        })
+        .catch(error => {
+          context.commit("FETCH_USER_FAILURE", error.response.data);
+        });
     },
 
     GET_PROFILE: context => {
