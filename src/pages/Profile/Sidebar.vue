@@ -29,6 +29,11 @@
               <icon class="icon" icon="envelope" />&nbsp;message
             </button>
           </div>
+          <span class="float-right">
+            <b-button id="show-btn" class="btn btn-light" @click="$bvModal.show('profilepic')">
+              <icon class="icon" icon="edit" />Edit profile picture
+            </b-button>
+          </span>
           <div class="icon-block text-center d-none">
             <a href="#">
               <icon class="icon" icon="envelope" />
@@ -53,6 +58,12 @@
           <router-link :to="`/profile/${profile.user.username}/edit`">
             <icon class="icon" icon="user" />
             <span>Profile</span>
+          </router-link>
+        </b-list-group-item>
+        <b-list-group-item>
+          <router-link :to="`/profile/${profile.user.username}/location`">
+            <icon class="icon" icon="map-marker" />
+            <span>Location</span>
           </router-link>
         </b-list-group-item>
       </b-list-group>
@@ -126,6 +137,7 @@
             <span>Notifications</span>
           </router-link>
         </b-list-group-item>
+
         <b-list-group-item>
           <router-link :to="`/profile/${profile.user.username}/settings`">
             <icon class="icon" icon="cog" />
@@ -178,6 +190,31 @@
         </div>
       </b-collapse>
     </div>
+
+    <!-- MODAL FOR EDITING PROFILE PHOTO -->
+    <b-modal id="profilepic" hide-footer>
+      <template v-slot:modal-title>Change profile picture</template>
+
+      <div class="row mx-auto">
+        <div class="col-4 px-2">
+          <img
+            :src="file ? file : avatar"
+            style="width:150px;height:150px; border-radius:50%"
+            class="d-block ui-w-100 rounded-circle profile d-block mx-auto"
+            alt="Tutor"
+          />
+        </div>
+
+        <div class="col-8 my-auto">
+          <b-form-file
+            accept="image/jpeg, image/png"
+            @change="GetImage"
+            placeholder="Choose image"
+            drop-placeholder="Drop file here..."
+          ></b-form-file>
+        </div>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -196,10 +233,28 @@ Vue.component("icon", FontAwesomeIcon);
 export default {
   name: "sidebar",
   props: ["fetch_user", "profile"],
+  data() {
+    return {
+      file: null,
+      avatar: require("@/assets/images/profile.png")
+    };
+  },
+
   computed: {
     layout() {
       return (this.$route.meta.layout || account_layout) + "-layout";
     }
+  },
+  methods: {
+    GetImage(e) {
+      let image = e.target.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(image);
+      reader.onload = e => {
+        this.file = e.target.result;
+      };
+    },
+    submit_kid() {}
   }
 };
 </script>
