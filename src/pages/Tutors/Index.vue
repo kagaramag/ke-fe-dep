@@ -47,7 +47,8 @@
                   <div
                     class="card-text"
                     style="color:#878787"
-                  >{{tutor.bio || 'I’m a violinist, pianist, songwriter and composer. I’ve written an opera...' }}</div>
+                  >
+                  {{tutor.bio || '-' }}</div>
                 </div>
                 <div class="divider bg-light my-1"></div>
                 <div class="row text-center">

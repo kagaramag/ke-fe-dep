@@ -65,6 +65,9 @@
           <br />
           {{$t('register.question')}}
           <router-link :to="`/${$i18n.locale}/login`">{{$t('register.login')}}</router-link>
+          <button type="submit" @click.prevent @click="register" class="btn rounded-pill btn-primary border border-primary px-5 d-block">Register</button> <br/>
+          Already have account?
+          <router-link :to="'/login'">Login</router-link>
         </form>
       </div>
       <br />

@@ -69,7 +69,7 @@
                 class="btn btn-outline-dark rounded-pill px-4"
               >Search tutors</router-link>
               <button class="btn btn-outline-dark rounded-pill px-4">
-                View
+                View tutorship
                 <icon class="icon" icon="arrow-right" />
               </button>
             </div>
@@ -78,7 +78,7 @@
                 <template v-slot:button-content>
                   <icon icon="ellipsis-v" class="icon float-right text-dark" />
                 </template>
-                <b-dropdown-item @click="popKidInfo(kid.id)">
+                <b-dropdown-item @click="popKidInfo(kid)">
                   <icon class="icon" icon="child" />&nbsp; View kid details
                 </b-dropdown-item>
                 <b-dropdown-divider></b-dropdown-divider>
@@ -88,12 +88,12 @@
                   </b-dropdown-item>
                 </span>
                 <b-dropdown-item
-                  @click="popUserForm(kid.id, kid.names, kid.age, kid.school )"
+                  @click="popUserForm(kid.id, kid.names, kid.dateOfBirth, kid.school )"
                   class="text-danger"
                 >
                   <icon class="icon" icon="pen" />&nbsp; Edit
                 </b-dropdown-item>
-                <b-dropdown-item class="text-danger">
+                <b-dropdown-item @click="popToDeleteKid(kid.id, kid.names)" class="text-danger">
                   <icon class="icon" icon="trash" />&nbsp; Delete kid
                 </b-dropdown-item>
               </b-dropdown>
@@ -149,7 +149,7 @@
         v-if="fetch_kids && fetch_kids.kids.length === 0"
       >
         <icon icon="exclamation-circle" style="font-size:3.4em" class="icon my-4 text-muted" />
-        <h4>No kids provided yet</h4>
+        <h4>No kids registered yet</h4>
       </div>
       <div
         class="rounded shadow-2 bg-white p-2 text-center"
@@ -160,22 +160,89 @@
       </div>
     </div>
 
-    <!-- MODAL, REGISTER, EDIT A KID -->
-    <b-modal id="view-kid-info" hide-footer>
-      <template v-slot:modal-title>Child information</template>
-      <div class="d-block">
-        {{kidPreview}}
+    <!-- MODAL, DELETE A KID -->
+    <b-modal id="delete-kid" hide-footer>
+      <template class="bg-danger" v-slot:modal-title>
+        <icon class="icon" icon="exclamation-triangle" />&nbsp; Are you sure you want to delete
+        <b>"{{previewKidToBeDeleted.names}}"</b>?
+      </template>
+      <div class="text-danger" style="font-size:14px">
+        All information related to
+        <b>{{previewKidToBeDeleted.names}}</b> including tutorship, questions&amp;answers, resources and conversations will be deleted.
+      </div>
+      <div
+        v-if="delete_kid && (delete_kid.message || delete_kid.errors.error)"
+        class="alert alert-danger my-2"
+      >{{delete_kid.message || delete_kid.errors.error}}</div>
+      <h5 class="my-4" v-if="!delete_kid.deleted">
+        Are you sure you want to delete
+        <b>"{{previewKidToBeDeleted.names}}"</b>?
+      </h5>
+      <div class="my-4">
+        <button
+          v-if="!delete_kid.deleted"
+          type="submit"
+          @click.prevent
+          @click="submit_delete_kid(previewKidToBeDeleted.id)"
+          class="btn btn-danger rounded-pill px-4"
+        >
+          <icon class="icon" icon="trash" />Delete now
+        </button>
+        <b-button
+          class="btn btn-outline-dark mx-2 px-5 rounded-pill btn-light"
+          @click="$bvModal.hide('delete-kid')"
+        >
+          <span v-if="!delete_kid.deleted">Cancel</span>
+          <span v-if="delete_kid.deleted">Close</span>
+        </b-button>
+        <div
+          v-show="delete_kid.loading"
+          class="spinner-border text-primary float-right m-1"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </b-modal>
+
+    <!-- MODAL, VIEW A KID -->
+    <b-modal id="view-kid" hide-footer>
+      <template class="bg-danger" v-slot:modal-title>
+        <icon class="icon" icon="child" />&nbsp; Kid information
+      </template>
+      <div class="my-4">
+        {{kidInfoPreview}}
+        <ul class="list-group">
+          <li class="list-group-item"><b>Names:</b> {{kidInfoPreview.names}} </li>
+          <li class="list-group-item"><b>Date of birth:</b> {{ new Date(kidInfoPreview.dateOfBirth).toDateString() }} </li>
+          <li class="list-group-item"><b>School:</b> {{ kidInfoPreview.school }} </li>
+          <li class="list-group-item"><b>Class:</b> {{ kidInfoPreview.class }} </li>
+          <li class="list-group-item"><b>Registered:</b> {{ kidInfoPreview.createdAt | date }} </li>
+        </ul>
+      </div>
+      <div class="my-4">
+        <b-button
+          class="btn btn-outline-dark mx-2 px-5 rounded-pill btn-light"
+          @click="$bvModal.hide('view-kid')"
+        >
+          <icon class="icon" icon="times" />&nbsp; Close
+        </b-button>
       </div>
     </b-modal>
     <!-- MODAL, REGISTER, EDIT A KID -->
     <b-modal id="register" hide-footer>
       <template v-slot:modal-title>{{title}}</template>
       <div class="d-block">
-        <!-- <div
+        <div
+          class="alert alert-success"
+          role="alert"
+          v-if="register_kid.registered && message"
+        >{{message}}</div>
+        <div
           class="alert alert-danger"
           role="alert"
           v-if="register_kid.errors[0] && register_kid.errors[0].error"
-        >{{register_kid.errors[0].error}}</div>-->
+        >{{register_kid.errors[0].error}}</div>
         <div class="row">
           <div class="col m-4">
             <form :class="{ 'form-group--error': $v.names.$error }">
@@ -195,10 +262,18 @@
                 >Name must have at least {{$v.name.$params.minLength.min}} letters.</div>
               </div>
               <div class="form-group">
-                <label for="age">Birth date</label>
-                <datetime type="date" v-model="birth"></datetime>
+                <label for="age">Date of birth</label>
+                <datetime
+                  type="date"
+                  v-model="dateOfBirth"
+                  zone="Africa/Kigali"
+                  :phrases="{ok: 'Continue', cancel: 'Cancel'}"
+                  :min-datetime="minDatetime"
+                  :max-datetime="maxDatetime"
+                  :week-start="7"
+                  auto
+                ></datetime>
               </div>
-              {{birth}}
               <div class="form-group">
                 <label for="school">School</label>
                 <input
@@ -208,7 +283,7 @@
                   id="school"
                   autocomplete="off"
                 />
-                <div class="error py-2" v-if="!$v.school.required">School are required</div>
+                <div class="error py-2" v-if="!$v.school.required">School is required</div>
                 <div
                   class="error py-2"
                   v-if="!$v.school.minLength"
@@ -227,7 +302,7 @@
                   id="classHelp"
                   class="form-text text-muted"
                 >Use N* for nursary and P* for Primary school(e.g.: N2, P3)</small>
-                <div class="error py-2" v-if="!$v.class.required">Class are required</div>
+                <div class="error py-2" v-if="!$v.class.required">Class is required</div>
                 <div
                   class="error py-2"
                   v-if="!$v.class.minLength"
@@ -235,6 +310,7 @@
               </div>
               <div>
                 <button
+                  v-if="!register_kid.register_kid"
                   type="submit"
                   @click.prevent
                   @click="submit_kid"
@@ -243,9 +319,16 @@
                 <b-button
                   class="btn btn-outline-primary mx-2 rounded-pill btn-light"
                   @click="$bvModal.hide('register')"
-                >Cancel</b-button>
-                <div class="float-right m-1">
-                  <b-spinner v-show="false"></b-spinner>
+                >
+                  <span v-if="!register_kid.register_kid">Cancel</span>
+                  <span v-if="register_kid.register_kid">Close</span>
+                </b-button>
+                <div
+                  v-show="register_kid.loading"
+                  class="spinner-border text-primary float-right m-1"
+                  role="status"
+                >
+                  <span class="sr-only">Loading...</span>
                 </div>
 <<<<<<< HEAD
 =======
@@ -306,9 +389,10 @@ Vue.use(Vuelidate);
 Vue.component("icon", FontAwesomeIcon);
 
 const account_layout = "account";
+
 export default {
   name: "MyKids",
-  props: ["profile", "fetch_kids"],
+  props: ["profile"],
   component: {
     datetime: Datetime
   },
@@ -316,12 +400,15 @@ export default {
     return {
       names: this.name || "",
       school: "",
-      birth: new Date(),
+      dateOfBirth: "",
       class: "",
-      edit: false,
-      kidPreview: {
-        names: '',
-        school: ''
+      minDatetime: "1980-01-01",
+      maxDatetime: new Date().toISOString().slice(0, 10),
+      message: "",
+      kidInfoPreview: {},
+      previewKidToBeDeleted: {
+        id: "",
+        names: ""
       }
     };
   },
@@ -339,11 +426,23 @@ export default {
       return true;
     },
     register_kid() {
+      this.message = this.$store.getters.register_kid.message;
       return this.$store.getters.register_kid;
+    },
+    fetch_kids() {
+      return this.$store.getters.fetch_kids;
+    },
+    delete_kid() {
+      return this.$store.getters.delete_kid;
     }
   },
   methods: {
-    popUserForm(id, names, age, school) {
+    async popUserForm(id, names, age, school) {
+      this.names = "";
+      this.class = "";
+      this.dateOfBirth = "";
+      this.school = "";
+      this.message = "";
       if (id) {
         (this.title = "Edit kid"), (this.names = names), (this.school = school);
       } else {
@@ -352,25 +451,42 @@ export default {
       this.$bvModal.show("register");
     },
     // pop kid info
-    async popKidInfo(id) {
-      await emptyKidInfo();
-      this.kidPreview = '',
-      await this.$bvModal.show("view-kid-info");
+    async popKidInfo(kid) {
+      this.kidInfoPreview = '';
+      await this.$bvModal.show("view-kid");
+      this.kidInfoPreview = kid;
     },
-    submit_kid() {
+    // pop to delete
+    async popToDeleteKid(id, names) {
+      await this.INITIATE_DELETE_KID();
+      this.previewKidToBeDeleted = {
+        id,
+        names
+      };
+      await this.$bvModal.show("delete-kid");
+    },
+    async submit_kid() {
       const data = {
         names: this.names,
         class: this.class,
-        birth: "",
+        dateOfBirth: this.dateOfBirth.split("T")[0],
         school: this.school
       };
       if (!this.edit) {
-        this.REGISTER_KID(data);
+        await this.REGISTER_KID(data);
       } else {
-        this.EDIT_KID(data);
+        await this.EDIT_KID(data);
       }
     },
-    ...mapActions(["FETCH_KIDS", "REGISTER_KID"])
+    async submit_delete_kid(id) {
+      await this.DELETE_KID(id);
+    },
+    ...mapActions([
+      "FETCH_KIDS",
+      "REGISTER_KID",
+      "DELETE_KID",
+      "INITIATE_DELETE_KID"
+    ])
   },
   validations: {
     names: {

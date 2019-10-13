@@ -33,6 +33,12 @@ export default {
       errors: {},
       message: '',
       loading: false
+    },
+    delete_kid: {
+      errors: {},
+      message: '',
+      loading: false,
+      deleted: false
     }
   },
   // getters
@@ -48,6 +54,9 @@ export default {
     },
     fetch_one_tutoring(state) {
       return state.fetch_one_tutoring
+    },
+    delete_kid(state){
+      return state.delete_kid
     }
   },
 
@@ -57,19 +66,22 @@ export default {
       state.fetch_kids.kids = '';
       state.fetch_kids.kids = [...state.fetch_kids.kids, ...payload.tutoring]
     },
-    FETCH_KIDS_FAILURE(state) {
+    FETCH_KIDS_FAILURE(state, payload) {
       state.fetch_kids.kids = '',
         state.fetch_kids.errors = { ...state.fetch_kids, error: 'Something went wrong, try again later' }
+    },
+    REGISTER_KID_LOADING(state) {
+      state.register_kid.loading = true,
+      state.register_kid.registered = false
     },
     REGISTER_KID_SUCCESS(state, payload) {
       state.register_kid.loading = false
       state.register_kid.registered = true
+      state.register_kid.message = payload.message
       state.register_kid.kid = { ...state.register_kid.kid, ...payload.kid }
-      state.fetch_kids.kids = [...state.fetch_kids.kids, ...payload.kid]
-
+      state.fetch_kids.kids = [payload.kid, ...state.fetch_kids.kids]
     },
     REGISTER_KID_FAILURE(state, payload) {
-      console.log('error', payload)
       state.register_kid.loading = false
       state.register_kid.errors = [payload, ...state.register_kid.errors]
     },
@@ -89,6 +101,7 @@ export default {
       
     },
     REQUEST_TUTOR_FAILURE(state, payload) {
+      console.log('what', payload)
       state.requested_tutor.loading = false
       state.requested_tutor.errors = payload
       state.requested_tutor.message = ""
@@ -109,8 +122,27 @@ export default {
     },
     FETCH_TUTORING_FAILURE(state, payload) {
       state.fetch_one_tutoring.tutoring = '',
-        state.fetch_one_tutoring.errors = { error: 'Something went wrong, try again later', payload }
+      state.fetch_one_tutoring.errors = { error: 'Something went wrong, try again later', payload }
     },
+    INITIATE_KID_DELETE(state) {
+      state.delete_kid.errors = '',
+      state.delete_kid.message = '',
+      state.delete_kid.deleted = false
+    },
+    INITIATE_KID_LOADING(state, payload) {
+      state.delete_kid.loading = payload
+    },
+    DELETE_KID_SUCCESS(state, payload) {
+      state.delete_kid.errors = '',
+      state.delete_kid.message = payload.message,
+      state.delete_kid.deleted = true
+    },
+    DELETE_KID_FAILURE(state, payload) {
+      state.delete_kid.loading = false,
+      state.delete_kid.errors = payload,
+      state.delete_kid.message = '',
+      state.delete_kid.deleted = false
+    }
   },
 
   // actions
@@ -126,13 +158,12 @@ export default {
         })
     },
     REGISTER_KID: (context, payload) => {
-      console.log('what', payload)
       context.commit('RESET_ERROR')
-      context.commit('SITE_LOADING', true)
+      context.commit('REGISTER_KID_LOADING', true)
       context.commit('REGISTERED', false)
       AxiosHelper.post('/kids', payload)
         .then(response => context.commit('REGISTER_KID_SUCCESS', response.data))
-        .catch(error => context.commit('REGISTER_KID_FAILURE', error.response.data.errors))
+        .catch(error => context.commit('REGISTER_KID_FAILURE', error.response.data))
     },
     REQUEST_TUTOR: (context, payload) => {
       context.commit('RESET_ERROR')
@@ -154,7 +185,18 @@ export default {
       context.commit('REGISTERED', false)
       AxiosHelper.get(`/tutoring/${payload}`)
         .then(response => context.commit('FETCH_TUTORING_SUCCESS', response.data))
-        .catch(error => context.commit('FETCH_TUTORING_FAILURE', error))
+        .catch(error => context.commit('FETCH_TUTORING_FAILURE', error.response))
+    },
+    DELETE_KID: (context, payload) => {
+      context.commit('INITIATE_KID_DELETE')
+      context.commit('INITIATE_KID_LOADING', false)
+      AxiosHelper.patch('/kids/', {id: payload})
+        .then(response => context.commit('DELETE_KID_SUCCESS', response.data))
+        .catch(error => context.commit('DELETE_KID_FAILURE', error.response.data))
+    },
+    INITIATE_DELETE_KID: (context) => {
+      context.commit('INITIATE_KID_LOADING', false)
+      context.commit('INITIATE_KID_DELETE')
     },
   }
 }

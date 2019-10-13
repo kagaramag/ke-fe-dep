@@ -7,14 +7,14 @@
     </div>
     <div class="container">
       <div class="row pt-2" v-if="loaded?'hidden':''">
-        <div class="col d-none d-sm-block d-dm-block">
+        <div class="col col-lg-3 d-none d-sm-block d-dm-block">
           <Sidebar :fetch_user="fetch_user" :profile="profile" />
         </div>
         <div class="col col-sm-12 col-md-12 col-lg-7">
           <slot :fetch_user="fetch_user" :profile="profile" />
         </div>
-        <div class="col d-none d-sm-block d-md-block">
-          <!-- <AdminMenu /> -->
+        <div class="col col-lg-2 d-none d-sm-block d-md-block">
+          <AdminMenu />
         </div>
       </div>
     </div>
