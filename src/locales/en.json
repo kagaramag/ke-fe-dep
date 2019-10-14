@@ -180,9 +180,12 @@
     }
   },
   "identity": {
-    "title": "Prove your Identity",
+    "title": "Tutor Profile Information",
     "message": "For you to be accepted as a tutor you will have to submit the specified documents below",
-    "language": "Language",
+    "language": {
+      "title": "Languages your speak",
+      "description": "Languages you speak are very important when connect you with parent"
+    },
     "experience": "Experience (1,2,...)",
     "id": "National id",
     "bulletin5": "School report of senior 5",
@@ -192,6 +195,6 @@
     "image": "Choose a file (PDF,JPEG, PNG)",
     "imagebrowse": "Browse",
     "drop": "No file choosen",
-    "button": "Submit"
+    "button": "Save"
   }
 }

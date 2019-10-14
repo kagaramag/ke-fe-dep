@@ -1,5 +1,6 @@
 <template>
   <div id="thread">
+    
     <div v-if="tutoring_messages.tutoring">
       <div
         class="mb-3 wrap-one-tutering"
@@ -54,6 +55,9 @@
         </div>
         <div class="divider my-3"></div>
       </div>
+    </div>
+    <div v-if="tutoring_messages.tutoring && !tutoring_messages.tutoring.length">
+      Hello
     </div>
   </div>
 </template>

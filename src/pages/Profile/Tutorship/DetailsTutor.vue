@@ -1,6 +1,6 @@
 <template>
   <div id="Parent">
-    <div class="mb-1 shadow-sm p-4 bg-white wrap-one-tutering">
+    <div class="mb-1 shadow-sm bg-white p-3 top-border-styled wrap-one-tutering">
       <div v-if="tutoring.status ==='requested'" style="font-size: 18px">
         <router-link :to="`/${$i18n.locale}`">
           <b>{{tutoring.kid.parent.lastName}} {{tutoring.kid.parent.firstName}}</b>
@@ -15,6 +15,47 @@
         <router-link :to="`/${$i18n.locale}`">
           <b>{{tutoring.kid.names}}</b>
         </router-link>
+      </div>
+    
+      <div class="row">
+        <div class="col-9">
+          <h4 class="my-2" style="font-size: 18px;font-weight:200">
+            <span class="py-3">
+              Tutor:
+              <b class="mr-2">{{tutoring.tutor.firstName}} {{tutoring.tutor.lastName}}</b>
+            </span>
+            <span
+              v-show="tutoring.status === 'requested'"
+              class="border border-dark text-dark sm-text text-light radius-4 px-3 py-1"
+            >Pending</span>
+            <span
+              v-show="tutoring.status === 'accepted'"
+              class="border border-dark text-dark sm-text text-light radius-4 px-3 py-1"
+            >Ongoing</span>
+            <span
+              v-show="tutoring.status === 'rejected'"
+              class="border border-dark text-dark sm-text text-light radius-4 px-3 py-1"
+            >Cancelled</span>
+          </h4>
+        </div>
+        <div class="col-3">
+          <div class="dropdown option-nav p-0 m-0 d-none">
+            <b-dropdown id="option-nav" no-caret right class="p-0 m-0" variant="outline-light">
+              <template class="btn" v-slot:button-content>
+                <span class="text-dark">Actions</span>
+              </template>
+              <b-dropdown-item @click="popKidInfo(kid)">
+                <icon class="icon" icon="child" />&nbsp; Cancel tutorship
+              </b-dropdown-item>
+              <b-dropdown-item @click="popUserForm(kid)" class="text-danger">
+                <icon class="icon" icon="pen" />&nbsp; Terminate
+              </b-dropdown-item>
+              <b-dropdown-item @click="popToDeleteKid(kid.id, kid.names)" class="text-danger">
+                <icon class="icon" icon="trash" />&nbsp; Request to cancel
+              </b-dropdown-item>
+            </b-dropdown>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -35,7 +76,13 @@ Vue.component("icon", FontAwesomeIcon);
 const account_layout = "account";
 export default {
   name: "Tutor",
-  props: ["tutoring", "profile"]
+  props: ["tutoring", "profile"],
+  computed: {
+    tutoring() {
+      return this.$store.getters.fetch_one_tutoring.tutoring;
+    },
+    ...mapGetters(["fetch_one_tutoring"])
+  }
 };
 </script>
 

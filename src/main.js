@@ -23,27 +23,35 @@ Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 
 // filters
-Vue.filter('capitalize', function(value) {
-  if (!value) return '';
-  value = value.toString();
-  return value.charAt(0).toUpperCase() + value.slice(1);
-});
-Vue.filter('uppercase', function(value) {
-  if (!value) return '';
-  value = value.toString();
-  return value.toUpperCase();
-});
-Vue.filter('firstLetter', function(value) {
-  if (!value) return '';
-  value = value.toString();
-  return value.charAt(0).toUpperCase();
-});
-Vue.filter('truncate', function(value, characters) {
-  if (!value) return '';
-  value = value.toString();
-  return value.charAt(characters).toUpperCase();
-});
-Vue.filter('date', function(time) {
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})
+Vue.filter('uppercase', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.toUpperCase()
+})
+Vue.filter('firstLetter', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase()
+})
+Vue.filter('truncate', function (value, char) {
+  if (!value) return ''
+  const ending = char && value.length > char ? '...': '';
+  if (value.length) {
+    return value.substring(0, char || 20) + ending;
+  } else {
+    return value;
+  }
+})
+Vue.filter('age', function (value) {
+  if (!value) return ''
+  return 4
+})
+Vue.filter('date', function (time) {
   switch (typeof time) {
     case 'number':
       break;

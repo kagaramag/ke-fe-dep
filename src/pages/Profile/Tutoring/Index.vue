@@ -23,7 +23,6 @@ library.add(fab);
 Vue.component("icon", FontAwesomeIcon);
 const account_layout = "account";
 
-
 export default {
   name: "tutoring",
   components: {

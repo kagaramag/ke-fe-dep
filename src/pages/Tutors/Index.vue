@@ -43,12 +43,12 @@
                   </div>
                 </div>
                 <div class="divider bg-light mt-3 mb-1"></div>
-                <div class="card-body text-center p-2">
+                <div class="card-body p-3">
                   <div
                     class="card-text"
                     style="color:#878787"
                   >
-                  {{tutor.bio || '-' }}</div>
+                  {{ tutor.bio | truncate(90) }}</div>
                 </div>
                 <div class="divider bg-light my-1"></div>
                 <div class="row text-center">

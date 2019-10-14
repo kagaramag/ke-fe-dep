@@ -2,19 +2,24 @@
 <template>
   <div id="account">
     <Header :profile="profile" />
-    <div class="d-none d-sm-block d-dm-block">
-    <MessageBar :fetch_user="fetch_user" :profile="profile" />
+    <div class="bg-primary" v-show="loaded">
+      <ProfileBar :fetch_user="fetch_user" :profile="profile" />
     </div>
-    <div class="container">
-      <div class="row pt-2" v-if="loaded?'hidden':''">
-        <div class="col col-lg-3 d-none d-sm-block d-dm-block">
-          <Sidebar :fetch_user="fetch_user" :profile="profile" />
-        </div>
-        <div class="col col-sm-12 col-md-12 col-lg-7">
-          <slot :fetch_user="fetch_user" :profile="profile" />
-        </div>
-        <div class="col col-lg-2 d-none d-sm-block d-md-block">
-          <AdminMenu />
+    <div class="page-wrapper">
+      <!-- <div class="d-none d-dm-block d-lg-block">
+        <MessageBar :fetch_user="fetch_user" :profile="profile" />
+      </div>-->
+      <div class="container">
+        <div class="row" v-if="loaded?'hidden':''">
+          <div class="d-none d-dm-block d-lg-block col-lg-3">
+            <Sidebar :fetch_user="fetch_user" :profile="profile" />
+          </div>
+          <div class="col col-sm-12 col-md-12 col-lg-7">
+            <slot :fetch_user="fetch_user" :profile="profile" />
+          </div>
+          <div class="d-none d-dm-block d-lg-block col-lg-2">
+            <AdminMenu />
+          </div>
         </div>
       </div>
     </div>
@@ -29,6 +34,7 @@ import Header from "@/components/commons/Header";
 import Footer from "@/components/commons/Footer";
 import Sidebar from "@/pages/profile/Sidebar";
 import MessageBar from "@/pages/profile/MessageBar";
+import ProfileBar from "@/pages/profile/ProfileBar";
 import AdminMenu from "@/pages/profile/AdminMenu";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -47,18 +53,18 @@ export default {
     Header,
     Sidebar,
     MessageBar,
+    ProfileBar,
     Footer,
     AdminMenu
   },
   data() {
     return {
-      loaded: false,
+      loaded: false
     };
   },
   mounted() {
     this.currentUsername = this.$route.params.username;
     this.FETCH_USER(this.currentUsername);
-    this.loaded = true;
   },
   watch: {
     "$route.params.username"(nextUsername, previousUsername) {
@@ -85,7 +91,7 @@ export default {
     }
   },
   created() {
-    this.loaded = false;
+    this.loaded = true;
   },
   methods: {
     logout() {
@@ -98,12 +104,12 @@ export default {
 
 
 <style scoped>
+.page-wrapper {
+  margin-top: 0px;
+}
 header.navbar {
   background: #ffffff;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
-}
-.container {
-  /* margin-top: 76px; */
 }
 .content-wrapper {
   margin: 0px auto;

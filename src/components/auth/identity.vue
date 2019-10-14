@@ -209,7 +209,6 @@ export default {
       formData.append("experience", this.user.experience);
       return this.$store.dispatch("UPLOAD_DOCUMENTS", formData);
     }
-    // ...mapActions(["UPLOAD_DOCUMENTS"])
   }
 };
 </script>

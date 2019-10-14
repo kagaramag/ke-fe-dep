@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar bg-light shadow-2 fixed-top navbar-expand-lg navbar-light">
+    <nav class="navbar bg-primary m-0 fixed-top navbar-expand-lg navbar-light">
       <div class="container" style="padding:0 auto">
         <button
           class="navbar-toggler border-0"
@@ -15,7 +15,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
           <router-link class="navbar-brand" :to="`/${$i18n.locale}`">
-            <img src="@/assets/images/logo_nivelo_xs.svg" />
+            <img src="@/assets/images/logo_XI.svg" />
           </router-link>
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
@@ -25,37 +25,13 @@
               <router-link class="nav-link" :to="`/${$i18n.locale}/tutors`">{{$t('header.tutors')}}</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/feed`">{{$t('header.feeds')}}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/jobs`">{{$t('header.jobs')}}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                :to="`/${$i18n.locale}/profiles`"
-              >{{$t('header.resources')}}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                :to="`/${$i18n.locale}/profiles`"
-              >{{$t('header.questions')}}</router-link>
-            </li>
-            <li class="nav-item">
               <router-link class="nav-link" :to="`/${$i18n.locale}/faqs`">{{$t('header.faqs')}}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                :to="`/${$i18n.locale}/profiles`"
-              >{{$t('header.events')}}</router-link>
             </li>
           </ul>
           <div>
-            <b-dropdown key="language" :text="lang" variant="primary" class="m-2 bg-primary">
-              <b-dropdown-item @click="setLanguage('en')">English</b-dropdown-item>
-              <b-dropdown-item @click="setLanguage('kin')">Kinyarwanda</b-dropdown-item>
+            <b-dropdown key="language" :text="lang" variant="primary" class="m-2 px-3 bg-primary">
+              <b-dropdown-item @click="setLanguage('En')">English</b-dropdown-item>
+              <b-dropdown-item @click="setLanguage('Kin')">Kinyarwanda</b-dropdown-item>
             </b-dropdown>
           </div>
           <ul class="navbar-nav right" v-if="profile.isLoggedIn">
@@ -88,7 +64,7 @@
                           alt="Tutor"
                         />
                       </span>
-                      {{$t('profile.account')}}
+                      <span class="py-3">{{profile.user.firstName | truncate(10)}}</span>
                     </router-link>
                   </li>
                 </b-dropdown-item>
@@ -196,11 +172,13 @@ export default {
 }
 .navbar-items li {
   list-style-type: none;
-  float: left;
+  /* float: left; */
+  text-align: center;
+  display: inline-block;
 }
 .navbar-items li a {
   padding: 5px 15px;
-  color: #fefefe;
+  color: #ffffff;
   font-weight: bold;
 }
 .bg-primary.text-light {

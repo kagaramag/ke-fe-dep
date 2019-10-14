@@ -5,13 +5,14 @@
       <!-- LIST OF KIDS -->
       <ul class="list-unstyled" v-if="fetch_kids.kids">
         <li
-          class="my-4 shadow-1 bg-white wrap-one-tutering"
+          class="my-4 shadow-1 bg-white wrap-one-tutoring"
           v-for="val in fetch_kids.kids"
           :key="val.index"
         >
           <div v-if="val.status ==='requested'" class="requested" />
           <div v-if="val.status ==='accepted'" class="accepted" />
           <div v-if="val.status ==='rejected'" class="rejected" />
+          <div v-if="val.status ==='terminated'" class="terminated" />
           <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${val.id}`">
             <div class="row">
               <div class="media p-3 my-1 mx-3" style="position:relative">
@@ -20,7 +21,7 @@
                     :src="val.kid.parent.image"
                     style="max-width:40px;"
                     class="d-block mx-3 ui-w-100 rounded-circle profile d-block mx-auto"
-                    alt="Tutor"
+                    alt
                   />
                 </span>
                 <span v-else>
@@ -28,43 +29,90 @@
                     src="@/assets/images/profile.png"
                     style="max-width:40px;"
                     class="d-block mx-3 ui-w-100 rounded-circle profile d-block mx-auto"
-                    alt="Tutor"
+                    alt
                   />
                 </span>
                 <div class="media-body px-3">
+                  <!-- REQUESTED -->
                   <div v-if="val.status === 'requested'" class="mb-3">
-                    <h5 class="py-2" style="font-size:18px">
+                    <div class="py-2 md-text">
+                      <div class="my-2 timestamp">{{val.createdAt | date }}</div>
                       <b>{{val.kid.parent.lastName}} {{val.kid.parent.firstName}}</b> requested you to tutor
                       <b>{{val.kid.names}}</b>
-                      , his/her {{val.kid.age}}-years old child.
-                    </h5>
-                    <!-- <button
-                    @click.prevent
-                    @click="accept_request(val.kid.id)"
-                    class="btn btn-outline-success rounded-pill shadow-none"
-                  >Accept</button>
-                  <button class="btn btn-outline-danger rounded-pill shadow-none mx-3">Reject</button>
-                    <button class="btn btn-light rounded-pill shadow-none">See more</button>-->
+                      , {{val.kid.parent.gender === 'male' ? 'his' : 'her'}} {{val.kid.dateOfBirth | age }}-years old child.
+                    </div>
+                    <div>
+                      <router-link
+                        :to="`/profile/${profile.user.username}/tutoring/${val.id}`"
+                        class="btn btn-outline-success text-success rounded-pill px-4"
+                      >
+                        Go to tutorship
+                        <icon class="icon" icon="arrow-right" />
+                      </router-link>
+                      <button
+                        @click.prevent
+                        @click="accept_request(val.kid.id)"
+                        class="btn btn-outline-success rounded-pill shadow-none px-4"
+                      >Accept</button>
+                      <button class="btn btn-outline-danger rounded-pill px-4 shadow-none">Reject</button>
+                    </div>
                   </div>
+                  <!-- ACCEPTED -->
                   <div v-if="val.status === 'accepted'" class="mb-3">
-                    <h5 class="py-2" style="font-size:18px">
-                      You are now connected with
+                    <div class="py-2 md-text">
+                      <div class="my-2 timestamp">{{val.createdAt | date }}</div>You are now connected with
                       <b>{{val.kid.names}}</b>
-                      , a {{val.kid.age}}-years old child of
+                      , a {{val.kid.dateOfBirth | age }}-years old child of
                       <b>{{val.kid.parent.lastName}} {{val.kid.parent.firstName}}</b>.
-                    </h5>- For more information regarding start the job, you can contact
-                    <b>{{val.kid.parent.firstName}}</b>
-                    <br />- If you need more help, don't hesitate to visit our contact page
+                    </div>
+                    <div>
+                      <router-link
+                        :to="`/profile/${profile.user.username}/tutoring/${val.id}`"
+                        class="btn btn-outline-success text-success rounded-pill px-4"
+                      >
+                        Go to tutorship
+                        <icon class="icon" icon="arrow-right" />
+                      </router-link>
+                    </div>
                   </div>
+                  <!-- REJECTED -->
                   <div v-if="val.status === 'rejected'" class="mb-3">
-                    <h5 class="py-2" style="font-size:18px">
-                      You have rejected this the request of <b>{{val.kid.parent.lastName}} {{val.kid.parent.firstName}}</b> to 
-                      tutor his kid <b>{{val.kid.names}}</b>
-                    <b>{{val.kid.parent.firstName}}</b>
-                    <br />- If you need more help, don't hesitate to visit our contact page
-                    </h5>
+                    <div class="py-2 md-text">
+                      <div class="my-2 timestamp">{{val.createdAt | date }}</div>You have rejected the request of
+                      <b>{{val.kid.parent.lastName}} {{val.kid.parent.firstName}}</b>
+                      to
+                      tutor {{val.kid.parent.gender === 'male' ? 'his' : 'her'}} kid
+                      <b>{{val.kid.names}}</b>
+                      <b>{{val.kid.parent.firstName}}</b>
+                    </div>
+                  </div>
+                  <!-- TERMINATED -->
+                  <div v-if="val.status === 'terminated'" class="mb-3">
+                    <div class="py-2 md-text text-danger">
+                      <div class="my-2 timestamp">{{val.createdAt | date }}</div>The tutorship between
+                      <b>{{val.kid.names}}</b> and
+                      <b>you</b> has been terminated
+                      <br />
+
+                      <b>Parent: {{val.kid.parent.firstName}} {{val.kid.parent.lastName}}</b>
+                      <div class="text-dark mt-3">
+                        <router-link class="bold" :to="'/'">
+                          <icon class="icon" icon="arrow-right" />Learn more
+                        </router-link>about Tutorship Policy
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </div>
+              <div class="dropdown option-nav">
+                <b-dropdown id="option-nav" right no-caret class="m-md-2" variant="outline-light">
+                  <template v-slot:button-content>
+                    <icon icon="ellipsis-v" class="icon float-right text-dark" />
+                  </template>
+                  <b-dropdown-item @click="popKidInfo(val)">
+                    <icon class="icon" icon="child" />&nbsp; View kid details
+                  </b-dropdown-item>
+                </b-dropdown>
               </div>
             </div>
           </router-link>
@@ -84,6 +132,32 @@
       <h2 class="text-center my-4">Oooops, You dont have kid to tutor yet!</h2>
       <div class="text-center">Learn how you can connect yourself with kids and parents.</div>
     </div>
+    <!-- MODAL, VIEW A KID -->
+    <b-modal id="view-kid" hide-footer>
+      <template class="bg-danger" v-slot:modal-title>
+        <b>Kid information</b>
+      </template>
+      <div class="my-3">
+        <h5 class="bold">Kid</h5>
+        <ul class="list-group" v-show="kidInfoPreview && kidInfoPreview">
+          <li class="list-group-item">
+            <b>Names:</b>
+            <span class="capitalize">{{kidInfoPreview.kid.id}}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="my-4">
+        <b-button
+          class="btn btn-outline-dark mx-2 px-4 rounded-pill btn-light"
+          @click="$bvModal.hide('view-kid')"
+        >
+          <icon class="icon" icon="long-arrow-alt-left" />&nbsp; Back
+        </b-button>
+        <router-link
+          class="btn btn-outline-dark rounded-pill px-4"
+        >Search tutors</router-link>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -105,19 +179,26 @@ export default {
   props: ["profile", "fetch_kids"],
   data() {
     return {
-      loaded: false
+      loaded: false,
+      kidInfoPreview: {},
     };
   },
   created() {
-    this.loaded = false;
+    this.loaded = true;
   },
   computed: {
     accept_requested() {
-      // this.loaded = true;
+      this.loaded = true;
       return this.$store.getters.accept_requested;
     }
   },
   methods: {
+    // pop kid info
+    async popKidInfo(kid) {
+      this.kidInfoPreview = "";
+      await this.$bvModal.show("view-kid");
+      this.kidInfoPreview = kid;
+    },
     accept_request(id) {
       this.ACCEPT_REQUEST({ tuteeId: id });
     },

@@ -74,11 +74,11 @@ export default {
   created() {
     // user directly get redirected to homepage if they already chose their account type
     if (JSON.parse(localStorage.getItem("user")).accounttype === "parent") {
-      this.$router.push("/");
+      this.$router.push(`/${this.$i18n.locale}/profile`);
     }
     // tutor directly get redirected to identity if they already chose their account type but have not filled documents yet
     if (JSON.parse(localStorage.getItem("user")).accounttype === "tutor") {
-      this.$router.push(`/${this.$i18n.locale}/identity/${this.username}`);
+      this.$router.push(`/${this.$i18n.locale}/profile/${this.username}/identity`);
     }
   },
   methods: {
@@ -90,7 +90,7 @@ export default {
     // when a user choose to be a tutor, they get redirected to identity page
     async tutorNext() {
       await this.UPDATE_USER({ accounttype: "tutor" });
-      this.$router.push(`/${this.$i18n.locale}/identity/${this.username}`);
+      this.$router.push(`/${this.$i18n.locale}/profile/${this.username}/identity`);
     },
 
     register() {

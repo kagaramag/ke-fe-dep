@@ -72,6 +72,7 @@
         <div class="container">
           <span class="float-left">
             &copy; Copyright 2019
+            <router-link class="radius-3 bg-light text-dark mx-2" :to="'/'">Keetela.com</router-link> a 
             <strong>Nivelo Ltd</strong> business. All Rights Reserved
           </span>
           <span class="float-right m4-3">

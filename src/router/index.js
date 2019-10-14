@@ -37,8 +37,8 @@ const router = new Router({
           component: () => import('@/components/auth/type')
         },
         {
-          path: 'identity/:username',
-          component: () => import('@/components/auth/identity')
+          path: 'profile/:username/identity',
+          component: () => import('@/pages/profile/tutorIdentity')
         },
         {
           path: 'login',

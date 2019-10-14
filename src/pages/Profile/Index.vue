@@ -4,7 +4,7 @@
       <div class="profile" slot-scope="data">
         <Tips :fetch_user="data.fetch_user" :profile="data.profile" />
         <!-- HIRE ME START -->
-        <HireMe
+        <!-- <HireMe
           v-if="
           data.profile.isLoggedIn 
           && data.profile.user.role === 'parent'
@@ -12,7 +12,7 @@
           "
           :fetch_user="data.fetch_user"
           :profile="data.profile"
-        />
+        /> -->
 
         <!-- KIDS -->
         <!-- HIRE ME END -->

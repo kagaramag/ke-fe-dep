@@ -1,10 +1,11 @@
 <template>
   <div id="my-kids">
-    <h2 class="mb-4">
+    <h2 class="mb-4" v-show="!fetch_kids.loading && fetch_kids && fetch_kids.kids.length !== 0">
       My Kids
       <span class="float-right">
         <b-button id="show-btn" class="btn btn-primary rounded-pill px-3" @click="popUserForm()">
-          <icon class="icon" icon="plus" />&nbsp; Add
+          <icon class="icon" icon="plus" />
+          <span class="d-none d-md-inline d-lg-inline px-1">Register Kid</span>
         </b-button>
       </span>
     </h2>
@@ -12,66 +13,127 @@
     <div>
       <ul class="list-unstyled" v-if="fetch_kids.kids">
         <li
-          class="my-4 shadow-1 bg-white wrap-one-tutering"
+          class="my-4 shadow-1 bg-white wrap-one-tutoring"
           v-for="kid in fetch_kids.kids"
           :key="kid.index"
         >
-          <div v-if="!kid.tutoring" class="requested" />
+          <div v-if="!kid.tutoring" class="notfound" />
           <div v-if="kid.tutoring && kid.tutoring.status ==='requested'" class="requested" />
           <div v-if="kid.tutoring && kid.tutoring.status ==='accepted'" class="accepted" />
           <div v-if="kid.tutoring && kid.tutoring.status ==='rejected'" class="rejected" />
+          <div v-if="kid.tutoring && kid.tutoring.status ==='terminated'" class="terminated" />
           <div class="row">
             <div class="media p-3 my-1 mx-3" style="position:relative">
               <span>
                 <img
                   src="@/assets/images/profile.png"
                   style="max-width:40px;"
-                  class="d-block mx-3 ui-w-100 rounded-circle profile d-block mx-auto"
-                  alt="Tutor"
+                  class="d-block mt-3 mx-3 ui-w-100 rounded-circle profile d-block mx-auto"
+                  alt
                 />
               </span>
               <div class="media-body px-3">
+                <!-- REQUESTED -->
                 <div class="mb-3" v-if="kid.tutoring && kid.tutoring.status ==='requested' ">
-                  <h5 class="py-2" sty le="font-size:18px">
-                    You requested
+                  <div class="py-2 md-text">
+                    <div class="my-2 timestamp">{{kid.createdAt | date }}</div>You requested
                     <b>{{kid.tutoring.tutor.lastName}} {{kid.tutoring.tutor.firstName}}</b> to tutor
                     <b>{{kid.names}}</b>
-                  </h5>
-                  <div class="my-2" style="color:#878787">{{kid.createdAt | date }}</div>
+                  </div>
+                  <div class="m-3">
+                    <router-link
+                      :to="'/tutors'"
+                      v-if="!kid.tutoring"
+                      class="btn btn-outline-dark rounded-pill px-4"
+                    >Search tutors</router-link>
+                    <router-link :to="`/profile/${profile.user.username}/tutoring/${kid.tutoring.id}`" v-if="kid.tutoring" class="btn btn-outline-success rounded-pill px-4">
+                      Go to tutorship
+                      <icon class="icon" icon="arrow-right" />
+                    </router-link>
+                  </div>
                 </div>
+                <!-- ACCEPTED -->
                 <div class="mb-3" v-if="kid.tutoring && kid.tutoring.status ==='accepted' ">
-                  <h5 class="py-2" style="font-size:18px">
+                  <div class="py-2 md-text">
+                    <div class="my-2 timestamp">{{kid.createdAt | date }}</div>
                     <b>{{kid.names}}</b> is being tutored by
                     <b>{{kid.tutoring.tutor.lastName}} {{kid.tutoring.tutor.firstName}}</b>
-                  </h5>
-                  <div class="my-2" style="color:#878787">{{kid.createdAt | date }}</div>
+                  </div>
+                  <div class="my-1-">
+                    <router-link
+                      :to="'/tutors'"
+                      v-if="!kid.tutoring"
+                      class="btn btn-outline-dark rounded-pill px-4"
+                    >Search tutors</router-link>
+                    <router-link :to="`/profile/${profile.user.username}/tutoring/${kid.tutoring.id}`" v-if="kid.tutoring" class="btn btn-outline-success rounded-pill px-4">
+                      Go to tutorship
+                      <icon class="icon" icon="arrow-right" />
+                    </router-link>
+                  </div>
                 </div>
+                <!-- REJECTED -->
                 <div class="mb-3" v-if="kid.tutoring && kid.tutoring.status ==='rejected' ">
-                  <h5 class="py-2" style="font-size:18px">
+                  <div class="py-2 md-text">
+                    <div class="my-2 timestamp">{{kid.createdAt | date }}</div>
                     <b>{{kid.tutoring.tutor.lastName}} {{kid.tutoring.tutor.firstName}}</b> rejected your request to tutor
                     <b>{{kid.names}}</b>
-                  </h5>
-                  <div class="my-2" style="color:#878787">{{kid.createdAt | date }}</div>
+                  </div>
+                  <div class="my-1-">
+                    <router-link
+                      :to="'/tutors'"
+                      v-if="!kid.tutoring"
+                      class="btn btn-outline-dark rounded-pill px-4"
+                    >Search tutors</router-link>
+                    <button v-if="kid.tutoring" class="btn btn-outline-success rounded-pill px-4">
+                      Go to tutorship
+                      <icon class="icon" icon="arrow-right" />
+                    </button>
+                  </div>
                 </div>
+                <!-- NOTFOUND -->
                 <div class="mb-3" v-if="!kid.tutoring">
-                  <h5 class="py-2" style="font-size:18px">
+                  <div class="py-2 md-text">
+                    <div class="my-2 timestamp">{{kid.createdAt | date }}</div>
                     <b>{{kid.names}}</b> doe not have a tutor yet
-                  </h5>
-                  <div class="my-2" style="color:#878787">{{kid.createdAt | date }}</div>
+                  </div>
+                  <div class="my-1-">
+                    <router-link
+                      :to="'/tutors'"
+                      v-if="!kid.tutoring"
+                      class="btn btn-outline-dark rounded-pill px-4"
+                    >Search tutors</router-link>
+                    <button v-if="kid.tutoring" class="btn btn-outline-success rounded-pill px-4">
+                      Go to tutorship
+                      <icon class="icon" icon="arrow-right" />
+                    </button>
+                  </div>
+                </div>
+                <!-- TERMINATED -->
+                <div class="mb-3" v-if="kid.tutoring && kid.tutoring.status ==='terminated' ">
+                  <div class="py-2 md-text">
+                    <div class="my-2 timestamp">{{kid.createdAt | date }}</div>The tutorship between
+                    <b>{{kid.names}}</b> and
+                    <b>{{kid.tutoring.tutor.firstName}} {{kid.tutoring.tutor.lastName}}</b> has been terminated
+                    <br />
+                    <div class="text-dark mt-3">
+                      <router-link class="bold" :to="'/'">
+                        <icon class="icon" icon="exclamation-triangle" /> Learn more
+                      </router-link>about Tutorship Policy
+                    </div>
+                  </div>
+                  <div class="my-1-">
+                    <router-link
+                      :to="'/tutors'"
+                      v-if="!kid.tutoring"
+                      class="btn btn-outline-dark rounded-pill px-4"
+                    >Search tutors</router-link>
+                    <button v-if="kid.tutoring" class="btn btn-outline-success rounded-pill px-4">
+                      Go to tutorship
+                      <icon class="icon" icon="arrow-right" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div class="wrap-media-btn">
-              <router-link
-                :to="'/tutors'"
-                v-if="!kid.tutoring"
-                class="btn btn-outline-dark rounded-pill px-4"
-              >Search tutors</router-link>
-              <button class="btn btn-outline-dark rounded-pill px-4">
-                View tutorship
-                <icon class="icon" icon="arrow-right" />
-              </button>
             </div>
             <div class="dropdown option-nav">
               <b-dropdown id="option-nav" right no-caret class="m-md-2" variant="outline-light">
@@ -82,15 +144,7 @@
                   <icon class="icon" icon="child" />&nbsp; View kid details
                 </b-dropdown-item>
                 <b-dropdown-divider></b-dropdown-divider>
-                <span v-if="kid.tutoring">
-                  <b-dropdown-item v-if="kid.tutoring.status === 'requested'">
-                    <icon class="icon" icon="ban" />&nbsp; Stop tutor
-                  </b-dropdown-item>
-                </span>
-                <b-dropdown-item
-                  @click="popUserForm(kid.id, kid.names, kid.dateOfBirth, kid.school )"
-                  class="text-danger"
-                >
+                <b-dropdown-item @click="popUserForm(kid)" class="text-danger">
                   <icon class="icon" icon="pen" />&nbsp; Edit
                 </b-dropdown-item>
                 <b-dropdown-item @click="popToDeleteKid(kid.id, kid.names)" class="text-danger">
@@ -145,11 +199,23 @@
         </li>
       </ul>
       <div
-        class="rounded shadow-2 bg-white p-3 text-center"
-        v-if="fetch_kids && fetch_kids.kids.length === 0"
+        class="pt-2  pb-5 text-center"
+        v-if="!fetch_kids.loading && fetch_kids && fetch_kids.kids.length === 0"
       >
-        <icon icon="exclamation-circle" style="font-size:3.4em" class="icon my-4 text-muted" />
-        <h4>No kids registered yet</h4>
+        <div>This place is so lonely.</div>
+        <div class="my-2 lg-text">
+          We are committed to find best tutor for your kid.
+          <br />
+          <div class="my-3 bold">Register your kid to get started.</div>
+        </div>
+        <div class="my-4">
+          <button class="btn btn-primary px-5 rounded-pill" @click="popUserForm()">Register now</button>
+        </div>
+        <img
+          src="@/assets/images/register-kid.png"
+          style="max-width:420px"
+          class="img-fluid rounded mx-auto d-block"
+        />
       </div>
       <div
         class="rounded shadow-2 bg-white p-2 text-center"
@@ -162,11 +228,8 @@
 
     <!-- MODAL, DELETE A KID -->
     <b-modal id="delete-kid" hide-footer>
-      <template class="bg-danger" v-slot:modal-title>
-        <icon class="icon" icon="exclamation-triangle" />&nbsp; Are you sure you want to delete
-        <b>"{{previewKidToBeDeleted.names}}"</b>?
-      </template>
-      <div class="text-danger" style="font-size:14px">
+      <template class="bg-danger" v-slot:modal-title>Delete</template>
+      <div class="text-danger border border-danger rounded p-3" style="font-size:14px">
         All information related to
         <b>{{previewKidToBeDeleted.names}}</b> including tutorship, questions&amp;answers, resources and conversations will be deleted.
       </div>
@@ -174,10 +237,10 @@
         v-if="delete_kid && (delete_kid.message || delete_kid.errors.error)"
         class="alert alert-danger my-2"
       >{{delete_kid.message || delete_kid.errors.error}}</div>
-      <h5 class="my-4" v-if="!delete_kid.deleted">
+      <div class="my-2 lg-text" v-if="!delete_kid.deleted">
         Are you sure you want to delete
         <b>"{{previewKidToBeDeleted.names}}"</b>?
-      </h5>
+      </div>
       <div class="my-4">
         <button
           v-if="!delete_kid.deleted"
@@ -186,15 +249,19 @@
           @click="submit_delete_kid(previewKidToBeDeleted.id)"
           class="btn btn-danger rounded-pill px-4"
         >
-          <icon class="icon" icon="trash" />Delete now
+          <icon class="icon" icon="trash" />&nbsp; Delete now
         </button>
         <b-button
-          class="btn btn-outline-dark mx-2 px-5 rounded-pill btn-light"
+          @click.prevent
           @click="$bvModal.hide('delete-kid')"
-        >
-          <span v-if="!delete_kid.deleted">Cancel</span>
-          <span v-if="delete_kid.deleted">Close</span>
-        </b-button>
+          v-if="!delete_kid.deleted"
+          class="btn btn-outline-dark mx-2 px-5 rounded-pill btn-light"
+        >Cancel</b-button>
+        <a
+          v-if="delete_kid.deleted"
+          :href="`/profile/${profile.user.username}/tutoring`"
+          class="btn btn-outline-dark mx-2 px-5 rounded-pill btn-light"
+        >Close &amp; Reflesh</a>
         <div
           v-show="delete_kid.loading"
           class="spinner-border text-primary float-right m-1"
@@ -208,27 +275,72 @@
     <!-- MODAL, VIEW A KID -->
     <b-modal id="view-kid" hide-footer>
       <template class="bg-danger" v-slot:modal-title>
-        <icon class="icon" icon="child" />&nbsp; Kid information
+        <b>Kid information</b>
       </template>
-      <div class="my-4">
-        {{kidInfoPreview}}
+      <div class="my-3">
+        <h5 class="bold">Kid</h5>
         <ul class="list-group">
-          <li class="list-group-item"><b>Names:</b> {{kidInfoPreview.names}} </li>
-          <li class="list-group-item"><b>Date of birth:</b> {{ new Date(kidInfoPreview.dateOfBirth).toDateString() }} </li>
-          <li class="list-group-item"><b>School:</b> {{ kidInfoPreview.school }} </li>
-          <li class="list-group-item"><b>Class:</b> {{ kidInfoPreview.class }} </li>
-          <li class="list-group-item"><b>Registered:</b> {{ kidInfoPreview.createdAt | date }} </li>
+          <li class="list-group-item">
+            <b>Names:</b>
+            <span class="capitalize">{{kidInfoPreview.names}}</span>
+          </li>
+          <li class="list-group-item">
+            <b>Date of birth:</b>
+            {{ new Date(kidInfoPreview.dateOfBirth).toDateString() }}
+          </li>
+          <li class="list-group-item">
+            <b>School:</b>
+            <span class="capitalize">{{ kidInfoPreview.school }}</span>
+          </li>
+          <li class="list-group-item">
+            <b>Class:</b>
+            <span class="uppercase">{{ kidInfoPreview.class }}</span>
+          </li>
+          <li class="list-group-item">
+            <b>Registered:</b>
+            {{ kidInfoPreview.createdAt | date }}
+          </li>
+          <li v-show="!kidInfoPreview.tutoring" class="list-group-item bg-danger text-light">
+            <icon class="icon" icon="exclamation-circle" />&nbsp; No tutorship found
+          </li>
+        </ul>
+      </div>
+      <div class="my-3" v-if="kidInfoPreview.tutoring && kidInfoPreview.tutoring">
+        <h5 class="bold">Tutoring</h5>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <b>Tutorship:</b>
+            {{kidInfoPreview.tutoring.status === 'accepted' || kidInfoPreview.tutoring.status === 'request_cancel' ? 'Ongoing' : ''}}
+            {{kidInfoPreview.tutoring.status === 'requested' ? 'Pending' : ''}}
+            {{kidInfoPreview.tutoring.status === 'rejected' ? 'Cancelled' : ''}}
+            {{kidInfoPreview.tutoring.status === 'terminated' ? 'Terminated' : ''}}
+          </li>
+          <li class="list-group-item">
+            <b>Since</b>
+            {{kidInfoPreview.tutoring.createdAt | date }}
+          </li>
+          <li class="list-group-item">
+            <b>Tutor:</b>
+            {{ kidInfoPreview.tutoring.tutor.firstName }}
+            {{ kidInfoPreview.tutoring.tutor.lastName }}
+          </li>
         </ul>
       </div>
       <div class="my-4">
         <b-button
-          class="btn btn-outline-dark mx-2 px-5 rounded-pill btn-light"
+          class="btn btn-outline-dark mx-2 px-4 rounded-pill btn-light"
           @click="$bvModal.hide('view-kid')"
         >
-          <icon class="icon" icon="times" />&nbsp; Close
+          <icon class="icon" icon="long-arrow-alt-left" />&nbsp; Back
         </b-button>
+        <router-link
+          v-if="!kidInfoPreview.tutoring"
+          :to="`/profile/${profile.user.username}/tutoring`"
+          class="btn btn-outline-dark rounded-pill px-4"
+        >Search tutors</router-link>
       </div>
     </b-modal>
+
     <!-- MODAL, REGISTER, EDIT A KID -->
     <b-modal id="register" hide-footer>
       <template v-slot:modal-title>{{title}}</template>
@@ -236,7 +348,7 @@
         <div
           class="alert alert-success"
           role="alert"
-          v-if="register_kid.registered && message"
+          v-if="(register_kid.registered || edit_kid.edited) && message"
         >{{message}}</div>
         <div
           class="alert alert-danger"
@@ -245,7 +357,10 @@
         >{{register_kid.errors[0].error}}</div>
         <div class="row">
           <div class="col m-4">
-            <form :class="{ 'form-group--error': $v.names.$error }">
+            <form
+              v-show="!edit_kid.edited && !register_kid.registered"
+              :class="{ 'form-group--error': $v.names.$error }"
+            >
               <div class="form-group">
                 <label for="names">Names</label>
                 <input
@@ -315,9 +430,9 @@
                   @click.prevent
                   @click="submit_kid"
                   class="btn btn-primary rounded-pill px-4"
-                >Register</button>
+                >{{buttonText}}</button>
                 <b-button
-                  class="btn btn-outline-primary mx-2 rounded-pill btn-light"
+                  class="btn btn-outline-primary mx-2 px-3 rounded-pill btn-light"
                   @click="$bvModal.hide('register')"
                 >
                   <span v-if="!register_kid.register_kid">Cancel</span>
@@ -330,8 +445,6 @@
                 >
                   <span class="sr-only">Loading...</span>
                 </div>
-<<<<<<< HEAD
-=======
                 <div class="col-6">
                   <div class="form-group">
                     <label for="class">Class</label>
@@ -359,9 +472,14 @@
               <b-button class="btn btn-light" @click="$bvModal.hide('register')">Cancel</b-button>
               <div class="float-right m-1">
                 <b-spinner v-show="false"></b-spinner>
->>>>>>> aaa46805191e4c71d801e38bf5275d3c4496a03f
               </div>
             </form>
+            <div v-show="register_kid.registered || edit_kid.edited" class="my-4">
+              <b-button
+                class="btn btn-outline-primary px-3 rounded-pill btn-light"
+                @click="$bvModal.hide('register')"
+              >Close</b-button>
+            </div>
           </div>
         </div>
       </div>
@@ -402,6 +520,7 @@ export default {
       school: "",
       dateOfBirth: "",
       class: "",
+      id: "",
       minDatetime: "1980-01-01",
       maxDatetime: new Date().toISOString().slice(0, 10),
       message: "",
@@ -409,7 +528,9 @@ export default {
       previewKidToBeDeleted: {
         id: "",
         names: ""
-      }
+      },
+      buttonText: "",
+      registering: false
     };
   },
   computed: {
@@ -434,25 +555,42 @@ export default {
     },
     delete_kid() {
       return this.$store.getters.delete_kid;
+    },
+    edit_kid() {
+      this.message = this.$store.getters.edit_kid.message;
+      return this.$store.getters.edit_kid;
     }
   },
   methods: {
-    async popUserForm(id, names, age, school) {
+    // pop delete or edit
+    async popUserForm(data) {
       this.names = "";
       this.class = "";
       this.dateOfBirth = "";
       this.school = "";
       this.message = "";
-      if (id) {
-        (this.title = "Edit kid"), (this.names = names), (this.school = school);
+      this.id = "";
+      if (data) {
+        this.names = data.names;
+        this.class = data.class;
+        this.dateOfBirth = data.dateOfBirth;
+        this.school = data.school;
+        this.id = data.id;
+        this.title = "Edit kid";
+        this.buttonText = "Edit kid";
+        this.registering = false;
       } else {
-        this.title = "Register kid";
+        this.title = "Edit kid";
+        this.buttonText = "Register now";
+        this.registering = true;
       }
-      this.$bvModal.show("register");
+      this.$store.dispatch("INITIATE_KID_EDIT");
+      this.$store.dispatch("INITIATE_KID_EDIT");
+      await this.$bvModal.show("register");
     },
     // pop kid info
     async popKidInfo(kid) {
-      this.kidInfoPreview = '';
+      this.kidInfoPreview = "";
       await this.$bvModal.show("view-kid");
       this.kidInfoPreview = kid;
     },
@@ -470,22 +608,27 @@ export default {
         names: this.names,
         class: this.class,
         dateOfBirth: this.dateOfBirth.split("T")[0],
-        school: this.school
+        school: this.school,
+        id: this.id
       };
-      if (!this.edit) {
+      if (this.registering) {
         await this.REGISTER_KID(data);
       } else {
         await this.EDIT_KID(data);
+        await this.FETCH_KIDS;
       }
     },
     async submit_delete_kid(id) {
       await this.DELETE_KID(id);
+      await this.FETCH_KIDS;
     },
     ...mapActions([
       "FETCH_KIDS",
       "REGISTER_KID",
+      "EDIT_KID",
       "DELETE_KID",
-      "INITIATE_DELETE_KID"
+      "INITIATE_DELETE_KID",
+      "INITIATE_KID_EDIT"
     ])
   },
   validations: {
@@ -542,6 +685,7 @@ export default {
     rgba(200, 200, 200, 1) 100%
   );
 }
+<<<<<<< HEAD
 .option-nav {
   position: absolute;
   top: 15px;
@@ -556,6 +700,9 @@ export default {
   color: #b3b3b3;
 }
 <<<<<<< HEAD
+=======
+
+>>>>>>> Update kid info
 .vdatetime-input {
   padding: 12px 6px !important;
 }

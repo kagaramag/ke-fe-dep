@@ -1,7 +1,7 @@
 <template>
   <div slot-scope="fetch_user">
     <!-- PROFILE CARD START -->
-    <div class="shadow-2 bg-white mb-1 top-border-styled">
+    <div class="shadow-2 bg-white mb-1 top-border-styled d-none">
       <div class="card profile-card-4">
         <div class="card-body pt-1" v-if="fetch_user.user">
           <span v-if="fetch_user.user.image">
@@ -157,7 +157,7 @@
           <icon class="icon" icon="chevron-down" />
         </span>
       </h5>
-      <b-collapse id="open-user-provided-status">
+      <!-- <b-collapse id="open-user-provided-status"> -->
         <div class="pb-4">
           <div class="tutor-summary-item">
             <icon class="icon text-success" icon="check-circle" />
@@ -188,7 +188,7 @@
             <span>{{$t('userprofile.provided.code')}}</span>
           </div>
         </div>
-      </b-collapse>
+      <!-- </b-collapse> -->
     </div>
   </div>
 </template>
