@@ -90,6 +90,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["UPDATE_PROFILE"]),
     updateUser() {
       const info = {
         firstName: this.info.firstName,
@@ -103,7 +104,6 @@ export default {
         this.profileUpdated = false;
       }, 2000);
     },
-    ...mapActions(["UPDATE_PROFILE"])
   }
 };
 </script>

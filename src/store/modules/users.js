@@ -110,9 +110,33 @@ export default {
 
   // actions
   actions: {
+    RESET_PASSWORD: (context, payload) => {
+      AxiosHelper.post(`/auth/reset`, payload)
+        .then(response => {
+          localStorage.redirect = response.data.redirect;
+        })
+        .catch(error => {});
+    },
+
+    CONFIRM_PASSWORD: (context, payload) => {
+      AxiosHelper.patch(`/auth/reset/${payload.redirect}`, payload.passwords)
+        .then(response => {
+          context.commit("FETCH_USER_SUCCESS", response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     UPDATE_PROFILE: (context, payload) => {
       context.commit("UPDATE_PROFILE");
-      AxiosHelper.put("/users", payload);
+      AxiosHelper.put("/users", payload)
+        .then(response => {
+          console.log(response);
+          context.commit("FETCH_USER_SUCCESS", response.data);
+        })
+        .catch(error => {
+          context.commit("FETCH_USER_FAILURE", error.response.data);
+        });
     },
 
     GET_PROFILE: context => {

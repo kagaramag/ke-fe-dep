@@ -60,12 +60,6 @@
             <span>Profile</span>
           </router-link>
         </b-list-group-item>
-        <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/location`">
-            <icon class="icon" icon="map-marker" />
-            <span>Location</span>
-          </router-link>
-        </b-list-group-item>
       </b-list-group>
       <!-- TUTOR NAV CARD START -->
       <b-list-group
@@ -192,7 +186,7 @@
     </div>
 
     <!-- MODAL FOR EDITING PROFILE PHOTO -->
-    <b-modal id="profilepic" hide-footer>
+    <b-modal ref="my-modal" id="profilepic" hide-footer>
       <template v-slot:modal-title>Change profile picture</template>
 
       <div class="row mx-auto">
@@ -212,6 +206,9 @@
             placeholder="Choose image"
             drop-placeholder="Drop file here..."
           ></b-form-file>
+          <button @click="changeProfile" class="my-2 d-block btn btn-primary bg-primary text-white">
+            <icon class="icon" icon="image" />&nbsp;Upload
+          </button>
         </div>
       </div>
     </b-modal>
@@ -236,6 +233,7 @@ export default {
   data() {
     return {
       file: null,
+      image: null,
       avatar: require("@/assets/images/profile.png")
     };
   },
@@ -246,13 +244,27 @@ export default {
     }
   },
   methods: {
+    ...mapActions(["UPDATE_PROFILE"]),
     GetImage(e) {
-      let image = e.target.files[0];
+      let img = e.target.files[0];
+      this.image = img;
       let reader = new FileReader();
-      reader.readAsDataURL(image);
+      reader.readAsDataURL(img);
       reader.onload = e => {
         this.file = e.target.result;
       };
+    },
+    async changeProfile() {
+      const formData = new FormData();
+      formData.append("image", this.image);
+      try {
+        await this.UPDATE_PROFILE(formData);
+        this.$refs["my-modal"].hide();
+      } catch (error) {}
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     },
     submit_kid() {}
   }

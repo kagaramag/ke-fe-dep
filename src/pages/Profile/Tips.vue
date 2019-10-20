@@ -13,12 +13,16 @@
       <h4 class="alert-heading">How to hire a tutor?</h4>
       <p>
         Aww yeah, we understand that your children deserve best tutors. We have made it easy for your to find most compentent turors around where you are.
-        For more information, <router-link :to="'/'">Check here</router-link>  the process and criteria to admin tutors on our website and <router-link :to="'/'"> here</router-link> for tips to hire a tutor you really need.
-
+        For more information,
+        <router-link :to="'/'">Check here</router-link>the process and criteria to admin tutors on our website and
+        <router-link :to="'/'">here</router-link>for tips to hire a tutor you really need.
       </p>
       <hr />
       <div>
-        <router-link :to="'/tutors'" class="btn btn-light border border-success rounded-pillfloat-right">Find Tutor</router-link>
+        <router-link
+          :to="'/tutors'"
+          class="btn btn-light border border-success rounded-pillfloat-right"
+        >Find Tutor</router-link>
       </div>
       <div class="clear"></div>
     </div>
@@ -32,12 +36,13 @@
     >
       <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Complete your profile</h4>
-        <p>
-          Aww yeah, we understand that your children deserve best tutors. We have made it easy for your to find most compentent turors around where you are.
-          </p>
+        <p>Aww yeah, we understand that your children deserve best tutors. We have made it easy for your to find most compentent turors around where you are.</p>
         <hr />
         <div>
-          <router-link class="btn btn-light  border border-success rounded-pill" :to="`/profile/${profile.user.username}/edit`">Go to Profile</router-link>
+          <router-link
+            class="btn btn-light border border-success rounded-pill"
+            :to="`/profile/${profile.user.username}/edit`"
+          >Go to Profile</router-link>
         </div>
         <div class="clear"></div>
       </div>

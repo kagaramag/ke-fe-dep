@@ -1,7 +1,7 @@
-import axios from 'axios'
+import axios from "axios";
 
-const { URL_BACKEND } = process.env
-const token = localStorage.getItem('token')
+const { URL_BACKEND } = process.env;
+const token = localStorage.getItem("token");
 
 class AxiosHelper {
   static get = path => {
@@ -9,16 +9,16 @@ class AxiosHelper {
       return axios
         .get(`${URL_BACKEND}${path}`, {
           headers: {
-            'access-token': token || ''
+            "access-token": token || ""
           }
         })
         .then(response => {
-          resolve(response)
+          resolve(response);
         })
         .catch(error => {
-          reject(error)
-        })
-    })
+          reject(error);
+        });
+    });
   };
 
   static post = (path, data) => {
@@ -26,34 +26,51 @@ class AxiosHelper {
       return axios
         .post(`${URL_BACKEND}${path}`, data, {
           headers: {
-            'access-token': token
+            "access-token": token
           }
         })
         .then(response => {
-          resolve(response)
+          resolve(response);
         })
         .catch(error => {
-          reject(error)
-        })
-    })
+          reject(error);
+        });
+    });
   };
-  
+
   static put = (path, data) => {
     return new Promise((resolve, reject) => {
       return axios
         .put(`${URL_BACKEND}${path}`, data, {
           headers: {
-            'access-token': token
+            "access-token": token
           }
         })
         .then(response => {
-          resolve(response)
+          resolve(response);
         })
         .catch(error => {
-          reject(error)
+          reject(error);
+        });
+    });
+  };
+
+  static patch = (path, data) => {
+    return new Promise((resolve, reject) => {
+      return axios
+        .patch(`${URL_BACKEND}${path}`, data, {
+          headers: {
+            "access-token": token
+          }
         })
-    })
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   };
 }
 
-export default AxiosHelper
+export default AxiosHelper;
