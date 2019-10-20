@@ -131,6 +131,7 @@ export default {
       context.commit("UPDATE_PROFILE");
       AxiosHelper.put("/users", payload)
         .then(response => {
+          console.log(response);
           context.commit("FETCH_USER_SUCCESS", response.data);
         })
         .catch(error => {
