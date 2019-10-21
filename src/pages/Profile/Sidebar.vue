@@ -25,15 +25,12 @@
           >{{fetch_user.user.lastName}} {{fetch_user.user.firstName}}</h5>
           <div class="mx-3">{{fetch_user.user.email}}</div>
           <div class="my-3">
-            <button class="mx-auto d-block btn btn-outline-light text-dark">
+            <button class="btn btn-outline-light text-dark">
               <icon class="icon" icon="envelope" />&nbsp;message
             </button>
+            <b-button variant="primary" class="btn btn-primary bg-primary" @click="logout">Logout</b-button>
           </div>
-          <span class="float-right">
-            <b-button id="show-btn" class="btn btn-light" @click="$bvModal.show('profilepic')">
-              <icon class="icon" icon="edit" />Edit profile picture
-            </b-button>
-          </span>
+
           <div class="icon-block text-center d-none">
             <a href="#">
               <icon class="icon" icon="envelope" />
@@ -184,34 +181,6 @@
         </div>
       </b-collapse>
     </div>
-
-    <!-- MODAL FOR EDITING PROFILE PHOTO -->
-    <b-modal ref="my-modal" id="profilepic" hide-footer>
-      <template v-slot:modal-title>Change profile picture</template>
-
-      <div class="row mx-auto">
-        <div class="col-4 px-2">
-          <img
-            :src="file ? file : avatar"
-            style="width:150px;height:150px; border-radius:50%"
-            class="d-block ui-w-100 rounded-circle profile d-block mx-auto"
-            alt="Tutor"
-          />
-        </div>
-
-        <div class="col-8 my-auto">
-          <b-form-file
-            accept="image/jpeg, image/png"
-            @change="GetImage"
-            placeholder="Choose image"
-            drop-placeholder="Drop file here..."
-          ></b-form-file>
-          <button @click="changeProfile" class="my-2 d-block btn btn-primary bg-primary text-white">
-            <icon class="icon" icon="image" />&nbsp;Upload
-          </button>
-        </div>
-      </div>
-    </b-modal>
   </div>
 </template>
 
@@ -231,11 +200,7 @@ export default {
   name: "sidebar",
   props: ["fetch_user", "profile"],
   data() {
-    return {
-      file: null,
-      image: null,
-      avatar: require("@/assets/images/profile.png")
-    };
+    return {};
   },
 
   computed: {
@@ -244,34 +209,22 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["UPDATE_PROFILE"]),
-    GetImage(e) {
-      let img = e.target.files[0];
-      this.image = img;
-      let reader = new FileReader();
-      reader.readAsDataURL(img);
-      reader.onload = e => {
-        this.file = e.target.result;
-      };
-    },
-    async changeProfile() {
-      const formData = new FormData();
-      formData.append("image", this.image);
-      try {
-        await this.UPDATE_PROFILE(formData);
-        this.$refs["my-modal"].hide();
-      } catch (error) {}
-
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
-    },
-    submit_kid() {}
+    ...mapActions(["LOGOUT_USER"]),
+    logout() {
+      this.LOGOUT_USER();
+    }
   }
 };
 </script>
 
 <style scoped>
+.btn-right {
+  margin-top: 2px;
+}
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
 .tutor-summary-item {
   padding: 5px 20px;
   position: relative;

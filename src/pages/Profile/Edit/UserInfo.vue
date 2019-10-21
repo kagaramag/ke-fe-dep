@@ -2,6 +2,10 @@
   <div id="Parent">
     <div v-if="profileUpdated" class="alert alert-success">Profile updated successfuly</div>
 
+    <b-button id="show-btn" @click="$bvModal.show('profilepic')">
+      <icon class="icon" icon="edit" />Edit profile picture
+    </b-button>
+
     <h4>Account information</h4>
 
     <div class="hidden">
@@ -52,6 +56,34 @@
         </div>
       </form>
     </div>
+
+    <!-- MODAL FOR EDITING PROFILE PHOTO -->
+    <b-modal ref="my-modal" id="profilepic" hide-footer>
+      <template v-slot:modal-title>Change profile picture</template>
+
+      <div class="row mx-auto">
+        <div class="col-4 px-2">
+          <img
+            :src="file ? file : avatar"
+            style="width:150px;height:150px; border-radius:50%"
+            class="d-block ui-w-100 rounded-circle profile d-block mx-auto"
+            alt="Tutor"
+          />
+        </div>
+
+        <div class="col-8 my-auto">
+          <b-form-file
+            accept="image/jpeg, image/png"
+            @change="GetImage"
+            placeholder="Choose image"
+            drop-placeholder="Drop file here..."
+          ></b-form-file>
+          <button @click="changeProfile" class="my-2 d-block btn btn-primary bg-primary text-white">
+            <icon class="icon" icon="image" />&nbsp;Upload
+          </button>
+        </div>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -73,6 +105,9 @@ export default {
   props: ["profile"],
   data() {
     return {
+      file: null,
+      image: null,
+      avatar: require("@/assets/images/profile.png"),
       gender: null,
       profileUpdated: false,
       info: {
@@ -104,6 +139,27 @@ export default {
         this.profileUpdated = false;
       }, 2000);
     },
+    GetImage(e) {
+      let img = e.target.files[0];
+      this.image = img;
+      let reader = new FileReader();
+      reader.readAsDataURL(img);
+      reader.onload = e => {
+        this.file = e.target.result;
+      };
+    },
+    async changeProfile() {
+      const formData = new FormData();
+      formData.append("image", this.image);
+      try {
+        await this.UPDATE_PROFILE(formData);
+        this.$refs["my-modal"].hide();
+      } catch (error) {}
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    }
   }
 };
 </script>
