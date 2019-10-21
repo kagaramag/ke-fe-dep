@@ -3,16 +3,16 @@
     <!-- SUBJECT -->
     <h2 class="my-4">
       My Education
-      <span class="float-right"
-        v-if="profile.isLoggedIn && profile.user.id === fetch_user.user.id"
+      <span
+        class="float-right"
+        v-if="profile.isLoggedIn && profile.user.id === fetch_user.user.id && !fetch_education.education"
       >
-        <button
-          class="btn btn-link"
-        >
+        <button class="btn btn-link" @click="openModal">
           <icon class="icon" icon="plus" />Add
         </button>
       </span>
     </h2>
+
     <div class="divider mb-4"></div>
     <div>
       <ul class="list-unstyled" v-if="fetch_education && fetch_education.education">
@@ -44,6 +44,78 @@
         <h4>No education provided yet</h4>
       </div>
     </div>
+
+    <b-modal ref="my-modal" hide-footer title="Add Education">
+      <div>
+        <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+          <b-form-group id="input-group-10" label="College:" label-for="input-11">
+            <b-form-select v-model="form.graduated">
+              <template v-slot:first>
+                <option :value="null" disabled>Are you a graduate?</option>
+              </template>
+
+              <option value="True">Yes</option>
+              <option value="False">No</option>
+            </b-form-select>
+          </b-form-group>
+
+          <b-form-group id="input-group-1" label="Year of graduation:" label-for="input-1">
+            <b-form-input
+              id="input-0"
+              v-model="form.yearOfGraduation"
+              type="date"
+              required
+              placeholder="Year of Graduation"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group id="input-group-2" label="Institution:" label-for="input-1">
+            <b-form-input
+              id="input-2"
+              v-model="form.college"
+              type="text"
+              required
+              placeholder="Which University / College did you graduate from?"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group id="input-group-2" label="Institution:" label-for="input-1">
+            <b-form-input
+              id="input-2"
+              v-model="form.institution"
+              type="text"
+              required
+              placeholder="What institution"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group id="input-group-3" label="Course:" label-for="input-1">
+            <b-form-input
+              id="input-3"
+              v-model="form.course"
+              type="text"
+              required
+              placeholder="What course did you take?"
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group id="input-group-4" label="Degree:" label-for="input-1">
+            <b-form-input
+              id="input-4"
+              v-model="form.certificate"
+              type="text"
+              required
+              placeholder="Certificate of higher education"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button type="reset" variant="danger">Reset</b-button>
+        </b-form>
+        <b-card class="mt-3" header="Form Data Result">
+          <pre class="m-0">{{ form }}</pre>
+        </b-card>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -64,6 +136,20 @@ const account_layout = "account";
 export default {
   name: "education",
   props: ["fetch_user", "profile"],
+  data() {
+    return {
+      form: {
+        college: null,
+        graduated: null,
+        yearOfGraduation: new Date(),
+        institution: "",
+        course: "",
+        certificate: ""
+      },
+
+      show: true
+    };
+  },
   mounted() {
     this.currentUsername = this.$route.params.username;
     this.FETCH_EDUCATION(this.currentUsername);
@@ -78,7 +164,16 @@ export default {
     }
   },
   methods: {
-    ...mapActions(["FETCH_EDUCATION"])
+    ...mapActions(["FETCH_EDUCATION", "UPDATE_EDUCATION"]),
+    onSubmit(evt) {
+      evt.preventDefault();
+      this.UPDATE_EDUCATION(this.form);
+    },
+    openModal() {
+      this.$refs["my-modal"].show();
+
+      console.log("opening modal");
+    }
   }
 };
 </script>
