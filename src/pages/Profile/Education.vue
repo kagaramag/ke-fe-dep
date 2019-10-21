@@ -5,7 +5,7 @@
       My Education
       <span
         class="float-right"
-        v-if="profile.isLoggedIn && profile.user.id === fetch_user.user.id"
+        v-if="profile.isLoggedIn && profile.user.id === fetch_user.user.id && !fetch_education.education"
       >
         <button class="btn btn-link" @click="openModal">
           <icon class="icon" icon="plus" />Add
