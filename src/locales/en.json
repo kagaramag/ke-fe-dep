@@ -19,6 +19,13 @@
     "faqs": "FAQS",
     "events": "Events"
   },
+  "profile": {
+    "title": "My Profile",
+    "account": "Account",
+    "notification": "Notifications",
+    "message": "Message",
+    "logout": "Sohoka"
+  },
   "footer": {
     "tutoring": {
       "title": "Tutoring",

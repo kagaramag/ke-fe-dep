@@ -19,6 +19,13 @@
     "faqs": "Kuki",
     "events": "Ibikorwa"
   },
+  "profile": {
+    "title": "Konti Yanjye",
+    "account": "Konti",
+    "notification": "Amamenyesha",
+    "message": "Ubutumwa",
+    "logout": "Sohoka"
+  },
   "footer": {
     "tutoring": {
       "title": "Kwigisha",

@@ -62,7 +62,7 @@
             <div>
               <b-dropdown
                 key="language"
-                text="My Profile"
+                :text="`${$t('profile.title')}`"
                 variant="success"
                 class="m-2 round bg-primary"
               >
@@ -88,7 +88,7 @@
                           alt="Tutor"
                         />
                       </span>
-                      Account
+                      {{$t('profile.account')}}
                     </router-link>
                   </li>
                 </b-dropdown-item>
@@ -96,7 +96,7 @@
                   <li class="nav-item">
                     <button class="btn">
                       <icon class="icon" icon="bell" />
-                      <span class="ml-2">Notifications</span>
+                      <span class="ml-2">{{$t('profile.notification')}}</span>
                     </button>
                   </li>
                 </b-dropdown-item>
@@ -105,7 +105,7 @@
                   <li class="nav-item">
                     <button class="btn">
                       <icon class="icon" icon="envelope" />
-                      <span class="ml-2">Messages</span>
+                      <span class="ml-2">{{$t('profile.message')}}</span>
                     </button>
                   </li>
                 </b-dropdown-item>
@@ -114,7 +114,7 @@
                   <li class="nav-item">
                     <button class="btn" @click="logout">
                       <icon class="icon" icon="toggle-off" />
-                      <span class="ml-2">Logout</span>
+                      <span class="ml-2">{{$t('profile.logout')}}</span>
                     </button>
                   </li>
                 </b-dropdown-item>
