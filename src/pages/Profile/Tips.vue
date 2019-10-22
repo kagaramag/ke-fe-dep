@@ -12,7 +12,7 @@
     >
       <h4 class="alert-heading">How to hire a tutor?</h4>
       <p>
-        Aww yeah, we understand that your children deserve best tutors. We have made it easy for your to find most compentent turors around where you are.
+        Aww yeah, we understand that your children deserve the best tutors. We have made it easy for you to find the most competent tutors wherever you are.
         For more information,
         <router-link :to="'/'">Check here</router-link>the process and criteria to admin tutors on our website and
         <router-link :to="'/'">here</router-link>for tips to hire a tutor you really need.
@@ -36,7 +36,7 @@
     >
       <div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Complete your profile</h4>
-        <p>Aww yeah, we understand that your children deserve best tutors. We have made it easy for your to find most compentent turors around where you are.</p>
+        <p>Aww yeah, we understand that your children deserve the best tutors. We have made it easy for you to find the most competent tutors wherever you are.</p>
         <hr />
         <div>
           <router-link

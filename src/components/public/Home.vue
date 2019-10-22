@@ -6,13 +6,15 @@
           <div class="row justify-content-center align-self-center">
             <div class="col-md-6 intro-info order-md-first order-last">
               <h2>
-                Put<br /> your
+                Put
+                <br />your
                 <span>kids</span>
-                on the <br />head of their
+
+                <br />ahead of their
                 <span>peers!</span>
               </h2>
               <div style="margin:20px 0;color:#565656">
-                We connecte your
+                We connect your
                 kids
                 with
                 the best personal tutors
