@@ -1,5 +1,5 @@
 <template>
-  <div  id="footer">
+  <div id="footer">
     <footer class="mt-5">
       <div class="container">
         <div class="row mb-5">
@@ -7,13 +7,13 @@
             <h4>Tutoring</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="'/'">Find tutor</router-link>
+                <router-link :to="`/${$i18n.locale}`">Find tutor</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'/'">Become a tutor</router-link>
+                <router-link :to="`/${$i18n.locale}`">Become a tutor</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'/'">Become a parent</router-link>
+                <router-link :to="`/${$i18n.locale}`">Become a parent</router-link>
               </li>
             </ul>
           </div>
@@ -22,13 +22,13 @@
             <h4>Help</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="'/'">Contact</router-link>
+                <router-link :to="`/${$i18n.locale}`">Contact</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'/'">Report an issue</router-link>
+                <router-link :to="`/${$i18n.locale}`">Report an issue</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'/'">FAQs</router-link>
+                <router-link :to="`/${$i18n.locale}`">FAQs</router-link>
               </li>
             </ul>
           </div>
@@ -37,16 +37,16 @@
             <h4>Company</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="'/'">Login</router-link>
+                <router-link :to="`/${$i18n.locale}`">Login</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'/'">Sign up</router-link>
+                <router-link :to="`/${$i18n.locale}`">Sign up</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'/'">About</router-link>
+                <router-link :to="`/${$i18n.locale}`">About</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'/'">Blog</router-link>
+                <router-link :to="`/${$i18n.locale}`">Blog</router-link>
               </li>
             </ul>
           </div>
@@ -55,13 +55,13 @@
             <h4>Stay connected</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="'/'">Facebook</router-link>
+                <router-link :to="`/${$i18n.locale}`">Facebook</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'/'">Twitter</router-link>
+                <router-link :to="`/${$i18n.locale}`">Twitter</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'/'">Instagram</router-link>
+                <router-link :to="`/${$i18n.locale}`">Instagram</router-link>
               </li>
             </ul>
           </div>
@@ -71,13 +71,13 @@
       <div class="copyright py-4">
         <div class="container">
           <span class="float-left">
-            &copy; Copyright 2019 Smartela.com a 
+            &copy; Copyright 2019 Smartela.com a
             <strong>Nivelo Ltd</strong> business. All Rights Reserved
           </span>
           <span class="float-right">
-            <router-link :to="'/'">Terms</router-link>
-            <router-link :to="'/'">Privacy</router-link>
-            <router-link :to="'/'">License</router-link>
+            <router-link :to="`/${$i18n.locale}`">Terms</router-link>
+            <router-link :to="`/${$i18n.locale}`">Privacy</router-link>
+            <router-link :to="`/${$i18n.locale}`">License</router-link>
           </span>
         </div>
         <div class="clear"></div>

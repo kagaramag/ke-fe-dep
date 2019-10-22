@@ -34,15 +34,15 @@
             class="btn rounded-pill border border-primary px-4 d-block col"
           >Login</button>
           <br />Don't have account yet?
-          <router-link :to="'/register'">Register</router-link>
+          <router-link :to="`/${$i18n.locale}/register`">Register</router-link>
           <br />
-          <router-link :to="'/reset'">Reset Password</router-link>
+          <router-link :to="`/${$i18n.locale}/reset`">Reset Password</router-link>
         </form>
       </div>
       <br />
       <div class="text-center">
         Go back
-        <router-link :to="'/'" class="p-1">Home</router-link>
+        <router-link :to="`/${$i18n.locale}`" class="p-1">Home</router-link>
       </div>
     </div>
   </component>

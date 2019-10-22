@@ -14,37 +14,37 @@
           <icon class="icon" icon="bars" />
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <router-link class="navbar-brand" :to="'/'">
+          <router-link class="navbar-brand" :to="`/${$i18n.locale}`">
             <img src="@/assets/images/logo_nivelo_xs.svg" />
           </router-link>
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <router-link class="nav-link" :to="'/'">Home</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}`">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="'/tutors'">Tutors</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/tutors`">Tutors</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="'/feed'">Feeds</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/feed`">Feeds</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="'/jobs'">Jobs</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/jobs`">Jobs</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="'/profiles'">Resources</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/profiles`">Resources</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="'/profiles'">Questions</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/profiles`">Questions</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="'/faqs'">FAQs</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/faqs`">FAQs</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="'/profiles'">Events</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/profiles`">Events</router-link>
             </li>
           </ul>
           <div>
-            <b-dropdown key="language" :text="lang" variant="primary" class="m-2">
+            <b-dropdown key="language" text="Language" variant="primary" class="m-2">
               <b-dropdown-item @click="setLanguage('en')">English</b-dropdown-item>
               <b-dropdown-item @click="setLanguage('kin')">Kinyarwanda</b-dropdown-item>
             </b-dropdown>
@@ -61,7 +61,10 @@
               </button>
             </li>
             <li class="nav-item avatar">
-              <router-link class="nav-link p-0" :to="`/profile/${profile.user.username}`">
+              <router-link
+                class="nav-link p-0"
+                :to="`/${$i18n.locale}/profile/${profile.user.username}`"
+              >
                 <span v-if="profile.user.image">
                   <img :src="profile.user.image" class="rounded-circle" height="35" alt="Tutor" />
                 </span>
@@ -80,12 +83,12 @@
 
           <ul class="navbar-nav right" v-else>
             <li class="nav-item">
-              <router-link class="nav-link" :to="'/login'">Login</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/login`">Login</router-link>
             </li>
             <li class="nav-item">
               <router-link
                 class="nav-link rounded-pill border border-primary px-4"
-                :to="'/register'"
+                :to="`/${$i18n.locale}/register`"
               >Register</router-link>
             </li>
           </ul>

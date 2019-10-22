@@ -36,7 +36,7 @@
       <br />
       <div class="text-center">
         Go back
-        <router-link :to="'/'" class="p-1">Home</router-link>
+        <router-link :to="`/${$i18n.locale}`" class="p-1">Home</router-link>
       </div>
     </div>
   </component>

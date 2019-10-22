@@ -17,7 +17,7 @@
             <div class="alert alert-success">
               {{profile.message}}.
               <br />
-              <router-link :to="'/login'">Click here</router-link>
+              <router-link :to="`/${$i18n.locale}/login`">Click here</router-link>
               {{' '}} to login
             </div>
           </div>
@@ -62,13 +62,13 @@
             class="btn rounded-pill border border-primary px-4 d-block col"
           >Register</button>
           <br />Already have account?
-          <router-link :to="'/login'">Login</router-link>
+          <router-link :to="`/${$i18n.locale}/login`">Login</router-link>
         </form>
       </div>
       <br />
       <div class="text-center">
         Go back
-        <router-link :to="'/'" class="p-1">Home</router-link>
+        <router-link :to="`/${$i18n.locale}`" class="p-1">Home</router-link>
       </div>
     </div>
   </component>

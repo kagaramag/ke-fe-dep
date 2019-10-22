@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">
-          <router-link :to="`/profile/${post.handle}`">{{ post.name }}</router-link>
+          <router-link :to="`/${$i18n.locale}/profile/${post.handle}`">{{ post.name }}</router-link>
         </h5>
         <h6 class="card-subtitle mb-2 text-muted">{{post.handle}}</h6>
         <p class="card-text">{{ post.tweet}}</p>
@@ -12,7 +12,10 @@
           <span class="float-left">Likes: {{ post.likes }}</span>
           <span class="float-right">
             <a href="#" class="card-link">Edit</a>
-            <router-link :to="`./delete/${post.id}`" class="card-link text-danger">Delete</router-link>
+            <router-link
+              :to="`/${$i18n.locale}./delete/${post.id}`"
+              class="card-link text-danger"
+            >Delete</router-link>
           </span>
         </div>
       </div>

@@ -14,13 +14,13 @@
       <p>
         Aww yeah, we understand that your children deserve the best tutors. We have made it easy for you to find the most competent tutors wherever you are.
         For more information,
-        <router-link :to="'/'">Check here</router-link>the process and criteria to admin tutors on our website and
-        <router-link :to="'/'">here</router-link>for tips to hire a tutor you really need.
+        <router-link :to="`/${$i18n.locale}`">Check here</router-link>the process and criteria to admin tutors on our website and
+        <router-link :to="`/${$i18n.locale}`">here</router-link>for tips to hire a tutor you really need.
       </p>
       <hr />
       <div>
         <router-link
-          :to="'/tutors'"
+          :to="`/${$i18n.locale}`/tutors"
           class="btn btn-light border border-success rounded-pillfloat-right"
         >Find Tutor</router-link>
       </div>

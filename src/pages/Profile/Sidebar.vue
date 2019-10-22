@@ -52,7 +52,7 @@
     >
       <b-list-group class="sidebar-nav">
         <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/edit`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
             <icon class="icon" icon="user" />
             <span>Profile</span>
           </router-link>
@@ -64,25 +64,25 @@
         v-if="profile.isLoggedIn && fetch_user.user.id === profile.user.id && fetch_user.user.UserRole.role.role === 'tutor'"
       >
         <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/tutoring`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring`">
             <icon class="icon" icon="child" />
             <span>Tutoring</span>
           </router-link>
         </b-list-group-item>
         <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/edit`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
             <icon class="icon" icon="check" />
             <span>Reviews</span>
           </router-link>
         </b-list-group-item>
         <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/edit`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
             <icon class="icon" icon="question" />
             <span>Answers</span>
           </router-link>
         </b-list-group-item>
         <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/edit`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
             <icon class="icon" icon="layer-group" />
             <span>Points</span>
           </router-link>
@@ -95,13 +95,13 @@
         v-if="profile.isLoggedIn && fetch_user.user.id === profile.user.id && fetch_user.user.UserRole.role.role === 'parent'"
       >
         <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/tutoring`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring`">
             <icon class="icon" icon="child" />
             <span>My Kids</span>
           </router-link>
         </b-list-group-item>
         <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/edit`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
             <icon class="icon" icon="check" />
             <span>Performance</span>
           </router-link>
@@ -111,26 +111,26 @@
       <!-- GENERALL NAV CARD START -->
       <b-list-group class="sidebar-nav">
         <b-list-group-item>
-          <router-link :to="'/profile/my-blog'">
+          <router-link :to="`/${$i18n.locale}/profile/my-blog`">
             <icon class="icon" icon="signature" />
             <span>Blog</span>
           </router-link>
         </b-list-group-item>
         <b-list-group-item>
-          <router-link :to="'/message'">
+          <router-link :to="`/${$i18n.locale}/message`">
             <icon class="icon" icon="envelope" />
             <span>Message</span>
           </router-link>
         </b-list-group-item>
         <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/edit`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
             <icon class="icon" icon="bell" />
             <span>Notifications</span>
           </router-link>
         </b-list-group-item>
 
         <b-list-group-item>
-          <router-link :to="`/profile/${profile.user.username}/settings`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/settings`">
             <icon class="icon" icon="cog" />
             <span>Settings</span>
           </router-link>

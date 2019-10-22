@@ -9,7 +9,7 @@
         <div class="container">
           <h4 class="text-light text-center m-0 p-0">
             Complete your account profile and get hired
-            <router-link class="btn btn-primary shadow-3" :to="'/'">Learn more</router-link>
+            <router-link class="btn btn-primary shadow-3" :to="`/${$i18n.locale}`">Learn more</router-link>
           </h4>
         </div>
       </div>
@@ -20,8 +20,14 @@
         <div class="container">
           <h4 class="text-light text-center m-0 p-0">
             Complete your account and find the right tutor for your kids near you.
-            <router-link class="btn btn-primary shadow-3" :to="'/tutors'">Search tutors</router-link>
-            <router-link class="btn btn-light text-dark shadow-3" :to="`/profile/${profile.user.username}/edit`">Edit Profile</router-link>
+            <router-link
+              class="btn btn-primary shadow-3"
+              :to="`/${$i18n.locale}/tutors`"
+            >Search tutors</router-link>
+            <router-link
+              class="btn btn-light text-dark shadow-3"
+              :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`"
+            >Edit Profile</router-link>
           </h4>
         </div>
       </div>
@@ -53,7 +59,7 @@ export default {
   computed: {
     layout() {
       return (this.$route.meta.layout || account_layout) + "-layout";
-    },
+    }
   },
   methods: {
     logout() {

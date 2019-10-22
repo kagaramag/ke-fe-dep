@@ -31,7 +31,7 @@
             class="btn rounded-pill border border-primary px-4 d-block col"
           >Reset Password</button>
           <br />Remembered your password?
-          <router-link :to="'/login'">Login</router-link>
+          <router-link :to="`/${$i18n.locale}/login`">Login</router-link>
         </form>
       </div>
       <div class="box" v-if="confirmed">
@@ -59,7 +59,7 @@
             @click="confirm"
             class="btn rounded-pill border border-primary px-4 d-block col"
           >Confirm</button>
-          <router-link :to="'/login'">Login</router-link>
+          <router-link :to="`/${$i18n.locale}/login`">Login</router-link>
         </form>
         <div class="text-center" v-if="spinning">
           <b-spinner variant="success" label="Spinning"></b-spinner>
@@ -68,7 +68,7 @@
       <br />
       <div class="text-center">
         Go back
-        <router-link :to="'/'" class="p-1">Home</router-link>
+        <router-link :to="`/${$i18n.locale}`" class="p-1">Home</router-link>
       </div>
     </div>
   </component>
