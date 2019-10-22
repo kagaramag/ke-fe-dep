@@ -4,64 +4,64 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-3">
-            <h4>Tutoring</h4>
+            <h4>{{$t('footer.tutoring.title')}}</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Find tutor</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.tutoring.find')}}</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Become a tutor</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.tutoring.tutor')}}</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Become a parent</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.tutoring.parent')}}</router-link>
               </li>
             </ul>
           </div>
 
           <div class="col-3">
-            <h4>Help</h4>
+            <h4>{{$t('footer.help.title')}}</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Contact</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.help.contact')}}</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Report an issue</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.help.report')}}</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">FAQs</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.help.faqs')}}</router-link>
               </li>
             </ul>
           </div>
 
           <div class="col-3">
-            <h4>Company</h4>
+            <h4>{{$t('footer.company.title')}}</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Login</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.company.login')}}</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Sign up</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.company.sign')}}</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">About</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.company.about')}}</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Blog</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.company.blog')}}</router-link>
               </li>
             </ul>
           </div>
 
           <div class="col-3">
-            <h4>Stay connected</h4>
+            <h4>{{$t('footer.stay.title')}}</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Facebook</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.stay.facebook')}}</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Twitter</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.stay.twitter')}}</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="`/${$i18n.locale}`">Instagram</router-link>
+                <router-link :to="`/${$i18n.locale}`">{{$t('footer.stay.instagram')}}</router-link>
               </li>
             </ul>
           </div>
@@ -71,13 +71,13 @@
       <div class="copyright py-4">
         <div class="container">
           <span class="float-left">
-            &copy; Copyright 2019 Smartela.com a
+            &copy; Copyright 2019
             <strong>Nivelo Ltd</strong> business. All Rights Reserved
           </span>
-          <span class="float-right">
-            <router-link :to="`/${$i18n.locale}`">Terms</router-link>
-            <router-link :to="`/${$i18n.locale}`">Privacy</router-link>
-            <router-link :to="`/${$i18n.locale}`">License</router-link>
+          <span class="float-right m4-3">
+            <router-link :to="`/${$i18n.locale}`">{{$t('copyright.terms')}}</router-link>
+            <router-link :to="`/${$i18n.locale}`">{{$t('copyright.privacy')}}</router-link>
+            <router-link :to="`/${$i18n.locale}`">{{$t('copyright.license')}}</router-link>
           </span>
         </div>
         <div class="clear"></div>

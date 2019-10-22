@@ -18,5 +18,37 @@
     "questions": "Questions",
     "faqs": "FAQS",
     "events": "Events"
+  },
+  "footer": {
+    "tutoring": {
+      "title": "Tutoring",
+      "find": "Find tutor",
+      "tutor": "Become a tutor",
+      "parent": "Become a parent"
+    },
+    "help": {
+      "title": "Help",
+      "contact": "Contact",
+      "report": "Report an issue",
+      "faqs": "FAQS"
+    },
+    "company": {
+      "title": "Company",
+      "login": "Login",
+      "sign": "Sign up",
+      "about": "About",
+      "blog": "Blog"
+    },
+    "stay": {
+      "title": "Stay Connected",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
+  },
+  "copyright": {
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "license": "License"
   }
 }

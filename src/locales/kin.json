@@ -16,7 +16,39 @@
     "jobs": "Akazi",
     "resources": "Shakisha",
     "questions": "Ubumenyi",
-    "faqs": "Menya",
+    "faqs": "Kuki",
     "events": "Ibikorwa"
+  },
+  "footer": {
+    "tutoring": {
+      "title": "Kwigisha",
+      "find": "Shakisha umwarimu",
+      "tutor": "Ba umwarimu",
+      "parent": "Ba umubyeyi"
+    },
+    "help": {
+      "title": "Ubufasha",
+      "contact": "Tuvugishe",
+      "report": "Tangaza ikibazo",
+      "faqs": "Kuki?"
+    },
+    "company": {
+      "title": "Kompanyi",
+      "login": "Injira",
+      "sign": "Funguza",
+      "about": "Ibyerekeye",
+      "blog": "Ibyanditswe"
+    },
+    "stay": {
+      "title": "Ahandi Wadusanga",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
+  },
+  "copyright": {
+    "terms": "Amategeko",
+    "privacy": "Ubuzima Gatozi",
+    "license": "Ibyangombwa"
   }
 }
