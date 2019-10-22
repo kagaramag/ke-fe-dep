@@ -59,35 +59,67 @@
             </b-dropdown>
           </div>
           <ul class="navbar-nav right" v-if="profile.isLoggedIn">
-            <li class="nav-item">
-              <button class="btn">
-                <icon class="icon" icon="bell" />
-              </button>
-            </li>
-            <li class="nav-item">
-              <button class="btn">
-                <icon class="icon" icon="envelope" />
-              </button>
-            </li>
-            <li class="nav-item avatar">
-              <router-link
-                class="nav-link p-0"
-                :to="`/${$i18n.locale}/profile/${profile.user.username}`"
+            <div>
+              <b-dropdown
+                key="language"
+                text="My Profile"
+                variant="success"
+                class="m-2 round bg-primary"
               >
-                <span v-if="profile.user.image">
-                  <img :src="profile.user.image" class="rounded-circle" height="35" alt="Tutor" />
-                </span>
-                <span v-else>
-                  <img
-                    src="@/assets/images/profile.png"
-                    class="rounded-circle"
-                    height="35"
-                    alt="Tutor"
-                  />
-                </span>
-                Profile
-              </router-link>
-            </li>
+                <b-dropdown-item>
+                  <li class="nav-item avatar">
+                    <router-link
+                      class="nav-link p-0"
+                      :to="`/${$i18n.locale}/profile/${profile.user.username}`"
+                    >
+                      <span v-if="profile.user.image">
+                        <img
+                          :src="profile.user.image"
+                          class="rounded-circle"
+                          height="35"
+                          alt="Tutor"
+                        />
+                      </span>
+                      <span v-else>
+                        <img
+                          src="@/assets/images/profile.png"
+                          class="rounded-circle"
+                          height="35"
+                          alt="Tutor"
+                        />
+                      </span>
+                      Account
+                    </router-link>
+                  </li>
+                </b-dropdown-item>
+                <b-dropdown-item>
+                  <li class="nav-item">
+                    <button class="btn">
+                      <icon class="icon" icon="bell" />
+                      <span class="ml-2">Notifications</span>
+                    </button>
+                  </li>
+                </b-dropdown-item>
+
+                <b-dropdown-item>
+                  <li class="nav-item">
+                    <button class="btn">
+                      <icon class="icon" icon="envelope" />
+                      <span class="ml-2">Messages</span>
+                    </button>
+                  </li>
+                </b-dropdown-item>
+
+                <b-dropdown-item>
+                  <li class="nav-item">
+                    <button class="btn" @click="logout">
+                      <icon class="icon" icon="toggle-off" />
+                      <span class="ml-2">Logout</span>
+                    </button>
+                  </li>
+                </b-dropdown-item>
+              </b-dropdown>
+            </div>
           </ul>
 
           <ul class="navbar-nav right" v-else>
@@ -110,7 +142,7 @@
 </template>
 <script>
 import Vue from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -135,6 +167,10 @@ export default {
     ...mapGetters(["profile"])
   },
   methods: {
+    ...mapActions(["LOGOUT_USER"]),
+    logout() {
+      this.LOGOUT_USER();
+    },
     setLanguage(locale) {
       this.$i18n.locale = locale;
       this.$router.push({
