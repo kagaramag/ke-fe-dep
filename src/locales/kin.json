@@ -1,6 +1,22 @@
 {
   "lang": "Kin",
   "home": {
-    "welcome": "Duhuza abana bawe n'abarimu b'inzobere"
+    "moto1": "Dufasha",
+    "moto2": "Abana",
+    "moto3": "bawe",
+    "moto4": "gutsinda neza",
+    "moto5": "mu ishuri!",
+    "welcome": "Tubahuza n'abarimu b'inzobere",
+    "button": "Tangira"
+  },
+  "header": {
+    "home": "Ahabanza",
+    "tutors": "Abarimu",
+    "feeds": "Amakuru",
+    "jobs": "Akazi",
+    "resources": "Shakisha",
+    "questions": "Ubumenyi",
+    "faqs": "Menya",
+    "events": "Ibyabaye"
   }
 }

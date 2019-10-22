@@ -1,6 +1,22 @@
 {
   "lang": "En",
   "home": {
-    "welcome": "We connect your kids with the best personal tutors"
+    "moto1": "Put",
+    "moto2": "your",
+    "moto3": "kids",
+    "moto4": "ahead of their",
+    "moto5": "peers!",
+    "welcome": "We connect your kids with the best personal tutors",
+    "button": "GET STARTED"
+  },
+  "header": {
+    "home": "Home",
+    "tutors": "Tutors",
+    "feeds": "Feeds",
+    "jobs": "Jobs",
+    "resources": "Resources",
+    "questions": "Questions",
+    "faqs": "FAQS",
+    "events": "Events"
   }
 }

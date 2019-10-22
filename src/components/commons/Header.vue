@@ -19,28 +19,37 @@
           </router-link>
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}`">Home</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}`">{{$t('header.home')}}</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/tutors`">Tutors</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/tutors`">{{$t('header.tutors')}}</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/feed`">Feeds</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/feed`">{{$t('header.feeds')}}</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/jobs`">Jobs</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/jobs`">{{$t('header.jobs')}}</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/profiles`">Resources</router-link>
+              <router-link
+                class="nav-link"
+                :to="`/${$i18n.locale}/profiles`"
+              >{{$t('header.resources')}}</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/profiles`">Questions</router-link>
+              <router-link
+                class="nav-link"
+                :to="`/${$i18n.locale}/profiles`"
+              >{{$t('header.questions')}}</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/faqs`">FAQs</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/faqs`">{{$t('header.faqs')}}</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/profiles`">Events</router-link>
+              <router-link
+                class="nav-link"
+                :to="`/${$i18n.locale}/profiles`"
+              >{{$t('header.events')}}</router-link>
             </li>
           </ul>
           <div>
