@@ -35,14 +35,14 @@
         "
     >
       <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">Complete your profile</h4>
-        <p>Aww yeah, we understand that your children deserve the best tutors. We have made it easy for you to find the most competent tutors wherever you are.</p>
+        <h4 class="alert-heading">{{$t('userprofile.notification.title')}}</h4>
+        <p>{{$t('userprofile.notification.content')}}</p>
         <hr />
         <div>
           <router-link
             class="btn btn-light border border-success rounded-pill"
             :to="`/profile/${profile.user.username}/edit`"
-          >Go to Profile</router-link>
+          >{{$t('userprofile.notification.button')}}</router-link>
         </div>
         <div class="clear"></div>
       </div>
@@ -52,10 +52,10 @@
 
     <!-- BIO -->
     <div class="alert alert-light shadow-1 mb-3 py-3" role="alert">
-      <h4 class="alert-heading">Bio</h4>
+      <h4 class="alert-heading">{{$t('userprofile.bio.title')}}</h4>
       <icon class="icon float-left" style="font-size: 1.3em;" icon="quote-left" />
       &nbsp;
-      {{fetch_user && fetch_user.user.bio || 'No bio yet'}}
+      {{fetch_user && fetch_user.user.bio || `${$t('userprofile.bio.notification')}`}}
       <div class="clear"></div>
     </div>
   </div>

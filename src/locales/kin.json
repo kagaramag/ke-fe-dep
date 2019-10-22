@@ -57,5 +57,56 @@
     "terms": "Amategeko",
     "privacy": "Ubuzima Gatozi",
     "license": "Ibyangombwa"
+  },
+  "tutors": {
+    "title": "Shakisha Abarimu"
+  },
+  "userprofile": {
+    "messagebar": {
+      "title": "Uzuza imyirondoro yose nkenerwa ubashe kubona akazi",
+      "button": "Menya Ibisabwa"
+    },
+    "sidebar": {
+      "top": {
+        "message": "Ubutumwa",
+        "logout": "Sohoka"
+      },
+      "profile": "Konti Yanjye",
+      "tutoring": "Ibijyanye n'amasomo",
+      "reviews": "Ubesesenguzi",
+      "answers": "Ibisubizo",
+      "points": "Amanota",
+      "blog": "Ibyanditswe",
+      "message": "Ubutumwa",
+      "notifications": "Amamenyesha",
+      "settings": "Icungamimerere"
+    },
+    "provided": {
+      "title": "Ibyatanzwe",
+      "id": "Indangamuntu",
+      "location": "Aho Utuye",
+      "phone": "Telefoni",
+      "diploma": "Impamyabumenyi",
+      "teacher": "Icyemezo Cy'uburezi",
+      "education": "Aho wize",
+      "code": "Amategeko yanditswe"
+    },
+    "notification": {
+      "title": "Uzuza imyirondoro yawe",
+      "content": "Twemeranya namwe ko umwana wanyu akwiye uburezi bw'ireme, niyo mpamvu twaborohereje kubona abarezi b'inzobere aho mwaba muherereye hose.",
+      "button": "Subira ku mwirondoro wawe"
+    },
+    "bio": {
+      "title": "Imyirondoro",
+      "notification": "Nta mwirondoro muruzuza."
+    },
+    "education": {
+      "title": "Amashuri Yanjye",
+      "in": "muri"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "notification": "Coming soon..."
   }
 }

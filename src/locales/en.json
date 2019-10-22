@@ -57,5 +57,56 @@
     "terms": "Terms",
     "privacy": "Privacy",
     "license": "License"
+  },
+  "tutors": {
+    "title": "Find Tutors"
+  },
+  "userprofile": {
+    "messagebar": {
+      "title": "Complete your account profile and get hired",
+      "button": "Learn more"
+    },
+    "sidebar": {
+      "top": {
+        "message": "Message",
+        "logout": "Logout"
+      },
+      "profile": "Profile",
+      "tutoring": "Tutoring",
+      "reviews": "Reviews",
+      "answers": "Answers",
+      "points": "Points",
+      "blog": "Blog",
+      "message": "Message",
+      "notifications": "Notifications",
+      "settings": "Settings"
+    },
+    "provided": {
+      "title": "Provided",
+      "id": "ID",
+      "location": "Location",
+      "phone": "Phone",
+      "diploma": "Diploma or Certificate",
+      "teacher": "Teacher's Legal Approval",
+      "education": "Education Background",
+      "code": "Code of Conducts"
+    },
+    "notification": {
+      "title": "Complete your profile",
+      "content": "Aww yeah, we understand that your children deserve the best tutors. We have made it easy for you to find the most competent tutors wherever you are.",
+      "button": "Go to Profile"
+    },
+    "bio": {
+      "title": "Bio",
+      "notification": "No bio yet"
+    },
+    "education": {
+      "title": "My Education",
+      "in": "in"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "notification": "Coming soon..."
   }
 }

@@ -8,8 +8,11 @@
       >
         <div class="container">
           <h4 class="text-light text-center m-0 p-0">
-            Complete your account profile and get hired
-            <router-link class="btn btn-primary shadow-3" :to="`/${$i18n.locale}`">Learn more</router-link>
+            {{$t('userprofile.messagebar.title')}}
+            <router-link
+              class="btn btn-primary shadow-3"
+              :to="`/${$i18n.locale}`"
+            >{{$t('userprofile.messagebar.button')}}</router-link>
           </h4>
         </div>
       </div>
