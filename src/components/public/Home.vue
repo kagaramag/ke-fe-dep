@@ -13,12 +13,7 @@
                 <br />ahead of their
                 <span>peers!</span>
               </h2>
-              <div style="margin:20px 0;color:#565656">
-                We connect your
-                kids
-                with
-                the best personal tutors
-              </div>
+              <div style="margin:20px 0;color:#565656">{{$t('home.welcome')}}</div>
               <div>
                 <a href="#about" class="btn-get-started bg-primary scrollto">Get Started</a>
               </div>

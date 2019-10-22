@@ -1,45 +1,47 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
-import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './assets/css/styles.css'
-import Default from './layouts/Default.vue'
-import Minima from './layouts/Minima.vue'
-import Account from './layouts/Account.vue'
-import store from './store'
-Vue.component('default-layout', Default)
-Vue.component('minima-layout', Minima)
-Vue.component('account-layout', Account)
+import Vue from 'vue';
+import App from './App';
+import router from './router';
+import BootstrapVue from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import './assets/css/styles.css';
+import Default from './layouts/Default.vue';
+import Minima from './layouts/Minima.vue';
+import Account from './layouts/Account.vue';
+import store from './store';
 
-Vue.config.productionTip = false
-Vue.use(BootstrapVue)
+import i18n from './i18n';
+Vue.component('default-layout', Default);
+Vue.component('minima-layout', Minima);
+Vue.component('account-layout', Account);
+
+Vue.config.productionTip = false;
+Vue.use(BootstrapVue);
 
 // filters
-Vue.filter('capitalize', function (value) {
-  if (!value) return ''
-  value = value.toString()
-  return value.charAt(0).toUpperCase() + value.slice(1)
-})
-Vue.filter('uppercase', function (value) {
-  if (!value) return ''
-  value = value.toString()
-  return value.toUpperCase()
-})
-Vue.filter('firstLetter', function (value) {
-  if (!value) return ''
-  value = value.toString()
-  return value.charAt(0).toUpperCase()
-})
-Vue.filter('truncate', function (value, characters) {
-  if (!value) return ''
-  value = value.toString()
-  return value.charAt(characters).toUpperCase()
-})
-Vue.filter('date', function (time) {
+Vue.filter('capitalize', function(value) {
+  if (!value) return '';
+  value = value.toString();
+  return value.charAt(0).toUpperCase() + value.slice(1);
+});
+Vue.filter('uppercase', function(value) {
+  if (!value) return '';
+  value = value.toString();
+  return value.toUpperCase();
+});
+Vue.filter('firstLetter', function(value) {
+  if (!value) return '';
+  value = value.toString();
+  return value.charAt(0).toUpperCase();
+});
+Vue.filter('truncate', function(value, characters) {
+  if (!value) return '';
+  value = value.toString();
+  return value.charAt(characters).toUpperCase();
+});
+Vue.filter('date', function(time) {
   switch (typeof time) {
     case 'number':
       break;
@@ -74,7 +76,7 @@ Vue.filter('date', function (time) {
     list_choice = 1;
 
   if (seconds == 0) {
-    return 'Just now'
+    return 'Just now';
   }
   if (seconds < 0) {
     seconds = Math.abs(seconds);
@@ -83,15 +85,26 @@ Vue.filter('date', function (time) {
   }
   var i = 0,
     format;
-  while (format = time_formats[i++])
+  while ((format = time_formats[i++]))
     if (seconds < format[0]) {
-      if (typeof format[2] == 'string')
-        return format[list_choice];
+      if (typeof format[2] == 'string') return format[list_choice];
       else
         return Math.floor(seconds / format[2]) + ' ' + format[1] + ' ' + token;
     }
   return time;
-})
+});
+
+router.beforeEach((to, from, next) => {
+  // use the language from the routing param or default language
+  let language = to.params.lang;
+  if (!language) {
+    language = 'en';
+  }
+
+  // set the current language for i18n.
+  i18n.locale = language;
+  next();
+});
 
 /* eslint-disable no-new */
 new Vue({
@@ -99,5 +112,6 @@ new Vue({
   el: '#app',
   router,
   components: { App },
+  i18n,
   template: '<App/>'
-})
+});
