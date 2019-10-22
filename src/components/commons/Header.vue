@@ -43,6 +43,12 @@
               <router-link class="nav-link" :to="'/profiles'">Events</router-link>
             </li>
           </ul>
+          <div>
+            <b-dropdown key="language" :text="lang" variant="primary" class="m-2">
+              <b-dropdown-item @click="setLanguage('en')">English</b-dropdown-item>
+              <b-dropdown-item @click="setLanguage('kin')">Kinyarwanda</b-dropdown-item>
+            </b-dropdown>
+          </div>
           <ul class="navbar-nav right" v-if="profile.isLoggedIn">
             <li class="nav-item">
               <button class="btn">
@@ -57,12 +63,7 @@
             <li class="nav-item avatar">
               <router-link class="nav-link p-0" :to="`/profile/${profile.user.username}`">
                 <span v-if="profile.user.image">
-                  <img
-                    :src="profile.user.image"
-                    class="rounded-circle"
-                    height="35"
-                    alt="Tutor"
-                  />
+                  <img :src="profile.user.image" class="rounded-circle" height="35" alt="Tutor" />
                 </span>
                 <span v-else>
                   <img
@@ -76,17 +77,19 @@
               </router-link>
             </li>
           </ul>
+
           <ul class="navbar-nav right" v-else>
             <li class="nav-item">
               <router-link class="nav-link" :to="'/login'">Login</router-link>
             </li>
             <li class="nav-item">
               <router-link
-                class="nav-link rounded-pill border border-primary  px-4"
+                class="nav-link rounded-pill border border-primary px-4"
                 :to="'/register'"
               >Register</router-link>
             </li>
           </ul>
+
           <div class="float-right"></div>
         </div>
       </div>
@@ -111,10 +114,21 @@ export default {
     this.$store.dispatch("GET_PROFILE");
   },
   computed: {
+    lang() {
+      return this.$i18n.locale;
+    },
     profile() {
       return this.$store.getters.profile;
     },
     ...mapGetters(["profile"])
+  },
+  methods: {
+    setLanguage(locale) {
+      this.$i18n.locale = locale;
+      this.$router.push({
+        params: { lang: locale }
+      });
+    }
   }
 };
 </script>
