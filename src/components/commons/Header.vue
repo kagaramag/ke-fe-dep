@@ -44,7 +44,7 @@
             </li>
           </ul>
           <div>
-            <b-dropdown key="language" text="Language" variant="primary" class="m-2">
+            <b-dropdown key="language" :text="lang" variant="primary" class="m-2 bg-primary">
               <b-dropdown-item @click="setLanguage('en')">English</b-dropdown-item>
               <b-dropdown-item @click="setLanguage('kin')">Kinyarwanda</b-dropdown-item>
             </b-dropdown>
