@@ -2,7 +2,7 @@
   <div id="education">
     <!-- SUBJECT -->
     <h2 class="my-4">
-      My Education
+      {{$t('userprofile.education.title')}}
       <span
         class="float-right"
         v-if="profile.isLoggedIn && profile.user.id === fetch_user.user.id && !fetch_education.education"
@@ -28,7 +28,7 @@
             <div class="col-11">
               <h3 class="mt-0">{{education.institution}}</h3>
               <span class="text-muted">
-                {{education.certificate}} in
+                {{education.certificate}} {{$t('userprofile.education.in')}}
                 <b>{{education.course}}</b>
               </span>
             </div>

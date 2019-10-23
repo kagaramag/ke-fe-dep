@@ -3,15 +3,16 @@
     <div v-if="profileUpdated" class="alert alert-success">Profile updated successfuly</div>
 
     <b-button id="show-btn" @click="$bvModal.show('profilepic')">
-      <icon class="icon" icon="edit" />Edit profile picture
+      <icon class="icon" icon="edit" />
+      {{$t('userprofile.sidebar.profile.edit.button')}}
     </b-button>
 
-    <h4>Account information</h4>
+    <h4>{{$t('userprofile.sidebar.profile.edit.info')}}</h4>
 
     <div class="hidden">
       <form>
         <div class="form-group">
-          <label for="firstName">First name</label>
+          <label for="firstName">{{$t('userprofile.sidebar.profile.edit.first_name')}}</label>
           <input
             type="text"
             v-model="info.firstName"
@@ -21,7 +22,7 @@
           />
         </div>
         <div class="form-group">
-          <label for="lastName">Last name</label>
+          <label for="lastName">{{$t('userprofile.sidebar.profile.edit.last_name')}}</label>
           <input
             type="text"
             v-model="info.lastName"
@@ -33,16 +34,16 @@
         <div>
           <b-form-select v-model="gender" class="mb-3">
             <template v-slot:first>
-              <option :value="null" disabled>Update gender</option>
+              <option :value="null" disabled>{{$t('userprofile.sidebar.profile.edit.gender')}}</option>
             </template>
 
-            <option value="female">Female</option>
-            <option value="male">Male</option>
+            <option value="female">{{$t('userprofile.sidebar.profile.edit.female')}}</option>
+            <option value="male">{{$t('userprofile.sidebar.profile.edit.male')}}</option>
           </b-form-select>
         </div>
 
         <div class="form-group">
-          <label for="bio">Bio</label>
+          <label for="bio">{{$t('userprofile.sidebar.profile.edit.bio')}}</label>
           <textarea v-model="info.bio" class="form-control" rows="3" id="bio" />
         </div>
         <button
@@ -50,7 +51,7 @@
           @click.prevent
           @click="updateUser"
           class="btn btn-primary bg-primary rounded-pill px-4"
-        >Submit</button>
+        >{{$t('userprofile.sidebar.profile.edit.submit')}}</button>
         <div class="float-right m-1">
           <b-spinner v-show="false"></b-spinner>
         </div>
@@ -59,7 +60,7 @@
 
     <!-- MODAL FOR EDITING PROFILE PHOTO -->
     <b-modal ref="my-modal" id="profilepic" hide-footer>
-      <template v-slot:modal-title>Change profile picture</template>
+      <template v-slot:modal-title>{{$t('userprofile.sidebar.profile.edit.button')}}</template>
 
       <div class="row mx-auto">
         <div class="col-4 px-2">
@@ -75,11 +76,13 @@
           <b-form-file
             accept="image/jpeg, image/png"
             @change="GetImage"
-            placeholder="Choose image"
-            drop-placeholder="Drop file here..."
+            :placeholder="`${$t('userprofile.sidebar.profile.edit.image')}`"
+            :drop-placeholder="`${$t('userprofile.sidebar.profile.edit.drop')}`"
+            :browse-text="`${$t('userprofile.sidebar.profile.edit.imagebrowse')}`"
           ></b-form-file>
           <button @click="changeProfile" class="my-2 d-block btn btn-primary bg-primary text-white">
-            <icon class="icon" icon="image" />&nbsp;Upload
+            <icon class="icon" icon="image" />
+            &nbsp;{{$t('userprofile.sidebar.profile.edit.submit')}}
           </button>
         </div>
       </div>

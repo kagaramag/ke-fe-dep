@@ -4,8 +4,8 @@
       <Loading v-if="profile.loading" />
       <div class="box">
         <form class="p-4">
-          <h1 class="bold">Welcome</h1>
-          <h2>Register to continue...</h2>
+          <h1 class="bold">{{$t('register.title')}}</h1>
+          <h2>{{$t('register.message')}}</h2>
           <div class="row" v-if="profile && profile.errors">
             <div
               class="alert alert-danger"
@@ -17,12 +17,12 @@
             <div class="alert alert-success">
               {{profile.message}}.
               <br />
-              <router-link :to="'/login'">Click here</router-link>
-              {{' '}} to login
+              <router-link :to="`/${$i18n.locale}/login`">{{$t('register.here')}}</router-link>
+              {{' '}} {{$t('register.loginn')}}
             </div>
           </div>
           <div class="form-group">
-            <label for="firstname">Your first name</label>
+            <label for="firstname">{{$t('register.firstname')}}</label>
             <input
               type="text"
               class="form-control"
@@ -32,7 +32,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="lastname">Your last name</label>
+            <label for="lastname">{{$t('register.lastname')}}</label>
             <input
               type="text"
               class="form-control"
@@ -42,7 +42,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="email">Your email</label>
+            <label for="email">{{$t('register.email')}}</label>
             <input
               type="email"
               class="form-control"
@@ -52,7 +52,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">{{$t('register.password')}}</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
           </div>
           <button
@@ -60,15 +60,16 @@
             @click.prevent
             @click="register"
             class="btn rounded-pill border border-primary px-4 d-block col"
-          >Register</button>
-          <br />Already have account?
-          <router-link :to="'/login'">Login</router-link>
+          >{{$t('register.button')}}</button>
+          <br />
+          {{$t('register.question')}}
+          <router-link :to="`/${$i18n.locale}/login`">{{$t('register.login')}}</router-link>
         </form>
       </div>
       <br />
       <div class="text-center">
-        Go back
-        <router-link :to="'/'" class="p-1">Home</router-link>
+        {{$t('register.back')}}
+        <router-link :to="`/${$i18n.locale}`" class="p-1">{{$t('register.home')}}</router-link>
       </div>
     </div>
   </component>

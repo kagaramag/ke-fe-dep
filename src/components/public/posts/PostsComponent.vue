@@ -11,7 +11,7 @@
         </div>
         <div class="clear"></div>
         <h5 class="card-title">
-          <router-link :to="`/${post.title || ''}`">{{ post.title }}</router-link>
+          <router-link :to="`/${$i18n.locale}/${post.title || ''}`">{{ post.title }}</router-link>
         </h5>
         <div class="card-text" v-if="post.body.length > 340">
           <span v-html="post.body"></span>

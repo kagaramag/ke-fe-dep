@@ -2,19 +2,20 @@
   <div id="Parent">
     <div class="mb-1 shadow-sm p-4 bg-white wrap-one-tutering">
       <div v-if="tutoring.status ==='requested'" style="font-size: 18px">
-        <router-link :to="'/'">
+        <router-link :to="`/${$i18n.locale}`">
           <b>{{tutoring.kid.parent.lastName}} {{tutoring.kid.parent.firstName}}</b>
-        </router-link>  requested you to tutor
+        </router-link>requested you to tutor
         <b>{{tutoring.kid.names}}</b>
-        , his/her {{tutoring.kid.age}}-years old child who is studying in <b>{{tutoring.kid.school}}</b> specifically in {{tutoring.kid.class}}
+        , his/her {{tutoring.kid.age}}-years old child who is studying in
+        <b>{{tutoring.kid.school}}</b>
+        specifically in {{tutoring.kid.class}}
       </div>
       <div v-if="tutoring.status ==='accepted'">
         You are connected with
-        <router-link :to="'/'">
+        <router-link :to="`/${$i18n.locale}`">
           <b>{{tutoring.kid.names}}</b>
         </router-link>
       </div>
-      
     </div>
   </div>
 </template>

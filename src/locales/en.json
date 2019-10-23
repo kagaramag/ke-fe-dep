@@ -1,0 +1,171 @@
+{
+  "lang": "En",
+  "home": {
+    "moto1": "Put",
+    "moto2": "your",
+    "moto3": "kids",
+    "moto4": "ahead of their",
+    "moto5": "peers!",
+    "welcome": "We connect your kids with the best personal tutors",
+    "button": "GET STARTED",
+    "login": "Login",
+    "register": "Register"
+  },
+  "header": {
+    "home": "Home",
+    "tutors": "Tutors",
+    "feeds": "Feeds",
+    "jobs": "Jobs",
+    "resources": "Resources",
+    "questions": "Questions",
+    "faqs": "FAQS",
+    "events": "Events"
+  },
+  "profile": {
+    "title": "My Profile",
+    "account": "Account",
+    "notification": "Notifications",
+    "message": "Message",
+    "logout": "Sohoka"
+  },
+  "footer": {
+    "tutoring": {
+      "title": "Tutoring",
+      "find": "Find tutor",
+      "tutor": "Become a tutor",
+      "parent": "Become a parent"
+    },
+    "help": {
+      "title": "Help",
+      "contact": "Contact",
+      "report": "Report an issue",
+      "faqs": "FAQS"
+    },
+    "company": {
+      "title": "Company",
+      "login": "Login",
+      "sign": "Sign up",
+      "about": "About",
+      "blog": "Blog"
+    },
+    "stay": {
+      "title": "Stay Connected",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
+  },
+  "copyright": {
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "license": "License"
+  },
+  "tutors": {
+    "title": "Find Tutors"
+  },
+  "userprofile": {
+    "messagebar": {
+      "title": "Complete your account profile and get hired",
+      "button": "Learn more"
+    },
+    "sidebar": {
+      "top": {
+        "message": "Message",
+        "logout": "Logout"
+      },
+      "profile": {
+        "title": "Profile",
+        "edit": {
+          "button": "Edit profile picture",
+          "info": "Account information",
+          "first_name": "First name",
+          "last_name": "Last name",
+          "gender": "Update gender",
+          "female": "Female",
+          "male": "Male",
+          "bio": "Bio",
+          "submit": "Submit",
+          "tutor": "Tutor",
+          "tutoring": "Tutoring",
+          "image": "Choose image",
+          "imagebrowse": "Browse",
+          "drop": "No file choosen"
+        }
+      },
+      "tutoring": "Tutoring",
+      "reviews": "Reviews",
+      "answers": "Answers",
+      "points": "Points",
+      "blog": "Blog",
+      "message": "Message",
+      "notifications": "Notifications",
+      "settings": "Settings"
+    },
+    "provided": {
+      "title": "Provided",
+      "id": "ID",
+      "location": "Location",
+      "phone": "Phone",
+      "diploma": "Diploma or Certificate",
+      "teacher": "Teacher's Legal Approval",
+      "education": "Education Background",
+      "code": "Code of Conducts"
+    },
+    "notification": {
+      "title": "Complete your profile",
+      "content": "Aww yeah, we understand that your children deserve the best tutors. We have made it easy for you to find the most competent tutors wherever you are.",
+      "button": "Go to Profile"
+    },
+    "bio": {
+      "title": "Bio",
+      "notification": "No bio yet"
+    },
+    "education": {
+      "title": "My Education",
+      "in": "in"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "notification": "Coming soon..."
+  },
+  "notfound": {
+    "title": "Oooops!!!",
+    "error": "Error 404",
+    "message": "The page you are looking for does not exit or it is currently unvailable",
+    "forward": "Go back Home"
+  },
+  "login": {
+    "title": "Welcome",
+    "message": "Sign in to continue...",
+    "email": "Your email",
+    "email_label": "email",
+    "password": "Password",
+    "password_label": "password",
+    "button": "Login",
+    "question": "Don't have account yet?",
+    "register": "Register",
+    "reset": "Reset Password",
+    "back": "Go back",
+    "home": "Home"
+  },
+  "register": {
+    "title": "Welcome",
+    "message": "Register to continue...",
+    "email": "Your email",
+    "here": "Click here",
+    "firstname": "Your first name",
+    "lastname": "Your last name",
+    "password": "Password",
+    "button": "Register",
+    "question": "Already have account?",
+    "login": "Login",
+    "loginn": "to login",
+    "reset": "Reset Password",
+    "back": "Go back",
+    "confirm": "Confirm password",
+    "confirmbutton": "Confirm",
+    "home": "Home",
+    "remember": "Remember your password?"
+  }
+}
