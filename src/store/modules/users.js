@@ -142,6 +142,15 @@ export default {
           context.commit('FETCH_USER_FAILURE', error.response.data);
         });
     },
+    UPDATE_PHOTO: (context, payload) => {
+      AxiosHelper.post('/upload', payload)
+        .then(response => {
+          context.commit('FETCH_USER_SUCCESS', response.data);
+        })
+        .catch(error => {
+          context.commit('FETCH_USER_FAILURE', error.response.data);
+        });
+    },
 
     GET_PROFILE: context => {
       context.commit('GET_PROFILE');
