@@ -1,9 +1,7 @@
 <template>
   <component :is="layout">
-    <div class="login">
+    <div class="register">
       <Loading v-if="profile.loading" />
-      <h1 class="bold">{{$t('login.title')}}</h1>
-      <h2>{{$t('login.message')}}</h2>
       <div class="box">
         <form class="p-4">
           <div class="row" v-if="profile && profile.errors">
@@ -14,36 +12,31 @@
             >{{error}}</div>
           </div>
           <div class="form-group">
-            <label for="email">{{$t('login.email')}}</label>
-            <input
-              type="email"
-              class="form-control"
-              v-model="user.email"
-              id="email"
-              autocomplete="off"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">{{$t('login.password')}}</label>
+            <label for="password">{{$t('register.password')}}</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
+          </div>
+
+          <div class="form-group">
+            <label for="password">{{$t('register.confirm')}}</label>
+            <input
+              type="password"
+              class="form-control"
+              v-model="user.confirmpassword"
+              id="password"
+            />
           </div>
           <button
             type="submit"
             @click.prevent
-            @click="login"
+            @click="reset"
             class="btn rounded-pill border border-primary px-4 d-block col"
-          >{{$t('login.button')}}</button>
-          <br />
-          {{$t('login.question')}}
-          <router-link :to="`/${$i18n.locale}/register`">{{$t('login.register')}}</router-link>
-          <br />
-          <router-link :to="`/${$i18n.locale}/reset`">{{$t('login.reset')}}</router-link>
+          >{{$t('register.confirmbutton')}}</button>
         </form>
       </div>
       <br />
       <div class="text-center">
-        {{$t('login.back')}}
-        <router-link :to="`/${$i18n.locale}`" class="p-1">{{$t('login.home')}}</router-link>
+        {{$t('register.back')}}
+        <router-link :to="`/${$i18n.locale}`" class="p-1">{{$t('register.home')}}</router-link>
       </div>
     </div>
   </component>
@@ -57,12 +50,12 @@ export default {
   components: {
     Loading
   },
-  name: "login",
+  name: "register",
   data() {
     return {
       user: {
-        email: "",
-        password: ""
+        password: "",
+        confirmpassword: ""
       }
     };
   },
@@ -75,24 +68,24 @@ export default {
     }
   },
   methods: {
-    login() {
-      this.LOGIN_USER(this.user);
+    reset() {
+      this.CONFIRM_PASSWORD(this.user);
     },
-    ...mapActions(["LOGIN_USER"])
+    ...mapActions(["CONFIRM_PASSWORD"])
   }
 };
 </script>
 
 <style scoped>
-.login h1 {
+.register h1 {
   text-align: center;
   padding: 20px 0;
 }
-.login h2 {
+.register h2 {
   text-align: center;
   font-weight: 100;
 }
-.login {
+.register {
   margin-bottom: 50px;
 }
 .alert {

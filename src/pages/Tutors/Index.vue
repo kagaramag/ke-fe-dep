@@ -5,7 +5,7 @@
         <!-- search tutors -->
 
         <!-- List of Tutors -->
-        <h2 class="m-y-5">Find Tutors</h2>
+        <h2 class="m-y-5">{{$t('tutors.title')}}</h2>
         <div class="grabtutors mb-5" v-if="tutors">
           <div class="row">
             <div v-for="tutor in tutors.tutors" class="col-sm-6 col-md-4" :key="tutor.index">
@@ -27,12 +27,18 @@
                     <h3
                       class="text-truncate mb-0"
                     >{{tutor.lastName | capitalize}} {{tutor.firstName | firstLetter}}.</h3>
-                   <div v-if="tutor.username === 'cuv.voxer' || tutor.username === 'asman.bonah'">
-                    <span style="color:#09835a">Verified <icon class="icon" icon="check-square" /> </span>
-                   </div>
-                   <div v-else>
-                    <span style="color:#cdcdcd">Verified <icon class="icon" icon="check-square" /> </span>
-                   </div>
+                    <div v-if="tutor.username === 'cuv.voxer' || tutor.username === 'asman.bonah'">
+                      <span style="color:#09835a">
+                        Verified
+                        <icon class="icon" icon="check-square" />
+                      </span>
+                    </div>
+                    <div v-else>
+                      <span style="color:#cdcdcd">
+                        Verified
+                        <icon class="icon" icon="check-square" />
+                      </span>
+                    </div>
                     <div class="text-muted">@{{tutor.username}}</div>
                   </div>
                 </div>
@@ -47,7 +53,10 @@
                 <div class="row text-center">
                   <div class="col-7">
                     <div class="summary-info">
-                      <router-link class="btn btn-outline-dark m-2 d-block col rounded-pill" :to="`/profile/${tutor.username}`">View</router-link>
+                      <router-link
+                        class="btn btn-outline-dark m-2 d-block col rounded-pill"
+                        :to="`/${$i18n.locale}/profile/${tutor.username}`"
+                      >View</router-link>
                     </div>
                   </div>
                   <div class="col-5">
@@ -127,12 +136,12 @@ export default {
   margin: 3% auto;
   display: block;
 }
-.summary-info b{
+.summary-info b {
   font-size: 15px;
-  font-size: 200
+  font-size: 200;
 }
-.summary-info span{
+.summary-info span {
   font-size: 28px;
-  font-size: 700
+  font-size: 700;
 }
 </style>

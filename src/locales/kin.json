@@ -1,0 +1,171 @@
+{
+  "lang": "Fr",
+  "home": {
+    "moto1": "Dufasha",
+    "moto2": "Abana",
+    "moto3": "bawe",
+    "moto4": "gutsinda neza",
+    "moto5": "mu ishuri!",
+    "welcome": "Tubahuza n'abarimu b'inzobere",
+    "button": "Tangira",
+    "login": "Injira",
+    "register": "Iyandikishe"
+  },
+  "header": {
+    "home": "Ahabanza",
+    "tutors": "Abarimu",
+    "feeds": "Amakuru",
+    "jobs": "Akazi",
+    "resources": "Shakisha",
+    "questions": "Ubumenyi",
+    "faqs": "Kuki",
+    "events": "Ibikorwa"
+  },
+  "profile": {
+    "title": "Konti Yanjye",
+    "account": "Konti",
+    "notification": "Amamenyesha",
+    "message": "Ubutumwa",
+    "logout": "Sohoka"
+  },
+  "footer": {
+    "tutoring": {
+      "title": "Kwigisha",
+      "find": "Shakisha umwarimu",
+      "tutor": "Ba umwarimu",
+      "parent": "Ba umubyeyi"
+    },
+    "help": {
+      "title": "Ubufasha",
+      "contact": "Tuvugishe",
+      "report": "Tangaza ikibazo",
+      "faqs": "Kuki?"
+    },
+    "company": {
+      "title": "Kompanyi",
+      "login": "Injira",
+      "sign": "Funguza",
+      "about": "Ibyerekeye",
+      "blog": "Ibyanditswe"
+    },
+    "stay": {
+      "title": "Ahandi Wadusanga",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram"
+    }
+  },
+  "copyright": {
+    "terms": "Amategeko",
+    "privacy": "Ubuzima Gatozi",
+    "license": "Ibyangombwa"
+  },
+  "tutors": {
+    "title": "Shakisha Abarimu"
+  },
+  "userprofile": {
+    "messagebar": {
+      "title": "Uzuza imyirondoro yose nkenerwa ubashe kubona akazi",
+      "button": "Menya Ibisabwa"
+    },
+    "sidebar": {
+      "top": {
+        "message": "Ubutumwa",
+        "logout": "Sohoka"
+      },
+      "profile": {
+        "title": "Konti Yanjye",
+        "edit": {
+          "button": "Hindura ifoto yawe",
+          "info": "Amakuru ajyanye na konti yawe",
+          "first_name": "Izina ry'idini",
+          "last_name": "Izina ry'ababyeyi",
+          "gender": "Igitsina",
+          "female": "Gore",
+          "male": "Gabo",
+          "bio": "Icyivugo",
+          "submit": "Ohereza",
+          "tutor": "Umwarimu",
+          "tutoring": "Inyigisho",
+          "image": "Hitamo ifoto",
+          "imagebrowse": "Toranya",
+          "drop": "Nta foto wahisemo"
+        }
+      },
+      "tutoring": "Ibijyanye n'amasomo",
+      "reviews": "Ubesesenguzi",
+      "answers": "Ibisubizo",
+      "points": "Amanota",
+      "blog": "Ibyanditswe",
+      "message": "Ubutumwa",
+      "notifications": "Amamenyesha",
+      "settings": "Icungamimerere"
+    },
+    "provided": {
+      "title": "Ibyatanzwe",
+      "id": "Indangamuntu",
+      "location": "Aho Utuye",
+      "phone": "Telefoni",
+      "diploma": "Impamyabumenyi",
+      "teacher": "Icyemezo Cy'uburezi",
+      "education": "Aho wize",
+      "code": "Amategeko yanditswe"
+    },
+    "notification": {
+      "title": "Uzuza imyirondoro yawe",
+      "content": "Twemeranya namwe ko umwana wanyu akwiye uburezi bw'ireme, niyo mpamvu twaborohereje kubona abarezi b'inzobere aho mwaba muherereye hose.",
+      "button": "Subira ku mwirondoro wawe"
+    },
+    "bio": {
+      "title": "Imyirondoro",
+      "notification": "Nta mwirondoro muruzuza."
+    },
+    "education": {
+      "title": "Amashuri Yanjye",
+      "in": "muri"
+    }
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "notification": "Coming soon..."
+  },
+  "notfound": {
+    "title": "Yooooo!!!",
+    "error": "Ikosa 404",
+    "message": "Ipaji mwifuza kujyaho ntibashije kuboneka",
+    "forward": "Subira ahabanza"
+  },
+  "login": {
+    "title": "Murakaza Neza",
+    "message": "Andika ibikuranga winjire...",
+    "email": "Email yawe",
+    "email_label": "email",
+    "password": "Ijambo ry'ibanga",
+    "password_label": "Ijambo ry'ibanga",
+    "button": "Injira",
+    "question": "Nta konti ufite?",
+    "register": "Iyandikishe",
+    "reset": "Hindura ijambo ry'ibanga",
+    "back": "Subira",
+    "home": "Ahabanza"
+  },
+  "register": {
+    "title": "Murakaza Neza",
+    "message": "Iyandikishe winjire...",
+    "email": "Email yawe",
+    "here": "Kand hano",
+    "firstname": "Izina ry'idini",
+    "lastname": "Izina ry'ababyeyi",
+    "password": "Ijambo ry'ibanga",
+    "button": "Iyandikishe",
+    "question": "Usanzwe ufite konti?",
+    "login": "Injira",
+    "loginn": "Winjire",
+    "reset": "Hindura ijambo ry'ibanga",
+    "back": "Subira",
+    "home": "Ahabanza",
+    "confirm": "Subiramo ijambo ry'ibanga",
+    "confirmbutton": "Emeza",
+    "remember": "Ijambo ry'ibanga uraryibutse?"
+  }
+}

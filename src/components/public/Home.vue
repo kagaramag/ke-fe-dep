@@ -6,19 +6,19 @@
           <div class="row justify-content-center align-self-center">
             <div class="col-md-6 intro-info order-md-first order-last">
               <h2>
-                Put<br /> your
-                <span>kids</span>
-                on the <br />head of their
-                <span>peers!</span>
+                {{$t('home.moto1')}}
+                <br />
+                {{$t('home.moto2')}}
+                <span>{{$t('home.moto3')}}</span>
+
+                <br />
+                {{$t('home.moto4')}}
+                <span>{{$t('home.moto5')}}</span>
               </h2>
-              <div style="margin:20px 0;color:#565656">
-                We connecte your
-                kids
-                with
-                the best personal tutors
-              </div>
+
+              <div style="margin:20px 0;color:#565656">{{$t('home.welcome')}}</div>
               <div>
-                <a href="#about" class="btn-get-started bg-primary scrollto">Get Started</a>
+                <a href="#about" class="btn-get-started bg-primary scrollto">{{$t('home.button')}}</a>
               </div>
             </div>
 

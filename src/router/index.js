@@ -1,110 +1,136 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import store from './../store'
-
-Vue.use(Router)
+import Vue from 'vue';
+import Router from 'vue-router';
+import store from './../store';
+import i18n from '../i18n';
+Vue.use(Router);
 
 const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('@/components/public/home')
+      redirect: `/${i18n.locale}`
     },
     {
-      path: '/tutors',
-      name: 'tutors',
-      component: () => import('@/pages/tutors')
-    },
-    {
-      path: '/register',
-      component: () => import('@/components/auth/register')
-    },
-    {
-      path: '/login',
-      component: () => import('@/components/auth/login')
-    },
-    {
-      path: '/profile/:username',
-      name: 'profile',
-      component: () => import('@/pages/profile'),
-    },
-    {
-      path: '/profile/:username/edit',
-      name: 'Profile Edit',
-      component: () => import('@/pages/profile/edit'),
-      meta: {
-        auth: true
-      }
-    },
-    {
-      path: '/profile/:username/tutoring',
-      name: 'tutoring',
-      component: () => import('@/pages/profile/tutoring'),
-      meta: {
-        auth: true
-      }
-    },
-    {
-      path: '/profile/:username/tutoring/:id',
-      name: 'tutoring',
-      component: () => import('@/pages/profile/tutorship'),
-      meta: {
-        auth: true
-      }
-    },
-    {
-      path: '/profile/:username/settings',
-      name: 'settings',
-      component: () => import('@/pages/profile/settings'), 
-      meta: {
-        auth: true
-      }
-    },
-    {
-      path: '/profile/:username/my-blog',
-      name: 'blog',
-      component: () => import('@/pages/profile/blog')
-    },
-    {
-      path: '/post/:slug',
-      name: 'post',
-      component: () => import('@/components/public/posts/OnePost')
-    },
-    // {
-    //   path: '/profile/:username/education',
-    //   name: 'profile',
-    //   component: () => import('@/pages/profile/education'),
-    //   meta: {
-    //     auth: true
-    //   }
-    // },
-    // {
-    //   path: '/profile/:username/education/new',
-    //   name: 'profile',
-    //   component: () => import('@/pages/profile/education'),
-    //   meta: {
-    //     auth: true
-    //   }
-    // },
-    {
-      path: '*',
-      component: () => import('@/components/public/notfound')
+      path: '/:lang',
+      component: {
+        render(c) {
+          return c('router-view');
+        }
+      },
+      children: [
+        {
+          path: '/',
+          name: 'home',
+          component: () => import('@/components/public/home')
+        },
+        {
+          path: 'tutors',
+          name: 'tutors',
+          component: () => import('@/pages/tutors')
+        },
+        {
+          path: 'register',
+          component: () => import('@/components/auth/register')
+        },
+        {
+          path: 'login',
+          component: () => import('@/components/auth/login')
+        },
+        {
+          path: 'reset',
+          component: () => import('@/components/auth/reset')
+        },
+        {
+          path: 'reset/:token',
+          component: () => import('@/components/auth/reset')
+        },
+        {
+          path: 'confirm',
+          component: () => import('@/components/auth/confirm')
+        },
+        {
+          path: 'profile/:username',
+          name: 'profile',
+          component: () => import('@/pages/profile')
+        },
+        {
+          path: 'profile/:username/edit',
+          name: 'Profile Edit',
+          component: () => import('@/pages/profile/edit'),
+          meta: {
+            auth: true
+          }
+        },
+
+        {
+          path: 'profile/:username/tutoring',
+          name: 'tutoring',
+          component: () => import('@/pages/profile/tutoring'),
+          meta: {
+            auth: true
+          }
+        },
+        {
+          path: 'profile/:username/tutoring/:id',
+          name: 'tutoring',
+          component: () => import('@/pages/profile/tutorship'),
+          meta: {
+            auth: true
+          }
+        },
+        {
+          path: 'profile/:username/settings',
+          name: 'settings',
+          component: () => import('@/pages/profile/settings'),
+          meta: {
+            auth: true
+          }
+        },
+        {
+          path: 'profile/:username/my-blog',
+          name: 'blog',
+          component: () => import('@/pages/profile/blog')
+        },
+        {
+          path: 'post/:slug',
+          name: 'post',
+          component: () => import('@/components/public/posts/OnePost')
+        },
+        // {
+        //   path: '/profile/:username/education',
+        //   name: 'profile',
+        //   component: () => import('@/pages/profile/education'),
+        //   meta: {
+        //     auth: true
+        //   }
+        // },
+        // {
+        //   path: '/profile/:username/education/new',
+        //   name: 'profile',
+        //   component: () => import('@/pages/profile/education'),
+        //   meta: {
+        //     auth: true
+        //   }
+        // },
+        {
+          path: '*',
+          component: () => import('@/components/public/notfound')
+        }
+      ]
     }
   ],
-  mode: 'history',
-
-})
+  mode: 'history'
+});
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.auth)) {
-    if (localStorage.getItem('isAuth') === "true") {
-      next()
-      return
+    if (localStorage.getItem('isAuth') === 'true') {
+      next();
+      return;
     } else {
-      next('/login')
+      next('login');
     }
   } else {
-    next()
+    next();
   }
-})
-export default router
+});
+export default router;

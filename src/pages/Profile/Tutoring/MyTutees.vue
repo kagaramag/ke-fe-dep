@@ -12,7 +12,7 @@
           <div v-if="val.status ==='requested'" class="requested" />
           <div v-if="val.status ==='accepted'" class="accepted" />
           <div v-if="val.status ==='rejected'" class="rejected" />
-          <router-link :to="`/profile/${profile.user.username}/tutoring/${val.id}`">
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${val.id}`">
             <div class="row">
               <div class="media p-3 my-1 mx-3" style="position:relative">
                 <span v-if="val.kid.parent.image">
@@ -129,6 +129,6 @@ export default {
 
 <style scoped>
 .wrap-one-tutering:hover {
-  background: #f2f4f5!important
+  background: #f2f4f5 !important;
 }
 </style>
