@@ -126,5 +126,11 @@
   "admin": {
     "title": "Admin Panel",
     "notification": "Coming soon..."
+  },
+  "notfound": {
+    "title": "Oooops!!!",
+    "error": "Error 404",
+    "message": "The page you are looking for does not exit or it is currently unvailable",
+    "forward": "Go back Home"
   }
 }

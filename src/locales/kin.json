@@ -126,5 +126,11 @@
   "admin": {
     "title": "Admin Panel",
     "notification": "Coming soon..."
+  },
+  "notfound": {
+    "title": "Yooooo!!!",
+    "error": "Error 404",
+    "message": "Ipaji mwifuza kujyaho ntibashije kuboneka",
+    "forward": "Subira ahabanza"
   }
 }

@@ -4,12 +4,16 @@
       <div class="col-md-7">
         <br />
         <br />
-        <h1>Oooops!!!</h1>
-        <h2>Error 404</h2>
-        <div>The page you are looking for does not exit or it is currently unvailable</div>
+
+        <h1>{{$t('notfound.title')}}</h1>
+        <h2>{{$t('notfound.error')}}</h2>
+        <div>{{$t('notfound.message')}}</div>
         <br />
         <div>
-          <router-link :to="`/${$i18n.locale}`" class="btn bg-primary text-light">Go back Home</router-link>
+          <router-link
+            :to="`/${$i18n.locale}`"
+            class="btn bg-primary text-light"
+          >{{$t('notfound.forward')}}</router-link>
         </div>
       </div>
       <div class="col-md-5">
