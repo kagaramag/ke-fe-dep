@@ -34,37 +34,6 @@
           <router-link :to="`/${$i18n.locale}/login`">Login</router-link>
         </form>
       </div>
-      <div class="box" v-if="confirmed">
-        <b-alert variant="success" show v-if="done">Success! your password has been changed.</b-alert>
-        <form class="p-4">
-          <div class="row" v-if="profile && profile.errors">
-            <div
-              class="alert alert-danger"
-              v-for="error in profile.errors[0]"
-              :key="error.index"
-            >{{error}}</div>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" v-model="password" id="password" />
-          </div>
-
-          <div class="form-group">
-            <label for="password">Confirm Password</label>
-            <input type="password" class="form-control" v-model="confirmpassword" id="password" />
-          </div>
-          <button
-            type="submit"
-            @click.prevent
-            @click="confirm"
-            class="btn rounded-pill border border-primary px-4 d-block col"
-          >Confirm</button>
-          <router-link :to="`/${$i18n.locale}/login`">Login</router-link>
-        </form>
-        <div class="text-center" v-if="spinning">
-          <b-spinner variant="success" label="Spinning"></b-spinner>
-        </div>
-      </div>
       <br />
       <div class="text-center">
         Go back
@@ -108,33 +77,11 @@ export default {
 
   methods: {
     reset() {
-      this.confirmed = false;
       this.spinning = false;
       this.$store.dispatch("RESET_PASSWORD", this.user);
-      const response = this.$store.dispatch("RESET_PASSWORD", this.user);
       setTimeout(() => {
         this.confirmed = true;
       }, 3000);
-    },
-    async confirm() {
-      this.spinning = true;
-      this.redirect = localStorage.getItem("redirect");
-      const response = await this.$store.dispatch("RESET_PASSWORD", this.user);
-
-      const data = await this.$store.dispatch("CONFIRM_PASSWORD", {
-        redirect: this.redirect,
-        passwords: {
-          passwordOne: this.password,
-          passwordTwo: this.confirmpassword
-        }
-      });
-
-      this.message = data;
-      (this.password = ""), (this.confirmpassword = "");
-      setTimeout(() => {
-        this.done = true;
-      }, 3000);
-      this.spinning = false;
     }
   }
 };

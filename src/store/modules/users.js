@@ -1,5 +1,5 @@
-import AxiosHelper from "@/helpers/AxiosHelper";
-import router from "@/router";
+import AxiosHelper from '@/helpers/AxiosHelper';
+import router from '@/router';
 /* eslint-disable space-before-function-paren */
 export default {
   // initial state
@@ -7,21 +7,21 @@ export default {
     profile: {
       user: {},
       errors: {},
-      message: "",
+      message: '',
       isLoggedIn: false,
       loading: false
     },
     fetch_user: {
       user: {},
       errors: {},
-      message: "",
+      message: '',
       isLoggedIn: false,
       loading: false
     },
     fetch_tutors: {
       tutors: [],
       errors: {},
-      message: "",
+      message: '',
       loading: false
     }
   },
@@ -80,13 +80,13 @@ export default {
         user: {},
         errors: {},
         loading: false,
-        message: "",
+        message: '',
         isLoggedIn: false
       };
       localStorage.user = null;
       localStorage.isAuth = false;
       localStorage.token = null;
-      router.push({ path: "/login" });
+      router.push({ path: '/login' });
     },
     UPDATE_PROFILE(state, payload) {
       state.profile = { ...state.profile, ...payload };
@@ -113,77 +113,79 @@ export default {
     RESET_PASSWORD: (context, payload) => {
       AxiosHelper.post(`/auth/reset`, payload)
         .then(response => {
-          localStorage.redirect = response.data.redirect;
+          context.commit('FETCH_USER_SUCCESS', response.data);
         })
-        .catch(error => {});
+        .catch(error => {
+          context.commit('FETCH_USER_FAILURE', error.response.data);
+        });
     },
 
     CONFIRM_PASSWORD: (context, payload) => {
       AxiosHelper.patch(`/auth/reset/${payload.redirect}`, payload.passwords)
         .then(response => {
-          context.commit("FETCH_USER_SUCCESS", response.data);
+          context.commit('FETCH_USER_SUCCESS', response.data);
         })
         .catch(error => {
-          console.log(error);
+          context.commit('FETCH_USER_FAILURE', error.response.data);
         });
     },
     UPDATE_PROFILE: (context, payload) => {
-      context.commit("UPDATE_PROFILE");
-      AxiosHelper.put("/users", payload)
+      context.commit('UPDATE_PROFILE');
+      AxiosHelper.put('/users', payload)
         .then(response => {
           console.log(response);
-          context.commit("FETCH_USER_SUCCESS", response.data);
+          context.commit('FETCH_USER_SUCCESS', response.data);
         })
         .catch(error => {
-          context.commit("FETCH_USER_FAILURE", error.response.data);
+          context.commit('FETCH_USER_FAILURE', error.response.data);
         });
     },
 
     GET_PROFILE: context => {
-      context.commit("GET_PROFILE");
+      context.commit('GET_PROFILE');
     },
     FETCH_USER: (context, payload) => {
-      context.commit("GET_PROFILE_LOADING", true);
-      context.commit("GET_PROFILE");
+      context.commit('GET_PROFILE_LOADING', true);
+      context.commit('GET_PROFILE');
       AxiosHelper.get(`/users/username/${payload}`)
         .then(response => {
-          context.commit("FETCH_USER_SUCCESS", response.data);
+          context.commit('FETCH_USER_SUCCESS', response.data);
         })
         .catch(error => {
-          context.commit("FETCH_USER_FAILURE", error.response.data);
+          context.commit('FETCH_USER_FAILURE', error.response.data);
         });
     },
     REGISTER_USER: (context, payload) => {
-      context.commit("RESET_ERROR");
-      context.commit("SITE_LOADING", true);
-      AxiosHelper.post("/auth/signup", payload)
+      context.commit('RESET_ERROR');
+      context.commit('SITE_LOADING', true);
+      AxiosHelper.post('/auth/signup', payload)
         .then(response =>
-          context.commit("REGISTER_USER_SUCCESS", response.data)
+          context.commit('REGISTER_USER_SUCCESS', response.data)
         )
         .catch(error => {
-          context.commit("REGISTER_USER_FAILURE", error.response.data.errors);
+          context.commit('REGISTER_USER_FAILURE', error.response.data.errors);
         });
     },
     LOGIN_USER: (context, payload) => {
-      context.commit("RESET_ERROR");
-      context.commit("SITE_LOADING", true);
-      AxiosHelper.post("/auth/login", payload)
-        .then(response => context.commit("LOGIN_USER_SUCCESS", response.data))
+      context.commit('RESET_ERROR');
+      context.commit('SITE_LOADING', true);
+      AxiosHelper.post('/auth/login', payload)
+        .then(response => context.commit('LOGIN_USER_SUCCESS', response.data))
         .catch(error =>
-          context.commit("LOGIN_USER_FAILURE", error.response.data.errors)
+          context.commit('LOGIN_USER_FAILURE', error.response.data.errors)
         );
     },
     LOGOUT_USER: context => {
-      context.commit("LOGIN_USER_OUT");
+      context.commit('LOGIN_USER_OUT');
     },
     // fetch tutors
     FETCH_TUTORS: context => {
       AxiosHelper.get(`/users/tutors`)
         .then(response => {
-          context.commit("FETCH_TUTORS_SUCCESS", response.data);
+          context.commit('FETCH_TUTORS_SUCCESS', response.data);
         })
         .catch(error => {
-          context.commit("FETCH_TUTORS_FAILURE", error.response.data);
+          context.commit('FETCH_TUTORS_FAILURE', error.response.data);
         });
     }
   }
