@@ -163,6 +163,9 @@
     "loginn": "to login",
     "reset": "Reset Password",
     "back": "Go back",
-    "home": "Home"
+    "confirm": "Confirm password",
+    "confirmbutton": "Confirm",
+    "home": "Home",
+    "remember": "Remember your password?"
   }
 }

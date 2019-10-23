@@ -2,8 +2,8 @@
   <component :is="layout">
     <div class="login">
       <Loading v-if="profile.loading" />
-      <h1 class="bold">Welcome</h1>
-      <h2>Reset Your Password</h2>
+      <h1 class="bold">{{$t('register.title')}}</h1>
+      <h2>{{$t('register.reset')}}</h2>
       <div class="box" v-if="!confirmed">
         <form class="p-4">
           <div class="row" v-if="profile && profile.errors">
@@ -14,7 +14,7 @@
             >{{error}}</div>
           </div>
           <div class="form-group">
-            <label for="email">Your email</label>
+            <label for="email">{{$t('register.email')}}</label>
             <input
               type="email"
               class="form-control"
@@ -29,15 +29,16 @@
             @click.prevent
             @click="reset"
             class="btn rounded-pill border border-primary px-4 d-block col"
-          >Reset Password</button>
-          <br />Remembered your password?
-          <router-link :to="`/${$i18n.locale}/login`">Login</router-link>
+          >{{$t('register.reset')}}</button>
+          <br />
+          {{$t('register.remember')}}
+          <router-link :to="`/${$i18n.locale}/login`">{{$t('register.login')}}</router-link>
         </form>
       </div>
       <br />
       <div class="text-center">
-        Go back
-        <router-link :to="`/${$i18n.locale}`" class="p-1">Home</router-link>
+        {{$t('register.back')}}
+        <router-link :to="`/${$i18n.locale}`" class="p-1">{{$t('register.home')}}</router-link>
       </div>
     </div>
   </component>

@@ -141,7 +141,7 @@
     "email": "Email yawe",
     "email_label": "email",
     "password": "Ijambo ry'ibanga",
-    "password_label": "ijambo ry'ibanga",
+    "password_label": "Ijambo ry'ibanga",
     "button": "Injira",
     "question": "Nta konti ufite?",
     "register": "Iyandikishe",
@@ -156,13 +156,16 @@
     "here": "Kand hano",
     "firstname": "Izina ry'idini",
     "lastname": "Izina ry'ababyeyi",
-    "password": "ijambo ry'ibanga",
+    "password": "Ijambo ry'ibanga",
     "button": "Iyandikishe",
     "question": "Usanzwe ufite konti?",
     "login": "Injira",
     "loginn": "Winjire",
     "reset": "Hindura ijambo ry'ibanga",
     "back": "Subira",
-    "home": "Abanza"
+    "home": "Ahabanza",
+    "confirm": "Subiramo ijambo ry'ibanga",
+    "confirmbutton": "Emeza",
+    "remember": "Ijambo ry'ibanga uraryibutse?"
   }
 }
