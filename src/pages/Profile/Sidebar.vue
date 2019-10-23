@@ -59,7 +59,7 @@
         <b-list-group-item>
           <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
             <icon class="icon" icon="user" />
-            <span>{{$t('userprofile.sidebar.profile')}}</span>
+            <span>{{$t('userprofile.sidebar.profile.title')}}</span>
           </router-link>
         </b-list-group-item>
       </b-list-group>

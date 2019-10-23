@@ -1,7 +1,7 @@
 <template>
   <div id="Parent">
-    <h3>Tutor</h3>
-    <div>tutoring</div>
+    <h3>{{$t('userprofile.sidebar.profile.edit.tutor')}}</h3>
+    <div>{{$t('userprofile.sidebar.profile.edit.tutoring')}}</div>
   </div>
 </template>
 

@@ -71,7 +71,25 @@
         "message": "Message",
         "logout": "Logout"
       },
-      "profile": "Profile",
+      "profile": {
+        "title": "Profile",
+        "edit": {
+          "button": "Edit profile picture",
+          "info": "Account information",
+          "first_name": "First name",
+          "last_name": "Last name",
+          "gender": "Update gender",
+          "female": "Female",
+          "male": "Male",
+          "bio": "Bio",
+          "submit": "Submit",
+          "tutor": "Tutor",
+          "tutoring": "Tutoring",
+          "image": "Choose image",
+          "imagebrowse": "Browse",
+          "drop": "No file choosen"
+        }
+      },
       "tutoring": "Tutoring",
       "reviews": "Reviews",
       "answers": "Answers",

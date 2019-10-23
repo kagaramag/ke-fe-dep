@@ -71,7 +71,25 @@
         "message": "Ubutumwa",
         "logout": "Sohoka"
       },
-      "profile": "Konti Yanjye",
+      "profile": {
+        "title": "Konti Yanjye",
+        "edit": {
+          "button": "Hindura ifoto yawe",
+          "info": "Amakuru ajyanye na konti yawe",
+          "first_name": "Izina ry'idini",
+          "last_name": "Izina ry'ababyeyi",
+          "gender": "Igitsina",
+          "female": "Gore",
+          "male": "Gabo",
+          "bio": "Icyivugo",
+          "submit": "Ohereza",
+          "tutor": "Umwarimu",
+          "tutoring": "Inyigisho",
+          "image": "Hitamo ifoto",
+          "imagebrowse": "Toranya",
+          "drop": "Nta foto wahisemo"
+        }
+      },
       "tutoring": "Ibijyanye n'amasomo",
       "reviews": "Ubesesenguzi",
       "answers": "Ibisubizo",
