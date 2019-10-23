@@ -174,8 +174,10 @@ export default {
       // save language as fr_MX in localstorage to match backend setup
       if (locale == "kin") {
         localStorage.setItem("lang", "fr_MX");
+        document.title="Nivelo - Abarimu b'inzobere"
       } else {
         localStorage.setItem("lang", "en");
+        document.title="Nivelo - Best tutors"
       }
 
       this.$i18n.locale = locale;
