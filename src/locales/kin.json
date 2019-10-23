@@ -7,7 +7,9 @@
     "moto4": "gutsinda neza",
     "moto5": "mu ishuri!",
     "welcome": "Tubahuza n'abarimu b'inzobere",
-    "button": "Tangira"
+    "button": "Tangira",
+    "login": "Injira",
+    "register": "Iyandikishe"
   },
   "header": {
     "home": "Ahabanza",
@@ -129,8 +131,38 @@
   },
   "notfound": {
     "title": "Yooooo!!!",
-    "error": "Error 404",
+    "error": "Ikosa 404",
     "message": "Ipaji mwifuza kujyaho ntibashije kuboneka",
     "forward": "Subira ahabanza"
+  },
+  "login": {
+    "title": "Murakaza Neza",
+    "message": "Andika ibikuranga winjire...",
+    "email": "Email yawe",
+    "email_label": "email",
+    "password": "Ijambo ry'ibanga",
+    "password_label": "ijambo ry'ibanga",
+    "button": "Injira",
+    "question": "Nta konti ufite?",
+    "register": "Iyandikishe",
+    "reset": "Hindura ijambo ry'ibanga",
+    "back": "Subira",
+    "home": "Ahabanza"
+  },
+  "register": {
+    "title": "Murakaza Neza",
+    "message": "Iyandikishe winjire...",
+    "email": "Email yawe",
+    "here": "Kand hano",
+    "firstname": "Izina ry'idini",
+    "lastname": "Izina ry'ababyeyi",
+    "password": "ijambo ry'ibanga",
+    "button": "Iyandikishe",
+    "question": "Usanzwe ufite konti?",
+    "login": "Injira",
+    "loginn": "Winjire",
+    "reset": "Hindura ijambo ry'ibanga",
+    "back": "Subira",
+    "home": "Abanza"
   }
 }

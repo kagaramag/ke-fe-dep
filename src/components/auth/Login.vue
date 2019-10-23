@@ -2,8 +2,8 @@
   <component :is="layout">
     <div class="login">
       <Loading v-if="profile.loading" />
-      <h1 class="bold">Welcome</h1>
-      <h2>Sign in to continue...</h2>
+      <h1 class="bold">{{$t('login.title')}}</h1>
+      <h2>{{$t('login.message')}}</h2>
       <div class="box">
         <form class="p-4">
           <div class="row" v-if="profile && profile.errors">
@@ -14,7 +14,7 @@
             >{{error}}</div>
           </div>
           <div class="form-group">
-            <label for="email">Your email</label>
+            <label for="email">{{$t('login.email')}}</label>
             <input
               type="email"
               class="form-control"
@@ -24,7 +24,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">{{$t('login.password')}}</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
           </div>
           <button
@@ -32,17 +32,18 @@
             @click.prevent
             @click="login"
             class="btn rounded-pill border border-primary px-4 d-block col"
-          >Login</button>
-          <br />Don't have account yet?
-          <router-link :to="`/${$i18n.locale}/register`">Register</router-link>
+          >{{$t('login.button')}}</button>
           <br />
-          <router-link :to="`/${$i18n.locale}/reset`">Reset Password</router-link>
+          {{$t('login.question')}}
+          <router-link :to="`/${$i18n.locale}/register`">{{$t('login.register')}}</router-link>
+          <br />
+          <router-link :to="`/${$i18n.locale}/reset`">{{$t('login.reset')}}</router-link>
         </form>
       </div>
       <br />
       <div class="text-center">
-        Go back
-        <router-link :to="`/${$i18n.locale}`" class="p-1">Home</router-link>
+        {{$t('login.back')}}
+        <router-link :to="`/${$i18n.locale}`" class="p-1">{{$t('login.home')}}</router-link>
       </div>
     </div>
   </component>

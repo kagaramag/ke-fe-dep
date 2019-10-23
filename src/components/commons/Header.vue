@@ -124,13 +124,13 @@
 
           <ul class="navbar-nav right" v-else>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/login`">Login</router-link>
+              <router-link class="nav-link" :to="`/${$i18n.locale}/login`">{{$t('home.login')}}</router-link>
             </li>
             <li class="nav-item">
               <router-link
                 class="nav-link rounded-pill border border-primary px-4"
                 :to="`/${$i18n.locale}/register`"
-              >Register</router-link>
+              >{{$t('home.register')}}</router-link>
             </li>
           </ul>
 

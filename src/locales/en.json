@@ -7,7 +7,9 @@
     "moto4": "ahead of their",
     "moto5": "peers!",
     "welcome": "We connect your kids with the best personal tutors",
-    "button": "GET STARTED"
+    "button": "GET STARTED",
+    "login": "Login",
+    "register": "Register"
   },
   "header": {
     "home": "Home",
@@ -132,5 +134,35 @@
     "error": "Error 404",
     "message": "The page you are looking for does not exit or it is currently unvailable",
     "forward": "Go back Home"
+  },
+  "login": {
+    "title": "Welcome",
+    "message": "Sign in to continue...",
+    "email": "Your email",
+    "email_label": "email",
+    "password": "Password",
+    "password_label": "password",
+    "button": "Login",
+    "question": "Don't have account yet?",
+    "register": "Register",
+    "reset": "Reset Password",
+    "back": "Go back",
+    "home": "Home"
+  },
+  "register": {
+    "title": "Welcome",
+    "message": "Register to continue...",
+    "email": "Your email",
+    "here": "Click here",
+    "firstname": "Your first name",
+    "lastname": "Your last name",
+    "password": "Password",
+    "button": "Register",
+    "question": "Already have account?",
+    "login": "Login",
+    "loginn": "to login",
+    "reset": "Reset Password",
+    "back": "Go back",
+    "home": "Home"
   }
 }
