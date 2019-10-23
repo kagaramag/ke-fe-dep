@@ -1,5 +1,7 @@
 import AxiosHelper from '@/helpers/AxiosHelper';
 import router from '@/router';
+import i18n from '../../i18n';
+
 /* eslint-disable space-before-function-paren */
 export default {
   // initial state
@@ -69,7 +71,7 @@ export default {
       localStorage.user = JSON.stringify(payload.user);
       localStorage.isAuth = true;
       localStorage.token = payload.token;
-      router.push(`/profile/${payload.user.username}`);
+      router.push(`/${i18n.locale}/profile/${payload.user.username}`);
     },
     LOGIN_USER_FAILURE(state, payload) {
       state.profile.loading = false;
@@ -86,7 +88,7 @@ export default {
       localStorage.user = null;
       localStorage.isAuth = false;
       localStorage.token = null;
-      router.push({ path: '/login' });
+      router.push({ path: `/${i18n.locale}/login` });
     },
     UPDATE_PROFILE(state, payload) {
       state.profile = { ...state.profile, ...payload };

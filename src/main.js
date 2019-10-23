@@ -11,7 +11,6 @@ import Default from './layouts/Default.vue';
 import Minima from './layouts/Minima.vue';
 import Account from './layouts/Account.vue';
 import store from './store';
-
 import i18n from './i18n';
 Vue.component('default-layout', Default);
 Vue.component('minima-layout', Minima);
@@ -103,6 +102,7 @@ router.beforeEach((to, from, next) => {
 
   // set the current language for i18n.
   i18n.locale = language;
+
   next();
 });
 

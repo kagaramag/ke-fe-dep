@@ -147,7 +147,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
 library.add(fas);
 library.add(fab);
 
@@ -172,6 +171,13 @@ export default {
       this.LOGOUT_USER();
     },
     setLanguage(locale) {
+      // save language as fr_MX in localstorage to match backend setup
+      if (locale == "kin") {
+        localStorage.setItem("lang", "fr_MX");
+      } else {
+        localStorage.setItem("lang", "en");
+      }
+
       this.$i18n.locale = locale;
       this.$router.push({
         params: { lang: locale }
