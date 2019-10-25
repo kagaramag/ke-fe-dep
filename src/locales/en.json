@@ -87,7 +87,7 @@
           "submit": "Submit",
           "tutor": "Tutor",
           "tutoring": "Tutoring",
-          "image": "Choose image",
+          "image": "Choose image (JPEG, PNG)",
           "imagebrowse": "Browse",
           "drop": "No file choosen"
         }
@@ -167,5 +167,30 @@
     "confirmbutton": "Confirm",
     "home": "Home",
     "remember": "Remember your password?"
+  },
+  "account-type": {
+    "title": "What is your account type?",
+    "parent": {
+      "title": "Parent",
+      "message": "Register as a parent and get the benefits of hiring the best tutors out there for your kids."
+    },
+    "tutor": {
+      "title": "Tutor",
+      "message": "Register as a tutor and be able to get hired for teaching kids and help them excel in their studies."
+    }
+  },
+  "identity": {
+    "title": "Prove your Identity",
+    "message": "For you to be accepted as a tutor you will have to submit the specified documents below",
+    "language": "Language",
+    "experience": "Experience (1,2,...)",
+    "passport": "National id",
+    "bulletin": "School report of senior 6",
+    "diploma": "Diploma",
+    "cv": "Curriculum Vitae",
+    "image": "Choose a file (PDF,JPEG, PNG)",
+    "imagebrowse": "Browse",
+    "drop": "No file choosen",
+    "button": "Submit"
   }
 }
