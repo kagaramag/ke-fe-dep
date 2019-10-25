@@ -145,7 +145,7 @@ export default {
       }
       formData.append("language", this.user.language);
       formData.append("experience", this.user.experience);
-      this.UPLOAD_DOCUMENTS(formData);
+      return this.UPLOAD_DOCUMENTS(formData);
     },
     ...mapActions(["UPLOAD_DOCUMENTS"])
   }

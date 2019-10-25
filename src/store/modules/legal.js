@@ -1,5 +1,7 @@
 import AxiosHelper from '@/helpers/AxiosHelper';
-
+import router from '@/router';
+import i18n from '../../i18n';
+const username = JSON.parse(localStorage.getItem('user')).username;
 export default {
   // initial state
   state: {
@@ -53,8 +55,8 @@ export default {
         }
       })
         .then(response => {
-          console.log(payload);
           context.commit('FETCH_DOCUMENTS_SUCCESS', response.data);
+          router.push(`/${i18n.locale}/profile/${username}`);
         })
         .catch(error => {
           context.commit('FETCH_DOCUMENTS_FAILURE', error.response.data);
