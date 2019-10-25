@@ -41,7 +41,7 @@
               autocomplete="off"
             />
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="bulletin">{{$t('identity.bulletin')}}</label>
             <b-form-file
               @change="getFile"
@@ -49,11 +49,22 @@
               :drop-placeholder="`${$t('identity.drop')}`"
               :browse-text="`${$t('identity.imagebrowse')}`"
             ></b-form-file>
+          </div>-->
+          <div class="form-group">
+            <b-form-file single :placeholder="user.bulletin" :file-name-formatter="getBULL"></b-form-file>
           </div>
           <div class="form-group">
-            <b-form-file multiple :file-name-formatter="formatNames"></b-form-file>
+            <b-form-file single :placeholder="user.id" :file-name-formatter="getID"></b-form-file>
           </div>
           <div class="form-group">
+            <b-form-file single :placeholder="user.cv" :file-name-formatter="getCV"></b-form-file>
+          </div>
+
+          <div class="form-group">
+            <b-form-file single :placeholder="user.diploma" :file-name-formatter="getDIP"></b-form-file>
+          </div>
+
+          <!-- <div class="form-group">
             <label for="cv">{{$t('identity.cv')}}</label>
             <b-form-file
               @change="getFile"
@@ -62,16 +73,15 @@
               :browse-text="`${$t('identity.imagebrowse')}`"
             ></b-form-file>
           </div>
-          <div class="form-group">
-            <label for="diploma">{{$t('identity.diploma')}}</label>
-            <b-form-file
-              @change="getFile"
-              multiple
-              :placeholder="`${$t('identity.image')}`"
-              :drop-placeholder="`${$t('identity.drop')}`"
-              :browse-text="`${$t('identity.imagebrowse')}`"
-            ></b-form-file>
-          </div>
+          <div class="form-group">-->
+          <!-- <b-form-file
+            @change="getFile"
+            multiple
+            :placeholder="`${$t('identity.image')}`"
+            :drop-placeholder="`${$t('identity.drop')}`"
+            :browse-text="`${$t('identity.imagebrowse')}`"
+          ></b-form-file>-->
+          <!-- </div> -->
           <button
             type="submit"
             @click.prevent
@@ -88,6 +98,8 @@
 <script>
 import Loading from "./../commons/Loading";
 import { mapActions, mapGetters } from "vuex";
+import _ from "lodash";
+
 const minima_layout = "minima";
 export default {
   components: {
@@ -96,14 +108,14 @@ export default {
   name: "register",
   data() {
     return {
+      images: {},
       user: {
-        images: null,
         language: "",
         experience: "",
-        bulletin: null,
-        passport: null,
-        cv: null,
-        diploma: null
+        bulletin: this.$t("identity.bulletin"),
+        id: this.$t("identity.id"),
+        cv: this.$t("identity.cv"),
+        diploma: this.$t("identity.diploma")
       }
     };
   },
@@ -117,31 +129,47 @@ export default {
     }
   },
   methods: {
-    formatNames(files) {
-      this.images = files;
-      if (files.length === 1) {
-        console.log(files[0].name);
-      } else {
-        console.log(`${files.length} files selected`);
+    getBULL(file) {
+      if (file) {
+        this.images[0] = file;
+        this.user.bulletin = file.name;
+        return file[0].name;
       }
     },
-    getFile(e) {
-      let img = e.target.files[0];
-      this.bulletin = img;
-      let img2 = e.target.files[1];
-      this.passport = img2;
-      let img3 = e.target.files[2];
-      this.cv = img3;
-      let img4 = e.target.files[3];
-      this.diploma = img4;
-      console.log(img, img2);
+    getID(file) {
+      if (file) {
+        this.images[1] = file;
+        this.user.id = file.name;
+        return file[0].name;
+      }
     },
-    async upload() {
-      const formData = new FormData();
-      formData.append("doc", this.images);
-      formData.append("language", this.language);
-      formData.append("experience", this.experience);
+    getDIP(file) {
+      if (file) {
+        this.images[2] = file;
+        this.user.diploma = file.name;
+        return file[0].name;
+      }
+    },
 
+    getCV(file) {
+      if (file) {
+        this.images[3] = file;
+        this.user.cv = file.name;
+        return file[0].name;
+      }
+    },
+
+    async upload() {
+      let data = [];
+      const formData = new FormData();
+      for (let i in this.images) {
+        data = [...this.images[i], ...data];
+      }
+      for (let j in data) {
+        formData.append("doc", data[j]);
+      }
+      formData.append("language", this.user.language);
+      formData.append("experience", this.user.experience);
       this.UPLOAD_DOCUMENTS(formData);
     },
     ...mapActions(["FETCH_DOCUMENTS", "UPLOAD_DOCUMENTS"])

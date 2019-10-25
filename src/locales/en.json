@@ -184,7 +184,7 @@
     "message": "For you to be accepted as a tutor you will have to submit the specified documents below",
     "language": "Language",
     "experience": "Experience (1,2,...)",
-    "passport": "National id",
+    "id": "National id",
     "bulletin": "School report of senior 6",
     "diploma": "Diploma",
     "cv": "Curriculum Vitae",
