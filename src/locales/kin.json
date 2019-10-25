@@ -87,7 +87,7 @@
           "submit": "Ohereza",
           "tutor": "Umwarimu",
           "tutoring": "Inyigisho",
-          "image": "Hitamo ifoto",
+          "image": "Hitamo (JPEG, PNG)",
           "imagebrowse": "Toranya",
           "drop": "Nta foto wahisemo"
         }
@@ -167,5 +167,30 @@
     "confirm": "Subiramo ijambo ry'ibanga",
     "confirmbutton": "Emeza",
     "remember": "Ijambo ry'ibanga uraryibutse?"
+  },
+  "account-type": {
+    "title": "Ushaka gufunguza iyihe konti?",
+    "parent": {
+      "title": "Umubyeyi",
+      "message": "Nk'umubyeyi uzajya ubasha gushakira umwana wawe umwalimu w'inzobere."
+    },
+    "tutor": {
+      "title": "Umwalimu",
+      "message": "Nk'umwalimu uzajya ubasha guhabwa akazi n'ababyeyi wigishe abana babo."
+    }
+  },
+  "identity": {
+    "title": "Ibikuranga nkenerwa",
+    "message": "Kugirango ubashe kwemererwa kuba umwalimu, usabwe kubanza ukaduha izi mpapuro zavuzwe hasi zemeza ko ubifitiye ubumenyi",
+    "language": "Ururimi ukoresha",
+    "experience": "Igihe umaze ukora ubwalimu (1,2,...)",
+    "id": "Indangamuntu",
+    "bulletin": "Indangamanota y'amashuli yisumbuye mu wa 6",
+    "diploma": "impamyabumenyi y’icyiciro cya mbere cyangwa ihanitse",
+    "cv": "Umwirondoro (cv)",
+    "image": "Hitamo (PDF,JPEG, PNG)",
+    "imagebrowse": "Toranya",
+    "drop": "Nta kintu wahisemo",
+    "button": "Ohereza"
   }
 }

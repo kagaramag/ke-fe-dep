@@ -12,10 +12,13 @@ import Minima from './layouts/Minima.vue';
 import Account from './layouts/Account.vue';
 import store from './store';
 import i18n from './i18n';
+
+import VueLazyload from 'vue-lazyload';
+Vue.use(VueLazyload);
+
 Vue.component('default-layout', Default);
 Vue.component('minima-layout', Minima);
 Vue.component('account-layout', Account);
-
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 
