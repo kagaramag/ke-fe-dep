@@ -41,15 +41,7 @@
               autocomplete="off"
             />
           </div>
-          <!-- <div class="form-group">
-            <label for="bulletin">{{$t('identity.bulletin')}}</label>
-            <b-form-file
-              @change="getFile"
-              :placeholder="`${$t('identity.image')}`"
-              :drop-placeholder="`${$t('identity.drop')}`"
-              :browse-text="`${$t('identity.imagebrowse')}`"
-            ></b-form-file>
-          </div>-->
+
           <div class="form-group">
             <b-form-file single :placeholder="user.bulletin" :file-name-formatter="getBULL"></b-form-file>
           </div>
@@ -64,24 +56,6 @@
             <b-form-file single :placeholder="user.diploma" :file-name-formatter="getDIP"></b-form-file>
           </div>
 
-          <!-- <div class="form-group">
-            <label for="cv">{{$t('identity.cv')}}</label>
-            <b-form-file
-              @change="getFile"
-              :placeholder="`${$t('identity.image')}`"
-              :drop-placeholder="`${$t('identity.drop')}`"
-              :browse-text="`${$t('identity.imagebrowse')}`"
-            ></b-form-file>
-          </div>
-          <div class="form-group">-->
-          <!-- <b-form-file
-            @change="getFile"
-            multiple
-            :placeholder="`${$t('identity.image')}`"
-            :drop-placeholder="`${$t('identity.drop')}`"
-            :browse-text="`${$t('identity.imagebrowse')}`"
-          ></b-form-file>-->
-          <!-- </div> -->
           <button
             type="submit"
             @click.prevent
@@ -119,14 +93,15 @@ export default {
       }
     };
   },
+
   computed: {
-    ...mapGetters(["fetch_documents"]),
     layout() {
       return (this.$route.meta.layout || minima_layout) + "-layout";
     },
     profile() {
       return this.$store.getters.profile;
-    }
+    },
+    documents() {}
   },
   methods: {
     getBULL(file) {
@@ -172,7 +147,7 @@ export default {
       formData.append("experience", this.user.experience);
       this.UPLOAD_DOCUMENTS(formData);
     },
-    ...mapActions(["FETCH_DOCUMENTS", "UPLOAD_DOCUMENTS"])
+    ...mapActions(["UPLOAD_DOCUMENTS"])
   }
 };
 </script>
