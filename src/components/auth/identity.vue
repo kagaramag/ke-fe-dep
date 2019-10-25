@@ -44,25 +44,19 @@
           <div class="form-group">
             <label for="bulletin">{{$t('identity.bulletin')}}</label>
             <b-form-file
-              single
+              @change="getFile"
               :placeholder="`${$t('identity.image')}`"
               :drop-placeholder="`${$t('identity.drop')}`"
               :browse-text="`${$t('identity.imagebrowse')}`"
             ></b-form-file>
           </div>
           <div class="form-group">
-            <label for="passport">{{$t('identity.passport')}}</label>
-            <b-form-file
-              single
-              :placeholder="`${$t('identity.image')}`"
-              :drop-placeholder="`${$t('identity.drop')}`"
-              :browse-text="`${$t('identity.imagebrowse')}`"
-            ></b-form-file>
+            <b-form-file multiple :file-name-formatter="formatNames"></b-form-file>
           </div>
           <div class="form-group">
             <label for="cv">{{$t('identity.cv')}}</label>
             <b-form-file
-              single
+              @change="getFile"
               :placeholder="`${$t('identity.image')}`"
               :drop-placeholder="`${$t('identity.drop')}`"
               :browse-text="`${$t('identity.imagebrowse')}`"
@@ -71,7 +65,8 @@
           <div class="form-group">
             <label for="diploma">{{$t('identity.diploma')}}</label>
             <b-form-file
-              single
+              @change="getFile"
+              multiple
               :placeholder="`${$t('identity.image')}`"
               :drop-placeholder="`${$t('identity.drop')}`"
               :browse-text="`${$t('identity.imagebrowse')}`"
@@ -102,16 +97,18 @@ export default {
   data() {
     return {
       user: {
+        images: null,
         language: "",
         experience: "",
-        bulletin: "",
-        passport: "",
-        cv: "",
-        diploma: ""
+        bulletin: null,
+        passport: null,
+        cv: null,
+        diploma: null
       }
     };
   },
   computed: {
+    ...mapGetters(["fetch_documents"]),
     layout() {
       return (this.$route.meta.layout || minima_layout) + "-layout";
     },
@@ -120,10 +117,34 @@ export default {
     }
   },
   methods: {
-    register() {
-      this.REGISTER_USER(this.user);
+    formatNames(files) {
+      this.images = files;
+      if (files.length === 1) {
+        console.log(files[0].name);
+      } else {
+        console.log(`${files.length} files selected`);
+      }
     },
-    ...mapActions(["REGISTER_USER"])
+    getFile(e) {
+      let img = e.target.files[0];
+      this.bulletin = img;
+      let img2 = e.target.files[1];
+      this.passport = img2;
+      let img3 = e.target.files[2];
+      this.cv = img3;
+      let img4 = e.target.files[3];
+      this.diploma = img4;
+      console.log(img, img2);
+    },
+    async upload() {
+      const formData = new FormData();
+      formData.append("doc", this.images);
+      formData.append("language", this.language);
+      formData.append("experience", this.experience);
+
+      this.UPLOAD_DOCUMENTS(formData);
+    },
+    ...mapActions(["FETCH_DOCUMENTS", "UPLOAD_DOCUMENTS"])
   }
 };
 </script>

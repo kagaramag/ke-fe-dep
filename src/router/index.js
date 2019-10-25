@@ -33,11 +33,11 @@ const router = new Router({
           component: () => import('@/components/auth/register')
         },
         {
-          path: 'account-type',
+          path: 'account-type/:username',
           component: () => import('@/components/auth/type')
         },
         {
-          path: 'identity',
+          path: 'identity/:username',
           component: () => import('@/components/auth/identity')
         },
         {

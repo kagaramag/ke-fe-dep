@@ -23,7 +23,7 @@
               tag="article"
               style="cursor:pointer; max-width: 30rem; width: 13.5rem"
               class="mb-2"
-              @click="goHome"
+              @click="parentHome"
             >
               <b-card-text>{{$t('account-type.parent.message')}}</b-card-text>
             </b-card>
@@ -37,7 +37,7 @@
               tag="article"
               style="cursor:pointer; max-width: 30rem; width: 13.5rem"
               class="mb-2"
-              @click="legalDoc"
+              @click="tutorNext"
             >
               <b-card-text>{{$t('account-type.tutor.message')}}</b-card-text>
             </b-card>
@@ -60,6 +60,7 @@ export default {
   name: "register",
   data() {
     return {
+      username: JSON.parse(localStorage.getItem("user")).username || "",
       user: {
         lastName: "",
         firstName: "",
@@ -76,18 +77,32 @@ export default {
       return this.$store.getters.profile;
     }
   },
+  created() {
+    // user directly get redirected to homepage if they already chose their account type
+    if (JSON.parse(localStorage.getItem("user")).accounttype === "parent") {
+      this.$router.push("/");
+    }
+    // tutor directly get redirected to identity if they already chose their account type but have not filled documents yet
+    if (JSON.parse(localStorage.getItem("user")).accounttype === "tutor") {
+      this.$router.push(`/${this.$i18n.locale}/identity/${this.username}`);
+    }
+  },
   methods: {
-    goHome() {
+    async parentHome() {
+      await this.UPDATE_USER({ accounttype: "parent" });
       this.$router.push(`/`);
     },
-    legalDoc() {
-      this.$router.push(`identity`);
+
+    // when a user choose to be a tutor, they get redirected to identity page
+    async tutorNext() {
+      await this.UPDATE_USER({ accounttype: "tutor" });
+      this.$router.push(`/${this.$i18n.locale}/identity/${this.username}`);
     },
 
     register() {
       this.REGISTER_USER(this.user);
     },
-    ...mapActions(["REGISTER_USER"])
+    ...mapActions(["REGISTER_USER", "UPDATE_USER"])
   }
 };
 </script>
