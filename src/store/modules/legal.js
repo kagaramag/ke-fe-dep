@@ -1,7 +1,7 @@
 import AxiosHelper from '@/helpers/AxiosHelper';
 import router from '@/router';
 import i18n from '../../i18n';
-const username = JSON.parse(localStorage.getItem('user')).username;
+// const username = JSON.parse(localStorage.getItem('user')).username || '';
 export default {
   // initial state
   state: {
@@ -40,6 +40,9 @@ export default {
       AxiosHelper.get(`/legal`)
         .then(response => {
           context.commit('FETCH_DOCUMENTS_SUCCESS', response.data);
+          if (response.data.legalDoc) {
+            router.push(`/`);
+          }
         })
         .catch(error => {
           context.commit('FETCH_DOCUMENTS_FAILURE', error.response.data);

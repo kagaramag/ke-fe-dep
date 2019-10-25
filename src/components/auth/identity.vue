@@ -79,7 +79,7 @@ export default {
   components: {
     Loading
   },
-  name: "register",
+  name: "identity",
   data() {
     return {
       images: {},
@@ -92,6 +92,10 @@ export default {
         diploma: this.$t("identity.diploma")
       }
     };
+  },
+
+  created() {
+    this.$store.dispatch("FETCH_DOCUMENTS");
   },
 
   computed: {
