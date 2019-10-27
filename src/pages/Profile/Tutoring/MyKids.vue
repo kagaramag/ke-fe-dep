@@ -168,6 +168,7 @@
                 </div>
               </div>
               <button
+                :disabled="!validateKid"
                 type="submit"
                 @click.prevent
                 @click="submit_kid"
@@ -213,6 +214,18 @@ export default {
     };
   },
   computed: {
+    validateKid() {
+      if (
+        !this.kid.names ||
+        !this.kid.school ||
+        !this.kid.subject ||
+        this.kid.age === 0 ||
+        !this.kid.class
+      ) {
+        return false;
+      }
+      return true;
+    },
     register_kid() {
       return this.$store.getters.register_kid;
     }
