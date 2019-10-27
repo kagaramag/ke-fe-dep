@@ -128,7 +128,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["UPDATE_PROFILE"]),
+    ...mapActions(["UPDATE_PROFILE", "UPDATE_PHOTO"]),
     updateUser() {
       const info = {
         firstName: this.info.firstName,
@@ -155,13 +155,13 @@ export default {
       const formData = new FormData();
       formData.append("image", this.image);
       try {
-        await this.UPDATE_PROFILE(formData);
+        await this.UPDATE_PHOTO(formData);
         this.$refs["my-modal"].hide();
       } catch (error) {}
 
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
+      }, 3000);
     }
   }
 };

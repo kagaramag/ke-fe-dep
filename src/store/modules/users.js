@@ -64,6 +64,13 @@ export default {
       state.profile.errors = payload;
       state.profile.loading = false;
     },
+    UPDATE_USER_SUCCESS(state, payload) {
+      state.profile.isLoggedIn = true;
+      state.profile.loading = false;
+      state.profile.user = { ...state.profile, ...payload.user };
+      localStorage.user = JSON.stringify(payload.user);
+      // router.push(`/${i18n.locale}/account-type/${payload.user.username}`);
+    },
     LOGIN_USER_SUCCESS(state, payload) {
       state.profile.isLoggedIn = true;
       state.profile.loading = false;
@@ -71,7 +78,7 @@ export default {
       localStorage.user = JSON.stringify(payload.user);
       localStorage.isAuth = true;
       localStorage.token = payload.token;
-      router.push(`/${i18n.locale}/profile/${payload.user.username}`);
+      router.push(`/${i18n.locale}/account-type/${payload.user.username}`);
     },
     LOGIN_USER_FAILURE(state, payload) {
       state.profile.loading = false;
@@ -93,6 +100,10 @@ export default {
     UPDATE_PROFILE(state, payload) {
       state.profile = { ...state.profile, ...payload };
     },
+    UPDATE_USER(state, payload) {
+      state.fetch_user.user = { ...state.fetch_user.user, ...payload };
+    },
+
     GET_PROFILE_LOADING(state, payload) {
       state.fetch_user.loading = payload;
     },
@@ -131,11 +142,31 @@ export default {
           context.commit('FETCH_USER_FAILURE', error.response.data);
         });
     },
+
+    UPDATE_USER: (context, payload) => {
+      context.commit('SITE_LOADING', true);
+      AxiosHelper.put('/users', payload)
+        .then(response => {
+          context.commit('UPDATE_USER_SUCCESS', response.data);
+        })
+        .catch(error => {
+          context.commit('FETCH_USER_FAILURE', error.response.data);
+        });
+    },
+
     UPDATE_PROFILE: (context, payload) => {
       context.commit('UPDATE_PROFILE');
       AxiosHelper.put('/users', payload)
         .then(response => {
-          console.log(response);
+          context.commit('FETCH_USER_SUCCESS', response.data);
+        })
+        .catch(error => {
+          context.commit('FETCH_USER_FAILURE', error.response.data);
+        });
+    },
+    UPDATE_PHOTO: (context, payload) => {
+      AxiosHelper.post('/upload', payload)
+        .then(response => {
           context.commit('FETCH_USER_SUCCESS', response.data);
         })
         .catch(error => {
