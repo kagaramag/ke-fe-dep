@@ -57,6 +57,7 @@
           </div>
 
           <button
+            :disabled="!validateIdentity"
             type="submit"
             @click.prevent
             @click="upload"
@@ -99,6 +100,19 @@ export default {
   },
 
   computed: {
+    validateIdentity() {
+      if (
+        !this.user.language ||
+        !this.user.experience ||
+        !this.user.bulletin ||
+        !this.user.id ||
+        !this.user.cv ||
+        !this.user.diploma
+      ) {
+        return false;
+      }
+      return true;
+    },
     layout() {
       return (this.$route.meta.layout || minima_layout) + "-layout";
     },
