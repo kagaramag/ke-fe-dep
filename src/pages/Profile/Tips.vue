@@ -51,11 +51,9 @@
     </div>
 
     <!-- BIO -->
-    <div class="alert alert-light shadow-1 mb-3 py-3" role="alert">
+    <div class="alert mb-3 p-0" role="alert">
       <h4 class="alert-heading">{{$t('userprofile.bio.title')}}</h4>
-      <icon class="icon float-left" style="font-size: 1.3em;" icon="quote-left" />
-      &nbsp;
-      {{fetch_user && fetch_user.user.bio || `${$t('userprofile.bio.notification')}`}}
+      <div v-if="fetch_user" v-html="fetch_user.user.bio || $t('userprofile.bio.notification')"></div>
       <div class="clear"></div>
     </div>
   </div>

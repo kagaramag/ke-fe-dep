@@ -46,6 +46,11 @@ export default {
       message: '',
       loading: false,
       edited: false
+    },
+    accept_requested: {
+      error: {},
+      message: '',
+      loading: false
     }
   },
   // getters
@@ -121,11 +126,11 @@ export default {
       state.requested_tutor.message = ''
     },
     ACCEPT_REQUEST_SUCCESS (state, payload) {
-      state.accept_request.loading = false
-      state.accept_request.data = payload
-      state.accept_request.message = ''
+      console.log('hello', payload)
+      // router.push(`/${i18n.locale}/profile/${payload.user.username}/tutoring/`);
     },
     ACCEPT_REQUEST_FAILURE (state, payload) {
+      console.log('failure', payload)
       state.accept_request.loading = false
       state.accept_request.errors = payload
       state.accept_request.message = ''
@@ -225,8 +230,9 @@ export default {
       context.commit('RESET_ERROR')
       context.commit('SITE_LOADING', true)
       AxiosHelper.put('/tutoring/accept', payload)
-        .then(response =>
+        .then(response => {
           context.commit('ACCEPT_REQUEST_SUCCESS', response.data)
+          }
         )
         .catch(error => context.commit('ACCEPT_REQUEST_FAILURE', error))
     },

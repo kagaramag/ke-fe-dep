@@ -2,28 +2,36 @@
   <div id="Parent">
     <div class="mb-1 shadow-sm bg-white p-3 top-border-styled wrap-one-tutering">
       <div v-if="tutoring.status ==='requested'" style="font-size: 18px">
-        <router-link :to="`/${$i18n.locale}`">
-          <b>{{tutoring.kid.parent.lastName}} {{tutoring.kid.parent.firstName}}</b>
-        </router-link>requested you to tutor
-        <b>{{tutoring.kid.names}}</b>
-        , his/her {{tutoring.kid.age}}-years old child who is studying in
-        <b>{{tutoring.kid.school}}</b>
-        specifically in {{tutoring.kid.class}}
+        <div v-if="profile.user.role ==='parent'">
+          <b>You</b> requested <b>
+            <router-link :to="`/${$i18n.locale}/profile/${tutoring.tutor.username}`">
+            {{tutoring.tutor.firstName}} {{tutoring.tutor.lastName}}
+            </router-link>
+            </b> to tutor your kid 
+          <b>{{tutoring.kid.names}}</b>
+        </div>
+        <div v-if="profile.user.role ==='tutor'">
+          <router-link :to="`/${$i18n.locale}`">
+            <b>{{tutoring.kid.parent.lastName}} {{tutoring.kid.parent.firstName}}</b>
+          </router-link>&nbsp; requested you to tutor
+          <b>{{tutoring.kid.names}}</b>
+          , his/her {{tutoring.kid.age}}-years old child who is studying in
+          <b>{{tutoring.kid.school}}</b>
+          specifically in {{tutoring.kid.class}}
+        </div>
       </div>
+
       <div v-if="tutoring.status ==='accepted'">
         You are connected with
         <router-link :to="`/${$i18n.locale}`">
           <b>{{tutoring.kid.names}}</b>
         </router-link>
       </div>
-    
+
       <div class="row">
         <div class="col-9">
           <h4 class="my-2" style="font-size: 18px;font-weight:200">
-            <span class="py-3">
-              Tutor:
-              <b class="mr-2">{{tutoring.tutor.firstName}} {{tutoring.tutor.lastName}}</b>
-            </span>
+            <span class="py-3">Tutorship</span>
             <span
               v-show="tutoring.status === 'requested'"
               class="border border-dark text-dark sm-text text-light radius-4 px-3 py-1"

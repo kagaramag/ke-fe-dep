@@ -1,23 +1,21 @@
 <template>
   <div id="hireme" slot-scope="profile">
     <!-- HIRE -->
-    <div class="alert gradient-primary text-light" role="alert">
+    <div class="alert bg-primary text-light" role="alert">
       <h4 class="alert-heading">Hi, {{profile.user.lastName}} {{profile.user.firstName}}</h4>
       <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
       <hr />
-
       <div>
+        <button class="btn btn-light rounded-pill float-right">
+          <icon class="icon" icon="envelope" />&nbsp; Message
+        </button>
         <b-button
           id="show-btn"
-          class="btn btn-light float-right mx-2"
+          class="btn btn-light rounded-pill float-right mx-2"
           @click="$bvModal.show('hirenow')"
         >
-          <icon class="icon" icon="handshake" />Hire Me
+          <icon class="icon" icon="handshake" />&nbsp; Hire Me
         </b-button>
-        <!-- <button class="btn btn-light float-right mx-2">Hire me</button> -->
-        <button class="btn btn-light float-right">
-          <icon class="icon" icon="envelope" />Message
-        </button>
       </div>
       <div class="clear"></div>
     </div>

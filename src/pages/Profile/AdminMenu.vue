@@ -1,14 +1,13 @@
 
 <template>
   <div id="admin-menu" class="my-2">
-    <div class="rounded p-2 shadow">
       <h5>Admin Panel</h5>
       <div class="admin-nav">
         <router-link :to="'/'">
           <icon class="icon" icon="envelope" />Mail
         </router-link>
         <router-link :to="'/'">
-          <icon class="icon" icon="users" />Manage users
+          <icon class="icon" icon="users" />Users
         </router-link>
         <router-link :to="'/'">
           <icon class="icon" icon="project-diagram" />Connections
@@ -43,7 +42,6 @@
         <router-link :to="'/'">
           <icon class="icon" icon="exclamation-circle" />Issues
         </router-link>
-      </div>
     </div>
   </div>
 </template>

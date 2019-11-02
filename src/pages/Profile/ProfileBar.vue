@@ -1,32 +1,52 @@
 
 <template>
   <div id="profile-card" style="margin-top:72px;">
-    <div class="bg-primary py-2">
+    <div class="bg-primary py-2 mb-4">
       <div class="container">
-        <div class="row py-2">
+        <div class="row" style="position:relative">
+          <div class="wrap-profile image">
+            <img
+              :src="fetch_user.user.image ? fetch_user.user.image : avatar"
+              class="bg-light rounded-circle ui-w-100 profile mt-1 mx-auto shadow-3"
+              :alt="fetch_user.user.firstName || ''"
+            />
+          </div>
+
           <div class="col">
             <div style="margin-left:200px">
               <h3 class="text-light" style="font-size:30px;">
-                <span class="float-left">{{fetch_user.user.lastName}} {{fetch_user.user.firstName}}</span>
-                <button
-                  v-if="profile.user.role === 'parent' && (fetch_user.user.id !== profile.user.id)"
-                  @click.prevent
-                  @click="$bvModal.show('hirenow')"
-                  class="btn btn-light border border-light mx-3 rounded-pill px-4 float-left"
-                >
-                  <icon class="icon" icon="handshake" />&nbsp;&nbsp;Hire me
-                </button>
-                <router-link :to="'/'" class="btn btn-info rounded-pill px-4 float-right">
-                  <icon class="icon" icon="envelope" />&nbsp;&nbsp;message
-                </router-link>
+                <span class="float-left">{{fetchUserInfo.user.lastName}} {{fetchUserInfo.user.firstName}}</span>
+                <span v-if="!profile !== false">
+                  <button
+                    v-if="profile.user.role === 'parent' && (fetch_user.user.id !== profile.user.id)"
+                    @click.prevent
+                    @click="$bvModal.show('hirenow')"
+                    class="btn btn-light border border-light mx-3 rounded-pill px-4 float-left"
+                  >
+                    <icon class="icon" icon="handshake" />&nbsp;&nbsp;Hire me
+                  </button>
+                </span>
+                <span v-if="!profile !== false">
+                  <router-link :to="'/'" class="btn btn-light rounded-pill px-4 float-right">
+                    <icon class="icon" icon="envelope" />&nbsp;&nbsp;message
+                  </router-link>
+                </span>
               </h3>
               <div class="clear"></div>
               <div class="pt-3 text-light">
+                <span class="mr-3 d-sm-none">
+                  <icon class="icon" icon="user-circle" />&nbsp;I am a
+                  <span
+                    class="bg-light py-1 px-2 rounded-pill text-dark capitalize"
+                  >{{fetch_user.user.UserRole.role.role}}</span>
+                </span>
                 <span>
                   <icon class="icon" icon="map-marker" />&nbsp;Gitega, Nyarugenge, Kigali
                 </span>
                 <span class="px-3">
-                  <icon class="icon" icon="clock" />&nbsp;Joined June 2019
+                  <icon class="icon" icon="clock" />&nbsp;
+                  <b>Joined</b>
+                  {{fetch_user.user.createdAt | date}}
                 </span>
               </div>
             </div>
@@ -34,44 +54,6 @@
         </div>
       </div>
       <div class="clear"></div>
-    </div>
-    <div class="bg-light shadow-2 mb-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-2">&nbsp;</div>
-          <div class="col-lg-8">
-            <ul class="profile-nav py-2">
-              <li>
-                <router-link to="/">Home</router-link>
-              </li>
-              <li>
-                <router-link to="/">Tutorship</router-link>
-              </li>
-              <li>
-                <router-link to="/">Tutor Profile</router-link>
-              </li>
-              <li>
-                <router-link to="/">Message</router-link>
-              </li>
-              <li>
-                <router-link to="/">Notifications</router-link>
-              </li>
-              <li>
-                <router-link to="/">Settings</router-link>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-2">
-            <ul class="profile-nav py-2 float-right">
-              <li class="float-right">
-                <router-link to="/" style="color:#989898">
-                  <icon class="icon" icon="exclamation-triangle" /> &nbsp;Report account
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- MODAL, CONNECT TUTOR TO A KID -->
     <b-modal id="hirenow" hide-footer>
@@ -87,6 +69,7 @@
               <h4
                 class="alert-heading"
               >Hiring {{fetch_user.user.lastName}} {{fetch_user.user.firstName}}</h4>
+              
               <p>
                 Select a child and request
                 <b>{{fetch_user.user.lastName}}</b>
@@ -95,16 +78,13 @@
               </p>
             </div>
             <div v-if="fetched_kids && fetched_kids.length">
-              <div
-                v-if="reqeuested_tutor && requested_tutor.errors && requested_tutor.errors.tutor"
-              >
+              <div v-if="requested_tutor && requested_tutor.errors && requested_tutor.errors.tutor">
                 <div class="alert alert-danger" role="alert">{{requested_tutor.errors.tutor}}</div>
               </div>
-              <div v-if="reqeuested_tutor && requested_tutor.message">
+              <div v-if="requested_tutor && requested_tutor.message">
                 <div class="alert alert-success" role="alert">{{requested_tutor.message}}</div>
               </div>
-              {{reqeuested_tutor}}
-              <form>
+              <form v-if="requested_tutor && !requested_tutor.message">
                 <div class="form-group">
                   <label for="school">Kids</label>
                   <b-form-select v-model="tuteeId" class="mb-3">
@@ -120,9 +100,9 @@
                   type="submit"
                   @click.prevent
                   @click="request_tutor"
-                  class="btn btn-primary bg-primary"
+                  class="btn btn-primary bg-primary px-3 rounded-pill"
                 >Hire now</button>
-                <b-button class="btn btn-light" @click="$bvModal.hide('hirenow')">Cancel</b-button>
+                <b-button class="btn btn-danger px-3 rounded-pill" @click="$bvModal.hide('hirenow')">Cancel</b-button>
                 <div class="float-right m-1">
                   <b-spinner v-show="false"></b-spinner>
                 </div>
@@ -158,6 +138,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import fetchUserInfo from '@/mixins/fetchUserInfo'
 
 library.add(fas);
 library.add(fab);
@@ -165,6 +146,7 @@ library.add(fab);
 Vue.component("icon", FontAwesomeIcon);
 
 export default {
+  mixins: [fetchUserInfo],
   name: "ProfileBar",
   props: ["teachers", "fetch_user", "profile"],
   data() {
@@ -176,12 +158,12 @@ export default {
     this.FETCH_KIDS();
   },
   methods: {
-    requested_tutor() {
-      return this.$store.getters.requested_tutor;
-    },
     ...mapGetters(["fetch_kids", "requested_tutor"])
   },
   computed: {
+    requested_tutor() {
+      return this.$store.getters.requested_tutor;
+    },
     fetched_kids() {
       let filtered_kids = [];
       Object.entries(this.$store.getters.fetch_kids.kids).forEach(
@@ -206,6 +188,13 @@ export default {
 
 
 <style scoped>
+.wrap-profile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 160px;
+}
 .content-wrapper {
   margin: 0px auto;
   display: block;
@@ -233,6 +222,13 @@ export default {
 }
 .loaded {
   display: none;
+}
+.profile {
+  max-width: 120px;
+  height: auto;
+}
+.rounded-circle.profile {
+  border: 4px solid #ffffff;
 }
 .nav .icon {
   margin-right: 5px;

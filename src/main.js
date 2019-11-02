@@ -12,8 +12,13 @@ import Minima from './layouts/Minima.vue';
 import Account from './layouts/Account.vue';
 import store from './store';
 import i18n from './i18n';
-
 import VueLazyload from 'vue-lazyload';
+
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/index.css';
+ 
+Vue.use(VueToast);
+
 Vue.use(VueLazyload);
 
 Vue.component('default-layout', Default);
@@ -117,12 +122,22 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-/* eslint-disable no-new */
+Vue.mixin({
+  data: function() {
+    return {
+      CDN_IMAGE: 'http://res.cloudinary.com/ninjas/image/upload',
+      avatar: require("@/assets/images/profile.png")
+    }
+  }
+})
+
+// Create Vue instance
 new Vue({
   store,
   el: '#app',
   router,
   components: { App },
   i18n,
+  saveScrollPosition: false,
   template: '<App/>'
 });

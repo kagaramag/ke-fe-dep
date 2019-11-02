@@ -90,7 +90,6 @@ export default {
 .tutella-card .btn {
   margin: 5px;
   padding: 4px 35px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
 }
 form {
   width: 100%;

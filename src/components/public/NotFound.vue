@@ -1,24 +1,24 @@
 <template>
-  <div class="notfound bg-light shadow-4 radius-4">
+  <div class="notfound m-3">
     <div class="row">
+      <div class="col-md-5">
+        <div class="image">
+          <img src="./../../assets/images/404-01.png" />
+        </div>
+      </div>
       <div class="col-md-7">
         <br />
         <br />
 
         <h1>{{$t('notfound.title')}}</h1>
         <h2>{{$t('notfound.error')}}</h2>
-        <div>{{$t('notfound.message')}}</div>
+        <div class="nobold">{{$t('notfound.message')}}</div>
         <br />
         <div>
           <router-link
             :to="`/${$i18n.locale}`"
-            class="btn bg-primary text-light"
+            class="btn bg-primary text-light rounded-pill px-4"
           >{{$t('notfound.forward')}}</router-link>
-        </div>
-      </div>
-      <div class="col-md-5">
-        <div class="image">
-          <img src="./../../assets/images/404-01.png" />
         </div>
       </div>
       <div class="clear"></div>
@@ -40,7 +40,6 @@ export default {
 
 <style scoped>
 .notfound {
-  /* font-size: 35px; */
   margin-top: 120px !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -55,32 +54,5 @@ export default {
   font-size: 4em;
   font-weight: 600;
 }
-/* .notfound::before {
-  margin-bottom: 35px !important;
-  border: 6px solid #5d3434;
-  padding: 40px 0;
-  transform: rotate(-5deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "";
-  width: 100%;
-  min-height: 220px;
-  background: #b1a183;
-  z-index: -1;
-}
-.notfound::after {
-  margin-bottom: 35px !important;
-  border: 6px solid #9b9b9b;
-  padding: 40px 0;
-  transform: rotate(4deg);
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: "";
-  width: 100%;
-  min-height: 220px;
-  background: #141414;
-  z-index: -1;
-} */
+
 </style>

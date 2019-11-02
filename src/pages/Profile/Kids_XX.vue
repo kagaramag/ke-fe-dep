@@ -12,7 +12,7 @@
     <div class="divider mb-4"></div>
     <div>
       <ul class="list-unstyled" v-if="fetch_kids.kids">
-        <li class="my-4 shadow-1 bg-white" v-for="kid in fetch_kids.kids" :key="kid.index">
+        <li class="my-4 bg-white" v-for="kid in fetch_kids.kids" :key="kid.index">
           <div class="row mb-3 p-2" style="position:relative">
             <div class="col-1">
               <icon class="icon text-muted mt-2" style="font-size:2.2em;" icon="child" />
@@ -74,14 +74,14 @@
         </li>
       </ul>
       <div
-        class="rounded shadow-2 bg-white p-3 text-center"
+        class="rounded bg-white p-3 text-center"
         v-if="fetch_kids && fetch_kids.kids.length === 0"
       >
         <icon icon="exclamation-circle" style="font-size:3.4em" class="icon my-4 text-muted" />
         <h4>No kids provided yet</h4>
       </div>
       <div
-        class="rounded shadow-2 bg-white p-2 text-center"
+        class="rounded bg-white p-2 text-center"
         v-if="fetch_kids.errors && fetch_kids.errors.error"
       >
         <icon icon="exclamation-triangle" style="font-size:3.4em" class="icon my-4 text-muted" />

@@ -1,18 +1,17 @@
 <template>
   <div id="ProfileEdit">
     <component :is="layout">
-      <div class="profile">
+      <div class="profile p-3 mb-4">
         <h2>Profile</h2>
-
         <UserInfo :profile="profile" />
-        <div class="divider my-4" />
+
         <div v-if="profile.user.role==='parent'">
-          <Parent :profile="profile" />
+          <!-- <Parent :profile="profile" /> -->
           <div class="divider my-4" />
         </div>
 
         <div v-if="profile.user.role==='tutor'">
-          <Tutor :profile="profile" />
+          <!-- <Tutor :profile="profile" /> -->
           <div class="divider my-4" />
         </div>
       </div>
@@ -54,13 +53,6 @@ export default {
       return this.$store.getters.profile;
     },
     ...mapGetters(["profile"])
-  },
-  created() {
-    this.info = {
-      firstName: this.profile.user.firstName,
-      lastName: this.profile.user.lastName,
-      bio: this.profile.user.bio
-    };
   }
 };
 </script>

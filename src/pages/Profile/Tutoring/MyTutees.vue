@@ -10,28 +10,12 @@
           :key="val.index"
         >
           <div v-if="val.status ==='requested'" class="requested" />
-          <div v-if="val.status ==='accepted'" class="accepted" />
+          <div v-if="val.status ==='accepted' || val.status ==='request_cancel'" class="accepted" />
           <div v-if="val.status ==='rejected'" class="rejected" />
           <div v-if="val.status ==='terminated'" class="terminated" />
           <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${val.id}`">
             <div class="row">
               <div class="media p-3 my-1 mx-3" style="position:relative">
-                <span v-if="val.kid.parent.image">
-                  <img
-                    :src="val.kid.parent.image"
-                    style="max-width:40px;"
-                    class="d-block mx-3 ui-w-100 rounded-circle profile d-block mx-auto"
-                    alt
-                  />
-                </span>
-                <span v-else>
-                  <img
-                    src="@/assets/images/profile.png"
-                    style="max-width:40px;"
-                    class="d-block mx-3 ui-w-100 rounded-circle profile d-block mx-auto"
-                    alt
-                  />
-                </span>
                 <div class="media-body px-3">
                   <!-- REQUESTED -->
                   <div v-if="val.status === 'requested'" class="mb-3">
@@ -43,7 +27,7 @@
                     </div>
                     <div>
                       <router-link
-                        :to="`/profile/${profile.user.username}/tutoring/${val.id}`"
+                        :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${val.id}`"
                         class="btn btn-outline-success text-success rounded-pill px-4"
                       >
                         Go to tutorship
@@ -58,16 +42,16 @@
                     </div>
                   </div>
                   <!-- ACCEPTED -->
-                  <div v-if="val.status === 'accepted'" class="mb-3">
+                  <div v-if="val.status === 'accepted' || val.status === 'request_cancel'" class="mb-3">
                     <div class="py-2 md-text">
-                      <div class="my-2 timestamp">{{val.createdAt | date }}</div>You are now connected with
+                      <div class="my-2 timestamp">{{val.createdAt | date }}</div>You are connected with
                       <b>{{val.kid.names}}</b>
                       , a {{val.kid.dateOfBirth | age }}-years old child of
                       <b>{{val.kid.parent.lastName}} {{val.kid.parent.firstName}}</b>.
                     </div>
                     <div>
                       <router-link
-                        :to="`/profile/${profile.user.username}/tutoring/${val.id}`"
+                        :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${val.id}`"
                         class="btn btn-outline-success text-success rounded-pill px-4"
                       >
                         Go to tutorship
@@ -104,19 +88,8 @@
                   </div>
                 </div>
               </div>
-              <div class="dropdown option-nav">
-                <b-dropdown id="option-nav" right no-caret class="m-md-2" variant="outline-light">
-                  <template v-slot:button-content>
-                    <icon icon="ellipsis-v" class="icon float-right text-dark" />
-                  </template>
-                  <b-dropdown-item @click="popKidInfo(val)">
-                    <icon class="icon" icon="child" />&nbsp; View kid details
-                  </b-dropdown-item>
-                </b-dropdown>
-              </div>
             </div>
           </router-link>
-          <div class="divider"></div>
         </li>
       </ul>
     </div>
@@ -142,7 +115,7 @@
         <ul class="list-group" v-show="kidInfoPreview && kidInfoPreview">
           <li class="list-group-item">
             <b>Names:</b>
-            <span class="capitalize">{{kidInfoPreview.kid.id}}</span>
+            <span class="capitalize">{{kidInfoPreview.id}}</span>
           </li>
         </ul>
       </div>
@@ -153,9 +126,7 @@
         >
           <icon class="icon" icon="long-arrow-alt-left" />&nbsp; Back
         </b-button>
-        <router-link
-          class="btn btn-outline-dark rounded-pill px-4"
-        >Search tutors</router-link>
+        <router-link class="btn btn-outline-dark rounded-pill px-4">Search tutors</router-link>
       </div>
     </b-modal>
   </div>
@@ -180,17 +151,21 @@ export default {
   data() {
     return {
       loaded: false,
-      kidInfoPreview: {},
+      kidInfoPreview: {}
     };
   },
-  created() {
-    this.loaded = true;
+  mounted() {
+    this.FETCH_KIDS();
+    this.loaded = true
   },
   computed: {
-    accept_requested() {
-      this.loaded = true;
-      return this.$store.getters.accept_requested;
-    }
+    profile() {
+      return this.$store.getters.profile;
+    },
+    fetch_kids() {
+      return this.$store.getters.fetch_kids;
+    },
+    ...mapGetters(["fetch_kids"]),
   },
   methods: {
     // pop kid info
@@ -202,7 +177,7 @@ export default {
     accept_request(id) {
       this.ACCEPT_REQUEST({ tuteeId: id });
     },
-    ...mapActions(["ACCEPT_REQUEST"])
+    ...mapActions(["ACCEPT_REQUEST", "FETCH_KIDS"])
   }
 };
 </script>

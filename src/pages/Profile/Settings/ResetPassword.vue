@@ -1,7 +1,10 @@
 <template>
   <div id="Parent">
-    <h3>Reset</h3>
-    <div>Password must be strong</div>
+    <h4 class="my-4">{{$t('settings.reset.title')}}</h4>
+    <div>{{$t('settings.reset.description')}} 
+      <router-link :to="`/${$i18n.locale}/reset`">{{$t('settings.reset.here')}}</router-link>
+
+    </div>
   </div>
 </template>
 

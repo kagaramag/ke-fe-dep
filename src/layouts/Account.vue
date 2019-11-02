@@ -2,24 +2,19 @@
 <template>
   <div id="account">
     <Header :profile="profile" />
-    <div class="bg-primary" v-show="loaded">
+    <div class="bg-primary d-none d-sm-block">
       <ProfileBar :fetch_user="fetch_user" :profile="profile" />
     </div>
-    <div class="page-wrapper">
-      <!-- <div class="d-none d-dm-block d-lg-block">
-        <MessageBar :fetch_user="fetch_user" :profile="profile" />
-      </div>-->
-      <div class="container">
-        <div class="row" v-if="loaded?'hidden':''">
-          <div class="d-none d-dm-block d-lg-block col-lg-3">
-            <Sidebar :fetch_user="fetch_user" :profile="profile" />
-          </div>
-          <div class="col col-sm-12 col-md-12 col-lg-7">
-            <slot :fetch_user="fetch_user" :profile="profile" />
-          </div>
-          <div class="d-none d-dm-block d-lg-block col-lg-2">
-            <AdminMenu />
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="d-none d-dm-block d-lg-block col-lg-3 pt-3">
+          <Sidebar :fetch_user="fetch_user" :profile="profile" />
+        </div>
+        <div class="col col-sm-12 col-md-12 col-lg-7 pt-4">
+          <slot :fetch_user="fetch_user" :profile="profile" />
+        </div>
+        <div class="d-none d-dm-block d-lg-block col-lg-2">
+          <AdminMenu />
         </div>
       </div>
     </div>
@@ -62,18 +57,20 @@ export default {
       loaded: false
     };
   },
-  mounted() {
+  mounted () {
     this.currentUsername = this.$route.params.username;
     this.FETCH_USER(this.currentUsername);
+    this.loaded = true;
   },
   watch: {
     "$route.params.username"(nextUsername, previousUsername) {
+      this.loaded = false;
       this.FETCH_USER(nextUsername);
     }
   },
   computed: {
     fetch_user() {
-      return this.$store.getters.fetch_user;
+      return fetchthis.$store.getters.fetch_usered;
     },
     profile() {
       return this.$store.getters.profile;
@@ -91,7 +88,7 @@ export default {
     }
   },
   created() {
-    this.loaded = true;
+    this.loaded = false;
   },
   methods: {
     logout() {
@@ -110,11 +107,6 @@ export default {
 header.navbar {
   background: #ffffff;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
-}
-.content-wrapper {
-  margin: 0px auto;
-  display: block;
-  max-width: 1100px;
 }
 .bio {
   font-weight: 100;

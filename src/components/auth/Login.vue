@@ -2,7 +2,6 @@
   <component :is="layout">
     <div class="login">
       <Loading v-if="profile.loading" />
-      <h1 class="bold">{{$t('login.title')}}</h1>
       <h2>{{$t('login.message')}}</h2>
       <div class="box">
         <form class="p-4">
@@ -27,18 +26,21 @@
             <label for="password">{{$t('login.password')}}</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
           </div>
-          <button
-            :disabled="!validateLogin"
-            type="submit"
-            @click.prevent
-            @click="login"
-            class="btn rounded-pill border border-primary px-4 d-block col"
-          >{{$t('login.button')}}</button>
-          <br />
-          {{$t('login.question')}}
-          <router-link :to="`/${$i18n.locale}/register`">{{$t('login.register')}}</router-link>
-          <br />
-          <router-link :to="`/${$i18n.locale}/reset`">{{$t('login.reset')}}</router-link>
+          <div class="text-center">
+            <button
+              type="submit"
+              @click.prevent
+              @click="login"
+              class="btn btn-primary rounded-pill border border-primary px-5"
+            >{{$t('login.button')}}</button>
+          </div>
+          <div class="col text-center">
+            <br />
+            {{$t('login.question')}}
+            <router-link :to="`/${$i18n.locale}/register`">{{$t('login.register')}}</router-link>
+            <br />
+            <router-link :to="`/${$i18n.locale}/reset`">{{$t('login.reset')}}</router-link>
+          </div>
         </form>
       </div>
       <br />

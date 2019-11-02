@@ -5,7 +5,7 @@
       {{$t('userprofile.education.title')}}
       <span
         class="float-right"
-        v-if="profile.isLoggedIn && profile.user.id === fetch_user.user.id && !fetch_education.education"
+        v-if="profile.isLoggedIn && profile.user.id === fetch_user.user.id"
       >
         <button class="btn btn-link" @click="openModal">
           <icon class="icon" icon="plus" />Add
@@ -17,7 +17,7 @@
     <div>
       <ul class="list-unstyled" v-if="fetch_education && fetch_education.education">
         <li
-          class="my-4 rounded shadow-2 bg-white p-3"
+          class="my-4 rounded bg-white p-3"
           v-for="education in fetch_education.education"
           :key="education.index"
         >
@@ -37,7 +37,7 @@
         </li>
       </ul>
       <div
-        class="rounded shadow-2 bg-white p-3 text-center"
+        class="rounded bg-white p-3 text-center"
         v-if="fetch_education && !fetch_education.education.length"
       >
         <icon icon="exclamation-circle" style="font-size:3.4em" class="icon my-4 text-muted" />
@@ -180,8 +180,6 @@ export default {
     },
     openModal() {
       this.$refs["my-modal"].show();
-
-      console.log("opening modal");
     }
   }
 };

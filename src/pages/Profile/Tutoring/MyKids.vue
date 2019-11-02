@@ -11,17 +11,20 @@
     </h2>
     <!-- LIST OF KIDS -->
     <div>
-      <ul class="list-unstyled" v-if="fetch_kids.kids">
+      <ul class="list-unstyled" v-if="loaded && fetch_kids.kids">
         <li
           class="my-4 shadow-1 bg-white wrap-one-tutoring"
           v-for="kid in fetch_kids.kids"
           :key="kid.index"
         >
-          <div v-if="!kid.tutoring" class="notfound" />
-          <div v-if="kid.tutoring && kid.tutoring.status ==='requested'" class="requested" />
-          <div v-if="kid.tutoring && kid.tutoring.status ==='accepted'" class="accepted" />
-          <div v-if="kid.tutoring && kid.tutoring.status ==='rejected'" class="rejected" />
-          <div v-if="kid.tutoring && kid.tutoring.status ==='terminated'" class="terminated" />
+          <div v-show="!kid.tutoring" class="notfound" />
+          <div v-show="kid.tutoring && kid.tutoring.status ==='requested'" class="requested" />
+          <div
+            v-show="kid.tutoring && kid.tutoring.status ==='accepted' ||  kid.tutoring.status ==='request_cancel'"
+            class="accepted"
+          />
+          <div v-show="kid.tutoring && kid.tutoring.status ==='rejected'" class="rejected" />
+          <div v-show="kid.tutoring && kid.tutoring.status ==='terminated'" class="terminated" />
           <div class="row">
             <div class="media p-3 my-1 mx-3" style="position:relative">
               <span>
@@ -42,11 +45,15 @@
                   </div>
                   <div class="m-3">
                     <router-link
-                      :to="'/tutors'"
+                      :to="`/${$i18n.locale}/tutors`"
                       v-if="!kid.tutoring"
                       class="btn btn-outline-dark rounded-pill px-4"
                     >Search tutors</router-link>
-                    <router-link :to="`/profile/${profile.user.username}/tutoring/${kid.tutoring.id}`" v-if="kid.tutoring" class="btn btn-outline-success rounded-pill px-4">
+                    <router-link
+                      :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${kid.tutoring.id}`"
+                      v-if="kid.tutoring"
+                      class="btn btn-outline-success rounded-pill px-4"
+                    >
                       Go to tutorship
                       <icon class="icon" icon="arrow-right" />
                     </router-link>
@@ -61,11 +68,15 @@
                   </div>
                   <div class="my-1-">
                     <router-link
-                      :to="'/tutors'"
+                      :to="`/${$i18n.locale}/tutors`"
                       v-if="!kid.tutoring"
                       class="btn btn-outline-dark rounded-pill px-4"
                     >Search tutors</router-link>
-                    <router-link :to="`/profile/${profile.user.username}/tutoring/${kid.tutoring.id}`" v-if="kid.tutoring" class="btn btn-outline-success rounded-pill px-4">
+                    <router-link
+                      :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${kid.tutoring.id}`"
+                      v-if="kid.tutoring"
+                      class="btn btn-outline-success rounded-pill px-4"
+                    >
                       Go to tutorship
                       <icon class="icon" icon="arrow-right" />
                     </router-link>
@@ -80,7 +91,7 @@
                   </div>
                   <div class="my-1-">
                     <router-link
-                      :to="'/tutors'"
+                      :to="`/${$i18n.locale}/tutors`"
                       v-if="!kid.tutoring"
                       class="btn btn-outline-dark rounded-pill px-4"
                     >Search tutors</router-link>
@@ -98,7 +109,7 @@
                   </div>
                   <div class="my-1-">
                     <router-link
-                      :to="'/tutors'"
+                      :to="`/${$i18n.locale}/tutors`"
                       v-if="!kid.tutoring"
                       class="btn btn-outline-dark rounded-pill px-4"
                     >Search tutors</router-link>
@@ -117,13 +128,13 @@
                     <br />
                     <div class="text-dark mt-3">
                       <router-link class="bold" :to="'/'">
-                        <icon class="icon" icon="exclamation-triangle" /> Learn more
+                        <icon class="icon" icon="exclamation-triangle" />Learn more
                       </router-link>about Tutorship Policy
                     </div>
                   </div>
                   <div class="my-1-">
                     <router-link
-                      :to="'/tutors'"
+                      :to="`/${$i18n.locale}/tutors`"
                       v-if="!kid.tutoring"
                       class="btn btn-outline-dark rounded-pill px-4"
                     >Search tutors</router-link>
@@ -141,7 +152,7 @@
                   <icon icon="ellipsis-v" class="icon float-right text-dark" />
                 </template>
                 <b-dropdown-item @click="popKidInfo(kid)">
-                  <icon class="icon" icon="child" />&nbsp; View kid details
+                  <icon class="icon" icon="child" />&nbsp; Child details
                 </b-dropdown-item>
                 <b-dropdown-divider></b-dropdown-divider>
                 <b-dropdown-item @click="popUserForm(kid)" class="text-danger">
@@ -199,8 +210,8 @@
         </li>
       </ul>
       <div
-        class="pt-2  pb-5 text-center"
-        v-if="!fetch_kids.loading && fetch_kids && fetch_kids.kids.length === 0"
+        class="pt-2 pb-5 text-center"
+        v-if="loaded && !fetch_kids.loading && fetch_kids && fetch_kids.kids.length === 0"
       >
         <div>This place is so lonely.</div>
         <div class="my-2 lg-text">
@@ -259,7 +270,7 @@
         >Cancel</b-button>
         <a
           v-if="delete_kid.deleted"
-          :href="`/profile/${profile.user.username}/tutoring`"
+          :href="`${$i18n.locale}/profile/${profile.user.username}/tutoring`"
           class="btn btn-outline-dark mx-2 px-5 rounded-pill btn-light"
         >Close &amp; Reflesh</a>
         <div
@@ -344,7 +355,7 @@
     <!-- MODAL, REGISTER, EDIT A KID -->
     <b-modal id="register" hide-footer>
       <template v-slot:modal-title>{{title}}</template>
-      <div class="d-block">
+      <div>
         <div
           class="alert alert-success"
           role="alert"
@@ -355,131 +366,93 @@
           role="alert"
           v-if="register_kid.errors[0] && register_kid.errors[0].error"
         >{{register_kid.errors[0].error}}</div>
-        <div class="row">
-          <div class="col m-4">
-            <form
-              v-show="!edit_kid.edited && !register_kid.registered"
-              :class="{ 'form-group--error': $v.names.$error }"
-            >
-              <div class="form-group">
-                <label for="names">Names</label>
-                <input
-                  type="names"
-                  v-model="$v.names.$model"
-                  class="form-control"
-                  id="names"
-                  autocomplete="off"
-                />
-                <div class="error py-2" v-if="!$v.names.required">Names are required</div>
-                <div
-                  class="error py-2"
-                  v-if="!$v.names.minLength"
-                >Name must have at least {{$v.name.$params.minLength.min}} letters.</div>
-              </div>
-              <div class="form-group">
-                <label for="age">Date of birth</label>
-                <datetime
-                  type="date"
-                  v-model="dateOfBirth"
-                  zone="Africa/Kigali"
-                  :phrases="{ok: 'Continue', cancel: 'Cancel'}"
-                  :min-datetime="minDatetime"
-                  :max-datetime="maxDatetime"
-                  :week-start="7"
-                  auto
-                ></datetime>
-              </div>
-              <div class="form-group">
-                <label for="school">School</label>
-                <input
-                  type="school"
-                  v-model="$v.school.$model"
-                  class="form-control"
-                  id="school"
-                  autocomplete="off"
-                />
-                <div class="error py-2" v-if="!$v.school.required">School is required</div>
-                <div
-                  class="error py-2"
-                  v-if="!$v.school.minLength"
-                >School must have at least {{$v.school.$params.minLength.min}} letters.</div>
-              </div>
-              <div class="form-group">
-                <label for="class">Class</label>
-                <input
-                  type="class"
-                  v-model="$v.class.$model"
-                  class="form-control"
-                  id="class"
-                  autocomplete="off"
-                />
-                <small
-                  id="classHelp"
-                  class="form-text text-muted"
-                >Use N* for nursary and P* for Primary school(e.g.: N2, P3)</small>
-                <div class="error py-2" v-if="!$v.class.required">Class is required</div>
-                <div
-                  class="error py-2"
-                  v-if="!$v.class.minLength"
-                >Class must have at least {{$v.class.$params.minLength.min}} letters.</div>
-              </div>
-              <div>
-                <button
-                  v-if="!register_kid.register_kid"
-                  type="submit"
-                  @click.prevent
-                  @click="submit_kid"
-                  class="btn btn-primary rounded-pill px-4"
-                >{{buttonText}}</button>
-                <b-button
-                  class="btn btn-outline-primary mx-2 px-3 rounded-pill btn-light"
-                  @click="$bvModal.hide('register')"
-                >
-                  <span v-if="!register_kid.register_kid">Cancel</span>
-                  <span v-if="register_kid.register_kid">Close</span>
-                </b-button>
-                <div
-                  v-show="register_kid.loading"
-                  class="spinner-border text-primary float-right m-1"
-                  role="status"
-                >
-                  <span class="sr-only">Loading...</span>
-                </div>
-                <div class="col-6">
-                  <div class="form-group">
-                    <label for="class">Class</label>
-                    <input
-                      type="class"
-                      v-model="kid.class"
-                      class="form-control"
-                      id="class"
-                      autocomplete="off"
-                    />
-                    <small
-                      id="classHelp"
-                      class="form-text text-muted"
-                    >Use N* for nursary and P* for Primary school(e.g.: N2, P3)</small>
-                  </div>
-                </div>
-              </div>
+      </div>
+      <div class="row">
+        <div class="col m-4">
+          <form
+            v-show="!edit_kid.edited && !register_kid.registered"
+            :class="{ 'form-group--error': $v.names.$error }"
+          >
+            <div class="form-group">
+              <label for="names">Names</label>
+              <input
+                type="names"
+                v-model="$v.names.$model"
+                class="form-control"
+                id="names"
+                autocomplete="off"
+              />
+              <div class="error py-2" v-if="!$v.names.required">Names are required</div>
+              <div
+                class="error py-2"
+                v-if="!$v.names.minLength"
+              >Name must have at least {{$v.name.$params.minLength.min}} letters.</div>
+            </div>
+            <div class="form-group">
+              <label for="age">Date of birth</label>
+              <datetime
+                type="date"
+                v-model="dateOfBirth"
+                zone="Africa/Kigali"
+                :phrases="{ok: 'Continue', cancel: 'Cancel'}"
+                :min-datetime="minDatetime"
+                :max-datetime="maxDatetime"
+                :week-start="7"
+                auto
+              ></datetime>
+            </div>
+            <div class="form-group">
+              <label for="school">School</label>
+              <input
+                type="school"
+                v-model="$v.school.$model"
+                class="form-control"
+                id="school"
+                autocomplete="off"
+              />
+              <div class="error py-2" v-if="!$v.school.required">School is required</div>
+              <div
+                class="error py-2"
+                v-if="!$v.school.minLength"
+              >School must have at least {{$v.school.$params.minLength.min}} letters.</div>
+            </div>
+            <div class="form-group">
+              <label for="class">Class</label>
+              <input
+                type="class"
+                v-model="$v.class.$model"
+                class="form-control"
+                id="class"
+                autocomplete="off"
+              />
+              <small
+                id="classHelp"
+                class="form-text text-muted"
+              >Use N* for nursary and P* for Primary school(e.g.: N2, P3)</small>
+              <div class="error py-2" v-if="!$v.class.required">Class is required</div>
+              <div
+                class="error py-2"
+                v-if="!$v.class.minLength"
+              >Class must have at least {{$v.class.$params.minLength.min}} letters.</div>
+            </div>
+            <div class="row">
               <button
-                :disabled="!validateKid"
                 type="submit"
                 @click.prevent
                 @click="submit_kid"
-                class="btn btn-primary bg-primary"
+                class="btn bg-success text-light rounded-pill px-4"
               >Submit</button>
-              <b-button class="btn btn-light" @click="$bvModal.hide('register')">Cancel</b-button>
+              <b-button class="btn btn-light rounded-pill px-3 ml-2" @click="$bvModal.hide('register')">Cancel</b-button>
               <div class="float-right m-1">
                 <b-spinner v-show="false"></b-spinner>
               </div>
-            </form>
-            <div v-show="register_kid.registered || edit_kid.edited" class="my-4">
-              <b-button
-                class="btn btn-outline-primary px-3 rounded-pill btn-light"
-                @click="$bvModal.hide('register')"
-              >Close</b-button>
             </div>
+          </form>
+          <div v-show="register_kid.registered || edit_kid.edited" class="my-4">
+            <b-button
+              class="btn btn-outline-primary px-3 rounded-pill btn-light"
+              @click="$bvModal.hide('register')"
+            >Close</b-button>
           </div>
         </div>
       </div>
@@ -516,6 +489,7 @@ export default {
   },
   data() {
     return {
+      loaded: false,
       names: this.name || "",
       school: "",
       dateOfBirth: "",
@@ -533,19 +507,12 @@ export default {
       registering: false
     };
   },
+  mounted() {
+    this.loaded = true;
+    console.log('mounted', this.loaded);
+    this.FETCH_KIDS();
+  },
   computed: {
-    validateKid() {
-      if (
-        !this.kid.names ||
-        !this.kid.school ||
-        !this.kid.subject ||
-        this.kid.age === 0 ||
-        !this.kid.class
-      ) {
-        return false;
-      }
-      return true;
-    },
     register_kid() {
       this.message = this.$store.getters.register_kid.message;
       return this.$store.getters.register_kid;
@@ -559,7 +526,11 @@ export default {
     edit_kid() {
       this.message = this.$store.getters.edit_kid.message;
       return this.$store.getters.edit_kid;
-    }
+    },
+    fetch_kids() {
+      return this.$store.getters.fetch_kids;
+    },
+    ...mapGetters(["fetch_kids"])
   },
   methods: {
     // pop delete or edit
@@ -685,12 +656,6 @@ export default {
     rgba(200, 200, 200, 1) 100%
   );
 }
-<<<<<<< HEAD
-.option-nav {
-  position: absolute;
-  top: 15px;
-  right: 30px;
-}
 .option-nav .dropdown-menu li {
   position: relative;
   left: 0px;
@@ -699,10 +664,6 @@ export default {
   margin-left: -10px;
   color: #b3b3b3;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> Update kid info
 .vdatetime-input {
   padding: 12px 6px !important;
 }
@@ -728,6 +689,3 @@ export default {
   color: #b3b3b3;
 }
 </style>
-=======
-</style>
->>>>>>> aaa46805191e4c71d801e38bf5275d3c4496a03f
