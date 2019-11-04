@@ -2,8 +2,8 @@
   <component :is="layout">
     <div class="register">
       <Loading v-if="profile.loading" />
-      <div class="box">
-        <form class="p-4">
+      <div class="box" v-if="!fetch_documents">
+        <form class="p-4" @submit.prevent>
           <h1 class="bold">{{$t('identity.title')}}</h1>
           <h2>{{$t('identity.message')}}</h2>
           <div class="row" v-if="profile && profile.errors">
@@ -21,19 +21,13 @@
               {{' '}} {{$t('register.loginn')}}
             </div>
           </div>
+
           <div class="form-group">
-            <label for="language">{{$t('identity.language')}}</label>
-            <input
-              type="text"
-              class="form-control"
-              v-model="user.language"
-              id="language"
-              autocomplete="off"
-            />
+            <b-form-select v-model="user.language" :options="options" size="sm" class="mt-3"></b-form-select>
           </div>
           <div class="form-group">
-            <label for="experience">{{$t('identity.experience')}}</label>
             <input
+              :placeholder="`${$t('identity.experience')}`"
               type="text"
               class="form-control"
               v-model="user.experience"
@@ -43,16 +37,25 @@
           </div>
 
           <div class="form-group">
-            <b-form-file single :placeholder="user.bulletin" :file-name-formatter="getBULL"></b-form-file>
+            <label class="error" v-if="error.bulletin5">{{error.bulletin5}}</label>
+
+            <b-form-file single :placeholder="user.bulletin5" :file-name-formatter="getFiveReport"></b-form-file>
           </div>
           <div class="form-group">
+            <label class="error" v-if="error.bulletin6">{{error.bulletin6}}</label>
+            <b-form-file single :placeholder="user.bulletin6" :file-name-formatter="getSixReport"></b-form-file>
+          </div>
+          <div class="form-group">
+            <label class="error" v-if="error.bulletinid">{{error.id}}</label>
             <b-form-file single :placeholder="user.id" :file-name-formatter="getID"></b-form-file>
           </div>
           <div class="form-group">
+            <label class="error" v-if="error.cv">{{error.cv}}</label>
             <b-form-file single :placeholder="user.cv" :file-name-formatter="getCV"></b-form-file>
           </div>
 
           <div class="form-group">
+            <label class="error" v-if="error.diploma">{{error.diploma}}</label>
             <b-form-file single :placeholder="user.diploma" :file-name-formatter="getDIP"></b-form-file>
           </div>
 
@@ -76,6 +79,12 @@ import { mapActions, mapGetters } from "vuex";
 import _ from "lodash";
 
 const minima_layout = "minima";
+const possibleFiles = [
+  "image/png",
+  "image/jpeg",
+  "image/jpeg",
+  "application/pdf"
+];
 export default {
   components: {
     Loading
@@ -84,10 +93,31 @@ export default {
   data() {
     return {
       images: {},
+      options: [
+        { value: null, text: this.$t("identity.language") },
+        { value: "Kinyarwanda", text: "Kinyarwanda" },
+        { value: "English", text: "English" },
+        { value: "French", text: "French" },
+        { value: "Kinyarwanda, French", text: "Kinyarwanda, French" },
+        { value: "Kinyarwanda, English", text: "Kinyarwanda, English" },
+        {
+          value: "Kinyarwanda, French, English",
+          text: "Kinyarwanda, French, English"
+        },
+        { value: "French,English", text: "French, English" }
+      ],
+      error: {
+        bulletin5: "",
+        bulletin6: "",
+        id: "",
+        cv: "",
+        diploma: ""
+      },
       user: {
-        language: "",
+        language: null,
         experience: "",
-        bulletin: this.$t("identity.bulletin"),
+        bulletin5: this.$t("identity.bulletin5"),
+        bulletin6: this.$t("identity.bulletin6"),
         id: this.$t("identity.id"),
         cv: this.$t("identity.cv"),
         diploma: this.$t("identity.diploma")
@@ -100,15 +130,9 @@ export default {
   },
 
   computed: {
+    ...mapGetters(["fetch_documents"]),
     validateIdentity() {
-      if (
-        !this.user.language ||
-        !this.user.experience ||
-        !this.user.bulletin ||
-        !this.user.id ||
-        !this.user.cv ||
-        !this.user.diploma
-      ) {
+      if (!this.user.language || !this.user.experience) {
         return false;
       }
       return true;
@@ -122,32 +146,52 @@ export default {
     documents() {}
   },
   methods: {
-    getBULL(file) {
+    validateUploads(file, document) {
+      if (possibleFiles.includes(file.type)) {
+        this.error[document] = "";
+      } else {
+        this.error[document] = "file format not supported";
+      }
+    },
+
+    getFiveReport(file) {
       if (file) {
         this.images[0] = file;
         this.user.bulletin = file.name;
+        this.validateUploads(file[0], "bulletin5");
+        return file[0].name;
+      }
+    },
+    getSixReport(file) {
+      if (file) {
+        this.images[1] = file;
+        this.user.bulletin = file.name;
+        this.validateUploads(file[0], "bulletin6");
         return file[0].name;
       }
     },
     getID(file) {
       if (file) {
-        this.images[1] = file;
+        this.images[2] = file;
         this.user.id = file.name;
+        this.validateUploads(file[0], "id");
         return file[0].name;
       }
     },
     getDIP(file) {
       if (file) {
-        this.images[2] = file;
+        this.images[3] = file;
         this.user.diploma = file.name;
+        this.validateUploads(file[0], "diploma");
         return file[0].name;
       }
     },
 
     getCV(file) {
       if (file) {
-        this.images[3] = file;
+        this.images[4] = file;
         this.user.cv = file.name;
+        this.validateUploads(file[0], "cv");
         return file[0].name;
       }
     },
@@ -163,14 +207,17 @@ export default {
       }
       formData.append("language", this.user.language);
       formData.append("experience", this.user.experience);
-      return this.UPLOAD_DOCUMENTS(formData);
-    },
-    ...mapActions(["UPLOAD_DOCUMENTS"])
+      return this.$store.dispatch("UPLOAD_DOCUMENTS", formData);
+    }
+    // ...mapActions(["UPLOAD_DOCUMENTS"])
   }
 };
 </script>
 
 <style scoped>
+.error {
+  color: brown;
+}
 .register h1 {
   font-size: 20px;
   text-align: center;
