@@ -79,7 +79,12 @@ import { mapActions, mapGetters } from "vuex";
 import _ from "lodash";
 
 const minima_layout = "minima";
-const possibleFiles = ["image/png", "image/jpeg", "image/jpeg", "application/pdf"];
+const possibleFiles = [
+  "image/png",
+  "image/jpeg",
+  "image/jpeg",
+  "application/pdf"
+];
 export default {
   components: {
     Loading
@@ -126,14 +131,7 @@ export default {
 
   computed: {
     validateIdentity() {
-      if (
-        !this.user.language ||
-        !this.user.experience ||
-        !this.user.bulletin ||
-        !this.user.id ||
-        !this.user.cv ||
-        !this.user.diploma
-      ) {
+      if (!this.user.language || !this.user.experience) {
         return false;
       }
       return true;
@@ -157,7 +155,6 @@ export default {
 
     getFiveReport(file) {
       if (file) {
-        console.log(file);
         this.images[0] = file;
         this.user.bulletin = file.name;
         this.validateUploads(file[0], "bulletin5");
@@ -209,9 +206,9 @@ export default {
       }
       formData.append("language", this.user.language);
       formData.append("experience", this.user.experience);
-      return this.UPLOAD_DOCUMENTS(formData);
-    },
-    ...mapActions(["UPLOAD_DOCUMENTS"])
+      return this.$store.dispatch("UPLOAD_DOCUMENTS", formData);
+    }
+    // ...mapActions(["UPLOAD_DOCUMENTS"])
   }
 };
 </script>

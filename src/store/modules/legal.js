@@ -50,16 +50,11 @@ export default {
     },
 
     UPLOAD_DOCUMENTS: (context, payload) => {
-      context.commit('SITE_LOADING', true);
+      // context.commit('SITE_LOADING', true);
 
-      AxiosHelper.post('/legal', payload, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+      AxiosHelper.post('/legal', payload)
         .then(response => {
           context.commit('FETCH_DOCUMENTS_SUCCESS', response.data);
-          router.push(`/${i18n.locale}/profile/${username}`);
         })
         .catch(error => {
           context.commit('FETCH_DOCUMENTS_FAILURE', error.response.data);
