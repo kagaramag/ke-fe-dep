@@ -47,7 +47,8 @@ export default {
           }
         })
         .catch(error => {
-          context.commit('FETCH_DOCUMENTS_FAILURE', error.response.data);
+          context.commit('SITE_LOADING', false);
+          context.commit('FETCH_DOCUMENTS_FAILURE', error.message);
         });
     },
 
@@ -57,6 +58,7 @@ export default {
       AxiosHelper.post('/legal', payload)
         .then(response => {
           context.commit('SITE_LOADING', false);
+          router.push(`/`);
           context.commit('FETCH_DOCUMENTS_SUCCESS', response.data);
         })
         .catch(error => {

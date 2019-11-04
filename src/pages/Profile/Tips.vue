@@ -41,7 +41,7 @@
         <div>
           <router-link
             class="btn btn-light border border-success rounded-pill"
-            :to="`/profile/${profile.user.username}/edit`"
+            :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`"
           >{{$t('userprofile.notification.button')}}</router-link>
         </div>
         <div class="clear"></div>

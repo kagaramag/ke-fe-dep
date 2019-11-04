@@ -2,7 +2,7 @@
   <component :is="layout">
     <div class="register">
       <Loading v-if="profile.loading" />
-      <div class="box" v-if="!fetch_documents">
+      <div class="box" v-if="!profile.loading && fetch_documents.length==0">
         <form class="p-4" @submit.prevent>
           <h1 class="bold">{{$t('identity.title')}}</h1>
           <h2>{{$t('identity.message')}}</h2>
