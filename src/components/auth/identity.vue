@@ -3,7 +3,7 @@
     <div class="register">
       <Loading v-if="profile.loading" />
       <div class="box">
-        <form class="p-4">
+        <form class="p-4" @submit.prevent>
           <h1 class="bold">{{$t('identity.title')}}</h1>
           <h2>{{$t('identity.message')}}</h2>
           <div class="row" v-if="profile && profile.errors">
@@ -22,18 +22,12 @@
             </div>
           </div>
 
-          <div class="input-group">
-            <select class="custom-select" id="inputGroupSelect04" v-model="user.language">
-              <option selected>{{$t('identity.language')}}</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-          </div>
-
           <div class="form-group">
-            <label for="experience">{{$t('identity.experience')}}</label>
+            <b-form-select v-model="user.language" :options="options" size="sm" class="mt-3"></b-form-select>
+          </div>
+          <div class="form-group">
             <input
+              :placeholder="`${$t('identity.experience')}`"
               type="text"
               class="form-control"
               v-model="user.experience"
@@ -94,6 +88,19 @@ export default {
   data() {
     return {
       images: {},
+      options: [
+        { value: null, text: this.$t("identity.language") },
+        { value: "Kinyarwanda", text: "Kinyarwanda" },
+        { value: "English", text: "English" },
+        { value: "French", text: "French" },
+        { value: "Kinyarwanda, French", text: "Kinyarwanda, French" },
+        { value: "Kinyarwanda, English", text: "Kinyarwanda, English" },
+        {
+          value: "Kinyarwanda, French, English",
+          text: "Kinyarwanda, French, English"
+        },
+        { value: "French,English", text: "French, English" }
+      ],
       error: {
         bulletin5: "",
         bulletin6: "",
@@ -102,7 +109,7 @@ export default {
         diploma: ""
       },
       user: {
-        language: "",
+        language: null,
         experience: "",
         bulletin5: this.$t("identity.bulletin5"),
         bulletin6: this.$t("identity.bulletin6"),
@@ -117,11 +124,6 @@ export default {
     // this.$store.dispatch("FETCH_DOCUMENTS");
   },
 
-  watch: {
-    user() {
-      console.log(this.user.language);
-    }
-  },
   computed: {
     validateIdentity() {
       if (
