@@ -21,16 +21,16 @@
               {{' '}} {{$t('register.loginn')}}
             </div>
           </div>
-          <div class="form-group">
-            <label for="language">{{$t('identity.language')}}</label>
-            <input
-              type="text"
-              class="form-control"
-              v-model="user.language"
-              id="language"
-              autocomplete="off"
-            />
+
+          <div class="input-group">
+            <select class="custom-select" id="inputGroupSelect04" v-model="user.language">
+              <option selected>{{$t('identity.language')}}</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="experience">{{$t('identity.experience')}}</label>
             <input
@@ -43,16 +43,25 @@
           </div>
 
           <div class="form-group">
-            <b-form-file single :placeholder="user.bulletin" :file-name-formatter="getBULL"></b-form-file>
+            <label class="error" v-if="error.bulletin5">{{error.bulletin5}}</label>
+
+            <b-form-file single :placeholder="user.bulletin5" :file-name-formatter="getFiveReport"></b-form-file>
           </div>
           <div class="form-group">
+            <label class="error" v-if="error.bulletin6">{{error.bulletin6}}</label>
+            <b-form-file single :placeholder="user.bulletin6" :file-name-formatter="getSixReport"></b-form-file>
+          </div>
+          <div class="form-group">
+            <label class="error" v-if="error.bulletinid">{{error.id}}</label>
             <b-form-file single :placeholder="user.id" :file-name-formatter="getID"></b-form-file>
           </div>
           <div class="form-group">
+            <label class="error" v-if="error.cv">{{error.cv}}</label>
             <b-form-file single :placeholder="user.cv" :file-name-formatter="getCV"></b-form-file>
           </div>
 
           <div class="form-group">
+            <label class="error" v-if="error.diploma">{{error.diploma}}</label>
             <b-form-file single :placeholder="user.diploma" :file-name-formatter="getDIP"></b-form-file>
           </div>
 
@@ -76,6 +85,7 @@ import { mapActions, mapGetters } from "vuex";
 import _ from "lodash";
 
 const minima_layout = "minima";
+const possibleFiles = ["image/png", "image/jpeg", "image/jpeg"];
 export default {
   components: {
     Loading
@@ -84,10 +94,18 @@ export default {
   data() {
     return {
       images: {},
+      error: {
+        bulletin5: "",
+        bulletin6: "",
+        id: "",
+        cv: "",
+        diploma: ""
+      },
       user: {
         language: "",
         experience: "",
-        bulletin: this.$t("identity.bulletin"),
+        bulletin5: this.$t("identity.bulletin5"),
+        bulletin6: this.$t("identity.bulletin6"),
         id: this.$t("identity.id"),
         cv: this.$t("identity.cv"),
         diploma: this.$t("identity.diploma")
@@ -96,9 +114,14 @@ export default {
   },
 
   created() {
-    this.$store.dispatch("FETCH_DOCUMENTS");
+    // this.$store.dispatch("FETCH_DOCUMENTS");
   },
 
+  watch: {
+    user() {
+      console.log(this.user.language);
+    }
+  },
   computed: {
     validateIdentity() {
       if (
@@ -122,32 +145,53 @@ export default {
     documents() {}
   },
   methods: {
-    getBULL(file) {
+    validateUploads(file, document) {
+      if (possibleFiles.includes(file.type)) {
+        this.error[document] = "";
+      } else {
+        this.error[document] = "file format not supported";
+      }
+    },
+
+    getFiveReport(file) {
       if (file) {
+        console.log(file);
         this.images[0] = file;
         this.user.bulletin = file.name;
+        this.validateUploads(file[0], "bulletin5");
+        return file[0].name;
+      }
+    },
+    getSixReport(file) {
+      if (file) {
+        this.images[1] = file;
+        this.user.bulletin = file.name;
+        this.validateUploads(file[0], "bulletin6");
         return file[0].name;
       }
     },
     getID(file) {
       if (file) {
-        this.images[1] = file;
+        this.images[2] = file;
         this.user.id = file.name;
+        this.validateUploads(file[0], "id");
         return file[0].name;
       }
     },
     getDIP(file) {
       if (file) {
-        this.images[2] = file;
+        this.images[3] = file;
         this.user.diploma = file.name;
+        this.validateUploads(file[0], "diploma");
         return file[0].name;
       }
     },
 
     getCV(file) {
       if (file) {
-        this.images[3] = file;
+        this.images[4] = file;
         this.user.cv = file.name;
+        this.validateUploads(file[0], "cv");
         return file[0].name;
       }
     },
@@ -171,6 +215,9 @@ export default {
 </script>
 
 <style scoped>
+.error {
+  color: brown;
+}
 .register h1 {
   font-size: 20px;
   text-align: center;
