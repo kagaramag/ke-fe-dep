@@ -2,7 +2,7 @@
   <component :is="layout">
     <div class="register">
       <Loading v-if="profile.loading" />
-      <div class="box">
+      <div class="box" v-if="!fetch_documents">
         <form class="p-4" @submit.prevent>
           <h1 class="bold">{{$t('identity.title')}}</h1>
           <h2>{{$t('identity.message')}}</h2>
@@ -126,10 +126,11 @@ export default {
   },
 
   created() {
-    // this.$store.dispatch("FETCH_DOCUMENTS");
+    this.$store.dispatch("FETCH_DOCUMENTS");
   },
 
   computed: {
+    ...mapGetters(["fetch_documents"]),
     validateIdentity() {
       if (!this.user.language || !this.user.experience) {
         return false;

@@ -37,9 +37,11 @@ export default {
   actions: {
     // fetch documents
     FETCH_DOCUMENTS: (context, payload) => {
+      context.commit('SITE_LOADING', true);
       AxiosHelper.get(`/legal`)
         .then(response => {
           context.commit('FETCH_DOCUMENTS_SUCCESS', response.data);
+          context.commit('SITE_LOADING', false);
           if (response.data.legalDoc) {
             router.push(`/`);
           }
@@ -50,10 +52,11 @@ export default {
     },
 
     UPLOAD_DOCUMENTS: (context, payload) => {
-      // context.commit('SITE_LOADING', true);
+      context.commit('SITE_LOADING', true);
 
       AxiosHelper.post('/legal', payload)
         .then(response => {
+          context.commit('SITE_LOADING', false);
           context.commit('FETCH_DOCUMENTS_SUCCESS', response.data);
         })
         .catch(error => {
