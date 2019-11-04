@@ -79,7 +79,7 @@ import { mapActions, mapGetters } from "vuex";
 import _ from "lodash";
 
 const minima_layout = "minima";
-const possibleFiles = ["image/png", "image/jpeg", "image/jpeg"];
+const possibleFiles = ["image/png", "image/jpeg", "image/jpeg", "application/pdf"];
 export default {
   components: {
     Loading
