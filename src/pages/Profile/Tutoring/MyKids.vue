@@ -247,6 +247,36 @@
                 <div class="float-right m-1">
                   <b-spinner v-show="false"></b-spinner>
                 </div>
+<<<<<<< HEAD
+=======
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="class">Class</label>
+                    <input
+                      type="class"
+                      v-model="kid.class"
+                      class="form-control"
+                      id="class"
+                      autocomplete="off"
+                    />
+                    <small
+                      id="classHelp"
+                      class="form-text text-muted"
+                    >Use N* for nursary and P* for Primary school(e.g.: N2, P3)</small>
+                  </div>
+                </div>
+              </div>
+              <button
+                :disabled="!validateKid"
+                type="submit"
+                @click.prevent
+                @click="submit_kid"
+                class="btn btn-primary bg-primary"
+              >Submit</button>
+              <b-button class="btn btn-light" @click="$bvModal.hide('register')">Cancel</b-button>
+              <div class="float-right m-1">
+                <b-spinner v-show="false"></b-spinner>
+>>>>>>> aaa46805191e4c71d801e38bf5275d3c4496a03f
               </div>
             </form>
           </div>
@@ -296,6 +326,18 @@ export default {
     };
   },
   computed: {
+    validateKid() {
+      if (
+        !this.kid.names ||
+        !this.kid.school ||
+        !this.kid.subject ||
+        this.kid.age === 0 ||
+        !this.kid.class
+      ) {
+        return false;
+      }
+      return true;
+    },
     register_kid() {
       return this.$store.getters.register_kid;
     }
@@ -397,6 +439,7 @@ export default {
   margin-left: -10px;
   color: #b3b3b3;
 }
+<<<<<<< HEAD
 .vdatetime-input {
   padding: 12px 6px !important;
 }
@@ -422,3 +465,6 @@ export default {
   color: #b3b3b3;
 }
 </style>
+=======
+</style>
+>>>>>>> aaa46805191e4c71d801e38bf5275d3c4496a03f

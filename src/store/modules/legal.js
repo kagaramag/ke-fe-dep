@@ -37,29 +37,29 @@ export default {
   actions: {
     // fetch documents
     FETCH_DOCUMENTS: (context, payload) => {
+      context.commit('SITE_LOADING', true);
       AxiosHelper.get(`/legal`)
         .then(response => {
           context.commit('FETCH_DOCUMENTS_SUCCESS', response.data);
+          context.commit('SITE_LOADING', false);
           if (response.data.legalDoc) {
             router.push(`/`);
           }
         })
         .catch(error => {
-          context.commit('FETCH_DOCUMENTS_FAILURE', error.response.data);
+          context.commit('SITE_LOADING', false);
+          context.commit('FETCH_DOCUMENTS_FAILURE', error.message);
         });
     },
 
     UPLOAD_DOCUMENTS: (context, payload) => {
       context.commit('SITE_LOADING', true);
 
-      AxiosHelper.post('/legal', payload, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
+      AxiosHelper.post('/legal', payload)
         .then(response => {
+          context.commit('SITE_LOADING', false);
+          router.push(`/`);
           context.commit('FETCH_DOCUMENTS_SUCCESS', response.data);
-          router.push(`/${i18n.locale}/profile/${username}`);
         })
         .catch(error => {
           context.commit('FETCH_DOCUMENTS_FAILURE', error.response.data);

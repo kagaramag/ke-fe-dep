@@ -108,12 +108,9 @@
             ></b-form-input>
           </b-form-group>
 
-          <b-button type="submit" variant="primary">Submit</b-button>
-          <b-button type="reset" variant="danger">Reset</b-button>
+          <b-button :disabled="!validateEducation" type="submit" variant="primary">Submit</b-button>
+          <!-- <b-button type="reset" variant="danger">Reset</b-button> -->
         </b-form>
-        <b-card class="mt-3" header="Form Data Result">
-          <pre class="m-0">{{ form }}</pre>
-        </b-card>
       </div>
     </b-modal>
   </div>
@@ -155,6 +152,18 @@ export default {
     this.FETCH_EDUCATION(this.currentUsername);
   },
   computed: {
+    validateEducation() {
+      if (
+        !this.form.college ||
+        !this.form.graduated ||
+        !this.form.institution ||
+        !this.form.course ||
+        !this.form.certificate
+      ) {
+        return false;
+      }
+      return true;
+    },
     fetch_education() {
       return this.$store.getters.fetch_education.education;
     },

@@ -25,6 +25,7 @@
           </div>
 
           <button
+            :disabled="!validateReset"
             type="submit"
             @click.prevent
             @click="reset"
@@ -73,6 +74,12 @@ export default {
     },
     profile() {
       return this.$store.getters.profile;
+    },
+    validateReset() {
+      if (!this.user.email) {
+        return false;
+      }
+      return true;
     }
   },
 

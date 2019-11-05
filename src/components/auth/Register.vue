@@ -56,6 +56,7 @@
             <input type="password" class="form-control" v-model="user.password" id="password" />
           </div>
           <button
+            :disabled="!validateRegister"
             type="submit"
             @click.prevent
             @click="register"
@@ -100,6 +101,17 @@ export default {
     },
     profile() {
       return this.$store.getters.profile;
+    },
+    validateRegister() {
+      if (
+        !this.user.firstName ||
+        !this.user.lastName ||
+        !this.user.email ||
+        !this.user.password
+      ) {
+        return false;
+      }
+      return true;
     }
   },
   methods: {

@@ -80,7 +80,11 @@
             :drop-placeholder="`${$t('userprofile.sidebar.profile.edit.drop')}`"
             :browse-text="`${$t('userprofile.sidebar.profile.edit.imagebrowse')}`"
           ></b-form-file>
-          <button @click="changeProfile" class="my-2 d-block btn btn-primary bg-primary text-white">
+          <button
+            :disabled="!validatePhoto"
+            @click="changeProfile"
+            class="my-2 d-block btn btn-primary bg-primary text-white"
+          >
             <icon class="icon" icon="image" />
             &nbsp;{{$t('userprofile.sidebar.profile.edit.submit')}}
           </button>
@@ -119,6 +123,14 @@ export default {
         bio: ""
       }
     };
+  },
+  computed: {
+    validatePhoto() {
+      if (!this.image) {
+        return false;
+      }
+      return true;
+    }
   },
   created() {
     this.info = {

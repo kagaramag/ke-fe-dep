@@ -28,6 +28,7 @@
             <input type="password" class="form-control" v-model="user.password" id="password" />
           </div>
           <button
+            :disabled="!validateLogin"
             type="submit"
             @click.prevent
             @click="login"
@@ -72,6 +73,12 @@ export default {
     },
     profile() {
       return this.$store.getters.profile;
+    },
+    validateLogin() {
+      if (!this.user.email || !this.user.password) {
+        return false;
+      }
+      return true;
     }
   },
   methods: {

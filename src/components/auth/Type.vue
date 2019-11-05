@@ -57,16 +57,10 @@ export default {
   components: {
     Loading
   },
-  name: "register",
+  name: "Type",
   data() {
     return {
-      username: JSON.parse(localStorage.getItem("user")).username || "",
-      user: {
-        lastName: "",
-        firstName: "",
-        email: "",
-        password: ""
-      }
+      username: JSON.parse(localStorage.getItem("user")).username || ""
     };
   },
   computed: {
