@@ -2,18 +2,26 @@
   <div id="settings">
     <component :is="layout">
       <div class="profile">
-        <h2>Settings</h2>
-        <div class="divider mb-4"></div>
-
-        <h4 class="my-4">Logout</h4>
-        <div>
-          <button @click.prevent @click="logout" class="btn btn-dark">Sign out</button>
+        <h2>{{$t('settings.title')}}</h2>
+        <div class="my-2">{{$t('settings.description')}}</div>
+        <div class="divider bg-light my-2"></div>
+        <div class="shadow-2 radius-2 p-3 mb-4">
+          <UserInfo :profile="profile"/>
         </div>
-        <div class="divider my-4"></div>
-
-        <div>
+        <div class="shadow-2 radius-2 p-3 mb-4">
+          <ProfilePicture :profile="profile"  />
+        </div>
+        <div class="shadow-2 radius-2 p-3 mb-4">
+          <Language />
+        </div>
+        <div class="shadow-2 radius-2 p-3 mb-4">
           <ResetPassword :profile="profile" />
-          <div class="divider my-4" />
+        </div>
+        <div class="shadow-2 radius-2 p-3 mb-4">
+          <h4 class="my-4">{{$t('settings.logout.title')}}</h4>
+          <div>
+            <button @click.prevent @click="logout" class="btn btn-danger rounded-pill px-4">{{$t('settings.logout.button')}}</button>
+          </div>
         </div>
       </div>
     </component>
@@ -35,11 +43,17 @@ Vue.component("icon", FontAwesomeIcon);
 const account_layout = "account";
 
 import ResetPassword from "./ResetPassword";
+import Language from "./Language";
+import UserInfo from "./UserInfo";
+import ProfilePicture from "./ProfilePicture";
 
 export default {
   name: "settings",
   components: {
     ResetPassword,
+    Language,
+    UserInfo,
+    ProfilePicture
   },
   computed: {
     profile() {

@@ -12,8 +12,13 @@ import Minima from './layouts/Minima.vue';
 import Account from './layouts/Account.vue';
 import store from './store';
 import i18n from './i18n';
-
 import VueLazyload from 'vue-lazyload';
+
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/index.css';
+ 
+Vue.use(VueToast);
+
 Vue.use(VueLazyload);
 
 Vue.component('default-layout', Default);
@@ -23,27 +28,35 @@ Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 
 // filters
-Vue.filter('capitalize', function(value) {
-  if (!value) return '';
-  value = value.toString();
-  return value.charAt(0).toUpperCase() + value.slice(1);
-});
-Vue.filter('uppercase', function(value) {
-  if (!value) return '';
-  value = value.toString();
-  return value.toUpperCase();
-});
-Vue.filter('firstLetter', function(value) {
-  if (!value) return '';
-  value = value.toString();
-  return value.charAt(0).toUpperCase();
-});
-Vue.filter('truncate', function(value, characters) {
-  if (!value) return '';
-  value = value.toString();
-  return value.charAt(characters).toUpperCase();
-});
-Vue.filter('date', function(time) {
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})
+Vue.filter('uppercase', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.toUpperCase()
+})
+Vue.filter('firstLetter', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase()
+})
+Vue.filter('truncate', function (value, char) {
+  if (!value) return ''
+  const ending = char && value.length > char ? '...': '';
+  if (value.length) {
+    return value.substring(0, char || 20) + ending;
+  } else {
+    return value;
+  }
+})
+Vue.filter('age', function (value) {
+  if (!value) return ''
+  return 4
+})
+Vue.filter('date', function (time) {
   switch (typeof time) {
     case 'number':
       break;
@@ -109,12 +122,22 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-/* eslint-disable no-new */
+Vue.mixin({
+  data: function() {
+    return {
+      CDN_IMAGE: 'http://res.cloudinary.com/ninjas/image/upload',
+      avatar: require("@/assets/images/profile.png")
+    }
+  }
+})
+
+// Create Vue instance
 new Vue({
   store,
   el: '#app',
   router,
   components: { App },
   i18n,
+  saveScrollPosition: false,
   template: '<App/>'
 });

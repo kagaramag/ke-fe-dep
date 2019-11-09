@@ -74,9 +74,11 @@
         "logout": "Logout"
       },
       "profile": {
-        "title": "Profile",
+        "home": "Timeline",
+        "profile": "Profile",
+        "identity": "Identity",
         "edit": {
-          "button": "Edit profile picture",
+          "button": "Change profile",
           "info": "Account information",
           "first_name": "First name",
           "last_name": "Last name",
@@ -152,6 +154,17 @@
   "register": {
     "title": "Welcome",
     "message": "Register to continue...",
+    "whoiam": "I am...",
+    "accountType": {
+      "parent": {
+        "type": "Parent",
+        "description": "You can find a trusted tutor for your kids"
+      },
+      "tutor": {
+        "type": "Tutor",
+        "description": "Find kids easily around you"
+      }
+    },
     "email": "Your email",
     "here": "Click here",
     "firstname": "Your first name",
@@ -168,6 +181,16 @@
     "home": "Home",
     "remember": "Remember your password?"
   },
+  "reset": {
+    "title": "Reset your password",
+    "message": "Enter an email address that is associated with your Keetela account",
+    "email": "Your email",
+    "here": "Click here",
+    "button": "Reset",
+    "reset": "reset",
+    "back": "Go back",
+    "home": "Home"
+  },
   "account-type": {
     "title": "What is your account type?",
     "parent": {
@@ -180,18 +203,54 @@
     }
   },
   "identity": {
-    "title": "Prove your Identity",
+    "title": "Tutor Profile Information",
     "message": "For you to be accepted as a tutor you will have to submit the specified documents below",
-    "language": "Language",
+    "language": {
+      "title": "Languages your speak",
+      "description": "Languages you speak are very important when connect you with parent"
+    },
     "experience": "Experience (1,2,...)",
-    "id": "National id",
-    "bulletin5": "School report of senior 5",
-    "bulletin6": "School report of senior 6",
+    "id": "National ID/Passport",
+    "bulletin5": "School Report of senior 5",
+    "bulletin6": "School Report of senior 6",
     "diploma": "Diploma",
-    "cv": "Curriculum Vitae",
+    "cv": "CV",
     "image": "Choose a file (PDF,JPEG, PNG)",
     "imagebrowse": "Browse",
     "drop": "No file choosen",
-    "button": "Submit"
+    "button": "Save"
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "This page helps you to customize and configure your account the way you want.",
+    "language": {
+      "title": "Language",
+      "description": "Choose your preferred language. You will navigate our apps in language of your choice"
+    },
+    "picture": {
+      "title": "Profile photo",
+      "description": "Change your profile photo",
+      "button": "Change photo"
+    },
+    "account": {
+      "title": "Account information",
+      "description": "Manage account information",
+      "form": {
+        "bio": {
+          "notice": "*Select text or paragraph for more option."
+        },
+        "button": "Update"
+      }
+    },
+    "reset": {
+      "title": "Reset password",
+      "description": "If you wish to reset password, please follow instructions",
+      "here": "here"
+    },
+    "logout": {
+      "title": "Logout",
+      "description": "",
+      "button": "Log out"
+    }
   }
 }

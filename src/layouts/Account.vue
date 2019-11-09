@@ -2,18 +2,18 @@
 <template>
   <div id="account">
     <Header :profile="profile" />
-    <div class="d-none d-sm-block d-dm-block">
-    <MessageBar :fetch_user="fetch_user" :profile="profile" />
+    <div class="bg-primary d-none d-sm-block">
+      <ProfileBar :fetch_user="fetch_user" :profile="profile" />
     </div>
     <div class="container">
-      <div class="row pt-2" v-if="loaded?'hidden':''">
-        <div class="col d-none d-sm-block d-dm-block">
+      <div class="row">
+        <div class="d-none d-dm-block d-lg-block col-lg-3 pt-3">
           <Sidebar :fetch_user="fetch_user" :profile="profile" />
         </div>
-        <div class="col col-sm-12 col-md-12 col-lg-7">
+        <div class="col col-sm-12 col-md-12 col-lg-7 pt-4">
           <slot :fetch_user="fetch_user" :profile="profile" />
         </div>
-        <div class="col d-none d-sm-block d-md-block">
+        <div class="d-none d-dm-block d-lg-block col-lg-2">
           <AdminMenu />
         </div>
       </div>
@@ -29,6 +29,7 @@ import Header from "@/components/commons/Header";
 import Footer from "@/components/commons/Footer";
 import Sidebar from "@/pages/profile/Sidebar";
 import MessageBar from "@/pages/profile/MessageBar";
+import ProfileBar from "@/pages/profile/ProfileBar";
 import AdminMenu from "@/pages/profile/AdminMenu";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -47,27 +48,29 @@ export default {
     Header,
     Sidebar,
     MessageBar,
+    ProfileBar,
     Footer,
     AdminMenu
   },
   data() {
     return {
-      loaded: false,
+      loaded: false
     };
   },
-  mounted() {
+  mounted () {
     this.currentUsername = this.$route.params.username;
     this.FETCH_USER(this.currentUsername);
     this.loaded = true;
   },
   watch: {
     "$route.params.username"(nextUsername, previousUsername) {
+      this.loaded = false;
       this.FETCH_USER(nextUsername);
     }
   },
   computed: {
     fetch_user() {
-      return this.$store.getters.fetch_user;
+      return fetchthis.$store.getters.fetch_usered;
     },
     profile() {
       return this.$store.getters.profile;
@@ -98,17 +101,12 @@ export default {
 
 
 <style scoped>
+.page-wrapper {
+  margin-top: 0px;
+}
 header.navbar {
   background: #ffffff;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
-}
-.container {
-  /* margin-top: 76px; */
-}
-.content-wrapper {
-  margin: 0px auto;
-  display: block;
-  max-width: 1100px;
 }
 .bio {
   font-weight: 100;

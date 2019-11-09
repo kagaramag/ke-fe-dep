@@ -1,9 +1,9 @@
 <template>
-  <div id="footer">
+  <div id="footer" class="mt-5">
     <footer class="mt-5">
       <div class="container">
         <div class="row mb-5">
-          <div class="col-3">
+          <div class="col col-sm-6 col-md-3">
             <h4>{{$t('footer.tutoring.title')}}</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
@@ -18,7 +18,7 @@
             </ul>
           </div>
 
-          <div class="col-3">
+          <div class="col col-sm-6 col-md-3">
             <h4>{{$t('footer.help.title')}}</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
@@ -33,7 +33,7 @@
             </ul>
           </div>
 
-          <div class="col-3">
+          <div class="col col-sm-6 col-md-3">
             <h4>{{$t('footer.company.title')}}</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
@@ -51,7 +51,7 @@
             </ul>
           </div>
 
-          <div class="col-3">
+          <div class="col col-sm-6 col-md-3">
             <h4>{{$t('footer.stay.title')}}</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
@@ -70,17 +70,19 @@
       <div class="clear"></div>
       <div class="copyright py-4">
         <div class="container">
-          <span class="float-left">
-            &copy; Copyright 2019
-            <strong>Nivelo Ltd</strong> business. All Rights Reserved
-          </span>
-          <span class="float-right m4-3">
-            <router-link :to="`/${$i18n.locale}`">{{$t('copyright.terms')}}</router-link>
-            <router-link :to="`/${$i18n.locale}`">{{$t('copyright.privacy')}}</router-link>
-            <router-link :to="`/${$i18n.locale}`">{{$t('copyright.license')}}</router-link>
-          </span>
+          <div class="row">
+            <div class="col col-sm-12 col-md-6 col-lg-8">
+              &copy;Copyright 2019
+              <router-link class="radius-3 px-2 mx-2 bg-light text-dark" :to="'/'">Keetela.com</router-link>a
+              <strong>Nivelo Ltd</strong> business. All Rights Reserved
+            </div>
+            <div class="col col-sm-12 col-md-6 col-lg-4">
+              <router-link :to="`/${$i18n.locale}`">{{$t('copyright.terms')}}</router-link>
+              <router-link  class="mx-3" :to="`/${$i18n.locale}`">{{$t('copyright.privacy')}}</router-link>
+              <router-link :to="`/${$i18n.locale}`">{{$t('copyright.license')}}</router-link>
+            </div>
+          </div>
         </div>
-        <div class="clear"></div>
       </div>
     </footer>
   </div>
@@ -112,15 +114,11 @@ export default {
   color: #b6b6b6;
   font-weight: 100 !important;
 }
-.container {
-  max-width: 980px !important;
-}
 .copyright {
   font-weight: 100;
   background: #212325 !important;
 }
 .copyright a {
-  padding: 0 15px;
   color: #b6b6b6;
   font-weight: 100 !important;
 }

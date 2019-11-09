@@ -37,8 +37,8 @@ const router = new Router({
           component: () => import('@/components/auth/type')
         },
         {
-          path: 'identity/:username',
-          component: () => import('@/components/auth/identity')
+          path: 'profile/:username/identity',
+          component: () => import('@/pages/profile/tutorIdentity')
         },
         {
           path: 'login',
@@ -62,25 +62,25 @@ const router = new Router({
           component: () => import('@/pages/profile')
         },
         {
-          path: 'profile/:username/edit',
+          path: 'profile/:username/settings',
           name: 'Profile Edit',
-          component: () => import('@/pages/profile/edit'),
+          component: () => import('@/pages/profile/settings'),
           meta: {
             auth: true
           }
         },
 
         {
-          path: 'profile/:username/tutoring',
-          name: 'tutoring',
+          path: 'profile/:username/coaching',
+          name: 'coaching',
           component: () => import('@/pages/profile/tutoring'),
           meta: {
             auth: true
           }
         },
         {
-          path: 'profile/:username/tutoring/:id',
-          name: 'tutoring',
+          path: 'profile/:username/coaching/:id',
+          name: 'coaching',
           component: () => import('@/pages/profile/tutorship'),
           meta: {
             auth: true
@@ -104,14 +104,14 @@ const router = new Router({
           name: 'post',
           component: () => import('@/components/public/posts/OnePost')
         },
-        // {
-        //   path: '/profile/:username/education',
-        //   name: 'profile',
-        //   component: () => import('@/pages/profile/education'),
-        //   meta: {
-        //     auth: true
-        //   }
-        // },
+        {
+          path: '/profile/:username/education',
+          name: 'profile',
+          component: () => import('@/pages/profile/Education'),
+          meta: {
+            auth: true
+          }
+        },
         // {
         //   path: '/profile/:username/education/new',
         //   name: 'profile',
@@ -120,11 +120,11 @@ const router = new Router({
         //     auth: true
         //   }
         // },
-        {
-          path: '*',
-          component: () => import('@/components/public/notfound')
-        }
       ]
+    },
+    {
+      path: '*',
+      component: () => import('@/components/public/notfound')
     }
   ],
   mode: 'history'

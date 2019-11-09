@@ -2,7 +2,6 @@
   <component :is="layout">
     <div class="login">
       <Loading v-if="profile.loading" />
-      <h1 class="bold">{{$t('register.title')}}</h1>
       <h2>{{$t('register.reset')}}</h2>
       <div class="box" v-if="!confirmed">
         <form class="p-4">
@@ -13,6 +12,7 @@
               :key="error.index"
             >{{error}}</div>
           </div>
+          <div class="my-2">{{$t('reset.message')}}</div>
           <div class="form-group">
             <label for="email">{{$t('register.email')}}</label>
             <input

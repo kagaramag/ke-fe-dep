@@ -1,7 +1,7 @@
 <template>
   <div id="tutorship">
     <component :is="layout">
-        <!-- <DetailsTutor v-if="isTutor" :tutoring="fetch_one_tutoring.tutoring" :profile="profile" /> -->
+        <DetailsTutor :tutoring="fetch_one_tutoring" :profile="profile" />
         <!-- <DetailsParent v-if="isParent" :fetch_kids="fetch_kids" :profile="profile" />
         <MyTutees v-if="isTutor" :fetch_kids="fetch_kids" :profile="profile" /> -->
         <Compose :profile="profile" :tutoring="fetch_one_tutoring" />

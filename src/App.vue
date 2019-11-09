@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-v-html -->
 <template>
   <div id="app">
     <div>
@@ -8,8 +7,8 @@
 </template>
 
 <script>
-export default {
-  name: "App"
+export default { 
+  name: "App",
 };
 </script>
 <style>

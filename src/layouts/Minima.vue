@@ -20,6 +20,9 @@ export default {
     <div class="row">
       <div class="col col-lg-7 col-md-7 col-sm-12">
         <div class="wrap-box">
+          <div class="image minima-logo my-5">
+          <img src="@/assets/images/logo_XII_blue.svg" />
+          </div>
           <slot />
         </div>
       </div>
@@ -28,6 +31,10 @@ export default {
 </template>
 
 <style scoped>
+.minima-logo{
+  max-width:220px;
+}
+
 .background {
   position: absolute;
   top: 0;

@@ -1,65 +1,14 @@
 <template>
   <div slot-scope="fetch_user">
-    <!-- PROFILE CARD START -->
-    <div class="shadow-2 bg-white mb-1 top-border-styled">
-      <div class="card profile-card-4">
-        <div class="card-body pt-1" v-if="fetch_user.user">
-          <span v-if="fetch_user.user.image">
-            <img
-              :src="fetch_user.user.image"
-              style="max-width:120px;"
-              class="d-block ui-w-100 rounded-circle profile d-block mx-auto"
-              alt="Tutor"
-            />
-          </span>
-          <span v-else>
-            <img
-              src="@/assets/images/profile.png"
-              style="max-width:160px;"
-              class="d-block ui-w-100 rounded-circle profile d-block mx-auto"
-              alt="Tutor"
-            />
-          </span>
-          <h5
-            class="card-title text-center"
-          >{{fetch_user.user.lastName}} {{fetch_user.user.firstName}}</h5>
-          <div class="mx-3">{{fetch_user.user.email}}</div>
-          <div class="my-3">
-            <button class="btn btn-outline-light text-dark">
-              <icon class="icon" icon="envelope" />
-              &nbsp;{{$t('userprofile.sidebar.top.message')}}
-            </button>
-            <b-button
-              variant="primary"
-              class="btn btn-primary bg-primary"
-              @click="logout"
-            >{{$t('userprofile.sidebar.top.logout')}}</b-button>
-          </div>
-
-          <div class="icon-block text-center d-none">
-            <a href="#">
-              <icon class="icon" icon="envelope" />
-            </a>
-            <a href="#">
-              <icon class="icon" icon="envelope" />
-            </a>
-            <a href="#">
-              <icon class="icon" icon="envelope" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- PROFILE CARD END -->
     <div
       class="shadow-2 bg-white mb-1 pt-3 top-border-styled"
-      v-if="profile.isLoggedIn && fetch_user.user.id === profile.user.id"
+      v-if="profile.isLoggedIn && fetch_user && fetch_user.user.id === profile.user.id"
     >
       <b-list-group class="sidebar-nav">
         <b-list-group-item>
-          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
-            <icon class="icon" icon="user" />
-            <span>{{$t('userprofile.sidebar.profile.title')}}</span>
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}`">
+            <icon class="icon" icon="stream" />
+            <span>{{$t('userprofile.sidebar.profile.home')}}</span>
           </router-link>
         </b-list-group-item>
       </b-list-group>
@@ -70,26 +19,14 @@
       >
         <b-list-group-item>
           <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring`">
-            <icon class="icon" icon="child" />
+            <icon class="icon" icon="layer-group" />
             <span>{{$t('userprofile.sidebar.tutoring')}}</span>
           </router-link>
         </b-list-group-item>
         <b-list-group-item>
-          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
-            <icon class="icon" icon="check" />
-            <span>{{$t('userprofile.sidebar.reviews')}}</span>
-          </router-link>
-        </b-list-group-item>
-        <b-list-group-item>
-          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
-            <icon class="icon" icon="question" />
-            <span>{{$t('userprofile.sidebar.answers')}}</span>
-          </router-link>
-        </b-list-group-item>
-        <b-list-group-item>
-          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`">
-            <icon class="icon" icon="layer-group" />
-            <span>{{$t('userprofile.sidebar.points')}}</span>
+          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/identity`">
+            <icon class="icon" icon="file-csv" />
+            <span>{{$t('userprofile.sidebar.profile.identity')}}</span>
           </router-link>
         </b-list-group-item>
       </b-list-group>
@@ -157,7 +94,7 @@
           <icon class="icon" icon="chevron-down" />
         </span>
       </h5>
-      <b-collapse id="open-user-provided-status">
+      <!-- <b-collapse id="open-user-provided-status"> -->
         <div class="pb-4">
           <div class="tutor-summary-item">
             <icon class="icon text-success" icon="check-circle" />
@@ -188,7 +125,7 @@
             <span>{{$t('userprofile.provided.code')}}</span>
           </div>
         </div>
-      </b-collapse>
+      <!-- </b-collapse> -->
     </div>
   </div>
 </template>

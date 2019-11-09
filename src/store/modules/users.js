@@ -1,4 +1,5 @@
 import AxiosHelper from '@/helpers/AxiosHelper';
+import store from '@/store'
 import router from '@/router';
 import i18n from '../../i18n';
 
@@ -29,6 +30,7 @@ export default {
   },
   // getters
   getters: {
+    edit_user: (state) => state.fetch_user.user.user,
     profile(state) {
       return state.profile;
     },
@@ -69,7 +71,6 @@ export default {
       state.profile.loading = false;
       state.profile.user = { ...state.profile, ...payload.user };
       localStorage.user = JSON.stringify(payload.user);
-      // router.push(`/${i18n.locale}/account-type/${payload.user.username}`);
     },
     LOGIN_USER_SUCCESS(state, payload) {
       state.profile.isLoggedIn = true;
@@ -78,7 +79,7 @@ export default {
       localStorage.user = JSON.stringify(payload.user);
       localStorage.isAuth = true;
       localStorage.token = payload.token;
-      router.push(`/${i18n.locale}/account-type/${payload.user.username}`);
+      router.push(`/${i18n.locale}/profile/${payload.user.username}`);
     },
     LOGIN_USER_FAILURE(state, payload) {
       state.profile.loading = false;
@@ -111,13 +112,21 @@ export default {
       state.fetch_user.user = { ...state.fetch_user.user, ...payload };
     },
     FETCH_USER_FAILURE(state, payload) {
-      state.fetch_user.user = { ...state.fetch_user, ...payload };
+      state.fetch_user.errors = payload
     },
     FETCH_TUTORS_SUCCESS(state, payload) {
       state.fetch_tutors.tutors = { ...state.fetch_tutors, ...payload };
     },
     FETCH_TUTORS_FAILURE(state) {
       state.fetch_tutors.tutors = [];
+    },
+    UPDATE_USER_SUCCESS(state, payload) {
+      state.fetch_user.user = payload.user;
+      state.fetch_user.message = payload.message;
+    },
+    UPDATE_USER_FAILURE(state, payload) {
+      state.fetch_user.message = ''
+      state.fetch_user.errors = payload
     }
   },
 
@@ -158,10 +167,10 @@ export default {
       context.commit('UPDATE_PROFILE');
       AxiosHelper.put('/users', payload)
         .then(response => {
-          context.commit('FETCH_USER_SUCCESS', response.data);
+          context.commit('UPDATE_USER_SUCCESS', response.data);
         })
         .catch(error => {
-          context.commit('FETCH_USER_FAILURE', error.response.data);
+          context.commit('UPDATE_USER_FAILURE', error.response.data);
         });
     },
     UPDATE_PHOTO: (context, payload) => {
@@ -177,9 +186,8 @@ export default {
     GET_PROFILE: context => {
       context.commit('GET_PROFILE');
     },
-    FETCH_USER: (context, payload) => {
+    FETCH_USER:  (context, payload) => {
       context.commit('GET_PROFILE_LOADING', true);
-      context.commit('GET_PROFILE');
       AxiosHelper.get(`/users/username/${payload}`)
         .then(response => {
           context.commit('FETCH_USER_SUCCESS', response.data);

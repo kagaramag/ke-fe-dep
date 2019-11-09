@@ -1,7 +1,7 @@
 
 <template>
   <div id="profile-card" slot-scope="fetch_user">
-    <div class="bg-light shadow-2" style="margin:76px 0 25px 0;padding:0px 0 0 0!important">
+    <div class="bg-light" style="margin:76px 0 25px 0;padding:0px 0 0 0!important">
       <div
         v-if="profile.isLoggedIn && fetch_user.user.id === profile.user.id && fetch_user.user.UserRole.role.role === 'tutor'"
         class="gradient-primary p-3"

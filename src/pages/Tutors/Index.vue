@@ -8,65 +8,39 @@
         <h2 class="m-y-5">{{$t('tutors.title')}}</h2>
         <div class="grabtutors mb-5" v-if="tutors">
           <div class="row">
-            <div v-for="tutor in tutors.tutors" class="col-sm-6 col-md-4" :key="tutor.index">
-              <div class="card shadow-1">
-                <div class="row pt-3">
-                  <div class="col-4">
-                    <span v-if="tutor.image">
-                      <img :src="tutor.image" class="card-img-top rounded-circle" alt="Tutor" />
-                    </span>
-                    <span v-else>
+            <div v-for="tutor in tutors.tutors" class="col-sm-12 col-md-4 col-lg-4" :key="tutor.index">
+              <router-link :to="`/${$i18n.locale}/profile/${tutor.username}`">
+                <div class="card shadow-lg radius-3">
+                  <div class="row pt-3">
+                    <div class="col-12">
                       <img
-                        src="@/assets/images/profile.png"
-                        class="card-img-top rounded"
-                        alt="Tutor"
+                        :src="tutor.image || avatar"
+                        class="card-img-top shadow rounded-circle mb-4"
+                        :alt="tutor.lastName"
                       />
-                    </span>
-                  </div>
-                  <div class="col-8 px-0">
-                    <h3
-                      class="text-truncate mb-0"
-                    >{{tutor.lastName | capitalize}} {{tutor.firstName | firstLetter}}.</h3>
-                    <div v-if="tutor.username === 'cuv.voxer' || tutor.username === 'asman.bonah'">
-                      <span style="color:#09835a">
-                        Verified
-                        <icon class="icon" icon="check-square" />
-                      </span>
                     </div>
-                    <div v-else>
-                      <span style="color:#cdcdcd">
-                        Verified
-                        <icon class="icon" icon="check-square" />
-                      </span>
+                    <div class="col-12 text-center">
+                      <h3 class="text-truncate mb-0 nobold text-dark text-center">
+                        {{tutor.lastName | capitalize}} {{tutor.firstName}}
+                        <span
+                          v-bind:class="{ 'verified': tutor.username === 'dutri.gesta' }"
+                        >
+                          <icon class="icon" icon="check-square" />
+                        </span>
+                      </h3>
+                      <div class="card-text mx-3 my-1" style="color:#646464;height:70px">
+                        <div :inner-html.prop="tutor.bio | truncate(100)"></div>
+                      </div>
                     </div>
-                    <div class="text-muted">@{{tutor.username}}</div>
-                  </div>
-                </div>
-                <div class="divider bg-light mt-3 mb-1"></div>
-                <div class="card-body text-center p-2">
-                  <div
-                    class="card-text"
-                    style="color:#878787"
-                  >{{tutor.bio || 'I’m a violinist, pianist, songwriter and composer. I’ve written an opera...' }}</div>
-                </div>
-                <div class="divider bg-light my-1"></div>
-                <div class="row text-center">
-                  <div class="col-7">
-                    <div class="summary-info">
+                    <div class="col-12 text-center py-3">
                       <router-link
-                        class="btn btn-outline-dark m-2 d-block col rounded-pill"
+                        class="btn btn-success shadow rounded"
                         :to="`/${$i18n.locale}/profile/${tutor.username}`"
-                      >View</router-link>
-                    </div>
-                  </div>
-                  <div class="col-5">
-                    <div class="summary-info">
-                      <small>Rank</small>
-                      <div class="bold">7</div>
+                      >View Profile</router-link>
                     </div>
                   </div>
                 </div>
-              </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -97,20 +71,15 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  max-width: 1000px !important;
-}
 .profile {
   width: 100%;
   margin: 0;
 }
-/* .profile h1, .profile h2, .profile h3{font-weight: 100} */
 .profile .bio {
   font-weight: 100;
 }
 
 .post-link {
-  /* margin-bottom: 20px !important; */
   border-radius: 0 !important;
   border: 5px solid #09835a;
   margin: auto 0%;
@@ -122,6 +91,7 @@ export default {
   display: block;
 }
 .card {
+  border: none;
   margin-top: 20px;
 }
 .card h3 {
@@ -132,8 +102,8 @@ export default {
 }
 .card-img-top {
   width: 80%;
-  max-width: 180px;
-  margin: 3% auto;
+  max-width: 120px;
+  margin: 2% auto;
   display: block;
 }
 .summary-info b {
@@ -143,5 +113,14 @@ export default {
 .summary-info span {
   font-size: 28px;
   font-size: 700;
+}
+.icon {
+  color: #dfdfdf;
+  font-size: 18px;
+  position: relative;
+  top: -2px;
+}
+.verified .icon {
+  color: #4e836a;
 }
 </style>

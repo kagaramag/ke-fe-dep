@@ -74,7 +74,9 @@
         "logout": "Sohoka"
       },
       "profile": {
-        "title": "Konti Yanjye",
+        "home": "Ahabanza",
+        "profile": "Konti Yanjye",
+        "identity": "Umwirondoro wanjye",
         "edit": {
           "button": "Hindura ifoto yawe",
           "info": "Amakuru ajyanye na konti yawe",
@@ -152,6 +154,17 @@
   "register": {
     "title": "Murakaza Neza",
     "message": "Iyandikishe winjire...",
+    "whoiam": "Ndi...",
+    "accountType": {
+      "parent": {
+        "type": "Umubyeyi",
+        "description": "Biroroshye kubana abarimu bumwana wawe bakuri hafi"
+      },
+      "tutor": {
+        "type": "Umwarimu",
+        "description": "Bona abana bo kwigisha bakwerege"
+      }
+    },
     "email": "Email yawe",
     "here": "Kand hano",
     "firstname": "Izina ry'idini",
@@ -167,6 +180,16 @@
     "confirm": "Subiramo ijambo ry'ibanga",
     "confirmbutton": "Emeza",
     "remember": "Ijambo ry'ibanga uraryibutse?"
+  },
+  "reset": {
+    "title": "Hindura ijambo ry'ibanga",
+    "message": "Injiza email yawe ihuye na konti yawe ya Keetela",
+    "email": "Email yawe",
+    "here": "Kanda hano",
+    "button": "Hindura",
+    "reset": "Hindura",
+    "back": "Subira",
+    "home": "Ahabanza"
   },
   "account-type": {
     "title": "Ushaka gufunguza iyihe konti?",
@@ -193,5 +216,37 @@
     "imagebrowse": "Toranya",
     "drop": "Nta kintu wahisemo",
     "button": "Ohereza"
+  },
+  "settings": {
+    "title": "Icungamirere",
+    "description": "Iyi paji igufasha gucunga konti yawe uko ubyifuza",
+    "language": {
+      "title": "Indimi",
+      "description": "Hitamo ururimi rukuboneye uzajya ukoresha usura uru rubuga"
+    },
+    "picture": {
+      "title": "Ifoto yawe",
+      "description": "Hindura ifoto ikoreshwa kuri konti yawe",
+      "button": "Hindura"
+    },
+    "account": {
+      "title": "Umwirondoro wawe",
+      "form": {
+        "bio": {
+          "notice": "*Hitamo amagombo wifuza kugriango ubone uburyo bwinshi"
+        },
+        "button": "Update"
+      }
+    },
+    "reset": {
+      "title": "Hindura ijambo ry'ibanga",
+      "description": "Niba wifuza guhindura ijambo ry'ibanga, kanda",
+      "here": "hano"
+    },
+    "logout": {
+      "title": "Sohoka",
+      "description": "",
+      "button": "Sohoka"
+    }
   }
 }

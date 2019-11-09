@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  URL_BACKEND: '"https://ninjas-ah-backend.herokuapp.com/api/v1"'
+  URL_BACKEND: '"https://api.keetela.com/api/v1"'
 }

@@ -1,22 +1,23 @@
 <template>
   <div>
-    <nav class="navbar bg-light shadow-2 fixed-top navbar-expand-lg navbar-light">
-      <div class="container" style="padding:0 auto">
-        <button
-          class="navbar-toggler border-0"
-          type="button"
+    <nav class="navbar navbar-expand-lg bg-primary m-0 fixed-top navbar-expand-lg navbar-light">
+      <div class="container">
+       <router-link class="navbar-brand" :to="`/${$i18n.locale}`">
+          <img src="@/assets/images/logo_XII.svg" />
+        </router-link>
+        <button 
+          type="button" 
+          data-target="#navbarSupportedContent" 
+          aria-expanded="false" 
+          class="navbar-toggler border-0 text-light"
           data-toggle="collapse"
-          data-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
-          aria-expanded="false"
+          aria-controls="navbarSupportedContent"
           aria-label="Toggle navigation"
         >
           <icon class="icon" icon="bars" />
         </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <router-link class="navbar-brand" :to="`/${$i18n.locale}`">
-            <img src="@/assets/images/logo_nivelo_xs.svg" />
-          </router-link>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
               <router-link class="nav-link" :to="`/${$i18n.locale}`">{{$t('header.home')}}</router-link>
@@ -25,100 +26,35 @@
               <router-link class="nav-link" :to="`/${$i18n.locale}/tutors`">{{$t('header.tutors')}}</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/feed`">{{$t('header.feeds')}}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="`/${$i18n.locale}/jobs`">{{$t('header.jobs')}}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                :to="`/${$i18n.locale}/profiles`"
-              >{{$t('header.resources')}}</router-link>
-            </li>
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                :to="`/${$i18n.locale}/profiles`"
-              >{{$t('header.questions')}}</router-link>
-            </li>
-            <li class="nav-item">
               <router-link class="nav-link" :to="`/${$i18n.locale}/faqs`">{{$t('header.faqs')}}</router-link>
             </li>
-            <li class="nav-item">
-              <router-link
-                class="nav-link"
-                :to="`/${$i18n.locale}/profiles`"
-              >{{$t('header.events')}}</router-link>
-            </li>
           </ul>
-          <div>
-            <b-dropdown key="language" :text="lang" variant="primary" class="m-2 bg-primary">
-              <b-dropdown-item @click="setLanguage('en')">English</b-dropdown-item>
-              <b-dropdown-item @click="setLanguage('kin')">Kinyarwanda</b-dropdown-item>
-            </b-dropdown>
-          </div>
-          <ul class="navbar-nav right" v-if="profile.isLoggedIn">
+          <ul class="navbar-nav right" v-if="loaded && profile.isLoggedIn">
             <div>
-              <b-dropdown
-                key="language"
-                :text="`${$t('profile.title')}`"
-                variant="success"
-                class="m-2 round bg-primary"
-              >
-                <b-dropdown-item>
-                  <li class="nav-item avatar">
-                    <router-link
-                      class="nav-link p-0"
-                      :to="`/${$i18n.locale}/profile/${profile.user.username}`"
-                    >
-                      <span v-if="profile.user.image">
-                        <img
-                          :src="profile.user.image"
-                          class="rounded-circle"
-                          height="35"
-                          alt="Tutor"
-                        />
-                      </span>
-                      <span v-else>
-                        <img
-                          src="@/assets/images/profile.png"
-                          class="rounded-circle"
-                          height="35"
-                          alt="Tutor"
-                        />
-                      </span>
-                      {{$t('profile.account')}}
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <router-link class="nav-link" :to="`/${$i18n.locale}`">
+                    <icon class="icon" icon="bell" />
+                  </router-link>
+                </li>
+                <li class="list-inline-item">
+                  <router-link class="nav-link" :to="`/${$i18n.locale}`">
+                    <icon class="icon" icon="envelope" />
+                  </router-link>
+                </li>
+                <li class="list-inline-item">
+                  <span class="text-light">
+                    <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}`">
+                      {{fetch_user.user.firstName | truncate(10)}}
+                      <img
+                        :src="fetch_user.user.image ? fetch_user.user.image : avatar"
+                        class="bg-light rounded-circle ui-w-30 profile mt-2 mx-auto"
+                        :alt="fetch_user.user.firstName"
+                      />
                     </router-link>
-                  </li>
-                </b-dropdown-item>
-                <b-dropdown-item>
-                  <li class="nav-item">
-                    <button class="btn">
-                      <icon class="icon" icon="bell" />
-                      <span class="ml-2">{{$t('profile.notification')}}</span>
-                    </button>
-                  </li>
-                </b-dropdown-item>
-
-                <b-dropdown-item>
-                  <li class="nav-item">
-                    <button class="btn">
-                      <icon class="icon" icon="envelope" />
-                      <span class="ml-2">{{$t('profile.message')}}</span>
-                    </button>
-                  </li>
-                </b-dropdown-item>
-
-                <b-dropdown-item>
-                  <li class="nav-item">
-                    <button class="btn" @click="logout">
-                      <icon class="icon" icon="toggle-off" />
-                      <span class="ml-2">{{$t('profile.logout')}}</span>
-                    </button>
-                  </li>
-                </b-dropdown-item>
-              </b-dropdown>
+                  </span>
+                </li>
+              </ul>
             </div>
           </ul>
 
@@ -153,38 +89,20 @@ library.add(fab);
 Vue.component("icon", FontAwesomeIcon);
 
 export default {
+  data() {
+    return {
+      loaded: false
+    };
+  },
   mounted() {
+    this.loaded = true;
     this.$store.dispatch("GET_PROFILE");
   },
   computed: {
-    lang() {
-      return this.$i18n.locale;
+    fetch_user() {
+      return this.$store.getters.fetch_user;
     },
-    profile() {
-      return this.$store.getters.profile;
-    },
-    ...mapGetters(["profile"])
-  },
-  methods: {
-    ...mapActions(["LOGOUT_USER"]),
-    logout() {
-      this.LOGOUT_USER();
-    },
-    setLanguage(locale) {
-      // save language as fr_MX in localstorage to match backend setup
-      if (locale == "kin") {
-        localStorage.setItem("lang", "fr_MX");
-        document.title="Nivelo - Abarimu b'inzobere"
-      } else {
-        localStorage.setItem("lang", "en");
-        document.title="Nivelo - Best tutors"
-      }
-
-      this.$i18n.locale = locale;
-      this.$router.push({
-        params: { lang: locale }
-      });
-    }
+    ...mapGetters(["profile", "fetch_user"])
   }
 };
 </script>
@@ -196,15 +114,25 @@ export default {
 }
 .navbar-items li {
   list-style-type: none;
-  float: left;
+  /* float: left; */
+  text-align: center;
+  display: inline-block;
 }
 .navbar-items li a {
   padding: 5px 15px;
-  color: #fefefe;
+  color: #ffffff;
   font-weight: bold;
 }
 .bg-primary.text-light {
   color: #fefefe !important;
   padding: 6px 20px;
+}
+.profile {
+  position: relative;
+  top: 4px;
+  width: 30px;
+}
+.rounded-circle.profile {
+  border: 2px solid #ffffff;
 }
 </style>

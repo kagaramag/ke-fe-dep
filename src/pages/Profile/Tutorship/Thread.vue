@@ -1,5 +1,6 @@
 <template>
   <div id="thread">
+    
     <div v-if="tutoring_messages.tutoring">
       <div
         class="mb-3 wrap-one-tutering"
@@ -8,6 +9,11 @@
       >
         <div class="row">
           <div class="media mx-2" style="position:relative">
+             <img
+                :src="message.receiver.image ? message.receiver.image : avatar"
+                class="bg-light rounded-circle ui-w-100 profile mt-2 mx-auto shadow-3"
+                :alt="profile.user.firstName"
+              />
             <span v-if="message.receiver.image">
               <img
                 :src="message.receiver.image"
@@ -54,6 +60,9 @@
         </div>
         <div class="divider my-3"></div>
       </div>
+    </div>
+    <div class="py-4" v-if="tutoring_messages.tutoring && !tutoring_messages.tutoring.length">
+      <h4>Under construction...</h4>
     </div>
   </div>
 </template>

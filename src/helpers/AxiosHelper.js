@@ -76,6 +76,23 @@ class AxiosHelper {
         });
     });
   };
+
+  static patch = (path, data) => {
+    return new Promise((resolve, reject) => {
+      return axios
+        .patch(`${URL_BACKEND}${path}`, data, {
+          headers: {
+            "access-token": token
+          }
+        })
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  };
 }
 
 export default AxiosHelper;

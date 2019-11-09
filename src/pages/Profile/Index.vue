@@ -13,12 +13,19 @@
           :fetch_user="data.fetch_user"
           :profile="data.profile"
         />
-
         <!-- KIDS -->
+
         <!-- HIRE ME END -->
         <Education
           v-if="
-          data.fetch_user.user.UserRole.role.role === 'tutor'
+          data.profile.isLoggedIn 
+          && (
+            data.profile.user.role === 'parent'
+            || (
+              data.profile.user.id === data.fetch_user.user.id
+              && data.profile.user.role !== data.fetch_user.user.id
+            )
+          )
           "
           :fetch_user="data.fetch_user"
           :profile="data.profile"
