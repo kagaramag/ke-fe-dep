@@ -25,15 +25,16 @@
               id="password"
             />
           </div>
-          <button
-            type="submit"
-            @click.prevent
-            @click="reset"
-            class="btn rounded-pill border border-primary px-4 d-block col"
-          >{{$t('register.confirmbutton')}}</button>
+          <div class="text-center">
+            <button
+              type="submit"
+              @click.prevent
+              @click="reset"
+              class="btn btn-primary rounded-pill border border-primary px-5"
+            >{{$t('register.confirmbutton')}}</button>
+          </div>
         </form>
       </div>
-      <br />
       <div class="text-center">
         {{$t('register.back')}}
         <router-link :to="`/${$i18n.locale}`" class="p-1">{{$t('register.home')}}</router-link>

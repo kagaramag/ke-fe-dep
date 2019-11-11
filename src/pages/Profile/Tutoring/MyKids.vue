@@ -509,7 +509,6 @@ export default {
   },
   mounted() {
     this.loaded = true;
-    console.log('mounted', this.loaded);
     this.FETCH_KIDS();
   },
   computed: {

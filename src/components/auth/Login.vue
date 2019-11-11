@@ -43,7 +43,6 @@
           </div>
         </form>
       </div>
-      <br />
       <div class="text-center">
         {{$t('login.back')}}
         <router-link :to="`/${$i18n.locale}`" class="p-1">{{$t('login.home')}}</router-link>

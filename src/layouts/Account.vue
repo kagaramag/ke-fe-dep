@@ -2,19 +2,21 @@
 <template>
   <div id="account">
     <Header :profile="profile" />
-    <div class="bg-primary d-none d-sm-block">
-      <ProfileBar :fetch_user="fetch_user" :profile="profile" />
-    </div>
-    <div class="container">
-      <div class="row">
-        <div class="d-none d-dm-block d-lg-block col-lg-3 pt-3">
-          <Sidebar :fetch_user="fetch_user" :profile="profile" />
-        </div>
-        <div class="col col-sm-12 col-md-12 col-lg-7 pt-4">
-          <slot :fetch_user="fetch_user" :profile="profile" />
-        </div>
-        <div class="d-none d-dm-block d-lg-block col-lg-2">
-          <AdminMenu />
+    <div class="page-wrapper">
+      <div class="bg-primary d-none d-sm-block">
+        <ProfileBar :fetch_user="fetch_user" :profile="profile" />
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="d-none d-dm-block d-lg-block col-lg-3 pt-3">
+            <Sidebar :fetch_user="fetch_user" :profile="profile" />
+          </div>
+          <div class="col col-sm-12 col-md-12 col-lg-7 pt-4">
+            <slot :fetch_user="fetch_user" :profile="profile" />
+          </div>
+          <div class="d-none d-dm-block d-lg-block col-lg-2">
+            <AdminMenu />
+          </div>
         </div>
       </div>
     </div>
@@ -57,7 +59,7 @@ export default {
       loaded: false
     };
   },
-  mounted () {
+  mounted() {
     this.currentUsername = this.$route.params.username;
     this.FETCH_USER(this.currentUsername);
     this.loaded = true;
@@ -102,7 +104,7 @@ export default {
 
 <style scoped>
 .page-wrapper {
-  margin-top: 0px;
+  margin-top: 70px;
 }
 header.navbar {
   background: #ffffff;

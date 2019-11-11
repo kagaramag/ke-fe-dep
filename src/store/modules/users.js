@@ -47,6 +47,15 @@ export default {
     RESET_ERROR(state) {
       state.profile.errors = {};
     },
+    RESET_REGISTER(state) {
+      state.profile = {
+        user: {},
+        errors: {},
+        message: '',
+        isLoggedIn: false,
+        loading: false
+      }
+    },
     SITE_LOADING(state, payload) {
       state.profile.loading = payload;
     },
@@ -132,6 +141,9 @@ export default {
 
   // actions
   actions: {
+    RESET_REGISTER: (context) => {
+      context.commit('RESET_REGISTER');
+    },
     RESET_PASSWORD: (context, payload) => {
       AxiosHelper.post(`/auth/reset`, payload)
         .then(response => {
