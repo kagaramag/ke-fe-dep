@@ -23,17 +23,20 @@
               autocomplete="off"
             />
           </div>
-
-          <button
-            :disabled="!validateReset"
-            type="submit"
-            @click.prevent
-            @click="reset"
-            class="btn rounded-pill border border-primary px-4 d-block col"
-          >{{$t('register.reset')}}</button>
-          <br />
-          {{$t('register.remember')}}
-          <router-link :to="`/${$i18n.locale}/login`">{{$t('register.login')}}</router-link>
+          <div class="text-center">
+            <button
+              :disabled="!validateReset"
+              type="submit"
+              @click.prevent
+              @click="reset"
+              class="btn btn-primary rounded-pill border border-primary px-5"
+            >{{$t('register.reset')}}</button>
+          </div>
+          <div class="col text-center">
+            <br />
+            {{$t('register.remember')}}
+            <router-link :to="`/${$i18n.locale}/login`">{{$t('register.login')}}</router-link>
+          </div>
         </form>
       </div>
       <br />

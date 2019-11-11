@@ -30,6 +30,10 @@ const router = new Router({
         },
         {
           path: 'register',
+          component: () => import('@/components/auth/type')
+        },
+        {
+          path: 'register/:type',
           component: () => import('@/components/auth/register')
         },
         {
