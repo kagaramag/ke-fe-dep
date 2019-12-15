@@ -9,13 +9,24 @@
     "welcome": "Tubahuza n'abarimu b'inzobere",
     "button": "Tangira",
     "login": "Injira",
-    "register": "Iyandikishe"
+    "register": "Iyandikishe",
+    "parent": {
+      "title": "A learning experience designed for parent and child",
+      "description": "We make it easy to find the tutor that is right for your child so you can get back to your busy life",
+      "button": "Get started"
+    },
+    "tutors": {
+      "title": "Meet some of our awesome tutors",
+      "description": "We wisely picked the best tutors and interviewed them one by one.",
+      "button": "Get started"
+    }
   },
   "header": {
     "home": "Ahabanza",
     "tutors": "Abarimu",
     "feeds": "Amakuru",
     "jobs": "Akazi",
+    "blog": "Inkuru",
     "resources": "Shakisha",
     "questions": "Ubumenyi",
     "faqs": "Kuki",
@@ -254,6 +265,26 @@
       "title": "Sohoka",
       "description": "",
       "button": "Sohoka"
+    }
+  },
+  "dashboard": {
+    "title": "Ikaze kuri page igenga ikoreshwa rya Keetela yawe",
+    "tutor": {
+      "title": "Icungamimerere",
+      "description": "Abantu bacyenera kumenya umwirondoro wawe wa nyawo kugirango mubashe gukorana mwizeranye",
+      "button": {
+        "location": "Irekana aho utuye",
+        "legal": "Ibyangombwa z'akazi",
+        "education": "Iherekana aho wize"
+      }
+    },
+    "parent": {
+      "title": "Abo kwigisha",
+      "description": "Ufite abana bacyeneye gukurikiranwa imyigire yabo?",
+      "button": {
+        "search": "Shakisha umwarimu",
+        "tutoring": "Abana bawe & Imyigire yabo"
+      }
     }
   }
 }

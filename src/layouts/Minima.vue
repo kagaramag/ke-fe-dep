@@ -3,29 +3,26 @@
 "Layout for pages without header/sidebar" 
 ##############################
 -->
+
 <script>
-import HeaderComponent from "./../components/commons/Header";
 export default {
-  name: "layout-mimina",
-  components: {
-    HeaderComponent
-  }
+  name: "layout-mimina"
 };
 </script>
 <template>
   <div>
     <div class="container layout">
       <div class="background">
-      <img src="@/assets/images/kids.png" />
+        <img src="@/assets/images/kids.png" />
       </div>
       <div class="row">
         <div class="col">
-          <div class="wrap-box py-1 bg-light shadow-lg radius-4">
-            <div class="image minima-logo my-3">
-              <router-link :to="'/'">
-                <img src="@/assets/images/logo_XII_blue.svg" />
-              </router-link>
-            </div>
+          <div class="image minima-logo my-3">
+            <router-link :to="'/'">
+              <img src="@/assets/images/logo_XII_blue.svg" />
+            </router-link>
+          </div>
+          <div class="wrap-box pt-3 pb-1 bg-light shadow-lg radius-4">
             <slot />
           </div>
         </div>
@@ -46,6 +43,7 @@ export default {
   width: 100%;
   height: 100%;
 }
+
 .background img {
   position: fixed;
   bottom: 0;
@@ -53,12 +51,14 @@ export default {
   max-width: 750px;
   height: auto;
 }
+
 .layout {
   margin-top: 0px;
   max-width: 900px !important;
 }
+
 .wrap-box {
   max-width: 550px;
-  margin: 50px auto 0 auto;
+  margin: 40px auto 30px auto;
 }
 </style>

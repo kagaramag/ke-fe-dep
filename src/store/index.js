@@ -8,6 +8,7 @@ import education from './modules/education';
 import tutoring from './modules/tutoring';
 import tutorship from './modules/tutorship';
 import legal from './modules/legal';
+import blog from './modules/blog';
 
 Vue.use(Vuex, axios);
 
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     education,
     tutoring,
     tutorship,
-    legal
+    legal,
+    blog
   }
 });

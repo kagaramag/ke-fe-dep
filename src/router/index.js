@@ -1,145 +1,173 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import store from './../store';
-import i18n from '../i18n';
+import Vue from "vue";
+import Router from "vue-router";
+import store from "./../store";
+import i18n from "../i18n";
 Vue.use(Router);
 
 const router = new Router({
   routes: [
     {
-      path: '/',
+      path: "/",
       redirect: `/${i18n.locale}`
     },
     {
-      path: '/:lang',
+      path: "/:lang",
       component: {
         render(c) {
-          return c('router-view');
+          return c("router-view");
         }
       },
       children: [
         {
-          path: '/',
-          name: 'home',
-          component: () => import('@/components/public/home')
+          path: "/",
+          name: "home",
+          component: () => import("@/app/homepage")
         },
         {
-          path: 'tutors',
-          name: 'tutors',
-          component: () => import('@/pages/tutors')
+          path: "tutors",
+          name: "tutors",
+          component: () => import("@/app/tutors")
         },
         {
-          path: 'register',
-          component: () => import('@/components/auth/type')
+          path: "register",
+          component: () => import("@/components/auth/type")
         },
         {
-          path: 'register/:type',
-          component: () => import('@/components/auth/register')
+          path: "register/:type",
+          component: () => import("@/components/auth/register")
         },
         {
-          path: 'account-type/:username',
-          component: () => import('@/components/auth/type')
+          path: "account-type/:username",
+          component: () => import("@/components/auth/type")
         },
         {
-          path: 'profile/:username/identity',
-          component: () => import('@/pages/profile/tutorIdentity')
+          path: "dashboard/:type/identity",
+          component: () => import("@/app/dashboard/tutorIdentity")
         },
         {
-          path: 'login',
-          component: () => import('@/components/auth/login')
+          path: "login",
+          component: () => import("@/components/auth/login")
         },
         {
-          path: 'reset',
-          component: () => import('@/components/auth/reset')
+          path: "reset",
+          component: () => import("@/components/auth/reset")
         },
         {
-          path: 'reset/:token',
-          component: () => import('@/components/auth/reset')
+          path: "reset/:token",
+          component: () => import("@/components/auth/reset")
         },
         {
-          path: 'confirm',
-          component: () => import('@/components/auth/confirm')
+          path: "confirm",
+          component: () => import("@/components/auth/confirm")
         },
         {
-          path: 'profile/:username',
-          name: 'profile',
-          component: () => import('@/pages/profile')
+          path: "@:username",
+          name: "profile",
+          component: () => import("@/app/profile")
         },
         {
-          path: 'profile/:username/settings',
-          name: 'Profile Edit',
-          component: () => import('@/pages/profile/settings'),
-          meta: {
-            auth: true
-          }
-        },
-
-        {
-          path: 'profile/:username/coaching',
-          name: 'coaching',
-          component: () => import('@/pages/profile/tutoring'),
+          path: "dashboard/:type",
+          name: "profile",
+          component: () => import("@/app/dashboard/home"),
           meta: {
             auth: true
           }
         },
         {
-          path: 'profile/:username/coaching/:id',
-          name: 'coaching',
-          component: () => import('@/pages/profile/tutorship'),
+          path: "dashboard/:type/settings",
+          name: "Profile Edit",
+          component: () => import("@/app/dashboard/settings"),
           meta: {
             auth: true
           }
         },
         {
-          path: 'profile/:username/settings',
-          name: 'settings',
-          component: () => import('@/pages/profile/settings'),
+          path: "dashboard/:type/coaching",
+          name: "coaching",
+          component: () => import("@/app/dashboard/tutoring"),
           meta: {
             auth: true
           }
         },
         {
-          path: 'profile/:username/my-blog',
-          name: 'blog',
-          component: () => import('@/pages/profile/blog')
-        },
-        {
-          path: 'post/:slug',
-          name: 'post',
-          component: () => import('@/components/public/posts/OnePost')
-        },
-        {
-          path: '/profile/:username/education',
-          name: 'profile',
-          component: () => import('@/pages/profile/Education'),
+          path: "dashboard/:type/coaching/:id",
+          name: "coaching",
+          component: () => import("@/app/dashboard/tutorship"),
           meta: {
             auth: true
           }
         },
-        // {
-        //   path: '/profile/:username/education/new',
-        //   name: 'profile',
-        //   component: () => import('@/pages/profile/education'),
-        //   meta: {
-        //     auth: true
-        //   }
-        // },
+        {
+          path: "dashboard/:type/settings",
+          name: "settings",
+          component: () => import("@/app/dashboard/settings"),
+          meta: {
+            auth: true
+          }
+        },
+        {
+          path: "dashboard/:type/my-blog",
+          name: "blog",
+          component: () => import("@/app/dashboard/blog")
+        },
+        {
+          path: "post/:category/:slug",
+          name: "post",
+          component: () => import("@/app/blog/post")
+        },
+        {
+          path: "blog",
+          name: "blog",
+          component: () => import("@/app/blog/blogs")
+        },
+        {
+          path: "dashboard/:type/my-blog/compose",
+          name: "blog-post",
+          component: () => import("@/app/dashboard/blog/Create"),
+          meta: {
+            auth: true
+          }
+        },
+        {
+          path: "dashboard/:type/my-blog/:slug/edit",
+          name: "blog-post",
+          component: () => import("@/app/dashboard/blog/Edit"),
+          meta: {
+            auth: true
+          }
+        },
+        {
+          path: "dashboard/:type/education",
+          name: "profile",
+          component: () => import("@/app/dashboard/Education"),
+          meta: {
+            auth: true
+          }
+        },
+        {
+          path: "dashboard/:type/location",
+          name: "profile",
+          component: () => import("@/app/dashboard/Location"),
+          meta: {
+            auth: true
+          }
+        }
       ]
     },
     {
-      path: '*',
-      component: () => import('@/components/public/notfound')
+      path: "*",
+      component: () => import("@/app/notfound")
     }
   ],
-  mode: 'history'
+  mode: "history"
 });
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.auth)) {
-    if (localStorage.getItem('isAuth') === 'true') {
+    if (localStorage.getItem("isAuth") === "true") {
       next();
       return;
     } else {
-      next('login');
+      next("login");
     }
   } else {
     next();

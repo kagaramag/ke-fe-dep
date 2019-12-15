@@ -30,7 +30,7 @@
               type="submit"
               @click.prevent
               @click="reset"
-              class="btn btn-primary rounded-pill border border-primary px-5"
+              class="btn btn-primary rounded border border-primary px-5"
             >{{$t('register.confirmbutton')}}</button>
           </div>
         </form>

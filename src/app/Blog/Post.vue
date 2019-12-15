@@ -1,0 +1,140 @@
+<template>
+  <div>
+    <component :is="layout">
+      <div class="container">
+        <div class="row p-3">
+          <h1 class="my-3">{{article.title}}</h1>
+          <div class="col-sm-12 col-md-8 col-lg-8 p-0 article-body">
+            <div class="mb-3">
+              <span class="float-left">
+                Posted
+                <b>{{ article.createdAt | date }}</b> by
+                <router-link :to="`/${$i18n.locale}/@${article.author.username}`">
+                  <b>{{article.author.firstName}} {{article.author.lastName}}</b>
+                </router-link>
+                <div>
+                  Read time:
+                  <b>{{article.readTime == 0 ? 'less than a munite' : `${article.readTime} minutes`}}</b>
+                </div>
+              </span>
+              <span class="float-right p-2">
+                <!-- share buttons  -->
+              </span>
+            </div>
+            <div class="clear"></div>
+            <div class="mt-3" v-html="article.body"></div>
+            <div class="my-4 article-quick-link" v-if="auth && auth.id === article.userId">
+              <router-link
+                :to="`/${$i18n.locale}/dashboard/${type}/my-blog/${article.slug}/edit`"
+                class="border border-danger radius-1"
+              >
+                <icon class="icon" icon="pen" />&nbsp;Edit this post
+              </router-link>
+              <router-link
+                :to="`/${$i18n.locale}/dashboard/${type}/my-blog`"
+                class="border border-danger radius-1"
+              >
+                <icon class="icon" icon="pen" />&nbsp;My blog
+              </router-link>
+              <router-link
+                :to="`/${$i18n.locale}/dashboard/${type}`"
+                class="border border-danger radius-1"
+              >
+                <icon class="icon" icon="stream" />&nbsp;Dashboard
+              </router-link>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4 col-lg-4">
+            <img
+              src="@/assets/images/coding-class-1.jpg"
+              class="img-fluid img-thumbnail rounded"
+              alt="Coding Class Ads"
+            />
+          </div>
+        </div>
+      </div>
+    </component>
+  </div>
+</template>
+<script>
+import Vue from "vue";
+import { mapGetters, mapActions } from "vuex";
+const default_layout = "default";
+
+export default {
+  name: "OnePost",
+  data() {
+    return {
+      loaded: false
+    };
+  },
+  mounted() {
+    this.slug = this.$route.params.slug;
+    this.FETCH_ONE_POST(this.slug);
+    this.loaded = true;
+  },
+  computed: {
+    article() {
+      const fetch_post = this.$store.getters.fetch_post;
+      return fetch_post.article;
+    },
+    auth() {
+      return JSON.parse(localStorage.getItem("user"));
+    },
+    ...mapGetters(["fetch_post"]),
+    layout() {
+      return (this.$route.meta.layout || default_layout) + "-layout";
+    }
+  },
+  methods: {
+    ...mapActions(["FETCH_ONE_POST"])
+  }
+};
+</script>
+
+<style scoped>
+.article-body >>> p {
+  width: 100%;
+}
+.article-body >>> .ql-align-left {
+  text-align: left;
+}
+.article-body >>> .ql-align-right {
+  text-align: right;
+}
+.article-body >>> .ql-align-justify {
+  text-align: justify;
+}
+.article-body >>> blockquote {
+  border-left: 5px solid #616161;
+  padding: 20px;
+  font-size: 22px;
+}
+.article-body >>> pre {
+  background: #333333;
+  padding: 35px 20px 10px 20px;
+  color: #cdcdcd;
+  position: relative;
+}
+.article-body >>> pre::before {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  content: "Snippet of code";
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  background: #545454;
+}
+.article-body >>> img {
+  max-width: 100% !important;
+  margin: 10px auto !important;
+  display: block !important;
+}
+.article-quick-link a {
+  padding: 7px 15px;
+  margin-right: 10px;
+  font-weight: 300;
+  color: #ce1c1c !important;
+}
+</style>

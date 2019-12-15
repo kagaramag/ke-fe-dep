@@ -9,13 +9,33 @@
     "welcome": "We connect your kids with the best personal tutors",
     "button": "GET STARTED",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "parent": {
+      "title": "A learning experience designed for parents and childs",
+      "description": "We make it easy to find the tutor that is right for your child so you can get back to your busy life",
+      "button": "Get started"
+    },
+    "tutors": {
+      "title": "Meet some of our awesome tutors",
+      "description": "We wisely picked the best tutors and interviewed them one by one.",
+      "button": "See more"
+    },
+    "joinAsTutor": {
+      "title": "",
+      "description": "Earn money sharing your expert knowledge with students. Register with us",
+      "button": "Become a tutor",
+      "tip1":"Find new students",
+      "tip2":"Scale your income",
+      "tip3":"Get paid securely",
+      "info": "How our platform works"
+    }
   },
   "header": {
     "home": "Home",
     "tutors": "Tutors",
     "feeds": "Feeds",
     "jobs": "Jobs",
+    "blog": "Blog",
     "resources": "Resources",
     "questions": "Questions",
     "faqs": "FAQS",
@@ -74,7 +94,7 @@
         "logout": "Logout"
       },
       "profile": {
-        "home": "Timeline",
+        "home": "Dashboard",
         "profile": "Profile",
         "identity": "Identity",
         "edit": {
@@ -89,7 +109,7 @@
           "submit": "Submit",
           "tutor": "Tutor",
           "tutoring": "Tutoring",
-          "image": "Choose image (JPEG, PNG)",
+          "image": "Choose image (jpeg, png)",
           "imagebrowse": "Browse",
           "drop": "No file choosen"
         }
@@ -258,6 +278,26 @@
       "title": "Logout",
       "description": "",
       "button": "Log out"
+    }
+  },
+  "dashboard": {
+    "title": "Welcome to Keetela dashboard",
+    "tutor": {
+      "title": "Update your account",
+      "description": "Be trustworthy. Your customers need to know more more about you.",
+      "button": {
+        "location": "Update your location",
+        "legal": "My documents",
+        "education": "Update your education"
+      }
+    },
+    "parent": {
+      "title": "Manage tutees.",
+      "description": "Do you have have kids? Facilitate",
+      "button": {
+        "search": "Find Tutors",
+        "tutoring": "Manage Kids & Tutoring"
+      }
     }
   }
 }

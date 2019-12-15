@@ -51,7 +51,6 @@ export default {
     COMPOSE_TUTORING: (context, payload) => {
       const tutoringId = payload.tutoringId;
       delete payload.tutoringId;
-      console.log('what', tutoringId, payload)
       context.commit('RESET_ERROR')
       context.commit('SITE_LOADING', true)
       AxiosHelper.post(`/tutorship/${tutoringId}`, payload)

@@ -3,28 +3,25 @@
 "Layout for public pages, it only contains header" 
 ##############################
 -->
-<script>
-import HeaderComponent from "@/components/commons/Header";
-import FooterComponent from "@/components/commons/Footer";
-export default {
-  components: {
-    HeaderComponent,
-    FooterComponent
-  }
-};
-</script>
 <template>
-  <div>
-    <HeaderComponent />
-      <div class="container">
-        <slot />
-      </div>
-    <FooterComponent />
-  </div>
+<div>
+  <Header />
+    <slot />
+  <Footer />
+</div>
 </template>
 
-<style scoped>
-.container{
-  margin-top: 100px;
-}
-</style>
+<script>
+import {
+  mapGetters,
+  mapActions
+} from "vuex";
+import Header from "@/components/commons/Header";
+import Footer from "@/components/commons/Footer";
+export default {
+  components: {
+    Header,
+    Footer
+  },
+};
+</script>

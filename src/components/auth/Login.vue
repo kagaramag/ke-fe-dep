@@ -31,7 +31,7 @@
               type="submit"
               @click.prevent
               @click="login"
-              class="btn btn-primary rounded-pill border border-primary px-5"
+              class="btn btn-primary rounded border border-primary px-5"
             >{{$t('login.button')}}</button>
           </div>
           <div class="col text-center">
