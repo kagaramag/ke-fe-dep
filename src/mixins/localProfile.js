@@ -3,7 +3,6 @@ import { mapActions } from "vuex";
 
 export default {
   mounted() {
-    // console.log('before everying');
   },
   // watch: {
   //   "$route.params.username"(nextUsername, previousUsername) {

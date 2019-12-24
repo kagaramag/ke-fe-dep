@@ -2,8 +2,6 @@
   <div id="tutorship">
     <component :is="layout">
         <DetailsTutor :tutoring="fetch_one_tutoring" :profile="profile" />
-        <!-- <DetailsParent v-if="isParent" :fetch_kids="fetch_kids" :profile="profile" />
-        <MyTutees v-if="isTutor" :fetch_kids="fetch_kids" :profile="profile" /> -->
         <Compose :profile="profile" :tutoring="fetch_one_tutoring" />
         <Thread :profile="profile"  />
     </component>
@@ -13,7 +11,6 @@
 <script>
 import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-import DetailsParent from "./DetailsParent";
 import DetailsTutor from "./DetailsTutor";
 import Compose from "./Compose";
 import Thread from "./Thread";
@@ -24,7 +21,6 @@ const account_layout = "account";
 export default {
   name: "tutorship",
   components: {
-    DetailsParent,
     DetailsTutor,
     Compose,
     Thread

@@ -5,7 +5,7 @@
       v-if="user && user.legal"
       class="text-success "
     >
-    {{user}}
+    {{user.legal}}
     <!-- {{user.user.firstName}} provided legal documents -->
     </div>
     <div

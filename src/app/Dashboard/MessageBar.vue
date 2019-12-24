@@ -8,11 +8,11 @@
       >
         <div class="container">
           <h4 class="text-light text-center m-0 p-0">
-            {{$t('userprofile.messagebar.title')}}
+            Complete your account profile and get hired
             <router-link
               class="btn btn-primary shadow-3"
-              :to="`/${$i18n.locale}`"
-            >{{$t('userprofile.messagebar.button')}}</router-link>
+              :to="`/`"
+            >Learn more</router-link>
           </h4>
         </div>
       </div>
@@ -25,11 +25,11 @@
             Complete your account and find the right tutor for your kids near you.
             <router-link
               class="btn btn-primary shadow-3"
-              :to="`/${$i18n.locale}/tutors`"
+              :to="`/tutors`"
             >Search tutors</router-link>
             <router-link
               class="btn btn-light text-dark shadow-3"
-              :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`"
+              :to="`/profile/${profile.user.username}/edit`"
             >Edit Profile</router-link>
           </h4>
         </div>

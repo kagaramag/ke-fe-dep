@@ -1,7 +1,6 @@
 import AxiosHelper from "@/helpers/AxiosHelper";
 import store from "@/store";
 import router from "@/router";
-import i18n from "../../i18n";
 
 export default {
   // initial state
@@ -15,7 +14,8 @@ export default {
       errors: {},
       message: "",
       isLoggedIn: false,
-      loading: false
+      loading: false,
+      success: false
     },
     fetch_user: {
       user: {},
@@ -23,10 +23,17 @@ export default {
       location: {},
       kids: {},
       legal: {},
+      details: {},
       articles: [],
       errors: {},
       message: "",
-      loading: false
+      loading: false,
+      success: false,
+      info_updated: false,
+      photo_updated: false,
+      location_updated: false,
+      education_updated: false,
+      details_updated: false
     },
     edit_user: {
       user: {},
@@ -38,7 +45,9 @@ export default {
       tutors: [],
       errors: {},
       message: "",
-      loading: false
+      loading: false,
+      success: false,
+      count: 0
     },
     register_user: {
       user: {},
@@ -63,7 +72,7 @@ export default {
       return state.fetch_user;
     },
     fetch_tutors(state) {
-      return state.fetch_tutors.tutors;
+      return state.fetch_tutors;
     },
     auth(state) {
       return state.auth;
@@ -74,6 +83,7 @@ export default {
   mutations: {
     RESET_ERROR(state) {
       state.profile.errors = {};
+      state.profile.success = false;
     },
     RESET_REGISTER(state) {
       state.register_user = {
@@ -112,6 +122,7 @@ export default {
       state.register_user.message = payload.message;
     },
     REGISTER_USER_FAILURE(state, payload) {
+      console.log("errors", payload);
       state.register_user.errors = payload;
       state.register_user.loading = false;
       state.register_user.success = false;
@@ -121,40 +132,94 @@ export default {
       state.profile.loading = false;
       state.profile.user = { ...state.profile, ...payload.user };
       localStorage.user = JSON.stringify(payload.user);
+      state.fetch_user.user = payload.user;
+      state.fetch_user.message = payload.message;
+    },
+    UPDATE_LOCATION_SUCCESS(state, payload) {
+      state.fetch_user.location = payload.location;
+      state.fetch_user.message = payload.message;
+    },
+    UPDATE_LOCATION_FAILURE(state, payload) {
+      state.fetch_user.message = "";
+      state.fetch_user.errors = payload;
+    },
+    UPDATE_EDUCATION_SUCCESS(state, payload) {
+      state.fetch_user.education = [
+        payload.education,
+        ...state.fetch_user.education
+      ];
+      state.fetch_user.message = payload.message;
+      state.fetch_user.education_updated = true;
+    },
+    REQUEST_EVALUATION_SUCCESS(state, payload) {
+      state.fetch_user.details = payload.details;
+      state.fetch_user.message = payload.message;
+      state.fetch_user.details_updated = true;
+    },
+    REQUEST_EVALUATION_FAILURE(state, payload) {
+      state.fetch_user.message = "";
+      state.fetch_user.errors = payload;
+      state.fetch_user.details_updated = false;
+    },
+    UPDATE_EDUCATION_FAILURE(state, payload) {
+      state.fetch_user.message = "";
+      state.fetch_user.errors = payload;
+      state.fetch_user.education_updated = false;
+    },
+    RESET_FETCH_USER(state) {
+      (state.fetch_user.errors = {}),
+        (state.fetch_user.message = ""),
+        (state.fetch_user.loading = false),
+        (state.fetch_user.success = false),
+        (state.fetch_user.info_updated = false),
+        (state.fetch_user.photo_updated = false),
+        (state.fetch_user.education_updated = false),
+        (state.fetch_user.location_updated = false),
+        (state.fetch_user.details_updated = false);
+    },
+    LOCATION_UPDATED(state) {
+      state.fetch_user.location_updated = true;
+    },
+    INFO_UPDATED(state) {
+      state.fetch_user.info_updated = true;
+    },
+    PHOTO_UPDATED(state) {
+      state.fetch_user.photo_updated = true;
     },
     LOGIN_USER_SUCCESS(state, payload) {
       state.profile.isLoggedIn = true;
       state.profile.loading = false;
-      state.profile.user = { ...state.profile, ...payload.user };
+      state.profile.success = true;
+      state.profile.user = payload.user;
       localStorage.user = JSON.stringify(payload.user);
       localStorage.isAuth = true;
       localStorage.token = payload.token;
       let url;
       switch (payload.user.role) {
         case "parent":
-          url = `/${i18n.locale}/dashboard/p`;
+          url = 'dashboard/p';
           break;
         case "normal":
-          url = `/${i18n.locale}/dashboard/n`;
+          url = 'dashboard/n';
           break;
         case "learner":
-          url = `/${i18n.locale}/dashboard/l`;
+          url = 'dashboard/l';
           break;
         case "tutor":
-          url = `/${i18n.locale}/dashboard/t`;
+          url = 'dashboard/t';
           break;
         case "admin":
-          url = `/${i18n.locale}/dashboard/a`;
+          url = 'dashboard/a';
           break;
         default:
-          url = `/${i18n.locale}`;
+          url = '/';
           break;
       }
       router.push(url);
     },
     LOGIN_USER_FAILURE(state, payload) {
       state.profile.loading = false;
-      state.profile.errors = [payload, ...state.profile.errors];
+      state.profile.errors = payload.errors;
     },
     LOGIN_USER_OUT(state) {
       state.profile = {
@@ -167,7 +232,7 @@ export default {
       localStorage.user = null;
       localStorage.isAuth = false;
       localStorage.token = null;
-      router.push({ path: `/${i18n.locale}/login` });
+      router.push({ path: '/login' });
     },
     UPDATE_PROFILE(state, payload) {
       state.profile = { ...state.profile, ...payload };
@@ -183,6 +248,7 @@ export default {
       state.fetch_user.location = {};
       state.fetch_user.kids = {};
       state.fetch_user.legal = {};
+      state.fetch_user.success = false;
     },
     FETCH_USER_SUCCESS(state, payload) {
       state.fetch_user.loading = false;
@@ -192,19 +258,30 @@ export default {
       state.fetch_user.location = payload.location;
       state.fetch_user.kids = payload.kids;
       state.fetch_user.legal = payload.legal;
+      state.fetch_user.details = payload.details;
+      state.fetch_user.success = true;
     },
     FETCH_USER_FAILURE(state, payload) {
-      state.fetch_user.errors = payload;
+      (state.fetch_user.errors = payload.errors),
+        (state.fetch_user.loading = false);
+      state.fetch_user.message = {};
+      (state.fetch_user.user = {}), (state.fetch_user.education = {});
+      state.fetch_user.articles = {};
+      state.fetch_user.location = {};
+      state.fetch_user.kids = {};
+      state.fetch_user.legal = {};
+      state.fetch_user.details = {};
+      state.fetch_user.success = false;
     },
     FETCH_TUTORS_SUCCESS(state, payload) {
-      state.fetch_tutors.tutors = { ...state.fetch_tutors, ...payload };
+      state.fetch_tutors.tutors = payload.tutors;
+      state.fetch_tutors.count = payload.count;
+      state.fetch_tutors.success = true;
     },
     FETCH_TUTORS_FAILURE(state) {
-      state.fetch_tutors.tutors = [];
-    },
-    UPDATE_USER_SUCCESS(state, payload) {
-      state.fetch_user.user = payload.user;
-      state.fetch_user.message = payload.message;
+      state.fetch_tutors.errors = payload.errors;
+      state.fetch_tutors.success = false;
+      state.fetch_tutors.loaded = false;
     },
     UPDATE_USER_FAILURE(state, payload) {
       state.fetch_user.message = "";
@@ -252,16 +329,52 @@ export default {
       context.commit("UPDATE_PROFILE");
       AxiosHelper.put("/users", payload)
         .then(response => {
+          context.commit("INFO_UPDATED");
           context.commit("UPDATE_USER_SUCCESS", response.data);
         })
         .catch(error => {
           context.commit("UPDATE_USER_FAILURE", error.response.data);
         });
     },
+    UPDATE_USER_LOCATION: (context, payload) => {
+      context.commit("UPDATE_PROFILE");
+      AxiosHelper.post("/location", payload)
+        .then(response => {
+          context.commit("LOCATION_UPDATED");
+          context.commit("UPDATE_LOCATION_SUCCESS", response.data);
+        })
+        .catch(error => {
+          context.commit("UPDATE_LOCATION_FAILURE", error.response.data);
+        });
+    },
+    UPDATE_USER_EDUCATION: (context, payload) => {
+      context.commit("UPDATE_PROFILE");
+      AxiosHelper.post("/education", payload)
+        .then(response => {
+          context.commit("UPDATE_EDUCATION_SUCCESS", response.data);
+        })
+        .catch(error => {
+          context.commit("UPDATE_EDUCATION_FAILURE", error.response.data);
+        });
+    },
+    REQUEST_EVALUATION: context => {
+      context.commit("UPDATE_PROFILE");
+      AxiosHelper.put("/users/request-evaluation")
+        .then(response => {
+          context.commit("REQUEST_EVALUATION_SUCCESS", response.data);
+        })
+        .catch(error => {
+          context.commit("REQUEST_EVALUATION_FAILURE", error.response.data);
+        });
+    },
+    RESET_FETCH_USER: (context, payload) => {
+      context.commit("RESET_FETCH_USER");
+    },
     UPDATE_PHOTO: (context, payload) => {
       AxiosHelper.post("/upload/profile", payload)
         .then(response => {
-          context.commit("FETCH_USER_SUCCESS", response.data);
+          context.commit("PHOTO_UPDATED");
+          context.commit("UPDATE_USER_SUCCESS", response.data);
         })
         .catch(error => {
           context.commit("FETCH_USER_FAILURE", error.response.data);
@@ -304,9 +417,10 @@ export default {
     LOGOUT_USER: context => {
       context.commit("LOGIN_USER_OUT");
     },
-    // fetch tutors
-    FETCH_TUTORS: context => {
-      AxiosHelper.get(`/users/tutors`)
+    FETCH_TUTORS: (context, payload) => {
+      AxiosHelper.get(
+        `/users/tutors?limit=${payload.limit}&offset=${payload.offset}`
+      )
         .then(response => {
           context.commit("FETCH_TUTORS_SUCCESS", response.data);
         })

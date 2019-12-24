@@ -1,5 +1,4 @@
 import axios from "axios";
-import i18n from "../i18n";
 
 const { URL_BACKEND } = process.env;
 const token = localStorage.getItem("token");

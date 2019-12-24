@@ -83,7 +83,6 @@ export default {
     //   return this.$store.getters.profile;
     // },
     // fetch_one_tutoring() {
-    //   console.log('whooops', this.$store.getters.fetch_one_tutoring)
     //   return this.$store.getters.fetch_one_tutoring;
     // },
     // compose_tutoring() {

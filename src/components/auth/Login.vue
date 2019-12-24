@@ -2,7 +2,7 @@
   <component :is="layout">
     <div class="login">
       <Loading v-if="profile.loading" />
-      <h2>{{$t('login.message')}}</h2>
+      <h2>Login</h2>
       <div class="box">
         <form class="p-4">
           <div class="row" v-if="profile && profile.errors">
@@ -13,7 +13,7 @@
             >{{error}}</div>
           </div>
           <div class="form-group">
-            <label for="email">{{$t('login.email')}}</label>
+            <label for="email">Your email</label>
             <input
               type="email"
               class="form-control"
@@ -23,7 +23,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="password">{{$t('login.password')}}</label>
+            <label for="password">Password</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
           </div>
           <div class="text-center">
@@ -32,20 +32,20 @@
               @click.prevent
               @click="login"
               class="btn btn-primary rounded border border-primary px-5"
-            >{{$t('login.button')}}</button>
+            >Login</button>
           </div>
           <div class="col text-center">
             <br />
-            {{$t('login.question')}}
-            <router-link :to="`/${$i18n.locale}/register`">{{$t('login.register')}}</router-link>
+            Already have account?
+            <router-link :to="`/register`">Register</router-link>
             <br />
-            <router-link :to="`/${$i18n.locale}/reset`">{{$t('login.reset')}}</router-link>
+            <router-link :to="`/reset`">Reset password</router-link>
           </div>
         </form>
       </div>
       <div class="text-center">
-        {{$t('login.back')}}
-        <router-link :to="`/${$i18n.locale}`" class="p-1">{{$t('login.home')}}</router-link>
+        Go back
+        <router-link :to="'/'" class="p-1">home</router-link>
       </div>
     </div>
   </component>
@@ -53,7 +53,7 @@
 
 <script>
 import Loading from "./../commons/Loading";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 const minima_layout = "minima";
 export default {
   components: {
@@ -65,15 +65,22 @@ export default {
       user: {
         email: "",
         password: ""
-      }
+      },
+      nextUrl: null,
+      selectedOption: null
     };
+  },
+  mounted() {
+    this.nextUrl = this.$route.query.url || null;
+    console.log("Previours url path ===>", this.nextUrl);
   },
   computed: {
     layout() {
       return (this.$route.meta.layout || minima_layout) + "-layout";
     },
     profile() {
-      return this.$store.getters.profile;
+      const profile = this.$store.getters.profile;
+      return profile;
     },
     validateLogin() {
       if (!this.user.email || !this.user.password) {

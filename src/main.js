@@ -11,15 +11,26 @@ import Default from "./layouts/Default.vue";
 import Minima from "./layouts/Minima.vue";
 import Account from "./layouts/Account.vue";
 import store from "./store";
-import i18n from "./i18n";
 import VueLazyload from "vue-lazyload";
 
 import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/index.css";
 
+// Register icons
+
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+
 Vue.use(VueToast);
 
-Vue.use(VueLazyload);
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: "dist/error.png",
+  loading: require("@/assets/images/spinner.svg"),
+  attempt: 1
+});
 
 Vue.component("default-layout", Default);
 Vue.component("minima-layout", Minima);
@@ -100,27 +111,17 @@ Vue.filter("date", function(time) {
   }
   var i = 0,
     format;
-  while ((format = time_formats[i++]))
+  while ((format = time_formats[i++])) {
     if (seconds < format[0]) {
-      if (typeof format[2] == "string") return format[list_choice];
-      else
+      if (typeof format[2] === "string") return format[list_choice];
+      else {
         return Math.floor(seconds / format[2]) + " " + format[1] + " " + token;
+      }
     }
+  }
   return time;
 });
 
-router.beforeEach((to, from, next) => {
-  // use the language from the routing param or default language
-  let language = to.params.lang;
-  if (!language) {
-    language = "en";
-  }
-
-  // set the current language for i18n.
-  i18n.locale = language;
-
-  next();
-});
 
 Vue.mixin({
   data: function() {
@@ -148,7 +149,7 @@ Vue.mixin({
             type = "a";
             break;
           default:
-            type = "n"
+            type = "n";
             break;
         }
         return type;
@@ -156,17 +157,9 @@ Vue.mixin({
     }
   }
 });
-
-// Register icons
-
-import { fas } from "@fortawesome/free-solid-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
 library.add(fas);
 library.add(fab);
 Vue.component("icon", FontAwesomeIcon);
-
 
 // Create Vue instance
 new Vue({
@@ -174,7 +167,6 @@ new Vue({
   el: "#app",
   router,
   components: { App },
-  i18n,
   saveScrollPosition: false,
   template: "<App/>"
 });

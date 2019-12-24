@@ -3,21 +3,20 @@
     <Header />
     <div class="page-wrapper">
       <div v-if="loaded && fetch_user.loading" class="grab-page-loading"></div>
-      <div class="container">
-        <div v-show="loaded && !fetch_user.loading">
-          <div class="mb-3">
-            <ProfileBar :data="fetch_user" />
-          </div>
+      <div v-if="loaded && fetch_user && !fetch_user.loading">
+        <div class="mb-3">
+          <ProfileBar :data="fetch_user" />
+        </div>
+        <div class="container">
           <div class="row pt-3">
-            <div class="d-none d-dm-block d-lg-block col-md-3 col-lg-3">
+            <div v-if="hasSidebar" class="d-dm-block d-lg-block col-sm-12 col-md-3 col-lg-3">
               <Sidebar :user="fetch_user.user" />
             </div>
-            <div class="col-sm-12 col-md-9 col-lg-9">
+            <div
+              :class="[hasSidebar ? 'col-sm-12 col-md-9 col-lg-9' : 'col-sm-12 col-md-12 col-lg-12' ]"
+            >
               <slot :fetch_user="fetch_user" />
             </div>
-            <!-- <div class="d-none d-dm-block d-lg-block col-lg-2">
-            <AdminMenu />
-            </div>-->
           </div>
         </div>
       </div>
@@ -32,9 +31,8 @@ import { mapGetters, mapActions } from "vuex";
 import Header from "@/components/commons/Header";
 import Footer from "@/components/commons/Footer";
 import Sidebar from "@/app/dashboard/Sidebar";
-// import MessageBar from "@/app/dashboard/MessageBar";
 import AdminMenu from "@/app/dashboard/AdminMenu";
-import ProfileBar from "@/app/profile/ProfileBar";
+import ProfileBar from "@/app/dashboard/shared/ProfileBar";
 
 export default {
   name: "accountLayout",
@@ -42,14 +40,19 @@ export default {
     Header,
     Sidebar,
     ProfileBar,
-    // MessageBar,
     Footer,
     AdminMenu
   },
   data() {
     return {
-      loaded: false
+      loaded: false,
+      hasSidebar: true
     };
+  },
+  created() {
+    if (this.$route.path.includes("dashboard/t/tutor-application") || this.$route.path.includes("dashboard/p/hiring/")) {
+      this.hasSidebar = false;
+    }
   },
   mounted() {
     this.FETCH_USER(JSON.parse(localStorage.getItem("user")).username);

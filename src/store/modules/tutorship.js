@@ -36,12 +36,10 @@ export default {
       state.tutoring_messages.errors = payload
     },
     COMPOSE_TUTORSHIP_SUCCESS(state, payload) {
-      console.log('success', payload)
       state.compose_tutoring.loading = false
       state.compose_tutoring.tutorship = { ...state.compose_tutorship.tutorship, ...payload.tutorship }
     },
     COMPOSE_TUTORSHIP_FAILURE(state, payload) {
-      console.log('error', payload)
         state.compose_tutoring.errors = payload
     },
   },

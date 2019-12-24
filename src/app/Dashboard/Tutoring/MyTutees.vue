@@ -13,7 +13,7 @@
           <div v-if="val.status ==='accepted' || val.status ==='request_cancel'" class="accepted" />
           <div v-if="val.status ==='rejected'" class="rejected" />
           <div v-if="val.status ==='terminated'" class="terminated" />
-          <router-link :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${val.id}`">
+          <router-link :to="`/profile/${profile.user.username}/tutoring/${val.id}`">
             <div class="row">
               <div class="media p-3 my-1 mx-3" style="position:relative">
                 <div class="media-body px-3">
@@ -27,7 +27,7 @@
                     </div>
                     <div>
                       <router-link
-                        :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${val.id}`"
+                        :to="`/profile/${profile.user.username}/tutoring/${val.id}`"
                         class="btn btn-outline-success text-success rounded px-4"
                       >
                         Go to tutorship
@@ -51,7 +51,7 @@
                     </div>
                     <div>
                       <router-link
-                        :to="`/${$i18n.locale}/profile/${profile.user.username}/tutoring/${val.id}`"
+                        :to="`/profile/${profile.user.username}/tutoring/${val.id}`"
                         class="btn btn-outline-success text-success rounded px-4"
                       >
                         Go to tutorship

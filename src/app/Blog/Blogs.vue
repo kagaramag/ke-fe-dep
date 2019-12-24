@@ -14,26 +14,26 @@
                 <div class>
                   <img
                     v-if="post.coverUrl"
-                    :src="`${CDN_IMAGE}/c_thumb,h_200,w_500/${post.coverUrl}`"
+                    v-lazy="`${CDN_IMAGE}/c_thumb,h_200,w_500/${post.coverUrl}` || avatar"
                     class="card-img-top mb-2"
                     :alt="post.title"
                   />
                   <h2>
                     <router-link
-                      :to="`/${$i18n.locale}/post/${post.category}/${post.slug}`"
+                      :to="`/post/${post.category}/${post.slug}`"
                       class="text-dark"
                     >{{ post.title }}</router-link>
                   </h2>
                   <div class="row">
                     <router-link
-                      :to="`/${$i18n.locale}/post/${post.category}/${post.slug}`"
+                      :to="`/post/${post.category}/${post.slug}`"
                       class="btn px-4 rounded border border-dark"
                     >Read More &rarr;</router-link>
                   </div>
                   <div class="p-2 my-2 text-muted">
                     Posted on {{post.createdAt | date }} by
                     <router-link
-                      :to="`/${$i18n.locale}/@${post.author.username}`"
+                      :to="`/@${post.author.username}`"
                     >{{post.author.firstName}} {{post.author.lastName}}</router-link>
                   </div>
                 </div>

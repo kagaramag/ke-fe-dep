@@ -2,14 +2,14 @@
   <div>
     <component :is="layout">
       <div class="container">
-        <div class="row p-3">
-          <h1 class="my-3">{{article.title}}</h1>
+        <div class="row py-0 px-3">
+          <h1 class="mt-1 mb-3">{{article.title}}</h1>
           <div class="col-sm-12 col-md-8 col-lg-8 p-0 article-body">
             <div class="mb-3">
               <span class="float-left">
                 Posted
                 <b>{{ article.createdAt | date }}</b> by
-                <router-link :to="`/${$i18n.locale}/@${article.author.username}`">
+                <router-link :to="`/@${article.author.username}`">
                   <b>{{article.author.firstName}} {{article.author.lastName}}</b>
                 </router-link>
                 <div>
@@ -23,22 +23,23 @@
             </div>
             <div class="clear"></div>
             <div class="mt-3" v-html="article.body"></div>
-            <div class="my-4 article-quick-link" v-if="auth && auth.id === article.userId">
+            <div class="my-4 article-quick-link bg-light py-4 px-3 shadow-2 radius-1" v-if="auth && auth.id === article.userId">
+              <div class="pb-2">You wrote this article</div>
               <router-link
-                :to="`/${$i18n.locale}/dashboard/${type}/my-blog/${article.slug}/edit`"
-                class="border border-danger radius-1"
+                :to="`/dashboard/${type}/my-blog/${article.slug}/edit`"
+                class="radius-1  btn btn-success"
               >
                 <icon class="icon" icon="pen" />&nbsp;Edit this post
               </router-link>
               <router-link
-                :to="`/${$i18n.locale}/dashboard/${type}/my-blog`"
-                class="border border-danger radius-1"
+                :to="`/dashboard/${type}/my-blog`"
+                class="radius-1 btn btn-primary"
               >
-                <icon class="icon" icon="pen" />&nbsp;My blog
+                <icon class="icon" icon="signature" />&nbsp;My blog
               </router-link>
               <router-link
-                :to="`/${$i18n.locale}/dashboard/${type}`"
-                class="border border-danger radius-1"
+                :to="`/dashboard/${type}`"
+                class="radius-1  btn btn-primary"
               >
                 <icon class="icon" icon="stream" />&nbsp;Dashboard
               </router-link>
@@ -135,6 +136,5 @@ export default {
   padding: 7px 15px;
   margin-right: 10px;
   font-weight: 300;
-  color: #ce1c1c !important;
 }
 </style>

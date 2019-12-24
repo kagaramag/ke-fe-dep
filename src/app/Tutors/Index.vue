@@ -3,34 +3,38 @@
     <component :is="layout">
       <div class="container">
         <!-- search tutors -->
-
         <!-- List of Tutors -->
-        <h2 class="mt-3 text-center">{{$t('tutors.title')}}</h2>
-        <div class="grabtutors mb-5" v-if="tutors">
+        <div class="grabtutors mb-5" v-if="tutors && tutors.tutors && tutors.tutors.length > 0">
+          <h2 class="mt-4 text-center">Tutors</h2>
+          <div class="text-center">Find the perfect tutor around you</div>
           <div class="row">
-            <div v-for="tutor in tutors.tutors" class="col-sm-12 col-md-4 col-lg-4" :key="tutor.index">
-              <router-link :to="`/${$i18n.locale}/@${tutor.username}`">
+            <div
+              v-for="tutor in tutors.tutors"
+              class="col-sm-12 col-md-6 col-lg-4"
+              :key="tutor.index"
+            >
+              <router-link :to="`/@${tutor.user.username}`">
                 <div class="card shadow-lg radius-3">
                   <div class="row pt-3">
                     <div class="col-12">
                       <img
-                        :src="tutor.image || avatar"
+                        v-lazy="tutor.user.image || avatar"
                         class="card-img-top shadow rounded-circle mb-4"
-                        :alt="tutor.lastName"
+                        :alt="tutor.user.lastName"
                       />
                     </div>
                     <div class="col-12 text-center">
-                      <h3 class="text-truncate mb-0 nobold text-dark text-center">
-                        {{tutor.lastName | capitalize}} {{tutor.firstName}}
-                      </h3>
+                      <h3
+                        class="text-truncate mb-0 nobold text-dark text-center"
+                      >{{tutor.user.lastName | capitalize}} {{tutor.user.firstName}}</h3>
                       <div class="card-text mx-3 my-1" style="color:#646464;height:70px">
-                        <div :inner-html.prop="tutor.bio | truncate(100)"></div>
+                        <div :inner-html.prop="tutor.user.bio | truncate(100)"></div>
                       </div>
                     </div>
                     <div class="col-12 text-center py-3">
                       <router-link
                         class="btn btn-success shadow rounded"
-                        :to="`/${$i18n.locale}/@${tutor.username}`"
+                        :to="`/@${tutor.user.username}`"
                       >View Profile</router-link>
                     </div>
                   </div>
@@ -38,6 +42,36 @@
               </router-link>
             </div>
           </div>
+          <div class="row pagination">
+            <div class="col text-center my-5">
+              <button
+                v-on:click="goToPrev()"
+                :disabled="pagination.page < 2"
+                type="button"
+                class="btn btn-light border border-dark rounded-pill mx-3 px-5"
+              >Prev</button>
+              <button
+                v-on:click="goToNext()"
+                :disabled="
+                tutors && tutors.tutors && 
+                  tutors.tutors.length < 3
+              "
+                type="button"
+                class="btn btn-light border border-dark rounded-pill mx-3 px-5"
+              >Next</button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="grabtutors mb-5"
+          v-if="loaded && tutors && tutors.tutors && tutors.tutors.length === 0 && tutors.count === 0"
+        >
+          <NotFound
+            message="Tutors not found"
+            description="Something wrong occured while retrieving informations"
+            icon="user"
+          />
         </div>
       </div>
     </component>
@@ -46,12 +80,27 @@
 
 <script>
 import { mapGetters } from "vuex";
+import NotFound from "@/app/NotFound";
 
 const default_layout = "default";
 export default {
   name: "tutors",
+  components: {
+    NotFound
+  },
+  data() {
+    return {
+      loaded: false,
+      pagination: {
+        limit: 9,
+        offset: 0,
+        page: 1
+      }
+    };
+  },
   mounted() {
-    this.$store.dispatch("FETCH_TUTORS");
+    this.$store.dispatch("FETCH_TUTORS", this.pagination);
+    this.loaded = true;
   },
   computed: {
     tutors() {
@@ -60,6 +109,30 @@ export default {
     ...mapGetters(["fetch_tutors"]),
     layout() {
       return (this.$route.meta.layout || default_layout) + "-layout";
+    }
+  },
+  methods: {
+    goToPrev() {
+      this.pagination = {
+        limit: 9,
+        offset:
+          this.pagination.page > 1
+            ? this.pagination.offset - this.pagination.limit
+            : 0,
+        page: this.pagination.page > 1 ? this.pagination.page - 1 : 1
+      };
+      this.$store.dispatch("FETCH_TUTORS", this.pagination);
+    },
+    goToNext() {
+      this.pagination = {
+        limit: 9,
+        offset:
+          this.pagination.page > 1
+            ? this.pagination.limit * this.pagination.page
+            : this.pagination.limit,
+        page: this.pagination.page + 1
+      };
+      this.$store.dispatch("FETCH_TUTORS", this.pagination);
     }
   }
 };
@@ -117,5 +190,9 @@ export default {
 }
 .verified .icon {
   color: #4e836a;
+}
+.pagination .btn:disabled {
+  opacity: 0.2;
+  cursor: unset !important;
 }
 </style>

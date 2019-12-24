@@ -77,8 +77,8 @@ export default {
 
   // mutations
   mutations: {
-    FETCH_KIDS_SUCCESS (state, payload) {
-      state.fetch_kids.kids = ''
+    FETCH_KIDS_SUCCESS(state, payload) {
+      state.fetch_kids.kids = [];
       state.fetch_kids.kids = [...state.fetch_kids.kids, ...payload.tutoring]
     },
     FETCH_KIDS_FAILURE (state, payload) {
@@ -126,11 +126,9 @@ export default {
       state.requested_tutor.message = ''
     },
     ACCEPT_REQUEST_SUCCESS (state, payload) {
-      console.log('hello', payload)
-      // router.push(`/${i18n.locale}/profile/${payload.user.username}/tutoring/`);
+      // router.push(`/profile/${payload.user.username}/tutoring/`);
     },
     ACCEPT_REQUEST_FAILURE (state, payload) {
-      console.log('failure', payload)
       state.accept_request.loading = false
       state.accept_request.errors = payload
       state.accept_request.message = ''

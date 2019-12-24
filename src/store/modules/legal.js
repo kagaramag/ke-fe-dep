@@ -1,7 +1,5 @@
 import AxiosHelper from '@/helpers/AxiosHelper';
 import router from '@/router';
-import i18n from '../../i18n';
-// const username = JSON.parse(localStorage.getItem('user')).username || '';
 export default {
   // initial state
   state: {

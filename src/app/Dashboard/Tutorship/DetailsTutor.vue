@@ -4,14 +4,14 @@
       <div v-if="tutoring.status ==='requested'" style="font-size: 18px">
         <div v-if="profile.user.role ==='parent'">
           <b>You</b> requested <b>
-            <router-link :to="`/${$i18n.locale}/profile/${tutoring.tutor.username}`">
+            <router-link :to="`/profile/${tutoring.tutor.username}`">
             {{tutoring.tutor.firstName}} {{tutoring.tutor.lastName}}
             </router-link>
             </b> to tutor your kid 
           <b>{{tutoring.kid.names}}</b>
         </div>
         <div v-if="profile.user.role ==='tutor'">
-          <router-link :to="`/${$i18n.locale}`">
+          <router-link :to="`/`">
             <b>{{tutoring.kid.parent.lastName}} {{tutoring.kid.parent.firstName}}</b>
           </router-link>&nbsp; requested you to tutor
           <b>{{tutoring.kid.names}}</b>
@@ -23,7 +23,7 @@
 
       <div v-if="tutoring.status ==='accepted'">
         You are connected with
-        <router-link :to="`/${$i18n.locale}`">
+        <router-link :to="`/`">
           <b>{{tutoring.kid.names}}</b>
         </router-link>
       </div>

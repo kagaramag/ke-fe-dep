@@ -14,13 +14,13 @@
       <p>
         Aww yeah, we understand that your children deserve the best tutors. We have made it easy for you to find the most competent tutors wherever you are.
         For more information,
-        <router-link :to="`/${$i18n.locale}`">Check here</router-link>the process and criteria to admin tutors on our website and
-        <router-link :to="`/${$i18n.locale}`">here</router-link>for tips to hire a tutor you really need.
+        <router-link :to="`/`">Check here</router-link>the process and criteria to admin tutors on our website and
+        <router-link :to="`/`">here</router-link>for tips to hire a tutor you really need.
       </p>
       <hr />
       <div>
         <router-link
-          :to="`/${$i18n.locale}`/tutors"
+          :to="`/`/tutors"
           class="btn btn-light border border-success roundedfloat-right"
         >Find Tutor</router-link>
       </div>
@@ -35,14 +35,14 @@
         "
     >
       <div class="alert alert-success" role="alert">
-        <h4 class="alert-heading">{{$t('userprofile.notification.title')}}</h4>
-        <p>{{$t('userprofile.notification.content')}}</p>
+        <h4 class="alert-heading">Complete your profile</h4>
+        <p>Aww yeah, we understand that your children deserve the best tutors. We have made it easy for you to find the most competent tutors wherever you are.</p>
         <hr />
         <div>
           <router-link
             class="btn btn-light border border-success rounded"
-            :to="`/${$i18n.locale}/profile/${profile.user.username}/edit`"
-          >{{$t('userprofile.notification.button')}}</router-link>
+            :to="`/profile/${profile.user.username}/edit`"
+          >Go to Profile</router-link>
         </div>
         <div class="clear"></div>
       </div>
@@ -52,8 +52,8 @@
 
     <!-- BIO -->
     <div class="alert mb-3 p-0" role="alert">
-      <h4 class="alert-heading">{{$t('userprofile.bio.title')}}</h4>
-      <div v-if="fetch_user" v-html="fetch_user.user.bio || $t('userprofile.bio.notification')"></div>
+      <h4 class="alert-heading">Bio</h4>
+      <div v-if="fetch_user" v-html="fetch_user.user.bio || 'No bio yet'"></div>
       <div class="clear"></div>
     </div>
   </div>

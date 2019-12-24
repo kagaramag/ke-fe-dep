@@ -1,10 +1,10 @@
 <template>
-  <div class="shadow-2 bg-white radius-2 p-3 mt-4" slot-scope="education" v-if="education && education.length">
-    <h4 class="my-2">Education</h4>
+  <div class="p-3 mt-4" slot-scope="education" v-if="education && education.length">
+    <h4 class="my-3 px-0">Education</h4>
       <div
         v-for="item in education"
         :key="item.index"
-        class="row my-3 radius-3 rounded"
+        class="shadow radius-3 rounded mb-4 mt-2 row"
       >
         <div class="col-2">
           <div class="image image-identity">
@@ -20,7 +20,6 @@
       </div>
   </div>
 </template>
-
 <script>
 export default {
   name: "ProfileBio",

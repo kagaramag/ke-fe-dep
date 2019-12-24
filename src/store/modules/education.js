@@ -1,4 +1,4 @@
-import AxiosHelper from '@/helpers/AxiosHelper';
+import AxiosHelper from "@/helpers/AxiosHelper";
 
 export default {
   // initial state
@@ -6,7 +6,7 @@ export default {
     fetch_education: {
       education: [],
       errors: {},
-      message: '',
+      message: "",
       loading: false
     }
   },
@@ -19,12 +19,6 @@ export default {
 
   // mutations
   mutations: {
-    FETCH_EDUCATION_SUCCESS(state, payload) {
-      state.fetch_education.education = {
-        ...state.fetch_education,
-        ...payload
-      };
-    },
     FETCH_EDUCATION_FAILURE(state) {
       state.fetch_education.education = [];
     }
@@ -36,21 +30,13 @@ export default {
     FETCH_EDUCATION: (context, payload) => {
       AxiosHelper.get(`/education/${payload}`)
         .then(response => {
-          context.commit('FETCH_EDUCATION_SUCCESS', response.data);
+          context.commit("FETCH_EDUCATION_SUCCESS", response.data);
         })
         .catch(error => {
-          context.commit('FETCH_EDUCATION_FAILURE', error.response.data);
+          context.commit("FETCH_EDUCATION_FAILURE", error.response.data);
         });
     },
 
-    UPDATE_EDUCATION: (context, payload) => {
-      AxiosHelper.post('/education', payload)
-        .then(response => {
-          context.commit('FETCH_EDUCATION_SUCCESS', response.data);
-        })
-        .catch(error => {
-          context.commit('FETCH_EDUCATION_FAILURE', error.response.data);
-        });
-    }
+    
   }
 };

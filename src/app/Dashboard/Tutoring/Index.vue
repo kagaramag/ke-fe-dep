@@ -1,7 +1,6 @@
 <template>
   <div id="tutoring">
     <component :is="layout">
-        <MyKids v-if="isParent" :profile="profile" />
         <MyTutees v-if="isTutor" :profile="profile" />
     </component>
   </div>
@@ -10,7 +9,6 @@
 <script>
 import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-import MyKids from "./MyKids";
 import MyTutees from "./MyTutees";
 
 const account_layout = "account";
@@ -18,7 +16,6 @@ const account_layout = "account";
 export default {
   name: "tutoring",
   components: {
-    MyKids,
     MyTutees,
   },
   computed: {

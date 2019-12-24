@@ -3,22 +3,20 @@
     <div class="row">
       <div class="col-md-5">
         <div class="image">
-          <img src="./../../assets/images/404-01.png" />
+          <img src="@/assets/images/404-01.png" />
         </div>
       </div>
       <div class="col-md-7">
         <br />
-        <br />
-
-        <h1>{{$t('notfound.title')}}</h1>
-        <h2>{{$t('notfound.error')}}</h2>
-        <div class="nobold">{{$t('notfound.message')}}</div>
+        <h1>Oooops!!!</h1>
+        <h2>{{message || 'Error 404'}}</h2>
+        <div class="nobold">{{ description || 'The page you are looking for does not exit or it is currently unavailable' }}</div>
         <br />
         <div>
           <router-link
-            :to="`/${$i18n.locale}`"
+            :to="'/'"
             class="btn bg-primary text-light rounded px-4"
-          >{{$t('notfound.forward')}}</router-link>
+          >Go back Home</router-link>
         </div>
       </div>
       <div class="clear"></div>
@@ -30,6 +28,7 @@
 const minima_layout = "minima";
 export default {
   name: "notfound",
+  props: ["message", "description"],
   computed: {
     layout() {
       return (this.$route.meta.layout || minima_layout) + "-layout";
@@ -54,5 +53,4 @@ export default {
   font-size: 4em;
   font-weight: 600;
 }
-
 </style>

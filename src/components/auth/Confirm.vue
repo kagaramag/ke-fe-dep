@@ -12,12 +12,12 @@
             >{{error}}</div>
           </div>
           <div class="form-group">
-            <label for="password">{{$t('register.password')}}</label>
+            <label for="password">Password</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
           </div>
 
           <div class="form-group">
-            <label for="password">{{$t('register.confirm')}}</label>
+            <label for="password">Confirm password</label>
             <input
               type="password"
               class="form-control"
@@ -31,13 +31,13 @@
               @click.prevent
               @click="reset"
               class="btn btn-primary rounded border border-primary px-5"
-            >{{$t('register.confirmbutton')}}</button>
+            >Confirm &amp; Save</button>
           </div>
         </form>
       </div>
       <div class="text-center">
-        {{$t('register.back')}}
-        <router-link :to="`/${$i18n.locale}`" class="p-1">{{$t('register.home')}}</router-link>
+        Go back
+        <router-link :to="'/'" class="p-1">Home</router-link>
       </div>
     </div>
   </component>

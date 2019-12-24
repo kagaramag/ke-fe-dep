@@ -1,30 +1,30 @@
 <template>
   <component :is="layout">
     <div class="account-type">
-      <h2 style="font-weight:none">{{$t('register.whoiam')}}</h2>
+      <h2 style="font-weight:none">I am...</h2>
       <div class="box">
         <div class="row mx-2">
           <div class="col col-sm-12 col-md-12 col-lg-12 my-2">
-            <router-link :to="`/${$i18n.locale}/register/tutor`">
+            <router-link :to="'register/tutor'">
               <div class="p-2 type-card">
-                <h3 class="text-dark">{{$t('register.accountType.tutor.type')}}</h3>
-                <div class="text-dark">{{$t('register.accountType.tutor.description')}}</div>
+                <h3 class="text-dark">Tutor</h3>
+                <div class="text-dark">Find kids easily around you</div>
               </div>
             </router-link>
           </div>
           <div class="col col-sm-12 col-md-12 col-lg-12 my-2">
-            <router-link :to="`/${$i18n.locale}/register/parent`">
-            <div class="p-2 type-card">
-              <h3 class="text-dark">{{$t('register.accountType.parent.type')}}</h3>
-              <div class="text-dark">{{$t('register.accountType.parent.description')}}</div>
-            </div>
+            <router-link :to="'register/parent'">
+              <div class="p-2 type-card">
+                <h3 class="text-dark">Parent</h3>
+                <div class="text-dark">You can find a trusted tutor for your kids</div>
+              </div>
             </router-link>
           </div>
         </div>
         <br />
         <div class="col text-center">
-          {{$t('register.question')}}
-          <router-link :to="`/${$i18n.locale}/login`">{{$t('register.login')}}</router-link>
+          Already have account?
+          <router-link :to="'login'">Login</router-link>
         </div>
       </div>
     </div>

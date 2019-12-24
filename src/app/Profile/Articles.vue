@@ -9,7 +9,7 @@
       <div class="col-2">
         <div class="image image-identity">
           <img
-            :src="article.coverUrl ? `${CDN_IMAGE}/c_thumb,h_250,w_500/${article.coverUrl}` : image"
+            v-lazy="article.coverUrl ? `${CDN_IMAGE}/c_thumb,h_250,w_500/${article.coverUrl}` : avatar"
             class="card-img-top mb-2"
             :alt="article.title"
           />
@@ -17,8 +17,11 @@
       </div>
       <div class="col-10">
         <h6 class="my-1">
-          <router-link class="text-dark" :to="`/${$i18n.locale}/post/${article.category}/${article.slug}`">{{article.title}}</router-link>
-          </h6>
+          <router-link
+            class="text-dark"
+            :to="`/post/${article.category}/${article.slug}`"
+          >{{article.title}}</router-link>
+        </h6>
 
         <div class="py-2 my-2 text-muted">Posted on {{article.createdAt | date }}</div>
       </div>

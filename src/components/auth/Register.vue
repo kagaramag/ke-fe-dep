@@ -1,7 +1,7 @@
 <template>
   <component :is="layout">
     <div class="register">
-      <h2>{{$t('register.message')}}</h2>
+      <h2>Register</h2>
       <div class="box">
         <div class="px-4">
           <div class="row" v-if="register_user && register_user.errors">
@@ -15,15 +15,14 @@
             <div class="alert alert-success">
               {{register_user.message}}.
               <br />
-              <router-link :to="`/${$i18n.locale}/login`">{{$t('register.here')}}</router-link>
-              {{' '}} {{$t('register.loginn')}}
+              <router-link :to="`/login`">Click here</router-link>to login
             </div>
           </div>
         </div>
         <form class="px-4" v-if="register_user && !register_user.success">
           <div class="row">
             <div class="form-group col col-sm-12 col-md-6 col-lg-6">
-              <label for="firstname">{{$t('register.firstname')}}</label>
+              <label for="firstname">First name</label>
               <input
                 type="text"
                 class="form-control"
@@ -42,7 +41,7 @@
               >Last name must not have more than {{$v.user.firstName.$params.maxLength.max}} letters.</div>
             </div>
             <div class="form-group col col-sm-12 col-md-6 col-lg-6">
-              <label for="lastname">{{$t('register.lastname')}}</label>
+              <label for="lastname">Last name</label>
               <input
                 type="text"
                 class="form-control"
@@ -87,7 +86,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="email">{{$t('register.email')}}</label>
+            <label for="email">Your email</label>
             <input
               type="email"
               class="form-control"
@@ -99,7 +98,7 @@
             <div class="error py-2" v-if="!$v.user.email.email">Enter a valid email</div>
           </div>
           <div class="form-group">
-            <label for="password">{{$t('register.password')}}</label>
+            <label for="password">Password</label>
             <input type="password" class="form-control" v-model="user.password" id="password" />
             <div class="error py-2" v-if="!$v.user.password.required">Password is required</div>
             <div
@@ -116,7 +115,7 @@
             <label
               class="form-check-label"
               for="terms"
-            >{{$t('register.terms.title')}} {{$t('register.terms.agreement')}}, {{$t('register.terms.terms')}} {{$t('register.terms.and')}} {{$t('register.terms.privacy')}}</label>
+            >By registering, you agree to the User Agreement, Terms and Privacy Policy</label>
           </div>
           <div class="text-center">
             <button
@@ -125,7 +124,7 @@
               @click="register"
               :disabled="!validateRegister ? true : false"
               class="btn btn-primary rounded px-5"
-            >{{$t('register.button')}}</button>
+            >Register</button>
           </div>
           <div
             class="mt-2 alert alert-success text-center"
@@ -133,14 +132,14 @@
           >Wait! We are registering you...</div>
           <br />
           <div class="col text-center">
-            {{$t('register.question')}}
-            <router-link :to="`/${$i18n.locale}/login`">{{$t('register.login')}}</router-link>
+            Already have account?
+            <router-link :to="'/login'">Login</router-link>
           </div>
         </form>
       </div>
       <div class="text-center">
-        {{$t('register.back')}}
-        <router-link :to="`/${$i18n.locale}`">{{$t('register.home')}}</router-link>
+        Go back
+        <router-link :to="'/'">home</router-link>
       </div>
     </div>
   </component>
@@ -148,7 +147,6 @@
 
 <script>
 import Vue from "vue";
-// import Loading from "@/commons/Loading";
 import { mapActions, mapGetters } from "vuex";
 import {
   required,
@@ -164,9 +162,6 @@ const alpha = helpers.regex("alpha", /^[a-zA-Z]*$/);
 
 const minima_layout = "minima";
 export default {
-  components: {
-    // Loading
-  },
   name: "register",
   data() {
     return {
