@@ -122,7 +122,6 @@ export default {
       state.register_user.message = payload.message;
     },
     REGISTER_USER_FAILURE(state, payload) {
-      console.log("errors", payload);
       state.register_user.errors = payload;
       state.register_user.loading = false;
       state.register_user.success = false;
@@ -167,15 +166,15 @@ export default {
       state.fetch_user.education_updated = false;
     },
     RESET_FETCH_USER(state) {
-      (state.fetch_user.errors = {}),
-        (state.fetch_user.message = ""),
-        (state.fetch_user.loading = false),
-        (state.fetch_user.success = false),
-        (state.fetch_user.info_updated = false),
-        (state.fetch_user.photo_updated = false),
-        (state.fetch_user.education_updated = false),
-        (state.fetch_user.location_updated = false),
-        (state.fetch_user.details_updated = false);
+      state.fetch_user.errors = {};
+      state.fetch_user.message = "";
+      state.fetch_user.loading = false;
+      state.fetch_user.success = false;
+      state.fetch_user.info_updated = false;
+      state.fetch_user.photo_updated = false;
+      state.fetch_user.education_updated = false;
+      state.fetch_user.location_updated = false;
+      state.fetch_user.details_updated = false;
     },
     LOCATION_UPDATED(state) {
       state.fetch_user.location_updated = true;
@@ -197,29 +196,40 @@ export default {
       let url;
       switch (payload.user.role) {
         case "parent":
-          url = 'dashboard/p';
+          url = "dashboard/p";
           break;
         case "normal":
-          url = 'dashboard/n';
+          url = "dashboard/n";
           break;
         case "learner":
-          url = 'dashboard/l';
+          url = "dashboard/l";
           break;
         case "tutor":
-          url = 'dashboard/t';
+          url = "dashboard/t";
           break;
         case "admin":
-          url = 'dashboard/a';
+          url = "dashboard/a";
           break;
         default:
-          url = '/';
+          url = "/";
           break;
       }
       router.push(url);
     },
     LOGIN_USER_FAILURE(state, payload) {
       state.profile.loading = false;
-      state.profile.errors = payload.errors;
+      state.profile.errors = payload;
+    },
+    ACTIVATE_USER_SUCCESS(state, payload) {
+      state.profile.loading = false;
+      state.profile.success = true;
+      state.profile.user = {};
+      state.profile.errors = {};
+      state.profile.message = payload.message;
+    },
+    ACTIVATE_USER_FAILURE(state, payload) {
+      state.profile.loading = false;
+      state.profile.errors = payload;
     },
     LOGIN_USER_OUT(state) {
       state.profile = {
@@ -227,12 +237,13 @@ export default {
         errors: {},
         loading: false,
         message: "",
-        isLoggedIn: false
+        isLoggedIn: false,
+        success: false
       };
       localStorage.user = null;
       localStorage.isAuth = false;
       localStorage.token = null;
-      router.push({ path: '/login' });
+      router.push({ path: "/login" });
     },
     UPDATE_PROFILE(state, payload) {
       state.profile = { ...state.profile, ...payload };
@@ -251,6 +262,7 @@ export default {
       state.fetch_user.success = false;
     },
     FETCH_USER_SUCCESS(state, payload) {
+      console.log("fetch", payload);
       state.fetch_user.loading = false;
       state.fetch_user.user = payload.user;
       state.fetch_user.education = payload.education;
@@ -262,10 +274,11 @@ export default {
       state.fetch_user.success = true;
     },
     FETCH_USER_FAILURE(state, payload) {
-      (state.fetch_user.errors = payload.errors),
-        (state.fetch_user.loading = false);
+      state.fetch_user.errors = payload.errors;
+      state.fetch_user.loading = false;
       state.fetch_user.message = {};
-      (state.fetch_user.user = {}), (state.fetch_user.education = {});
+      state.fetch_user.user = {};
+      state.fetch_user.education = {};
       state.fetch_user.articles = {};
       state.fetch_user.location = {};
       state.fetch_user.kids = {};
@@ -286,6 +299,18 @@ export default {
     UPDATE_USER_FAILURE(state, payload) {
       state.fetch_user.message = "";
       state.fetch_user.errors = payload;
+    },
+    RESET_PASSWORD_SUCCESS(state, payload) {
+      state.profile.errors = {};
+      state.profile.message = payload.message;
+      state.profile.loading = false;
+      state.profile.success = true;
+    },
+    RESET_PASSWORD_FAILURE(state, payload) {
+      state.profile.errors = payload.errors;
+      state.profile.message = "";
+      state.profile.loading = false;
+      state.profile.success = false;
     }
   },
 
@@ -295,7 +320,7 @@ export default {
       context.commit("RESET_REGISTER");
     },
     RESET_PASSWORD: (context, payload) => {
-      AxiosHelper.post(`/auth/reset`, payload)
+      AxiosHelper.post(`/auth/request-reset`, payload)
         .then(response => {
           context.commit("FETCH_USER_SUCCESS", response.data);
         })
@@ -305,12 +330,14 @@ export default {
     },
 
     CONFIRM_PASSWORD: (context, payload) => {
-      AxiosHelper.patch(`/auth/reset/${payload.redirect}`, payload.passwords)
+      AxiosHelper.patch(`/auth/reset/${payload.redirect}`, {
+        password: payload.password
+      })
         .then(response => {
-          context.commit("FETCH_USER_SUCCESS", response.data);
+          context.commit("RESET_PASSWORD_SUCCESS", response.data);
         })
         .catch(error => {
-          context.commit("FETCH_USER_FAILURE", error.response.data);
+          context.commit("RESET_PASSWORD_FAILURE", error.response.data);
         });
     },
 
@@ -412,6 +439,17 @@ export default {
         .then(response => context.commit("LOGIN_USER_SUCCESS", response.data))
         .catch(error =>
           context.commit("LOGIN_USER_FAILURE", error.response.data.errors)
+        );
+    },
+    ACTIVATE_USER: (context, payload) => {
+      context.commit("RESET_ERROR");
+      context.commit("SITE_LOADING", true);
+      AxiosHelper.post("/auth/activate", payload)
+        .then(response =>
+          context.commit("ACTIVATE_USER_SUCCESS", response.data)
+        )
+        .catch(error =>
+          context.commit("ACTIVATE_USER_FAILURE", error.response.data.errors)
         );
     },
     LOGOUT_USER: context => {

@@ -1,145 +1,160 @@
 <template>
   <component :is="layout">
     <div class="register">
-      <h2>Register</h2>
-      <div class="box">
-        <div class="px-4">
-          <div class="row" v-if="register_user && register_user.errors">
-            <div
-              class="alert alert-danger"
-              v-for="error in register_user.errors"
-              :key="error.index"
-            >{{error}}</div>
-          </div>
-          <div class="row" v-if="register_user && register_user.message">
-            <div class="alert alert-success">
-              {{register_user.message}}.
-              <br />
-              <router-link :to="`/login`">Click here</router-link>to login
+      <h2>Create new account</h2>
+      <div v-if="!auth">
+        <div class="box">
+          <div class="px-4">
+            <div class="row" v-if="register_user && register_user.errors">
+              <div
+                class="alert alert-danger"
+                v-for="error in register_user.errors"
+                :key="error.index"
+              >{{error}}</div>
+            </div>
+            <div class="row" v-if="register_user && register_user.message">
+              <div class="alert alert-success">
+                {{register_user.message}}.
+                <br />
+                <router-link :to="`/login`">Click here</router-link>&nbsp;to login
+              </div>
             </div>
           </div>
+          <form class="px-4" v-if="register_user && !register_user.success">
+            <div class="row">
+              <div class="form-group col col-sm-12 col-md-6 col-lg-6">
+                <label for="firstname">First name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model.trim="$v.user.firstName.$model"
+                  id="firstname"
+                  autocomplete="off"
+                />
+                <div class="error py-2" v-if="!$v.user.firstName.required">First name is required</div>
+                <div
+                  class="error py-2"
+                  v-if="!$v.user.firstName.minLength"
+                >First name must have at least {{$v.user.firstName.$params.minLength.min}} letters.</div>
+                <div
+                  class="error py-2"
+                  v-if="!$v.user.firstName.maxLength"
+                >Last name must not have more than {{$v.user.firstName.$params.maxLength.max}} letters.</div>
+              </div>
+              <div class="form-group col col-sm-12 col-md-6 col-lg-6">
+                <label for="lastname">Last name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model.trim="$v.user.lastName.$model"
+                  id="lastname"
+                  autocomplete="off"
+                />
+                <div class="error py-2" v-if="!$v.user.lastName.required">Last name is required</div>
+                <div
+                  class="error py-2"
+                  v-if="!$v.user.lastName.minLength"
+                >Last name must have at least {{$v.user.lastName.$params.minLength.min}} letters.</div>
+                <div
+                  class="error py-2"
+                  v-if="!$v.user.lastName.maxLength"
+                >Last name must not have more than {{$v.user.lastName.$params.maxLength.max}} letters.</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mx-3">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="male"
+                    v-model="user.gender"
+                    @change="$v.user.gender.$touch()"
+                    value="male"
+                  />
+                  <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    id="female"
+                    v-model="user.gender"
+                    value="female"
+                  />
+                  <label class="form-check-label" for="female">Female</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Your email</label>
+              <input
+                type="email"
+                class="form-control"
+                v-model="user.email"
+                id="email"
+                autocomplete="off"
+              />
+              <div class="error py-2" v-if="!$v.user.email.required">Email is required</div>
+              <div class="error py-2" v-if="!$v.user.email.email">Enter a valid email</div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" v-model="user.password" id="password" />
+              <div class="error py-2" v-if="!$v.user.password.required">Password is required</div>
+              <div
+                class="error py-2"
+                v-if="!$v.user.password.minLength"
+              >Password must have at least {{$v.user.password.$params.minLength.min}} characters.</div>
+              <div
+                class="error py-2"
+                v-if="!$v.user.password.maxLength"
+              >Password must not have more than {{$v.user.password.$params.maxLength.max}} characters.</div>
+            </div>
+            <div class="form-check mb-1">
+              <input
+                type="checkbox"
+                v-model="terms"
+                name="terms"
+                class="form-check-input"
+                id="terms"
+              />
+              <label
+                class="form-check-label"
+                for="terms"
+              >By registering, you agree to the User Agreement, Terms and Privacy Policy</label>
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                @click.prevent
+                @click="register"
+                :disabled="!validateRegister ? true : false"
+                class="btn btn-primary rounded px-5"
+              >Register</button>
+            </div>
+            <div
+              class="mt-2 alert alert-success text-center"
+              v-if="register_user && register_user.loading && !register_user.success"
+            >Wait! We are registering you...</div>
+            <br />
+            <div class="col text-center">
+              Already have account?
+              <router-link :to="'/login'">Login</router-link>
+            </div>
+          </form>
         </div>
-        <form class="px-4" v-if="register_user && !register_user.success">
-          <div class="row">
-            <div class="form-group col col-sm-12 col-md-6 col-lg-6">
-              <label for="firstname">First name</label>
-              <input
-                type="text"
-                class="form-control"
-                v-model.trim="$v.user.firstName.$model"
-                id="firstname"
-                autocomplete="off"
-              />
-              <div class="error py-2" v-if="!$v.user.firstName.required">First name is required</div>
-              <div
-                class="error py-2"
-                v-if="!$v.user.firstName.minLength"
-              >First name must have at least {{$v.user.firstName.$params.minLength.min}} letters.</div>
-              <div
-                class="error py-2"
-                v-if="!$v.user.firstName.maxLength"
-              >Last name must not have more than {{$v.user.firstName.$params.maxLength.max}} letters.</div>
-            </div>
-            <div class="form-group col col-sm-12 col-md-6 col-lg-6">
-              <label for="lastname">Last name</label>
-              <input
-                type="text"
-                class="form-control"
-                v-model.trim="$v.user.lastName.$model"
-                id="lastname"
-                autocomplete="off"
-              />
-              <div class="error py-2" v-if="!$v.user.lastName.required">Last name is required</div>
-              <div
-                class="error py-2"
-                v-if="!$v.user.lastName.minLength"
-              >Last name must have at least {{$v.user.lastName.$params.minLength.min}} letters.</div>
-              <div
-                class="error py-2"
-                v-if="!$v.user.lastName.maxLength"
-              >Last name must not have more than {{$v.user.lastName.$params.maxLength.max}} letters.</div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="mx-3">
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  id="male"
-                  v-model="user.gender"
-                  @change="$v.user.gender.$touch()"
-                  value="male"
-                />
-                <label class="form-check-label" for="male">Male</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  id="female"
-                  v-model="user.gender"
-                  value="female"
-                />
-                <label class="form-check-label" for="female">Female</label>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Your email</label>
-            <input
-              type="email"
-              class="form-control"
-              v-model="user.email"
-              id="email"
-              autocomplete="off"
-            />
-            <div class="error py-2" v-if="!$v.user.email.required">Email is required</div>
-            <div class="error py-2" v-if="!$v.user.email.email">Enter a valid email</div>
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" v-model="user.password" id="password" />
-            <div class="error py-2" v-if="!$v.user.password.required">Password is required</div>
-            <div
-              class="error py-2"
-              v-if="!$v.user.password.minLength"
-            >Password must have at least {{$v.user.password.$params.minLength.min}} characters.</div>
-            <div
-              class="error py-2"
-              v-if="!$v.user.password.maxLength"
-            >Password must not have more than {{$v.user.password.$params.maxLength.max}} characters.</div>
-          </div>
-          <div class="form-check mb-1">
-            <input type="checkbox" v-model="terms" name="terms" class="form-check-input" id="terms" />
-            <label
-              class="form-check-label"
-              for="terms"
-            >By registering, you agree to the User Agreement, Terms and Privacy Policy</label>
-          </div>
-          <div class="text-center">
-            <button
-              type="submit"
-              @click.prevent
-              @click="register"
-              :disabled="!validateRegister ? true : false"
-              class="btn btn-primary rounded px-5"
-            >Register</button>
-          </div>
-          <div
-            class="mt-2 alert alert-success text-center"
-            v-if="register_user && register_user.loading && !register_user.success"
-          >Wait! We are registering you...</div>
-          <br />
-          <div class="col text-center">
-            Already have account?
-            <router-link :to="'/login'">Login</router-link>
-          </div>
-        </form>
+        <div class="text-center">
+          Go back
+          <router-link :to="'/'">home</router-link>
+        </div>
       </div>
-      <div class="text-center">
-        Go back
-        <router-link :to="'/'">home</router-link>
+      <div v-else>
+        <div class="text-center my-5">
+          You are already logged in.
+          <br />
+          <router-link :to="`/dashboard/${type}`">Click here</router-link>&nbsp; to go to dashboard
+        </div>
       </div>
     </div>
   </component>
@@ -191,7 +206,7 @@ export default {
         this.role = 5;
         break;
       default:
-        this.$router.push("/en/404");
+        this.$router.push("/404");
         break;
     }
   },
@@ -201,6 +216,9 @@ export default {
     },
     register_user() {
       return this.$store.getters.register_user;
+    },
+    auth() {
+      return JSON.parse(localStorage.getItem("isAuth"));
     },
     ...mapGetters(["register_user"]),
     validateRegister() {
@@ -275,7 +293,6 @@ export default {
 .register {
   margin-bottom: 50px;
 }
-
 .alert {
   width: 100%;
 }

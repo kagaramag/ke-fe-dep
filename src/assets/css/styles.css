@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Cabin:600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cabin&display=swap");
 * {
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
@@ -175,8 +175,22 @@ form {
   -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4) !important;
   -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4) !important;
 }
-*:focus {
-  outline: none;
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+  outline: 1px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+  background: transparent;
 }
 /* bold */
 .bold {

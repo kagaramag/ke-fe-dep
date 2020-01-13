@@ -12,7 +12,9 @@
               :key="error.index"
             >{{error}}</div>
           </div>
-          <div class="my-2">Register to continue...</div>
+          <div
+            class="my-2"
+          >Enter your account email address and we will send you a link to reset your password.</div>
           <div class="form-group">
             <label for="email">Your email</label>
             <input
@@ -30,7 +32,7 @@
               @click.prevent
               @click="reset"
               class="btn btn-primary rounded border border-primary px-5"
-            >Reset password</button>
+            >Request Password Reset</button>
           </div>
           <div class="col text-center">
             <br />Remember your password?

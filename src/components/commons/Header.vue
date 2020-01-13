@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar sticky-top bg-primary m-0 p-0 navbar-expand-lg navbar-light">
     <div class="container my-0">
-      <router-link class="navbar-brand pl-1" :to="''">
+      <router-link class="navbar-brand pl-1" :to="'/'">
         <img src="@/assets/images/logo_XII.svg" />
       </router-link>
       <button

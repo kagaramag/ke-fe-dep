@@ -1,11 +1,13 @@
-import AxiosHelper from '@/helpers/AxiosHelper'
-/* eslint-disable space-before-function-paren */
+import AxiosHelper from "@/helpers/AxiosHelper";
 export default {
   // initial state
   state: {
-    get_posts: [],
-    errors: {},
-    success: false
+    get_posts: {
+      posts: [],
+      errors: {},
+      loading: false,
+      success: false
+    }
   },
   // getters
   getters: {
@@ -19,20 +21,32 @@ export default {
 
   // mutations
   mutations: {
-    GET_BLOGS(state, payload) {
-      state.get_posts = "";
-      state.get_posts = payload;
+    INIT_BLOG(state) {
+      state.get_posts.posts = [];
+      state.get_posts.errors = {};
+      state.get_posts.loading = true;
+      state.get_posts.success = false;
     },
-    POST_BLOG_FAILURE(state, payload) {
-      state.errors = [payload, ...state.errors];
+    GET_BLOG_SUCCESS(state, payload) {
+      state.get_posts.success = true;
+      state.get_posts.loading = false;
+      state.get_posts.posts = payload;
+    },
+    GET_BLOG_FAILURE(state, payload) {
+      state.get_posts.loading = false;
+      state.get_posts.success = false;
+      state.get_posts.errors = payload.errors;
     }
   },
 
   // actions
   actions: {
     GET_BLOG_POSTS: context => {
+      context.commit("INIT_BLOG");
       AxiosHelper.get("/articles?limit=20")
-        .then(response => context.commit("GET_BLOGS", response.data.articles))
+        .then(response =>
+          context.commit("GET_BLOG_SUCCESS", response.data.articles)
+        )
         .catch(error =>
           context.commit("GET_BLOG_FAILURE", error.response.data)
         );

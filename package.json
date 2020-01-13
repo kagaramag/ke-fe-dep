@@ -33,6 +33,7 @@
     "rwanda": "^1.0.9",
     "sweet-modal-vue": "^2.0.0",
     "vue": "^2.6.10",
+    "vue-analytics": "^5.22.1",
     "vue-datetime": "^1.0.0-beta.10",
     "vue-lazyload": "^1.3.3",
     "vue-quill": "^1.5.1",

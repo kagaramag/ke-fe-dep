@@ -12,6 +12,7 @@ import Minima from "./layouts/Minima.vue";
 import Account from "./layouts/Account.vue";
 import store from "./store";
 import VueLazyload from "vue-lazyload";
+import VueAnalytics from "vue-analytics";
 
 import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/index.css";
@@ -37,6 +38,11 @@ Vue.component("minima-layout", Minima);
 Vue.component("account-layout", Account);
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
+
+Vue.use(VueAnalytics, {
+  id: "UA-156020752-1",
+  router
+});
 
 // filters
 Vue.filter("capitalize", function(value) {

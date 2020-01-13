@@ -2,16 +2,16 @@
   <div>
     <component :is="layout">
       <div class="container">
-        <div class="row">
+        <div class="row" v-if="posts && !posts.loading && posts.posts.length">
           <div class="col-sm-12 col-md-9 col-lg-9">
-            <div class="row" v-if="posts && posts.length >= 1">
+            <div class="row">
               <div
                 class="shadow-2 bg-white radius-2 p-4 my-2 col-sm-12"
-                v-for="post in posts"
+                v-for="post in posts.posts"
                 :key="post.index"
               >
-                <!-- Blog Post -->
-                <div class>
+              
+                <div class="image">
                   <img
                     v-if="post.coverUrl"
                     v-lazy="`${CDN_IMAGE}/c_thumb,h_200,w_500/${post.coverUrl}` || avatar"
@@ -39,7 +39,7 @@
                 </div>
               </div>
             </div>
-            <div class="row" v-else>
+            <div class="row" v-if="loading && posts && posts.loading">
               <div class="no-content">Loading...</div>
             </div>
           </div>
@@ -51,18 +51,36 @@
             />
           </div>
         </div>
+
+        <div class="row" v-if="posts && !posts.loading && !posts.success && !posts.posts.length">
+          <NotFound
+            message="No articles found"
+            description="Something wrong occured while retrieving informations"
+            icon="blog"
+          />
+        </div>
       </div>
     </component>
   </div>
 </template>
 <script>
+import NotFound from "@/app/NotFound";
 import { mapActions, mapGetters } from "vuex";
 const default_layout = "default";
 
 export default {
   name: "posts",
+  components: {
+    NotFound
+  },
+  data() {
+    return {
+      loading: false
+    };
+  },
   mounted() {
     this.$store.dispatch("GET_BLOG_POSTS");
+    this.loading = true;
   },
   computed: {
     posts() {
@@ -128,12 +146,6 @@ export default {
   width: 92%;
   content: "";
   left: 3%;
-}
-.no-content {
-  width: 100%;
-  text-align: center;
-  padding: 3% auto !important;
-  border: 3px solid #c3c3c3;
 }
 
 .image-post {

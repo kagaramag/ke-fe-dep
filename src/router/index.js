@@ -39,8 +39,12 @@ const router = new Router({
       component: () => import("@/components/auth/Reset")
     },
     {
-      path: "/confirm",
+      path: "/confirm/:token",
       component: () => import("@/components/auth/Confirm")
+    },
+    {
+      path: "/activate/:token",
+      component: () => import("@/components/auth/Activate")
     },
     {
       path: "/@:username",

@@ -13,16 +13,17 @@ export default {
   <div>
     <div class="container layout">
       <div class="background">
-        <img src="@/assets/images/kids.png" />
+        <!-- <img src="@/assets/images/kids.png" /> -->
       </div>
       <div class="row">
         <div class="col">
-          <div class="image minima-logo my-3">
-            <router-link :to="'/'">
-              <img src="@/assets/images/logo_XII_blue.svg" />
-            </router-link>
-          </div>
-          <div class="wrap-box pt-3 pb-1 bg-light shadow-lg radius-4">
+          <div class="wrap-box bg-white shadow-lg pt-3 pb-1 radius-4">
+            <div class="image minima-logo my-3">
+              <router-link :to="'/'">
+                <img src="@/assets/images/logo_XII_blue.svg" />
+              </router-link>
+            </div>
+            <div class="clear"></div>
             <slot />
           </div>
         </div>
@@ -58,7 +59,7 @@ export default {
 }
 
 .wrap-box {
-  max-width: 550px;
-  margin: 40px auto 30px auto;
+  max-width: 500px;
+  margin: 70px auto 30px auto;
 }
 </style>
