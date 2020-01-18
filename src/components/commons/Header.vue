@@ -15,13 +15,19 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav main-nav mr-auto mt-2 pt-2 mt-lg-0 ml-4 right">
           <li class="nav-item">
-            <router-link class="nav-link" :to="'/'">Home</router-link>
+            <router-link class="nav-link text-white" :to="'/'">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="'/tutors'">Tutors</router-link>
+            <router-link class="nav-link text-white" :to="'/tutors'">Tutors</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" :to="'/blog'">Blog</router-link>
+            <router-link class="nav-link text-white" :to="'/blog'">Blog</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link
+              class="btn btn-light mx-2 px-3 rounded"
+              :to="'/tutors/apply'"
+            >Become a tutor</router-link>
           </li>
         </ul>
         <ul class="navbar-nav right" v-if="auth && auth.isAuth">
@@ -44,16 +50,10 @@
         </ul>
         <ul class="navbar-nav right" v-if="auth.isAuth === false || !profile">
           <li class="nav-item">
-            <router-link
-              class="btn rounded btn-light text-primary px-4 mr-3"
-              :to="'login'"
-            >Login</router-link>
+            <router-link class="btn rounded btn-light text-primary px-4 mr-3" :to="'login'">Login</router-link>
           </li>
           <li class="nav-item">
-            <router-link
-              class="btn rounded btn-light text-primary px-4"
-              :to="'register'"
-            >Register</router-link>
+            <router-link class="btn rounded btn-light text-primary px-4" :to="'register'">Register</router-link>
           </li>
         </ul>
         <div class="float-right"></div>
@@ -70,28 +70,59 @@
     >
       <ul>
         <li>
-          <router-link :to="'home'">
+          <router-link :to="'/'">
             <icon class="icon" icon="stream" />Home
           </router-link>
         </li>
         <li>
-          <router-link :to="'tutors'">
+          <router-link :to="'/tutors'">
             <icon class="icon" icon="user-friends" />Tutors
           </router-link>
         </li>
         <li>
-          <router-link :to="'blog'">
+          <router-link :to="'/blog'">
             <icon class="icon" icon="signature" />Blog
+          </router-link>
+        </li>
+        <li>
+          <router-link class="btn btn-light mx-2 px-3 rounded" :to="'/tutors/apply'">
+            <icon class="icon" icon="signature" />Become a tutor
+          </router-link>
+        </li>
+        <li class="divider"></li>
+        <li v-if="type === 't'">
+          <router-link :to="'/dashboard/t'">
+            <icon class="icon" icon="rocket" />Dashboard
+          </router-link>
+        </li>
+        <li v-if="type === 'p'">
+          <router-link :to="'/dashboard/p'">
+            <icon class="icon" icon="rocket" />Dashboard
+          </router-link>
+        </li>
+        <li v-if="type === 'n'">
+          <router-link :to="'/dashboard/n'">
+            <icon class="icon" icon="rocket" />Dashboard
+          </router-link>
+        </li>
+        <li v-if="type === 'l'">
+          <router-link :to="'/dashboard/l'">
+            <icon class="icon" icon="rocket" />Dashboard
+          </router-link>
+        </li>
+        <li v-if="type === 'a'">
+          <router-link :to="'/dashboard/a'">
+            <icon class="icon" icon="rocket" />Dashboard
           </router-link>
         </li>
         <li class="divider"></li>
         <li>
-          <router-link :to="'login'">
+          <router-link :to="'/login'">
             <icon class="icon" icon="arrow-right" />Login
           </router-link>
         </li>
         <li>
-          <router-link :to="'register'">
+          <router-link :to="'/register'">
             <icon class="icon" icon="plus" />Register
           </router-link>
         </li>
@@ -209,7 +240,7 @@ export default {
   border: 2px solid #ffffff;
 }
 .navbar-nav.main-nav a {
-  color: #ffffff !important;
+  /* color: #ffffff !important; */
   transition: 0.3s;
   font-weight: 300;
 }

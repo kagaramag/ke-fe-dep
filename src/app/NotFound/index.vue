@@ -1,7 +1,7 @@
 <template>
   <div class="notfound m-3">
     <div class="row">
-      <div class="col-md-5">
+      <div class="d-sm-none col-md-5">
         <div class="image">
           <img src="@/assets/images/404-01.png" />
         </div>

@@ -26,16 +26,16 @@
             <h4>About</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="'login'">Login</router-link>
+                <router-link :to="'/login'">Login</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'register'">Register</router-link>
+                <router-link :to="'/register'">Register</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'support'">Supports</router-link>
+                <router-link :to="'/support'">Supports</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'contact'">Contact</router-link>
+                <router-link :to="'/contact'">Contact</router-link>
               </li>
             </ul>
           </div>
@@ -43,16 +43,16 @@
             <h4>More</h4>
             <ul class="list-unstyled">
               <li class="list-group-item">
-                <router-link :to="'tutors'">Become a tutor</router-link>
+                <router-link :to="'/tutors/apply'">Become a tutor</router-link>
               </li>
               <li class="list-group-item">
-                <router-link :to="'tutors'">Find tutors</router-link>
+                <router-link :to="'/tutors'">Find tutors</router-link>
               </li>
               <li class="list-group-item">
                 <a href="https://codingclass.keetela.com/">Coding Class</a>
               </li>
               <li class="list-group-item">
-                <router-link :to="'blog'">Blog</router-link>
+                <router-link :to="'/blog'">Blog</router-link>
               </li>
             </ul>
           </div>
@@ -64,11 +64,11 @@
       <div class="copyright py-4">
         <div class="container">
           <div class="row">
-            <div class="col text-center">
+            <div class="col-sm-12 col-md-6 text-center">
               &copy;Copyright {{new Date().getFullYear()}},
               <b>Keetela</b> Ltd. All Rights Reserved
             </div>
-            <div class="col text-center">
+            <div class="col-sm-12 col-md-6 text-center">
               <router-link :to="'terms'">Terms and Conditions</router-link>
               <router-link class="mx-3" :to="'policy-privacy'">Policy Privacy</router-link>
             </div>

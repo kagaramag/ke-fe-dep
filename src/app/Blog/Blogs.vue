@@ -48,6 +48,7 @@
               src="@/assets/images/coding-class-1.jpg"
               class="img-fluid shadow-2 rounded my-2"
               alt="Coding Class Ads"
+              style="max-width:300px;margin:0 auto;display:block"
             />
           </div>
         </div>

@@ -6,7 +6,7 @@
           <h1 class="mt-1 mb-3">{{article.title}}</h1>
           <div class="col-sm-12 col-md-8 col-lg-8 p-0 article-body">
             <div class="mb-3">
-              <span class="float-left">
+              <span class="float-left"  v-if="article && article.author">
                 Posted
                 <b>{{ article.createdAt | date }}</b> by
                 <router-link :to="`/@${article.author.username}`">

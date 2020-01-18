@@ -15,6 +15,11 @@ const router = new Router({
       component: () => import("@/app/Tutors")
     },
     {
+      path: "/tutors/apply",
+      name: "apply-for-tutor",
+      component: () => import("@/app/Tutors/Apply")
+    },
+    {
       path: "/register",
       component: () => import("@/components/auth/Type")
     },
