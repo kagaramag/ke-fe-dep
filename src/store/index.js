@@ -9,6 +9,9 @@ import tutoring from './modules/tutoring';
 import tutorship from './modules/tutorship';
 import legal from './modules/legal';
 import blog from './modules/blog';
+import services from './modules/services';
+import cart from './modules/cart';
+import payment from './modules/payment';
 
 Vue.use(Vuex, axios);
 
@@ -24,6 +27,9 @@ export default new Vuex.Store({
     tutoring,
     tutorship,
     legal,
-    blog
+    blog,
+    services,
+    cart,
+    payment
   }
 });

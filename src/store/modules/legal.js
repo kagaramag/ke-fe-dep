@@ -1,5 +1,5 @@
 import AxiosHelper from '@/helpers/AxiosHelper';
-import router from '@/router';
+import router from '../../../../../ikinyarwanda/ik-fr/src/store/modules/node_modules/@/router';
 export default {
   // initial state
   state: {

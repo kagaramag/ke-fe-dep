@@ -1,6 +1,6 @@
 <template>
-  <div id="my-kids">
-    <div class="text-center">
+  <div id="my-kids" class="box">
+    <div class="text-center mb-4">
       <button id="show-btn" class="btn bg-white shadow rounded px-3" @click="popUserForm()">
         <icon class="icon" icon="plus" />
         <span class="d-none d-md-inline d-lg-inline px-1">Register learner</span>
@@ -8,7 +8,7 @@
     </div>
     <!-- LIST OF KIDS -->
     <div v-if="fetch_kids && fetch_kids.kids">
-      <div class="shadow-lg radius-3 mb-4 mt-2 row" style="position:relative" v-for="kid in fetch_kids.kids" :key="kid.index">
+      <div class="shadow-lg bg-light radius-3 mb-4 mt-2 row" style="position:relative" v-for="kid in fetch_kids.kids" :key="kid.index">
         <div class="col-sm-3 col-md-3 col-lg-3">
           <div class="image">
             <img src="@/assets/images/kid.svg" class="rounded-circle mb-1" :alt="kid.names" />
@@ -54,7 +54,7 @@
               <br />
               <router-link
                 class="btn btn-success shadow rounded my-3"
-                :to="`/dashboard/${type}/messages`"
+                :to="`/dashboard/${accountType}/messages`"
               >Find perfect tutor</router-link>
             </div>
             <div

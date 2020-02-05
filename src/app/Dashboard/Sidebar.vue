@@ -1,43 +1,69 @@
 <template>
-  <div class="mb-1">
-    <div class="sidebar">
-      <!-- DASHBOARD -->
-      <div>
-        <router-link :to="`/dashboard/${type}`">
-          <icon class="icon" icon="stream" />
-          <span>Dashboard</span>
-        </router-link>
-        <router-link :to="`/dashboard/${type}/messages`">
-          <icon class="icon" icon="envelope" />
-          <span>Messages</span>
-        </router-link>
-      </div>
-      <!-- TUTOR NAV CARD -->
-      <div v-if="type === 't'">
-        <router-link :to="`/dashboard/${type}/coaching`">
-          <icon class="icon" icon="layer-group" />
-          <span>Tutoring</span>
-        </router-link>
-        <router-link
-          class="bg-success text-white"
-          :to="`/dashboard/${type}/tutor-application`"
-        >
-          <icon class="icon text-white" icon="check" />
-          <span>My Application</span>
-        </router-link>
-      </div>
+  <div class="sidebar">
+    <p class="p-2">
+      <router-link class="navbar-brand" :to="'/'">
+        <img src="@/assets/images/logo_XII.svg" />
+      </router-link>
+    </p>
+    <!-- DASHBOARD -->
+    <div>
+      <router-link :to="'/'">
+        <icon class="icon" icon="arrow-left" />
+        <span>Back home</span>
+      </router-link>
+      <router-link :to="`/dashboard/${accountType}`">
+        <icon class="icon" icon="stream" />
+        <span>Dashboard</span>
+      </router-link>
+    </div>
+    <!-- TUTOR NAV CARD -->
+    <div v-if="accountType === 't'">
+      <router-link :to="`/dashboard/${accountType}/services`">
+        <icon class="icon" icon="lightbulb" />
+        <span>My Services</span>
+      </router-link>
+      <router-link :to="`/dashboard/${accountType}/tutor-application`">
+        <icon class="icon" icon="check" />
+        <span>My Application</span>
+      </router-link>
+      <router-link :to="`/dashboard/${accountType}/coaching`">
+        <icon class="icon" icon="layer-group" />
+        <span>Tutoring</span>
+      </router-link>
+    </div>
+    <!-- PARENT NAV CARD -->
+    <div v-if="accountType === 'p'">
+      <router-link :to="`/dashboard/${accountType}/subscriptions`">
+        <icon class="icon" icon="plug" />
+        <span>Subscriptions</span>
+      </router-link>
+      <router-link :to="`/dashboard/${accountType}/kids`">
+        <icon class="icon" icon="child" />
+        <span>Kids</span>
+      </router-link>
+    </div>
 
-      <!-- GENERAL -->
-      <div>
-        <router-link :to="`/dashboard/${type}/my-blog`">
-          <icon class="icon" icon="signature" />
-          <span>Blog</span>
-        </router-link>
-        <router-link :to="`/dashboard/${type}/settings`">
-          <icon class="icon" icon="cog" />
-          <span>Settings</span>
-        </router-link>
-      </div>
+    <!-- GENERAL -->
+    <div>
+      <router-link :to="`/dashboard/${accountType}/messages`">
+        <icon class="icon" icon="envelope" />
+        <span>Messages</span>
+      </router-link>
+      <router-link :to="`/dashboard/${accountType}/my-blog`">
+        <icon class="icon" icon="signature" />
+        <span>Blog</span>
+      </router-link>
+      <router-link :to="`/dashboard/${accountType}/settings`">
+        <icon class="icon" icon="cog" />
+        <span>Settings</span>
+      </router-link>
+    </div>
+    <!-- GENERAL -->
+    <div>
+      <router-link :to="`/dashboard/${accountType}/admin`">
+        <icon class="icon" icon="envelope" />
+        <span>Admin Panel</span>
+      </router-link>
     </div>
   </div>
 </template>
@@ -45,6 +71,7 @@
 <script>
 import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "sidebar",
   computed: {
@@ -65,31 +92,35 @@ export default {
 </script>
 
 <style scoped>
-.sidebar {
-  width: 100%;
+
+.sidebar{
+  position: fixed;
+}
+.sidebar .navbar-brand{
+  display: block;
+  margin: 0 auto
 }
 .sidebar a {
   display: block;
   margin-bottom: 12px;
   padding: 10px 20px 10px 50px;
   position: relative;
-  border: 1px solid #dadada;
-  border-radius: 25px !important;
-  color: #434343;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #ececec;
 }
-.sidebar a.bg-success {
-  border: 0px solid #ffffff!important;
+.is-active{
+  border:1px solid red!important
 }
+
 .sidebar a:hover {
-  background: #efefef;
-  border-color: #d3d3d3;
+  opacity: 0.7;
 }
 .sidebar a .icon {
   position: absolute;
   top: 13px;
   left: 22px;
-  color: #b4b4b4;
+  color: #c8c8c8;
 }
-
+.sidebar a:hover .icon {
+  color: #acabdd;
+}
 </style>

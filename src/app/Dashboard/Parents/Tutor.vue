@@ -15,7 +15,7 @@
     <div :inner-html.prop="tutor.bio | truncate(250)"></div>
     <div class="my-3">
       <router-link
-        :to="`/dashboard/${type}/messages`"
+        :to="`/dashboard/${accountType}/messages`"
         class="btn btn-success rounded"
       >
         <icon class="icon" icon="envelope" />&nbsp;

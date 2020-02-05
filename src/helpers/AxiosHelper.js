@@ -2,7 +2,6 @@ import axios from "axios";
 
 const { URL_BACKEND } = process.env;
 const token = localStorage.getItem("token");
-const language = localStorage.getItem("lang");
 class AxiosHelper {
   static get = path => {
     return new Promise((resolve, reject) => {
@@ -10,7 +9,6 @@ class AxiosHelper {
         .get(`${URL_BACKEND}${path}`, {
           headers: {
             "access-token": token || "",
-            "accept-language": `${language}`
           }
         })
         .then(response => {
@@ -28,7 +26,6 @@ class AxiosHelper {
         .post(`${URL_BACKEND}${path}`, data, {
           headers: {
             "access-token": token || null,
-            "accept-language": `${language}`
           }
         })
         .then(response => {
@@ -46,7 +43,6 @@ class AxiosHelper {
         .put(`${URL_BACKEND}${path}`, data, {
           headers: {
             "access-token": token,
-            "accept-language": `${language}`
           }
         })
         .then(response => {
@@ -64,7 +60,6 @@ class AxiosHelper {
         .patch(`${URL_BACKEND}${path}`, data, {
           headers: {
             "access-token": token,
-            "accept-language": `${language}`
           }
         })
         .then(response => {
@@ -84,7 +79,6 @@ class AxiosHelper {
           headers: {
             "Content-Type": "multipart/form-data",
             "access-token": token || null,
-            "accept-language": `${language}`
           }
         })
         .then(response => {
@@ -104,7 +98,6 @@ class AxiosHelper {
           headers: {
             "Content-Type": "multipart/form-data",
             "access-token": token || null,
-            "accept-language": `${language}`
           }
         })
         .then(response => {

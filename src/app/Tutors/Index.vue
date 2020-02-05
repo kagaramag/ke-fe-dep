@@ -9,8 +9,8 @@
           <div class="text-center">Find the perfect tutor around you</div>
           <div class="row">
             <div
-              v-for="tutor in tutors.tutors"
               class="col-sm-12 col-md-6 col-lg-4"
+              v-for="tutor in tutors.tutors"
               :key="tutor.index"
             >
               <router-link :to="`/@${tutor.user.username}`">

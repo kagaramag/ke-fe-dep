@@ -1,6 +1,5 @@
 import AxiosHelper from "@/helpers/AxiosHelper";
-import store from "@/store";
-import router from "@/router";
+import router from "router";
 
 export default {
   // initial state
@@ -25,6 +24,7 @@ export default {
       legal: {},
       details: {},
       articles: [],
+      services: [],
       errors: {},
       message: "",
       loading: false,
@@ -33,7 +33,28 @@ export default {
       photo_updated: false,
       location_updated: false,
       education_updated: false,
-      details_updated: false
+      details_updated: false,
+      service_updated: false
+    },
+    fetch_tutor: {
+      user: {},
+      education: {},
+      location: {},
+      kids: {},
+      legal: {},
+      details: {},
+      articles: [],
+      services: [],
+      errors: {},
+      message: "",
+      loading: false,
+      success: false,
+      info_updated: false,
+      photo_updated: false,
+      location_updated: false,
+      education_updated: false,
+      details_updated: false,
+      service_updated: false
     },
     edit_user: {
       user: {},
@@ -70,6 +91,9 @@ export default {
     },
     fetch_user(state) {
       return state.fetch_user;
+    },
+    fetch_tutor(state) {
+      return state.fetch_tutor;
     },
     fetch_tutors(state) {
       return state.fetch_tutors;
@@ -175,6 +199,7 @@ export default {
       state.fetch_user.education_updated = false;
       state.fetch_user.location_updated = false;
       state.fetch_user.details_updated = false;
+      state.fetch_user.service_updated = false;
     },
     LOCATION_UPDATED(state) {
       state.fetch_user.location_updated = true;
@@ -240,9 +265,10 @@ export default {
         isLoggedIn: false,
         success: false
       };
-      localStorage.user = null;
-      localStorage.isAuth = false;
-      localStorage.token = null;
+      localStorage.removeItem('user');
+      localStorage.removeItem('isAuth');
+      localStorage.removeItem('token');
+      localStorage.removeItem('cart');
       router.push({ path: "/login" });
     },
     UPDATE_PROFILE(state, payload) {
@@ -262,7 +288,6 @@ export default {
       state.fetch_user.success = false;
     },
     FETCH_USER_SUCCESS(state, payload) {
-      console.log("fetch", payload);
       state.fetch_user.loading = false;
       state.fetch_user.user = payload.user;
       state.fetch_user.education = payload.education;
@@ -271,6 +296,7 @@ export default {
       state.fetch_user.kids = payload.kids;
       state.fetch_user.legal = payload.legal;
       state.fetch_user.details = payload.details;
+      state.fetch_user.services = payload.services;
       state.fetch_user.success = true;
     },
     FETCH_USER_FAILURE(state, payload) {
@@ -284,7 +310,34 @@ export default {
       state.fetch_user.kids = {};
       state.fetch_user.legal = {};
       state.fetch_user.details = {};
+      state.fetch_user.services = {};
       state.fetch_user.success = false;
+    },
+    FETCH_TUTOR_SUCCESS(state, payload) {
+      state.fetch_tutor.loading = false;
+      state.fetch_tutor.user = payload.user;
+      state.fetch_tutor.education = payload.education;
+      state.fetch_tutor.articles = payload.articles;
+      state.fetch_tutor.location = payload.location;
+      state.fetch_tutor.kids = payload.kids;
+      state.fetch_tutor.legal = payload.legal;
+      state.fetch_tutor.details = payload.details;
+      state.fetch_tutor.services = payload.services;
+      state.fetch_tutor.success = true;
+    },
+    FETCH_TUTOR_FAILURE(state, payload) {
+      state.fetch_tutor.errors = payload.errors;
+      state.fetch_tutor.loading = false;
+      state.fetch_tutor.message = {};
+      state.fetch_tutor.user = {};
+      state.fetch_tutor.education = {};
+      state.fetch_tutor.articles = {};
+      state.fetch_tutor.location = {};
+      state.fetch_tutor.kids = {};
+      state.fetch_tutor.legal = {};
+      state.fetch_tutor.details = {};
+      state.fetch_tutor.services = {};
+      state.fetch_tutor.success = false;
     },
     FETCH_TUTORS_SUCCESS(state, payload) {
       state.fetch_tutors.tutors = payload.tutors;
@@ -420,6 +473,17 @@ export default {
         })
         .catch(error => {
           context.commit("FETCH_USER_FAILURE", error.response.data);
+        });
+    },
+    FETCH_TUTOR: (context, payload) => {
+      context.commit("SITE_LOADING", false);
+      context.commit("GET_PROFILE_LOADING", true);
+      AxiosHelper.get(`/users/username/${payload}`)
+        .then(response => {
+          context.commit("FETCH_TUTOR_SUCCESS", response.data);
+        })
+        .catch(error => {
+          context.commit("FETCH_TUTOR_FAILURE", error.response.data);
         });
     },
     REGISTER_USER: (context, payload) => {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <footer class="footer">
-      <div class="container mb-5">
+      <!-- <div class="container mb-5">
         <div class="row">
           <div class="col-sm-6 col-md-6 col-lg-6">
             <div class="image">
@@ -59,7 +59,7 @@
           <br />
           <br />
         </div>
-      </div>
+      </div> -->
       <div class="clear"></div>
       <div class="copyright py-4">
         <div class="container">

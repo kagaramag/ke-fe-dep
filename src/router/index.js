@@ -20,6 +20,11 @@ const router = new Router({
       component: () => import("@/app/Tutors/Apply")
     },
     {
+      path: "/codingclass",
+      name: "apply-for-tutor",
+      component: () => import("@/app/Codingclass")
+    },
+    {
       path: "/register",
       component: () => import("@/components/auth/Type")
     },
@@ -81,6 +86,14 @@ const router = new Router({
       }
     },
     {
+      path: "/dashboard/:type/kids",
+      name: "kids",
+      component: () => import("@/app/Dashboard/Parents"),
+      meta: {
+        auth: true
+      }
+    },
+    {
       path: "/dashboard/:type/coaching/:id",
       name: "coaching",
       component: () => import("@/app/Dashboard/Tutorship"),
@@ -128,6 +141,30 @@ const router = new Router({
       }
     },
     {
+      path: "/dashboard/:type/services",
+      name: "profile",
+      component: () => import("@/app/Dashboard/Services"),
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: "/dashboard/:type/services/create",
+      name: "profile",
+      component: () => import("@/app/Dashboard/Services/Create"),
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: "/dashboard/:type/admin",
+      name: "profile",
+      component: () => import("@/app/Dashboard/Admin"),
+      meta: {
+        auth: true
+      }
+    },
+    {
       path: "/dashboard/:type/hiring/:username",
       name: "profile",
       component: () => import("@/app/Dashboard/Hiring"),
@@ -140,7 +177,9 @@ const router = new Router({
       component: () => import("@/app/NotFound")
     }
   ],
-  mode: "history"
+  mode: "history",
+  linkActiveClass: "is-active",
+  linkExactActiveClass: "is-active"
 });
 
 router.beforeEach((to, from, next) => {

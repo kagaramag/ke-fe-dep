@@ -4,38 +4,41 @@
       <router-link class="navbar-brand pl-1" :to="'/'">
         <img src="@/assets/images/logo_XII.svg" />
       </router-link>
-      <button
+      <!-- <button
         ref="button"
         class="toggle-button border-0 p-1 mx-2 bg-transparent text-white d-lg-none"
         style="font-size:25px"
         @click="showPopup = !showPopup"
       >
         <icon class="icon" icon="bars" />
-      </button>
+      </button> -->
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav main-nav mr-auto mt-2 pt-2 mt-lg-0 ml-4 right">
           <li class="nav-item">
             <router-link class="nav-link text-white" :to="'/'">Home</router-link>
           </li>
           <li class="nav-item">
+            <router-link class="nav-link text-white" :to="'/codingclass'">Coding Class</router-link>
+          </li>
+          <!-- <li class="nav-item">
             <router-link class="nav-link text-white" :to="'/tutors'">Tutors</router-link>
-          </li>
-          <li class="nav-item">
+          </li>-->
+          <!-- <li class="nav-item">
             <router-link class="nav-link text-white" :to="'/blog'">Blog</router-link>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <router-link
               class="btn btn-light mx-2 px-3 rounded"
               :to="'/tutors/apply'"
             >Become a tutor</router-link>
-          </li>
+          </li>-->
         </ul>
-        <ul class="navbar-nav right" v-if="auth && auth.isAuth">
+        <ul class="navbar-nav right" v-if="devMode && auth && auth.isAuth">
           <div>
             <ul class="list-inline">
               <li class="list-inline-item">
                 <span v-if="profile">
-                  <router-link class="text-white" :to="`/dashboard/${type}`">
+                  <router-link class="text-white" :to="`/dashboard/${accountType}`">
                     {{profile.firstName | truncate(10)}}
                     <img
                       :src="profile.image ? profile.image : avatar"
@@ -48,20 +51,20 @@
             </ul>
           </div>
         </ul>
-        <ul class="navbar-nav right" v-if="auth.isAuth === false || !profile">
+        <!-- <ul class="navbar-nav right" v-if="auth.isAuth === false || !profile">
           <li class="nav-item">
             <router-link class="btn rounded btn-light text-primary px-4 mr-3" :to="'login'">Login</router-link>
           </li>
           <li class="nav-item">
             <router-link class="btn rounded btn-light text-primary px-4" :to="'register'">Register</router-link>
           </li>
-        </ul>
+        </ul>-->
         <div class="float-right"></div>
       </div>
     </div>
 
     <div
-      v-show="showPopup"
+      v-show="devMode && showPopup"
       v-closable="{
         exclude: ['button'],
         handler: 'onClose'
@@ -90,27 +93,27 @@
           </router-link>
         </li>
         <li class="divider"></li>
-        <li v-if="type === 't'">
+        <li v-if="accountType === 't'">
           <router-link :to="'/dashboard/t'">
             <icon class="icon" icon="rocket" />Dashboard
           </router-link>
         </li>
-        <li v-if="type === 'p'">
+        <li v-if="accountType === 'p'">
           <router-link :to="'/dashboard/p'">
             <icon class="icon" icon="rocket" />Dashboard
           </router-link>
         </li>
-        <li v-if="type === 'n'">
+        <li v-if="accountType === 'n'">
           <router-link :to="'/dashboard/n'">
             <icon class="icon" icon="rocket" />Dashboard
           </router-link>
         </li>
-        <li v-if="type === 'l'">
+        <li v-if="accountType === 'l'">
           <router-link :to="'/dashboard/l'">
             <icon class="icon" icon="rocket" />Dashboard
           </router-link>
         </li>
-        <li v-if="type === 'a'">
+        <li v-if="accountType === 'a'">
           <router-link :to="'/dashboard/a'">
             <icon class="icon" icon="rocket" />Dashboard
           </router-link>
@@ -162,14 +165,19 @@ Vue.directive("closable", {
 });
 
 export default {
+  props: ["maxHeader"],
   data() {
     return {
-      showPopup: false
+      showPopup: false,
+      devMode: false
     };
   },
   computed: {
     auth() {
       return JSON.parse(localStorage.getItem("auth")) || null;
+    },
+    cart() {
+      return JSON.parse(localStorage.getItem("cart")) || [];
     },
     profile() {
       return JSON.parse(localStorage.getItem("user")) || null;

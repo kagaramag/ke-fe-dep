@@ -28,6 +28,7 @@
                   type="text"
                   class="form-control"
                   v-model.trim="$v.user.firstName.$model"
+                  @change="fistNameChanged"
                   id="firstname"
                   autocomplete="off"
                 />
@@ -111,18 +112,11 @@
                 v-if="!$v.user.password.maxLength"
               >Password must not have more than {{$v.user.password.$params.maxLength.max}} characters.</div>
             </div>
-            <div class="form-check mb-1">
-              <input
-                type="checkbox"
-                v-model="terms"
-                name="terms"
-                class="form-check-input"
-                id="terms"
-              />
-              <label
-                class="form-check-label"
-                for="terms"
-              >By registering, you agree to the User Agreement, Terms and Privacy Policy</label>
+            <div class="mb-2">
+              <div class="custom-control custom-switch">
+                <input v-model="terms" type="checkbox" class="custom-control-input" id="terms" />
+                <label class="custom-control-label" for="terms">By registering, you agree to the User Agreement, Terms and Privacy Policy</label>
+              </div>
             </div>
             <div class="text-center">
               <button
@@ -153,7 +147,7 @@
         <div class="text-center my-5">
           You are already logged in.
           <br />
-          <router-link :to="`/dashboard/${type}`">Click here</router-link>&nbsp; to go to dashboard
+          <router-link :to="`/dashboard/${accountType}`">Click here</router-link>&nbsp; to go to dashboard
         </div>
       </div>
     </div>
@@ -239,6 +233,9 @@ export default {
     this.loaded = true;
   },
   methods: {
+    fistNameChanged(v){
+      console.log('okey',v)
+    },
     register() {
       let user = {};
       user = this.user;

@@ -1,17 +1,17 @@
 <template>
   <div id="settings">
     <component :is="layout">
-      <div class="profile">
+      <div class="box">
         <h2>Settings</h2>
         <div class="my-2">This page helps you to customize and configure your account the way you want.</div>
         <div class="divider bg-light my-2"></div>
-        <div class="shadow-2 radius-2 p-3 mb-4">
+        <div class="shadow-2 border bg-white rounded overflow-hidden radius-2 p-3 mb-4">
           <ProfilePicture :profile="profile"  />
         </div>
-        <div class="shadow-2 radius-2 p-3 mb-4">
+        <div class="shadow-2 border bg-white rounded overflow-hidden radius-2 p-3 mb-4">
           <ResetPassword :profile="profile" />
         </div>
-        <div class="shadow-2 radius-2 p-3 mb-4">
+        <div class="shadow-2 border bg-white rounded overflow-hidden radius-2 p-3 mb-4">
           <h4 class="my-4">Logout</h4>
           <div>
             <button @click.prevent @click="logout" class="btn btn-danger rounded px-4">Logout</button>

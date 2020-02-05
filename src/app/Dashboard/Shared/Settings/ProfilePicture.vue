@@ -4,18 +4,18 @@
       <h4 class="my-2">Profile photo</h4>
       <div class="my-2">Change your profile photo</div>
       <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-3 col-md-4 col-sm-4">
           <div class="image">
             <img
               :src="file ? file : (fetch_user.user.image || avatar)"
               style="max-width:100%;height:auto;"
-              class="mx-auto rounded shadow"
+              class="mx-auto"
               :alt="fetch_user.user.firstName"
             />
           </div>
         </div>
 
-        <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="col-lg-9 col-md-8 col-sm-8">
           <b-form-file
             accept="image/jpeg, image/png"
             @change="GetImage"

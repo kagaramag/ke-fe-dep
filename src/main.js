@@ -128,7 +128,6 @@ Vue.filter("date", function(time) {
   return time;
 });
 
-
 Vue.mixin({
   data: function() {
     return {
@@ -138,27 +137,30 @@ Vue.mixin({
     };
   },
   computed: {
-    type() {
-      let type;
-      if (JSON.parse(localStorage.getItem("isAuth")) === true) {
+    accountType() {
+      let accountType;
+      if (
+        JSON.parse(localStorage.getItem("isAuth")) === true &&
+        localStorage.getItem("user")
+      ) {
         switch (JSON.parse(localStorage.getItem("user")).role) {
           case "parent":
-            type = "p";
+            accountType = "p";
             break;
           case "learner":
-            type = "l";
+            accountType = "l";
             break;
           case "tutor":
-            type = "t";
+            accountType = "t";
             break;
           case "admin":
-            type = "a";
+            accountType = "a";
             break;
           default:
-            type = "n";
+            accountType = "n";
             break;
         }
-        return type;
+        return accountType;
       }
     }
   }

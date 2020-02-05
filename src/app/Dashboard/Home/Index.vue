@@ -12,8 +12,8 @@
           />
         </div>
         <h1 class="text-success text-center py-3">Welcome to Keetela dashboard</h1>
-        <Tutor v-if="type === 't'" />
-        <Parent v-if="type === 'p'" />
+        <!-- <Tutor v-if="accountType === 't'" />
+        <Parent v-if="accountType === 'p'" /> -->
       </div>
     </component>
   </div>

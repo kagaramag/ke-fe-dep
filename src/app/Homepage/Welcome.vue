@@ -1,32 +1,16 @@
 <template>
   <div id="intro">
-    <!-- Welcome -->
     <section class="clearfix">
-      <div class="container d-flex h-100">
-        <div class="row">
-          <div class="col-md-6 intro-info order-md-first order-last">
-            <h2 class="mx-0 py-3">
-              GROW
-              <br />
-              CONNECT
-              <br />
-              SPARK
-              <br />
-            </h2>
-
-            <div class="text-white my-4">
-              We connect learners with the best in-personal tutors/trainers
+      <div class="container" style="height:500px">
+        <div class="row align-items-center h-100">
+          <div class="col-12">
+            <div class="justify-content-center text-light align-self-center text-center">
+              <h1 class="py-3">Everyone has something to share.</h1>
+              <h3
+                class="text-light font-weight-light mb-3"
+              >Learn with the best instructors and mentors around you</h3>
+              <h4 class="text-light">Grow &#8226; Connect &#8226; Spark</h4>
             </div>
-            <div>
-              <router-link
-                :to="'tutors'"
-                class="btn-get-started bg-white text-black radius-5 scrollto"
-              >Get started</router-link>
-            </div>
-          </div>
-
-          <div class="col-md-6 order-first p-5 my-5">
-            <img src="@/assets/images/kid.png" style="max-width:550px;" alt class="img-fluid" />
           </div>
         </div>
       </div>
@@ -42,7 +26,7 @@
 <script>
 export default {
   name: "HomeWelcome"
-}
+};
 </script>
 
 
@@ -51,80 +35,46 @@ export default {
   position: relative;
   z-index: 2;
 }
-
-.post-link {
-  margin-bottom: 20px !important;
-  border-radius: 0 !important;
-  border: 5px solid #bdbdbd;
-  margin: 0 auto;
-  background: #ffffff;
-  padding: 2%;
-  width: 96%;
-  position: relative;
-}
-
-.post-link a {
-  display: block;
-  text-align: center;
+.welcome-none {
+  height: 65vh;
 }
 
 #intro {
   width: 100%;
   overflow: hidden;
-  height: 65vh;
+  height: 75vh;
   position: relative;
-  background: rgb(64, 62, 168);
-  background: linear-gradient(
-    180deg,
-    rgba(64, 62, 168, 1) 33%,
-    rgba(89, 111, 223, 1) 100%
-  );
+  background: url("../../assets/images/person-tutoring.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 #intro::before {
   position: absolute;
-  top: 110px;
-  left: 60px;
+  top: 0;
+  left: 0;
   content: "";
-  width: 120px;
-  height: 120px;
-  background: url("../../assets/images/noon.png");
-  background-size: cover;
-  -webkit-animation: noon 20s infinite;
-  animation: noon 20s infinite;
+  width: 100%;
+  height: 100%;
+  background:rgba(0,0,0,.5);
 }
-#intro::after {
-  position: absolute;
-  top: 90px;
-  right: 140px;
-  content: "";
-  width: 120px;
-  height: 80px;
-  background: url("../../assets/images/sun.png");
-  background-size: 100% 100%;
-}
-#intro .intro-info h2 {
+#intro .welcome-note h2 {
   color: #ffffff;
   margin-top: 130px;
   font-size: 48px;
   font-weight: 700;
 }
+#intro .welcome-note h3 {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 100;
+}
 
-#intro .intro-info h2 span {
+#intro .welcome-note h2 span {
   color: #1bb1dc;
 }
 
-#intro .intro-info .btn-get-started,
-#intro .intro-info .btn-services {
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 10px 32px;
-  border-radius: 4px;
-  transition: 0.5s;
-  color: #fff;
-  color: #fff;
-}
 .stars {
   width: 100%;
   height: 100%;

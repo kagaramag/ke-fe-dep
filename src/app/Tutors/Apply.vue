@@ -5,7 +5,7 @@
         <div class="py-4 px-2 text-center text-white">
           <h1>Apply for tutor</h1>
           <p>Join one-on-one teachers and personal trainers who coaches a large community any where in Rwanda</p>
-          <div class="my-3" v-if="type === 't'">
+          <div class="my-3" v-if="accountType === 't'">
             <router-link
               :to="'/dashboard/t/tutor-application'"
               class="btn btn-success rounded"
@@ -13,7 +13,7 @@
           </div>
           <div
             class="my-3"
-            v-if="type === 'p' || type === 'n'"
+            v-if="accountType === 'p' || accountType === 'n'"
           >You are not allowed to apply for this job. If you think it is by mistake, contact us.</div>
           <div class="my-3" v-if="!auth">
             <router-link

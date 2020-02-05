@@ -18,16 +18,16 @@
                 <span class="float-left">{{data.user.lastName}} {{data.user.firstName}}</span>
                 <span
                   class="float-right"
-                  v-if="type == 'p' && data.user.UserRole && data.user.UserRole.role.role == 'tutor'"
+                  v-if="accountType == 'p' && data.user.UserRole && data.user.UserRole.role.role == 'tutor'"
                 >
-                  <router-link
-                    :to="`dashboard/${type}/hiring/${data.user.username}`"
+                  <button
+                    @click="addToCart('tutor', `${data.user.firstName} ${data.user.lastName}`, data.user.username || NULL )"
                     class="btn btn-light border border-dark rounded px-4 shadow"
                   >
                     <icon class="icon" icon="handshake" />&nbsp;&nbsp;Hire me
-                  </router-link>
+                  </button>
                   <router-link
-                    :to="`dashboard/${type}/message/${data.user.username}`"
+                    :to="`dashboard/${accountType}/message/${data.user.username}`"
                     class="btn btn-light border border-dark rounded px-4 shadow"
                   >
                     <icon class="icon" icon="envelope" />&nbsp;&nbsp;Message
@@ -38,7 +38,7 @@
               <div class="pt-3">
                 <span
                   class="mr-3 role radius-1"
-                  v-if="type === 't'"
+                  v-if="accountType === 't'"
                 >{{data.user.UserRole.role.role | capitalize}}</span>
                 <span class="mr-3" v-if="data.location">
                   <icon class="icon" icon="map-marker-alt" />
@@ -77,9 +77,23 @@ export default {
     };
   },
   computed: {
+    fetch_cart() {
+      return this.$store.getters.fetch_cart;
+    },
     auth() {
       return JSON.parse(localStorage.getItem("user"));
     }
+  },
+  methods: {
+    addToCart(type, name, username) {
+      const data = {
+        type,
+        name,
+        username
+      };
+      this.ADD_TO_CART(data);
+    },
+    ...mapActions(["ADD_TO_CART"])
   }
 };
 </script>

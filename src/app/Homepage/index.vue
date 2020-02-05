@@ -2,6 +2,7 @@
   <div>
     <component :is="layout">
       <Welcome />
+      <Codingclass />
       <About />
     </component>
   </div>
@@ -11,12 +12,14 @@
 import { mapActions, mapGetters } from "vuex";
 import Welcome from './Welcome';
 import About from './About';
+import Codingclass from './Codingclass';
 const default_layout = "default";
 export default {
   name: "home",
   components: {
     Welcome,
-    About
+    About,
+    Codingclass
   },
   computed: {
     layout() {

@@ -56,7 +56,7 @@
         <div class="text-center my-5">
           You are already logged in.
           <br />
-          <router-link :to="`/dashboard/${type}`">Click here</router-link>&nbsp; to go to dashboard
+          <router-link :to="`/dashboard/${accountType}`">Click here</router-link>&nbsp; to go to dashboard
         </div>
       </div>
     </div>

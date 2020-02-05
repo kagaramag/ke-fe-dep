@@ -73,7 +73,7 @@
                 </button>
 
                 <router-link
-                  :to="`/dashboard/${type}/my-blog`"
+                  :to="`/dashboard/${accountType}/my-blog`"
                   class="btn bg-dark rounded text-light"
                 >My articles</router-link>
                 <span
@@ -103,11 +103,11 @@
                 class="btn bg-dark px-3 rounded text-light"
               >View post</router-link>
               <router-link
-                :to="`/dashboard/${type}/my-blog`"
+                :to="`/dashboard/${accountType}/my-blog`"
                 class="btn bg-dark px-3 rounded text-light"
               >My articles</router-link>
               <router-link
-                :to="`/dashboard/${type}`"
+                :to="`/dashboard/${accountType}`"
                 class="btn bg-dark px-3 rounded text-light"
               >Dashboard</router-link>
             </div>
@@ -121,7 +121,7 @@
 <script>
 import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
-import Header from "@/components/commons/Header";
+import Header from "@/components/commons/HeaderAdmin";
 import editor from "vue2-medium-editor";
 import "@/assets/css/medium-editor.min.css";
 import "@/assets/css/flat.min.css";

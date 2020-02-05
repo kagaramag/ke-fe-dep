@@ -26,19 +26,19 @@
             <div class="my-4 article-quick-link bg-light py-4 px-3 shadow-2 radius-1" v-if="auth && auth.id === article.userId">
               <div class="pb-2">You wrote this article</div>
               <router-link
-                :to="`/dashboard/${type}/my-blog/${article.slug}/edit`"
+                :to="`/dashboard/${accountType}/my-blog/${article.slug}/edit`"
                 class="radius-1  btn btn-success"
               >
                 <icon class="icon" icon="pen" />&nbsp;Edit this post
               </router-link>
               <router-link
-                :to="`/dashboard/${type}/my-blog`"
+                :to="`/dashboard/${accountType}/my-blog`"
                 class="radius-1 btn btn-primary"
               >
                 <icon class="icon" icon="signature" />&nbsp;My blog
               </router-link>
               <router-link
-                :to="`/dashboard/${type}`"
+                :to="`/dashboard/${accountType}`"
                 class="radius-1  btn btn-primary"
               >
                 <icon class="icon" icon="stream" />&nbsp;Dashboard
@@ -94,47 +94,5 @@ export default {
 </script>
 
 <style scoped>
-.article-body >>> p {
-  width: 100%;
-}
-.article-body >>> .ql-align-left {
-  text-align: left;
-}
-.article-body >>> .ql-align-right {
-  text-align: right;
-}
-.article-body >>> .ql-align-justify {
-  text-align: justify;
-}
-.article-body >>> blockquote {
-  border-left: 5px solid #616161;
-  padding: 20px;
-  font-size: 22px;
-}
-.article-body >>> pre {
-  background: #333333;
-  padding: 35px 20px 10px 20px;
-  color: #cdcdcd;
-  position: relative;
-}
-.article-body >>> pre::before {
-  position: absolute;
-  top: 0px;
-  left: 0;
-  content: "Snippet of code";
-  width: 100%;
-  height: 30px;
-  padding: 5px;
-  background: #545454;
-}
-.article-body >>> img {
-  max-width: 100% !important;
-  margin: 10px auto !important;
-  display: block !important;
-}
-.article-quick-link a {
-  padding: 7px 15px;
-  margin-right: 10px;
-  font-weight: 300;
-}
+
 </style>

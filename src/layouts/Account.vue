@@ -1,35 +1,29 @@
 <template>
   <div id="account">
-    <Header />
-    <div class="page-wrapper">
-      <div v-if="loaded && fetch_user.loading" class="grab-page-loading"></div>
-      <div v-if="loaded && fetch_user && !fetch_user.loading">
-        <div class="mb-3">
-          <ProfileBar :data="fetch_user" />
+    <div v-if="loaded && fetch_user.loading" class="grab-page-loading"></div>
+    <div v-if="loaded && fetch_user && !fetch_user.loading">
+      <Cart v-if="!hiringPage" />
+      <div class="app-wrapper">
+        <div class="sidebar-wrapper bg-primary shadow-lg">
+          <Sidebar :user="fetch_user.user" />
         </div>
-        <div class="container">
-          <div class="row pt-3">
-            <div v-if="hasSidebar" class="d-dm-block d-lg-block col-sm-12 col-md-3 col-lg-3">
-              <Sidebar :user="fetch_user.user" />
-            </div>
-            <div
-              :class="[hasSidebar ? 'col-sm-12 col-md-9 col-lg-9' : 'col-sm-12 col-md-12 col-lg-12' ]"
-            >
-              <slot :fetch_user="fetch_user" />
-            </div>
+        <div class="content-wrapper">
+          <Header />
+          <div class="p-1">
+            <slot :fetch_user="fetch_user" />
           </div>
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
-import Header from "@/components/commons/Header";
+import Header from "@/components/commons/HeaderAdmin";
 import Footer from "@/components/commons/Footer";
+import Cart from "@/components/commons/Cart";
 import Sidebar from "@/app/dashboard/Sidebar";
 import AdminMenu from "@/app/dashboard/AdminMenu";
 import ProfileBar from "@/app/dashboard/shared/ProfileBar";
@@ -41,21 +35,31 @@ export default {
     Sidebar,
     ProfileBar,
     Footer,
-    AdminMenu
+    AdminMenu,Cart
   },
   data() {
     return {
       loaded: false,
-      hasSidebar: true
+      componentKey: 0,
+      hiringPage: false
     };
   },
   created() {
-    if (this.$route.path.includes("dashboard/t/tutor-application") || this.$route.path.includes("dashboard/p/hiring/")) {
-      this.hasSidebar = false;
+    const route = this.$route.path;
+    if(route.substring(0,20) === '/dashboard/p/hiring/'){
+      this.hiringPage = true;
     }
+    this.loaded = true;
   },
   mounted() {
-    this.FETCH_USER(JSON.parse(localStorage.getItem("user")).username);
+    if(localStorage.getItem("user")
+    || localStorage.getItem("isAuth")
+    || localStorage.getItem("token")
+    ){
+      this.FETCH_USER(JSON.parse(localStorage.getItem("user")).username);
+    } else {
+     this.$store.dispatch('LOGOUT_USER');
+    }
     this.loaded = true;
   },
   computed: {
@@ -77,6 +81,56 @@ export default {
 </script>
 
 <style scoped>
+.app-wrapper {
+  display: grid;
+  grid-template-columns: 18% 82%;
+  grid-template-areas: "sidebar content";
+  grid-gap: 0;
+  padding: 0;
+}
+
+.sidebar-wrapper {
+  grid-area: sidebar;
+  grid-column: 1;
+  min-height: 100vh;
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.content-wrapper {
+  grid-area: content;
+  background-color: #f3f3f3;
+}
+/*
+@media only screen and (max-width: 600px) {
+  .app-wrapper {
+    width: 98%;
+    padding: 0 1%;
+  }
+  .sidebar-wrapper {
+    display: block;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 980px) {
+  .sidebar-wrapper {
+    width: 20%;
+    padding: 0 0;
+  }
+  .app-wrapper {
+    width: 79%;
+    padding: 0 0.5%;
+  }
+}
+@media only screen and (min-width: 980px) {
+  .sidebar-wrapper {
+    width: 15%;
+    padding: 0 0;
+  }
+  .app-wrapper {
+    width: 84%;
+    padding: 0 0.5%;
+  }
+} */
 header.navbar {
   background: #ffffff;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);

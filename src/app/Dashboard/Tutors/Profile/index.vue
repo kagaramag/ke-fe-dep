@@ -7,7 +7,7 @@
           <div class="row">
             <div class="col-sm-12 col-md-3 col-lg-3">
               <div class="col-sm-12 col-md-12 col-lg-12 p-0 m-0" v-on:click="goTo('zero')">
-                <div :class="{ 'active': steps.zero }" class="profile-nav-box shadow-2">
+                <div :class="{ 'active': steps.zero }" class="profile-nav-box">
                   <img src="@/assets/images/profile-welcome.svg" alt="Profile" />
                   Welcome
                 </div>
@@ -15,7 +15,7 @@
               <div class="col-sm-12 col-md-12 col-lg-12 p-0 m-0" v-on:click="goTo('one')">
                 <div
                   :class="{ 'active': steps.one }"
-                  class="profile-nav-box shadow-2 isNotOkay"
+                  class="profile-nav-box isNotOkay"
                 >
                   <img src="@/assets/images/profile-information.svg" alt="Profile" />
                   Profile
@@ -24,7 +24,7 @@
               <div class="col-sm-12 col-md-12 col-lg-12 p-0 m-0" v-on:click="goTo('two')">
                 <div
                   :class="{ 'active': steps.two }"
-                  class="profile-nav-box shadow-2 isNotOkay"
+                  class="profile-nav-box isNotOkay"
                 >
                   <img src="@/assets/images/profile-location.svg" alt="Profile" />
                   Location
@@ -33,7 +33,7 @@
               <div class="col-sm-12 col-md-12 col-lg-12 p-0 m-0" v-on:click="goTo('three')">
                 <div
                   :class="{ 'active': steps.three }"
-                  class="profile-nav-box shadow-2 isNotOkay"
+                  class="profile-nav-box isNotOkay"
                 >
                   <img src="@/assets/images/profile-education.svg" alt="Profile" />
                   Education
@@ -42,7 +42,7 @@
               <div class="col-sm-12 col-md-12 col-lg-12 p-0 m-0" v-on:click="goTo('four')">
                 <div
                   :class="{ 'active': steps.four }"
-                  class="profile-nav-box shadow-2 isNotOkay"
+                  class="profile-nav-box isNotOkay"
                 >
                   <img src="@/assets/images/profile-documents.svg" alt="Profile" />
                   Documents
@@ -51,7 +51,7 @@
               <div class="col-sm-12 col-md-12 col-lg-12 p-0 m-0" v-on:click="goTo('five')">
                 <div
                   :class="{ 'active': steps.five }"
-                  class="profile-nav-box shadow-2 isNotOkay"
+                  class="profile-nav-box isNotOkay"
                 >
                   <img src="@/assets/images/profile-blog.svg" alt="Profile" />
                   Articles
@@ -63,7 +63,7 @@
               >
                 <div
                   :class="{ 'active': steps.six  }"
-                  class="profile-nav-box shadow-2 isOkay"
+                  class="profile-nav-box isOkay"
                 >
                   <img src="@/assets/images/profile-submit.svg" alt="Profile" />
                   Done
@@ -76,7 +76,7 @@
                 <div v-if="steps.zero">
                   <div class="p-3 bg-white border border-gray mb-3 shadow-1 radius-2">
                     <h1 class="text-center">Build your profile</h1>
-                    <div>
+                    <div class="image">
                       <img
                         style="max-width:400px;display:block;margin: 15px auto;"
                         src="@/assets/images/build_profile.svg"
@@ -287,7 +287,7 @@ export default {
 .content-wrapper {
 }
 .content-steps {
-  width: 100%;
+  width: 98%;
   display: block;
 }
 .submit-disabled {

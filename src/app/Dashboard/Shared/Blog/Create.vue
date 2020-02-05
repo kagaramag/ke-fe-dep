@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <Header />
+     <component :is="layout">
     <div class="container">
       <div class="row justify-content-lg-center">
         <div class="col-lg-10">
@@ -61,7 +61,7 @@
                 >Whooops, Something went wrong while uploading your image</div>
               </div>
               <!-- Admin section -->
-              <div v-if="type && type == 'p'" class="p-3 mb-2 border border-light">
+              <div v-if="accountType && accountType == 'p'" class="p-3 mb-2 border border-light">
                 <div class="custom-control custom-switch">
                   <input
                     type="checkbox"
@@ -120,13 +120,14 @@
         </div>
       </div>
     </div>
+    </component>
   </div>
 </template>
 
 <script>
 import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
-import Header from "@/components/commons/Header";
+import Header from "@/components/commons/HeaderAdmin";
 import editor from "vue2-medium-editor";
 import "@/assets/css/medium-editor.min.css";
 import "@/assets/css/flat.min.css";
@@ -134,6 +135,7 @@ import TextareaAutosize from "vue-textarea-autosize";
 import { setResizeListeners } from "@/helpers/TextareaAutoResizer";
 import { VueEditor } from "vue2-editor";
 import AxiosHelper from "@/helpers/AxiosHelper";
+const account_layout = "account";
 
 Vue.use(TextareaAutosize);
 
@@ -182,6 +184,9 @@ export default {
     },
     errors() {
       return this.$store.getters.errors;
+    },
+    layout() {
+      return (this.$route.meta.layout || account_layout) + "-layout";
     },
     created_post() {
       const post = this.$store.getters.created_post;
