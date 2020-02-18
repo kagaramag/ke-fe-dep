@@ -14,7 +14,7 @@
         <div style="max-width:800px;display:block;margin:0 auto" class="p-4 shadow-lg">
           <h2 class="mt-4 text-center">[We are accepting applications]</h2>
           <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSePNOGw34rFAAeu4YOn3GrGQ6PaZwB0lNDhgBXarKuPeEUzVw/viewform?embedded=true"
+            src="https://docs.google.com/forms/d/e/1FAIpQLSfrNakqKq7ByfMBcqJo1LBMPlDVScMIbNUJRllRGDJqjJ4YcQ/viewform?embedded=true"
             height="1267"
             style="width:100%"
             frameborder="0"
