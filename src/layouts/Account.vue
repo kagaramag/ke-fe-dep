@@ -26,7 +26,7 @@ import Footer from "@/components/commons/Footer";
 import Cart from "@/components/commons/Cart";
 import Sidebar from "@/app/dashboard/Sidebar";
 import AdminMenu from "@/app/dashboard/AdminMenu";
-import ProfileBar from "@/app/dashboard/shared/ProfileBar";
+import ProfileBar from "@/app/dashboard/shared/profileBar";
 
 export default {
   name: "accountLayout",
