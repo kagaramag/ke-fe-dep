@@ -24,9 +24,9 @@ import { mapGetters, mapActions } from "vuex";
 import Header from "@/components/commons/HeaderAdmin";
 import Footer from "@/components/commons/Footer";
 import Cart from "@/components/commons/Cart";
-import Sidebar from "@/app/dashboard/Sidebar";
-import AdminMenu from "@/app/dashboard/AdminMenu";
-import ProfileBar from "@/app/dashboard/shared/profileBar";
+import Sidebar from "@/app/Dashboard/Sidebar";
+import AdminMenu from "@/app/Dashboard/AdminMenu";
+import ProfileBar from "@/app/Dashboard/Shared/ProfileBar";
 
 export default {
   name: "accountLayout",

@@ -12,7 +12,7 @@ const router = new Router({
     {
       path: "/tutors",
       name: "tutors",
-      component: () => import("@/app/Tutors")
+      component: () => import("@/app/Tutors/Index")
     },
     {
       path: "/tutors/apply",
@@ -22,7 +22,7 @@ const router = new Router({
     {
       path: "/codingclass",
       name: "apply-for-tutor",
-      component: () => import("@/app/Codingclass")
+      component: () => import("@/app/Codingclass/Index")
     },
     {
       path: "/register",
@@ -59,12 +59,12 @@ const router = new Router({
     {
       path: "/@:username",
       name: "profile",
-      component: () => import("@/app/Profile")
+      component: () => import("@/app/Profile/Index")
     },
     {
       path: "/dashboard/:type",
       name: "profile",
-      component: () => import("@/app/Dashboard/Home"),
+      component: () => import("@/app/Dashboard/Home/Index"),
       meta: {
         auth: true
       }
@@ -72,7 +72,7 @@ const router = new Router({
     {
       path: "/dashboard/:type/settings",
       name: "Profile Settings",
-      component: () => import("@/app/Dashboard/Shared/Settings"),
+      component: () => import("@/app/Dashboard/Shared/Settings/Index"),
       meta: {
         auth: true
       }
@@ -80,7 +80,7 @@ const router = new Router({
     {
       path: "/dashboard/:type/coaching",
       name: "coaching",
-      component: () => import("@/app/Dashboard/Tutoring"),
+      component: () => import("@/app/Dashboard/Tutoring/Index"),
       meta: {
         auth: true
       }
@@ -96,7 +96,7 @@ const router = new Router({
     {
       path: "/dashboard/:type/coaching/:id",
       name: "coaching",
-      component: () => import("@/app/Dashboard/Tutorship"),
+      component: () => import("@/app/Dashboard/Tutorship/Index"),
       meta: {
         auth: true
       }
@@ -122,7 +122,7 @@ const router = new Router({
     {
       path: "/dashboard/:type/my-blog",
       name: "blog",
-      component: () => import("@/app/Dashboard/Shared/Blog")
+      component: () => import("@/app/Dashboard/Shared/Blog/Index")
     },
     {
       path: "/dashboard/:type/my-blog/:slug/edit",

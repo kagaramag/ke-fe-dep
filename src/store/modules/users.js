@@ -1,5 +1,5 @@
 import AxiosHelper from "@/helpers/AxiosHelper";
-import router from "router";
+import router from "@/router";
 
 export default {
   // initial state

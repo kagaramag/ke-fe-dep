@@ -1,4 +1,4 @@
-import router from "../../../../../ikinyarwanda/ik-fr/src/store/modules/node_modules/@/router";
+import router from "@/router";
 
 export default {
   state: {

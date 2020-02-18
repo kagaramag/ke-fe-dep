@@ -72,7 +72,7 @@
 <script>
 import Vue from "vue";
 import { mapGetters, mapActions, mapState } from "vuex";
-import ProfileBar from "@/app/dashboard/shared/ProfileBar";
+import ProfileBar from "@/app/Dashboard/Shared/ProfileBar";
 import NotFound from "@/app/NotFound";
 import ProfileBio from "./ProfileBio";
 import Legal from "./Legal";
