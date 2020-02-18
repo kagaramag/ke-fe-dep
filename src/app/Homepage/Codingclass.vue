@@ -7,8 +7,8 @@
             <div class="justify-content-center align-self-center text-center text-white">
               <h1 class="font-weight-light">Keetela Coding Class</h1>
               <h5 class="py-2 font-weight-light">
-                Coding for young generation is growing rapidly in popularity while programming<br /> is offered in a small number of traditional schools.
-                <br />Learning how to code with us will truly make you ready for personnal growth and set you up for outstanding world-class software engineer.
+                Coding for young generation is growing rapidly in popularity as it is a new form of literacy in this new technological era.<br>
+                Code with us will truly make you ready for personnal growth and set you up for<br>outstanding world-class software engineer.
               </h5>
               <div class="py-2">
                 <router-link
