@@ -2,7 +2,7 @@
   "name": "keetela",
   "version": "1.0.0",
   "private": true,
-  "description": "Connecting kids with in-person tutors",
+  "description": "Learn with the best instructors and mentors around you",
   "author": "Ngabo Jasper <ngagojasper@gmail.com>",
   "scripts": {
     "build": "node build/build.js",
