@@ -28,7 +28,7 @@
                         class="text-truncate mb-0 nobold text-dark text-center"
                       >{{tutor.user.lastName | capitalize}} {{tutor.user.firstName}}</h3>
                       <div class="card-text mx-3 my-1" style="color:#646464;height:70px">
-                        <div :inner-html.prop="tutor.user.bio | truncate(100)"></div>
+                        <div :inner-html.prop="tutor.user.bio | truncate(130)"></div>
                       </div>
                     </div>
                     <div class="col-12 text-center py-3">
@@ -48,7 +48,7 @@
                 v-on:click="goToPrev()"
                 :disabled="pagination.page < 2"
                 type="button"
-                class="btn btn-light border border-dark rounded-pill mx-3 px-5"
+                class="btn bg-white border border-dark rounded-pill mx-3 px-5"
               >Prev</button>
               <button
                 v-on:click="goToNext()"
@@ -57,21 +57,26 @@
                   tutors.tutors.length < 3
               "
                 type="button"
-                class="btn btn-light border border-dark rounded-pill mx-3 px-5"
+                class="btn bg-white border border-dark rounded-pill mx-3 px-5"
               >Next</button>
             </div>
           </div>
         </div>
-
         <div
           class="grabtutors mb-5"
-          v-if="loaded && tutors && tutors.tutors && tutors.tutors.length === 0 && tutors.count === 0"
+          v-if="loaded && tutors && tutors.tutors && !tutors.loading  && !tutors.success && !tutors.tutors.length && tutors.count === 0"
         >
           <NotFound
             message="Tutors not found"
             description="Something wrong occured while retrieving informations"
             icon="user"
           />
+        </div>
+        <div
+          class="grabtutors mb-5"
+          v-if="tutors && tutors.loading"
+        >
+          <Loading />
         </div>
       </div>
     </component>
@@ -80,13 +85,15 @@
 
 <script>
 import { mapGetters } from "vuex";
-import NotFound from "@/app/NotFound";
+import NotFound from "@/app/NotFound/ContentNotFound";
+import Loading from "@/components/commons/Loading";
 
 const default_layout = "default";
 export default {
   name: "tutors",
   components: {
-    NotFound
+    NotFound,
+    Loading
   },
   data() {
     return {

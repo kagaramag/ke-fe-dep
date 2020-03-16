@@ -11,6 +11,7 @@ import Account from "./layouts/Account.vue";
 import store from "./store";
 import VueLazyload from "vue-lazyload";
 import VueAnalytics from "vue-analytics";
+import VueMeta from 'vue-meta'
 
 import VueToast from "vue-toast-notification";
 import "vue-toast-notification/dist/index.css";
@@ -23,6 +24,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 Vue.use(VueToast);
+Vue.use(VueMeta);
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,

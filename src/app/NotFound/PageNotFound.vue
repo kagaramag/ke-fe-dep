@@ -1,12 +1,7 @@
 <template>
   <div class="notfound m-3">
     <div class="row">
-      <div class="d-sm-none col-md-5">
-        <div class="image">
-          <img src="@/assets/images/404-01.png" />
-        </div>
-      </div>
-      <div class="col-md-7">
+      <div class="col-md-7 text-center">
         <br />
         <h1>Oooops!!!</h1>
         <h2>{{message || 'Error 404'}}</h2>
@@ -19,6 +14,11 @@
           >Go back Home</router-link>
         </div>
       </div>
+      <div class="col-md-5">
+        <div class="image">
+          <img src="@/assets/images/404-01.png" />
+        </div>
+      </div>
       <div class="clear"></div>
     </div>
   </div>
@@ -28,7 +28,7 @@
 const minima_layout = "minima";
 export default {
   name: "notfound",
-  props: ["message", "description"],
+  props: ["message", "description", "button"],
   computed: {
     layout() {
       return (this.$route.meta.layout || minima_layout) + "-layout";

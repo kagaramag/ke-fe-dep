@@ -4,7 +4,7 @@
       <div
         v-for="item in education"
         :key="item.index"
-        class="shadow radius-3 rounded mb-4 mt-2 row"
+        class="shadow bg-white radius-3 rounded mb-4 mt-2 row"
       >
         <div class="col-2">
           <div class="image image-identity">

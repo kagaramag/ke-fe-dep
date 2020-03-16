@@ -60,20 +60,27 @@
           <p class="mb-0" v-if="!isLegalOkay">You must submit all necessary legal documents</p>
           <p class="mb-0" v-if="!isBlogOkay">You must at least write one article</p>
         </div>
-        <div class="my-3 alert alert-warning"
-            v-show="fetch_user && fetch_user.details && fetch_user.details.evaluation"
-          >You have a pending evaluation request. Please wait until we get back to you.
-        </div>
-        <div class="my-3">
-          <input type="checkbox" v-model="agree" />
-          I certify that all provided information are correct to the best of my knowledge. I understand that the consequence of any false information is ground for expulsion and that I will be prohibited from applying to any future
-          <b>Keetela</b> programs and I agree to the
-          <router-link :to="'/'">
-            <b>Terms and agreement</b>
-          </router-link>&nbsp; and
-          <router-link :to="'/'">
-            <b>Privacy Policy</b>
-          </router-link>
+        <div
+          class="my-3 alert alert-warning"
+          v-show="fetch_user && fetch_user.details && fetch_user.details.evaluation"
+        >You have a pending evaluation request. Please wait until we get back to you.</div>
+        <div class="my-3 font-weight-light">
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" v-model="agree" id="agreeTerms" />
+              <label class="form-check-label" for="agreeTerms">
+                I certify that all provided information are correct to the best of my knowledge. I understand that the consequence of any false information is ground for expulsion and that I will be prohibited from applying to any future
+                <b>Keetela</b> programs and I agree to the
+                <router-link :to="'/'">
+                  <b>Terms and agreement</b>
+                </router-link>&nbsp; and
+                <router-link :to="'/'">
+                  <b>Privacy Policy</b>
+                </router-link>
+              </label>
+              <div class="invalid-feedback">You must agree before submitting.</div>
+            </div>
+          </div>
           <br />
         </div>
         <div class="my-3">
@@ -112,7 +119,7 @@ import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
 export default {
   name: "ProfileUserCheckin",
-  props: ["fetch_user"],
+  // props: ["fetch_user"],
   data() {
     return {
       loaded: false,

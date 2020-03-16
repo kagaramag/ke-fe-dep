@@ -2,7 +2,7 @@
   <component :is="layout">
     <div class="account-type">
       <div v-if="!auth">
-        <h2 style="font-weight:none">I am...</h2>
+        <h2 class="text-center pt-4">I am...</h2>
         <div class="box">
           <div class="row mx-2">
             <div class="col col-sm-12 col-md-12 col-lg-12 my-2">

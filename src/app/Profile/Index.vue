@@ -21,7 +21,7 @@
                   </div>
                 </div>
               </div>
-              <div v-if="fetch_user.legal" class="provided border border-gray radius-1 p-2 mb-3">
+              <div v-if="fetch_user.legal" class="provided bg-white border border-gray radius-1 p-2 mb-3">
                 <h4 class="p-2">{{fetch_user.user.firstName}} provided</h4>
                 <div v-if="fetch_user.legal.passport">
                   <icon class="icon" icon="check-circle" />Identity information
@@ -48,7 +48,7 @@
                 v-if="fetch_user.user && fetch_user.user.UserRole.role === 'tutor'"
                 :user="fetch_user"
               />
-              <Education v-if="fetch_user.education" :education="fetch_user.education" />
+              <Education v-if="fetch_user.education" :education="fetch_user && fetch_user.education" />
               <Availability
                 v-if="fetch_user.details"
                 :availability="fetch_user.details.availability"
@@ -73,7 +73,7 @@
 import Vue from "vue";
 import { mapGetters, mapActions, mapState } from "vuex";
 import ProfileBar from "@/app/Dashboard/Shared/ProfileBar";
-import NotFound from "@/app/NotFound";
+import NotFound from "@/app/NotFound/ContentNotFound";
 import ProfileBio from "./ProfileBio";
 import Legal from "./Legal";
 import Education from "./Education";

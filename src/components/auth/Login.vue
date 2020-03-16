@@ -3,8 +3,7 @@
     <div class="login">
       <Loading v-if="profile.loading" />
       <div v-if="!auth">
-        <h2>Welcome</h2>
-        <h4 class="text-center">Sign in to continue...</h4>
+        <h2 class="text-center pt-4">Sign in to continue...</h2>
         <div class="box">
           <form class="p-4">
             <div
@@ -53,7 +52,7 @@
         </div>
       </div>
       <div v-else>
-        <div class="text-center my-5">
+        <div class="text-center my-5 font-weight-light">
           You are already logged in.
           <br />
           <router-link :to="`/dashboard/${accountType}`">Click here</router-link>&nbsp; to go to dashboard

@@ -1,8 +1,8 @@
 <template>
   <div class="sidebar">
-    <p class="p-2">
-      <router-link class="navbar-brand" :to="'/'">
-        <img src="@/assets/images/logo_XII.svg" />
+    <p class="py-1">
+      <router-link class="app-logo" :to="'/'">
+        <img src="@/assets/images/logo_icon_I.svg" />
       </router-link>
     </p>
     <!-- DASHBOARD -->
@@ -14,6 +14,10 @@
       <router-link :to="`/dashboard/${accountType}`">
         <icon class="icon" icon="stream" />
         <span>Dashboard</span>
+      </router-link>
+      <router-link :to="`/dashboard/${accountType}/manage`">
+        <icon class="icon" icon="folder" />
+        <span>Manage</span>
       </router-link>
     </div>
     <!-- TUTOR NAV CARD -->
@@ -58,13 +62,6 @@
         <span>Settings</span>
       </router-link>
     </div>
-    <!-- GENERAL -->
-    <div>
-      <router-link :to="`/dashboard/${accountType}/admin`">
-        <icon class="icon" icon="envelope" />
-        <span>Admin Panel</span>
-      </router-link>
-    </div>
   </div>
 </template>
 
@@ -92,35 +89,57 @@ export default {
 </script>
 
 <style scoped>
-
-.sidebar{
+.sidebar {
   position: fixed;
+  width:18%;
 }
-.sidebar .navbar-brand{
-  display: block;
-  margin: 0 auto
+.sidebar .app-logo {
+  width: 100%;
+}
+.sidebar .app-logo a {
+  padding: 0!important;
+  margin: 0!important;
+}
+.sidebar .app-logo img {
+  width: 45px;
 }
 .sidebar a {
   display: block;
+  width: 100%;
   margin-bottom: 12px;
   padding: 10px 20px 10px 50px;
   position: relative;
+  font-weight: 100;
   color: #ececec;
-}
-.is-active{
-  border:1px solid red!important
-}
-
-.sidebar a:hover {
-  opacity: 0.7;
 }
 .sidebar a .icon {
   position: absolute;
   top: 13px;
   left: 22px;
-  color: #c8c8c8;
+  color: #8786c8;
 }
 .sidebar a:hover .icon {
-  color: #acabdd;
+  color: #ffffff;
+}
+.is-active {
+  position: relative;
+  color: #ffffff;
+  font-weight: 800;
+  display: block;
+  background: #ffffff;
+  color: #403ea8!important;
+  border-radius: 0 25px 25px 0 !important;
+}
+.is-active::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  content: "";
+  background: #ffffff;
+}
+.is-active .icon {
+  color: #403ea8!important;
 }
 </style>

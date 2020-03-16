@@ -2,14 +2,14 @@
   <div id="account">
     <div v-if="loaded && fetch_user.loading" class="grab-page-loading"></div>
     <div v-if="loaded && fetch_user && !fetch_user.loading">
-      <Cart v-if="!hiringPage" />
       <div class="app-wrapper">
-        <div class="sidebar-wrapper bg-primary shadow-lg">
+        <div class="sidebar-wrapper bg-primary">
           <Sidebar :user="fetch_user.user" />
         </div>
         <div class="content-wrapper">
           <Header />
-          <div class="p-1">
+          <div class="p-1 mt-3">
+            <Cart v-if="!hiringPage" />
             <slot :fetch_user="fetch_user" />
           </div>
         </div>
@@ -35,7 +35,8 @@ export default {
     Sidebar,
     ProfileBar,
     Footer,
-    AdminMenu,Cart
+    AdminMenu,
+    Cart
   },
   data() {
     return {
@@ -46,19 +47,20 @@ export default {
   },
   created() {
     const route = this.$route.path;
-    if(route.substring(0,20) === '/dashboard/p/hiring/'){
+    if (route.substring(0, 20) === "/dashboard/p/hiring/") {
       this.hiringPage = true;
     }
     this.loaded = true;
   },
   mounted() {
-    if(localStorage.getItem("user")
-    || localStorage.getItem("isAuth")
-    || localStorage.getItem("token")
-    ){
+    if (
+      localStorage.getItem("user") ||
+      localStorage.getItem("isAuth") ||
+      localStorage.getItem("token")
+    ) {
       this.FETCH_USER(JSON.parse(localStorage.getItem("user")).username);
     } else {
-     this.$store.dispatch('LOGOUT_USER');
+      this.$store.dispatch("LOGOUT_USER");
     }
     this.loaded = true;
   },
@@ -94,43 +96,12 @@ export default {
   grid-column: 1;
   min-height: 100vh;
   height: 100%;
-  background-color: #ffffff;
 }
 
 .content-wrapper {
   grid-area: content;
   background-color: #f3f3f3;
 }
-/*
-@media only screen and (max-width: 600px) {
-  .app-wrapper {
-    width: 98%;
-    padding: 0 1%;
-  }
-  .sidebar-wrapper {
-    display: block;
-  }
-}
-@media only screen and (min-width: 600px) and (max-width: 980px) {
-  .sidebar-wrapper {
-    width: 20%;
-    padding: 0 0;
-  }
-  .app-wrapper {
-    width: 79%;
-    padding: 0 0.5%;
-  }
-}
-@media only screen and (min-width: 980px) {
-  .sidebar-wrapper {
-    width: 15%;
-    padding: 0 0;
-  }
-  .app-wrapper {
-    width: 84%;
-    padding: 0 0.5%;
-  }
-} */
 header.navbar {
   background: #ffffff;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);

@@ -3,19 +3,32 @@
     <!-- Welcome -->
     <section class="clearfix">
       <div class="container">
-        <h1 class="text-center font-weight-light my-4">
-          Striving to empower the
-          <br />
-          <span class="p-2 text-white bold">community</span>
-        </h1>
-        <div class="text-center description">
-          <b>Keetela</b> accelerates the acquisition of knowledge and skills necessary to achieve career advancement
-          <br />and personal growth.
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <img
+              src="./../../assets/images/about-bg.svg"
+              class="card-img-top center"
+              alt="about us"
+            />
+          </div>
+          <div class="col-sm-12 col-md-6 text-primary">
+            <div class="py-4">
+              <h1 class="font-weight-light my-4">
+                <span class="bold">Striving</span>
+                <br />
+                to empower the
+                <br />
+                <span class="bold">community</span>
+              </h1>
+              <div class="description py-3">
+                <b>Keetela</b> accelerates the acquisition of knowledge and
+                skills necessary to achieve career advancement <br />and
+                personal growth.
+              </div>
+            </div>
+          </div>
         </div>
         <div class="clear"></div>
-        <!-- <div class="py-3 text-center">
-          <router-link class="btn btn-large btn-light px-4 rounded" :to="'/about'">About us</router-link>
-        </div>-->
       </div>
     </section>
   </div>
@@ -43,7 +56,7 @@ export default {
   position: relative;
   z-index: 3;
 }
-
+/*
 #about h1 span::before {
   position: absolute;
   width: 100%;
@@ -56,4 +69,5 @@ export default {
   content: "";
   transform: rotate(-2deg);
 }
+*/
 </style>

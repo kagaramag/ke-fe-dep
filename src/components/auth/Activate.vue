@@ -2,7 +2,7 @@
   <component :is="layout">
     <div class="activite">
       <Loading v-if="profile && profile.loading" />
-      <h2 class="my-4">Activating account</h2>
+      <h2 class="text-center pt-4">Activating account</h2>
       <div class="m-3">
         <div
           class="row"

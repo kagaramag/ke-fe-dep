@@ -52,7 +52,8 @@
             />
           </div>
         </div>
-
+        <Loading v-if="posts && posts.loading && !posts.posts.length" />
+        <div  v-if="posts && posts.loading && !posts.posts.length" class="blog-loading"></div>
         <div class="row" v-if="posts && !posts.loading && !posts.success && !posts.posts.length">
           <NotFound
             message="No articles found"
@@ -65,14 +66,16 @@
   </div>
 </template>
 <script>
-import NotFound from "@/app/NotFound";
+import NotFound from "@/app/NotFound/ContentNotFound";
+import Loading from "@/components/commons/Loading";
 import { mapActions, mapGetters } from "vuex";
 const default_layout = "default";
 
 export default {
   name: "posts",
   components: {
-    NotFound
+    NotFound,
+    Loading
   },
   data() {
     return {
@@ -118,6 +121,9 @@ export default {
 </script>
 
 <style scoped>
+.blog-loading {
+  height: 300px;
+}
 .row {
   width: 100%;
   margin: 0;

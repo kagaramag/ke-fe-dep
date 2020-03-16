@@ -14,7 +14,7 @@
         <div style="max-width:800px;display:block;margin:0 auto" class="p-4 shadow-lg">
           <h2 class="mt-4 text-center">[We are accepting applications]</h2>
           <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSfrNakqKq7ByfMBcqJo1LBMPlDVScMIbNUJRllRGDJqjJ4YcQ/viewform?embedded=true"
+            src="https://docs.google.com/forms/d/e/1FAIpQLScR-C9hpvLcuz13nlujt4c5Cke47JTyq4dCEl-C9OYVK0-JxQ/viewform?embedded=true"
             height="1267"
             style="width:100%"
             frameborder="0"
@@ -30,6 +30,21 @@
 <script>
 const default_layout = "default";
 export default {
+  metaInfo: {
+    title: "Coding Class for young generation",
+    titleTemplate: "%s - | Keetela.com | Igniting minds for success!",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Keetla Coding class is programming training tailored for young generation: young kids, secondary graduates and university graduates"
+      },
+      {
+        name: "keywords",
+        content: "Programming, Training, Coding Class, World Class software developers"
+      }
+    ]
+  },
   name: "codingclass",
   data() {
     return {
@@ -52,7 +67,7 @@ export default {
 <style scoped>
 .grab-apply-cover {
   height: 50vh;
-  background: url("../../assets/images/coaching-kig.jpg");
+  background: url("../../../assets/images/coaching-kig.jpg");
   background-attachment: scroll;
   background-position: center top;
   background-size: cover;

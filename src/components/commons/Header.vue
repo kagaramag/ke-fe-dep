@@ -1,39 +1,19 @@
 <template>
-  <nav class="navbar sticky-top bg-primary m-0 p-0 navbar-expand-lg navbar-light">
+  <nav class="navbar bg-primary sticky-top m-0 p-0 navbar-expand-lg">
     <div class="container my-0">
-      <router-link class="navbar-brand pl-1" :to="'/'">
+      <router-link class="navbar-brand m-sm-2 pl-1" :to="'/'">
         <img src="@/assets/images/logo_XII.svg" />
       </router-link>
-      <!-- <button
+      <button
         ref="button"
         class="toggle-button border-0 p-1 mx-2 bg-transparent text-white d-lg-none"
         style="font-size:25px"
         @click="showPopup = !showPopup"
       >
         <icon class="icon" icon="bars" />
-      </button> -->
+      </button>
       <div class="collapse navbar-collapse">
-        <ul class="navbar-nav main-nav mr-auto mt-2 pt-2 mt-lg-0 ml-4 right">
-          <li class="nav-item">
-            <router-link class="nav-link text-white" :to="'/'">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link text-white" :to="'/codingclass'">Coding Class</router-link>
-          </li>
-          <!-- <li class="nav-item">
-            <router-link class="nav-link text-white" :to="'/tutors'">Tutors</router-link>
-          </li>-->
-          <!-- <li class="nav-item">
-            <router-link class="nav-link text-white" :to="'/blog'">Blog</router-link>
-          </li> -->
-          <!-- <li class="nav-item">
-            <router-link
-              class="btn btn-light mx-2 px-3 rounded"
-              :to="'/tutors/apply'"
-            >Become a tutor</router-link>
-          </li>-->
-        </ul>
-        <ul class="navbar-nav right" v-if="devMode && auth && auth.isAuth">
+        <ul class="navbar-nav float-right" v-if="devMode && auth && auth.isAuth">
           <div>
             <ul class="list-inline">
               <li class="list-inline-item">
@@ -50,6 +30,29 @@
               </li>
             </ul>
           </div>
+        </ul>
+        <ul class="navbar-nav main-nav float-right mt-2 pt-2 mt-lg-0 ml-4">
+          <li class="nav-item">
+            <router-link class="nav-link text-white" :to="'/'">Home</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link text-white" :to="'/codingclass'">Coding Class</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link text-white" :to="'/tutoring'">Tutoring</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link text-white" :to="'/mentoring'">Mentoring</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link text-white" :to="'/training'">Training</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link text-white" :to="'/blog'">Blog</router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link text-white" :to="'/contact'">Contact</router-link>
+          </li>
         </ul>
         <!-- <ul class="navbar-nav right" v-if="auth.isAuth === false || !profile">
           <li class="nav-item">
@@ -248,7 +251,6 @@ export default {
   border: 2px solid #ffffff;
 }
 .navbar-nav.main-nav a {
-  /* color: #ffffff !important; */
   transition: 0.3s;
   font-weight: 300;
 }

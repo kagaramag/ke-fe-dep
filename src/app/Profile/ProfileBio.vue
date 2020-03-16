@@ -20,6 +20,9 @@ export default {
 .grab-bio .bio p{
   margin:2px 0!important;
 }
+.grab-bio .bio p span{
+  background: transparent!important
+}
 .grab-bio .bio p br{
   margin:0px 0!important;
   height:1px!important

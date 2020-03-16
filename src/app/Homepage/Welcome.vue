@@ -4,11 +4,11 @@
       <div class="container" style="height:500px">
         <div class="row align-items-center h-100">
           <div class="col-12">
-            <div class="justify-content-center text-light align-self-center text-center">
+            <div class="justify-content-center text-light align-self-center">
               <h1 class="py-3">Everyone has something to share.</h1>
               <h3
                 class="text-light font-weight-light mb-3"
-              >Learn with the best instructors and mentors around you</h3>
+              >Welcoming everyone in online &amp; offline learning experience built &amp; delivered on top of digital solutions</h3>
               <h4 class="text-light">Grow &#8226; Connect &#8226; Spark</h4>
             </div>
           </div>
@@ -44,7 +44,7 @@ export default {
   overflow: hidden;
   height: 75vh;
   position: relative;
-  background: url("../../assets/images/person-tutoring.jpg");
+  background-image: url("../../assets/images/person-tutoring.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
@@ -57,7 +57,7 @@ export default {
   content: "";
   width: 100%;
   height: 100%;
-  background:rgba(0,0,0,.5);
+  background:rgba(64, 62, 168, 0.75);
 }
 #intro .welcome-note h2 {
   color: #ffffff;

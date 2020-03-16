@@ -15,14 +15,34 @@ const router = new Router({
       component: () => import("@/app/Tutors/Index")
     },
     {
-      path: "/tutors/apply",
-      name: "apply-for-tutor",
-      component: () => import("@/app/Tutors/Apply")
+      path: "/contact",
+      name: "contact-us",
+      component: () => import("@/app/Contact")
     },
     {
       path: "/codingclass",
       name: "apply-for-tutor",
-      component: () => import("@/app/Codingclass/Index")
+      component: () => import("@/app/Services/Codingclass")
+    },
+    {
+      path: "/tutoring",
+      name: "service-tutoring",
+      component: () => import("@/app/Services/Tutoring")
+    },
+    {
+      path: "/mentoring",
+      name: "service-mentoring",
+      component: () => import("@/app/Services/Mentoring")
+    },
+    {
+      path: "/training",
+      name: "service-training",
+      component: () => import("@/app/Services/Training")
+    },
+    {
+      path: "/tutoring-courses",
+      name: "help-mentoring",
+      component: () => import("@/app/Help/Courses")
     },
     {
       path: "/register",
@@ -73,6 +93,22 @@ const router = new Router({
       path: "/dashboard/:type/settings",
       name: "Profile Settings",
       component: () => import("@/app/Dashboard/Shared/Settings/Index"),
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: "/dashboard/:type/manage",
+      name: "Manage",
+      component: () => import("@/app/Dashboard/Manage/Index"),
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: "/dashboard/:type/subscriptions",
+      name: "Profile Settings",
+      component: () => import("@/app/Dashboard/Subscriptions"),
       meta: {
         auth: true
       }
@@ -174,12 +210,11 @@ const router = new Router({
     },
     {
       path: "*",
-      component: () => import("@/app/NotFound")
+      component: () => import("@/app/NotFound/PageNotFound")
     }
   ],
-  mode: "history",
-  linkActiveClass: "is-active",
-  linkExactActiveClass: "is-active"
+  linkExactActiveClass: "is-active",
+  mode: "history"
 });
 
 router.beforeEach((to, from, next) => {

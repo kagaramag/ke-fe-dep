@@ -265,10 +265,10 @@ export default {
         isLoggedIn: false,
         success: false
       };
-      localStorage.removeItem('user');
-      localStorage.removeItem('isAuth');
-      localStorage.removeItem('token');
-      localStorage.removeItem('cart');
+      localStorage.removeItem("user");
+      localStorage.removeItem("isAuth");
+      localStorage.removeItem("token");
+      localStorage.removeItem("cart");
       router.push({ path: "/login" });
     },
     UPDATE_PROFILE(state, payload) {
@@ -339,10 +339,17 @@ export default {
       state.fetch_tutor.services = {};
       state.fetch_tutor.success = false;
     },
+    RESET_TUTORS(state) {
+      state.fetch_tutors.tutors = [];
+      state.fetch_tutors.count = 0;
+      state.fetch_tutors.success = false;
+      state.fetch_tutors.loading = true;
+    },
     FETCH_TUTORS_SUCCESS(state, payload) {
       state.fetch_tutors.tutors = payload.tutors;
       state.fetch_tutors.count = payload.count;
       state.fetch_tutors.success = true;
+      state.fetch_tutors.loading = false;
     },
     FETCH_TUTORS_FAILURE(state) {
       state.fetch_tutors.errors = payload.errors;
@@ -520,6 +527,7 @@ export default {
       context.commit("LOGIN_USER_OUT");
     },
     FETCH_TUTORS: (context, payload) => {
+      context.commit("RESET_TUTORS");
       AxiosHelper.get(
         `/users/tutors?limit=${payload.limit}&offset=${payload.offset}`
       )

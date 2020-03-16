@@ -16,26 +16,26 @@
             <th>Monday</th>
             <td>
               <span v-if="availability.monday.morning" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.monday.afternoon" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.monday.evening" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
           </tr>
@@ -43,26 +43,26 @@
             <th>Tuesday</th>
             <td>
               <span v-if="availability.tuesday.morning" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.tuesday.afternoon" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.tuesday.evening" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
           </tr>
@@ -70,26 +70,26 @@
             <th>Wednesday</th>
             <td>
               <span v-if="availability.wednesday.morning" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.wednesday.afternoon" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.wednesday.evening" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
           </tr>
@@ -97,26 +97,26 @@
             <th>Thursday</th>
             <td>
               <span v-if="availability.thursday.morning" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.thursday.afternoon" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.thursday.evening" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
           </tr>
@@ -124,26 +124,26 @@
             <th>Friday</th>
             <td>
               <span v-if="availability.friday.morning" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.friday.afternoon" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.friday.evening" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
           </tr>
@@ -151,26 +151,26 @@
             <th>Saturday</th>
             <td>
               <span v-if="availability.saturday.morning" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.saturday.afternoon" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
             </td>
             <td>
               <span v-if="availability.saturday.evening" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="dot-circle" />
+                <icon class="icon text-danger" icon="dot-circle" />
               </span>
             </td>
           </tr>
@@ -178,26 +178,26 @@
             <th>Sunday</th>
             <td>
               <span v-if="availability.sunday.morning" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="dot-circle" />
+                <icon class="icon text-danger" icon="dot-circle" />
               </span>
             </td>
             <td>
               <span v-if="availability.sunday.afternoon" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="dot-circle" />
+                <icon class="icon text-danger" icon="dot-circle" />
               </span>
             </td>
             <td>
               <span v-if="availability.sunday.evening" class="checked">
-                <icon class="icon" icon="check" />
+                <icon class="icon text-success" icon="check" />
               </span>
               <span v-else>
-                <icon class="icon" icon="dot-circle" />
+                <icon class="icon text-danger" icon="dot-circle" />
               </span>
             </td>
           </tr>

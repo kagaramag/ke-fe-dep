@@ -5,7 +5,7 @@
       <!-- START -->
       <div class="py-2">
         <div>
-          <ul class="list-unstyled" v-if="education">
+          <ul class="list-unstyled" v-if="education && education">
             <li v-if="!enableEducationForm" class="mb-3 py-2 px-3">
               <div class="row mb-3">
                 <div class="col-1">
@@ -162,7 +162,7 @@ export default {
       form: {
         college: null,
         graduated: null,
-        yearOfGraduation: new Date(),
+        yearOfGraduation: new Date().toISOString(),
         institution: "",
         course: "",
         certificate: ""

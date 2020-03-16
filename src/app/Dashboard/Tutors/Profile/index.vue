@@ -105,14 +105,14 @@
                 <div v-if="steps.two">
                   <div class="p-3 bg-white border border-gray mb-3 shadow-1 radius-2">
                     <h4>My Location</h4>
-                    <Location :location="fetch_user.location" />
+                    <Location :location="fetch_user && fetch_user.location" />
                   </div>
                 </div>
                 <!-- STEP THREE: EDUCATION -->
                 <div v-if="steps.three">
                   <div class="p-3 bg-white border border-gray mb-3 shadow-1 radius-2">
                     <h4>My education</h4>
-                    <Education :education="fetch_user.education" />
+                    <Education :education="(fetch_user && fetch_user.education) || []" />
                   </div>
                 </div>
                 <!-- STEP FOUR: LEGAL -->

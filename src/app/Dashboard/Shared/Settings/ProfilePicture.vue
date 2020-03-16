@@ -126,7 +126,6 @@ export default {
 
 <style scoped>
 .profile {
-  border: 1px solid red;
   max-width: 200px;
 }
 .form-group .border.border-light {

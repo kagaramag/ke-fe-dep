@@ -12,6 +12,8 @@ import blog from './modules/blog';
 import services from './modules/services';
 import cart from './modules/cart';
 import payment from './modules/payment';
+import subscriptions from './modules/subscriptions';
+import courses from './modules/courses';
 
 Vue.use(Vuex, axios);
 
@@ -30,6 +32,8 @@ export default new Vuex.Store({
     blog,
     services,
     cart,
-    payment
+    payment,
+    subscriptions,
+    courses
   }
 });

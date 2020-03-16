@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar bg-white sticky-top m-0 py-0 navbar-expand-lg navbar-light">
+  <nav class="navbar bg-white shadow sticky-top m-0 py-0 navbar-expand-lg">
     <button
       ref="button"
       class="toggle-button border-0 p-1 mx-2 bg-transparent text-white d-lg-none"
@@ -9,11 +9,12 @@
       <icon class="icon" icon="bars" />
     </button>
     <div class="collapse navbar-collapse">
-      <ul class="navbar-nav main-nav mr-auto mt-lg-0 ml-4 right">
+      <ul class="navbar-nav main-nav mr-auto mt-lg-0 right">
         <li class="nav-item">
-          <router-link class="nav-link" :to="'/'">
-            <icon class="icon" icon="plus" />
-          </router-link>
+          <router-link class="nav-link text-black font-weight-light h5 my-0" :to="'/'"><icon class="icon" icon="home" /> &nbsp;</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link text-black font-weight-light h5 my-0" :to="'/'"><icon class="icon" icon="stream" /> &nbsp; Dashboard</router-link>
         </li>
       </ul>
       <ul class="navbar-nav right" v-if="auth && auth.isAuth">
@@ -21,7 +22,7 @@
           <ul class="list-inline">
             <li class="list-inline-item">
               <span v-if="profile">
-                <router-link class="text-black" :to="`/dashboard/${accountType}`">
+                <router-link class="text-black" :to="`/dashboard/${accountType}/settings`">
                   {{profile.firstName | truncate(10)}}
                   <img
                     :src="profile.image ? profile.image : avatar"
@@ -122,10 +123,10 @@ Vue.directive("closable", {
       exclude.forEach(refName => {
         if (!clickedOnExcludedEl) {
           const excludedEl = vnode.context.$refs[refName];
-          clickedOnExcludedEl = excludedEl.contains(e.target);
+          //clickedOnExcludedEl = excludedEl.contains(e.target || null);
         }
       });
-      if (!el.contains(e.target) && !clickedOnExcludedEl) {
+      if (el.contains && !el.contains(e.target) && !clickedOnExcludedEl) {
         vnode.context[handler]();
       }
     };

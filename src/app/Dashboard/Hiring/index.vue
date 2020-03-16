@@ -48,13 +48,23 @@
                     </span>
                   </div>
                   <div class="clear"></div>
-                  <div :inner-html.prop="fetch_tutor.user.bio | truncate(200)"></div>
-                  <router-link :to="`/@${fetch_tutor.user.username}`">View tutor</router-link>
+                  <div class="my-3">
+                    <router-link
+                      class="btn rounded px-3 border"
+                      :to="`/@${fetch_tutor.user.username}`"
+                    >
+                      View tutor
+                      <icon class="icon text-gray" icon="external-link-square-alt" />
+                    </router-link>
+                  </div>
                 </div>
               </div>
             </div>
             <!-- SELECT CHILD -->
-            <div class="box shadow-2 radius-1 p-3 mb-3 bg-white">
+            <div
+              v-if="fetch_tutor && fetch_tutor.services.length"
+              class="box shadow-2 radius-1 p-3 mb-3 bg-white"
+            >
               <h4 class="font-weight-light m-2">Child</h4>
               <div class="m-2">
                 <!-- <b-form-group id="select-learner" label-for="learner"> -->
@@ -73,22 +83,27 @@
               </div>
             </div>
             <!-- PREFERENCE -->
-            <div class="box shadow-2 radius-1 p-3 mb-3 bg-white">
+            <div
+              v-if="fetch_tutor && fetch_tutor.services.length"
+              class="box shadow-2 radius-1 p-3 mb-3 bg-white"
+            >
               <h4 class="font-weight-light m-2">Preference</h4>
               <div class="row">
                 <div class="col-6">
-                  <div class="m-2">
+                  <div>
+                    Starting date
+                    <br />
                     <div class="form-group">
-                      Starting date
                       <datetime
+                        input-style="padding: 5px 8px"
                         type="date"
                         id="startingDate"
                         v-model="info.startingDate"
                         zone="Africa/Kigali"
-                        v-on:input="listenDateChange(info.startingDate)"
                         :phrases="{ok: 'Select', cancel: 'Cancel'}"
-                        :min-datetime="minDatetime"
                         :week-start="7"
+                        v-on:input="listenDateChange(info.startingDate)"
+                        :min-datetime="minDatetime"
                         :inline="true"
                         auto
                       ></datetime>
@@ -98,12 +113,19 @@
                 <div class="col-6">
                   How many month?
                   <br />
-                  <b-form-select v-model="month" :options="monthsArray"></b-form-select>
+                  <b-form-select
+                    v-model="month"
+                    v-on:input="listenPeriodChange(month)"
+                    :options="monthsArray"
+                  ></b-form-select>
                 </div>
               </div>
             </div>
             <!-- TUTORSHIP SERVICE -->
-            <div class="box shadow-2 radius-1 p-3 mb-3 bg-white">
+            <div
+              v-if="fetch_tutor && fetch_tutor.services.length"
+              class="box shadow-2 radius-1 p-3 mb-3 bg-white"
+            >
               <h4 class="font-weight-light m-2">Tutorship service</h4>
               <div
                 class="row py-3"
@@ -143,13 +165,37 @@
                 <div class="col-4">
                   <span>Price(Rwf)</span>
                   <div class="bold text-success" style="font-size:35px">{{item.price}}</div>
-                  <div>{{JSON.parse(item.period).count}} time(s) a {{JSON.parse(item.period).type}}</div>
+                  <div>{{item.period.count}} time(s) a {{JSON.parse(item.period).type}}</div>
                 </div>
                 <div class="divider my-2 bg-gray"></div>
               </div>
             </div>
+
+            <div class="box shadow-2 radius-1 p-3 mb-3 bg-white">
+              <h4 class="font-weight-light m-2">Need help?</h4>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Tel: +250-788-867-447</li>
+                <li class="list-group-item">Email: support@keetela.com</li>
+                <li class="list-group-item">
+                  <router-link :to="'/faqs'">Visit FAQs</router-link>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="col-sm-12 col-md-6 l-lg-6">
+          <div class="col-sm-12 col-md-6 l-lg-6" v-if="fetch_tutor && !fetch_tutor.services.length">
+            <div class="box bg-white radius-1 p-3 mb-3 border-warning payment-summary">
+              <h4 class="font-weight-light p-2">Sorry, this tutor did not allow to be hired yet.</h4>
+                  <div class="my-3">
+                    <router-link
+                      class="btn btn-black rounded px-4"
+                      :to="'/tutors'"
+                    >
+                      Search tutors
+                    </router-link>
+                  </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6 l-lg-6" v-if="fetch_tutor && fetch_tutor.services.length">
             <div class="box bg-white radius-1 p-3 mb-3 payment-summary">
               <!-- SUMMARY -->
               <h3 class="font-weight-light">Payment</h3>
@@ -160,7 +206,11 @@
                 && info.startingDate
                 && month
                 "
-              >You are about to pay Mr/Ms {{fetch_tutor.user.firstName}} the fees of tutorship a period of {{month}} months that starts from {{info.startingDate}} and will ends at {{info.endingDate}}</div>
+              >
+                You are about to pay Mr/Ms {{fetch_tutor.user.firstName}} the fees for tutorship.
+                <br />
+                A period of {{month}} months starting from {{info.startingDate}}
+              </div>
               <div class="clear"></div>
               <!-- PAYMENT -->
               <div class="py-3 bg-gray">
@@ -212,11 +262,10 @@
                   || !month
                   "
                   v-on:click.prevent="paynow"
-                  class="btn btn-lg radius-1 btn-primary col text-center"
+                  class="btn btn-lg radius-1 btn-warning col text-center"
                 >Complete Purchase</button>
               </div>
               <div class="divider my-3"></div>
-              <div class="p-3 border">{{getPayment}}</div>
               <!-- TERMS -->
               <div class="py-3">
                 By click, you agree to our
@@ -241,8 +290,8 @@
             </div>
           </div>
           <div class="col-lg-10 col-md-9 col-sm-9">
-            <h3>Confirm MoMo</h3>
-            <div>To complete the payment, please a popup message on your mobile phone confirm mobile money payment</div>
+            <h3>Confirm Mobile Money Payment</h3>
+            <div>To complete the payment, check a popup message on your mobile phone and follow instrustions</div>
           </div>
         </div>
         <div class="row my-4 py-3 shadow-lg bg-white radius-3">
@@ -252,8 +301,8 @@
             </div>
           </div>
           <div class="col-lg-10 col-md-9 col-sm-9">
-              <h3>Email notification</h3>
-              <div>You should receive an email detailing your purchase order</div>
+            <h3>Email notification</h3>
+            <div>You should receive an email detailing your purchase order</div>
           </div>
         </div>
       </div>
@@ -295,12 +344,13 @@ export default {
       info: {
         learnerId: "",
         serviceId: "",
-        startingDate: new Date(),
+        startingDate: new Date().toISOString().slice(0, 10),
         endingDate: "",
         phone: "250788867447",
         promo: null,
         total: 0
       },
+      initialAmount: 0,
       period: {
         type: "day",
         count: 1
@@ -362,6 +412,7 @@ export default {
         ).toISOString();
         this.info.serviceId = id;
         this.info.total = total * this.month;
+        this.initialAmount = total;
       } else {
         Vue.$toast.open({
           message:
@@ -373,6 +424,13 @@ export default {
     },
     listenDateChange(e) {
       this.info.endingDate = new Date(e).toISOString();
+    },
+    listenPeriodChange(value) {
+      console.log("init", value, this.initialAmount);
+      if (value && this.initialAmount) {
+        this.month = value;
+        this.info.total = this.initialAmount * this.month;
+      }
     },
     paynow() {
       this.PROCESS_PAYMENT(this.info);

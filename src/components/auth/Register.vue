@@ -1,7 +1,7 @@
 <template>
   <component :is="layout">
     <div class="register">
-      <h2>Create new account</h2>
+      <h2  class="text-center pt-4">Create new account</h2>
       <div v-if="!auth">
         <div class="box">
           <div class="px-4">
@@ -128,11 +128,11 @@
               >Register</button>
             </div>
             <div
-              class="mt-2 alert alert-success text-center"
+              class="mt-2 alert alert-success font-weight-light text-center"
               v-if="register_user && register_user.loading && !register_user.success"
             >Wait! We are registering you...</div>
             <br />
-            <div class="col text-center">
+            <div class="col text-center font-weight-light">
               Already have account?
               <router-link :to="'/login'">Login</router-link>
             </div>
@@ -233,9 +233,6 @@ export default {
     this.loaded = true;
   },
   methods: {
-    fistNameChanged(v){
-      console.log('okey',v)
-    },
     register() {
       let user = {};
       user = this.user;

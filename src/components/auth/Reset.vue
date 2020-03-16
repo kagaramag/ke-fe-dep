@@ -2,7 +2,7 @@
   <component :is="layout">
     <div class="login">
       <Loading v-if="profile.loading" />
-      <h2>Reset password</h2>
+      <h2 class="text-center pt-4">Reset password</h2>
       <div class="box" v-if="!confirmed">
         <form class="p-4">
           <div class="row" v-if="profile && profile.errors">

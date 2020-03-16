@@ -1,120 +1,121 @@
 
 <template>
   <div>
-    <Header />
-    <div class="container">
-      <div class="row justify-content-lg-center">
-        <div class="col-lg-10">
-          <div class="py-1 compose-submit-spinner" v-if="!loaded && article">
-            <img src="@/assets/images/spinner.svg" alt="loading" />
-          </div>
-          <div v-if="loaded && !updated_post.success" class="keetela-card">
-            <form>
+    <component :is="layout">
+      <div class="container">
+        <div class="row justify-content-lg-center">
+          <div class="col-lg-10">
+            <div class="py-1 compose-submit-spinner" v-if="!loaded && article">
+              <img src="@/assets/images/spinner.svg" alt="loading" />
+            </div>
+            <div v-if="loaded && !updated_post.success" class="keetela-card">
+              <form>
+                <div class="clear"></div>
+                <div>
+                  <textarea
+                    class="textarea js-autoresize"
+                    v-model="post.title"
+                    rows="1"
+                    placeholder="Add title"
+                  ></textarea>
+                </div>
+                <div>
+                  <img
+                    v-if="article.coverUrl"
+                    :src="`${CDN_IMAGE}/c_thumb,h_250,w_500/${article.coverUrl}`"
+                    class="card-img-top mb-2"
+                    :alt="post.title"
+                  />
+                </div>
+                <div class="py-3">
+                  <vue-editor
+                    id="editor"
+                    useCustomImageHandler
+                    @image-added="handleImageAdded"
+                    v-model="post.body"
+                    :editorToolbar="toolbar"
+                  ></vue-editor>
+                  <div v-if="upload.loading">Uploading image...</div>
+                  <div
+                    v-if="upload.error"
+                    class="text-danger alert alert-danger mt-1"
+                  >Whooops, Something went wrong while uploading your image</div>
+                </div>
+                <div class="py-3 mb-2">
+                  <span class="border border-gray py-2 px-4">
+                    <icon icon="clock" class="icon" />&nbsp;Written:
+                    <b>{{article.createdAt | date}}</b>
+                  </span>
+                  <span class="border border-gray py-2 px-4 ml-3">
+                    <icon icon="clock" class="icon" />&nbsp;Last updated:
+                    <b>{{article.updatedAt | date}}</b>
+                  </span>
+                  <span class="border border-gray py-2 px-4 ml-3">
+                    <icon icon="arrow-right" class="icon" />&nbsp;Category:
+                    <b>{{article.category}}</b>
+                  </span>
+                </div>
+                <div class="row m-0" v-if="updated_post && updated_post.errors">
+                  <div
+                    class="alert alert-danger"
+                    v-for="error in updated_post.errors"
+                    :key="error.index"
+                  >{{error}}</div>
+                </div>
+                <div></div>
+                <div id="fixed-btn">
+                  <button
+                    v-on:click.prevent="updateArticle"
+                    class="btn bg-success rounded text-light ml-0"
+                  >
+                    <icon icon="save" class="icon" />&nbsp;
+                    Save
+                  </button>
+
+                  <router-link
+                    :to="`/dashboard/${accountType}/my-blog`"
+                    class="btn bg-dark rounded text-light"
+                  >My articles</router-link>
+                  <span
+                    v-if="loaded && updated_post.loading && !updated_post.success"
+                    class="py-2 px-4 bg-danger text-light rounded"
+                  >Updating...</span>
+                </div>
+              </form>
               <div class="clear"></div>
-              <div>
-                <textarea
-                  class="textarea js-autoresize"
-                  v-model="post.title"
-                  rows="1"
-                  placeholder="Add title"
-                ></textarea>
-              </div>
-              <div>
+            </div>
+            <div
+              class="container mb-4 mt-2 text-center"
+              v-if="loaded && !updated_post.loading && updated_post.success"
+            >
+              <div class="row">
                 <img
-                  v-if="article.coverUrl"
-                  :src="`${CDN_IMAGE}/c_thumb,h_250,w_500/${article.coverUrl}`"
-                  class="card-img-top mb-2"
-                  :alt="post.title"
+                  src="@/assets/images/content-creator.svg"
+                  style="width:350px;margin:0 auto;display:block"
+                  alt
                 />
               </div>
-              <div class="py-3">
-                <vue-editor
-                  id="editor"
-                  useCustomImageHandler
-                  @image-added="handleImageAdded"
-                  v-model="post.body"
-                  :editorToolbar="toolbar"
-                ></vue-editor>
-                <div v-if="upload.loading">Uploading image...</div>
-                <div
-                  v-if="upload.error"
-                  class="text-danger alert alert-danger mt-1"
-                >Whooops, Something went wrong while uploading your image</div>
-              </div>
-              <div class="py-3 mb-2">
-                <span class="border border-gray py-2 px-4">
-                  <icon icon="clock" class="icon" />&nbsp;Written:
-                  <b>{{article.createdAt | date}}</b>
-                </span>
-                <span class="border border-gray py-2 px-4 ml-3">
-                  <icon icon="clock" class="icon" />&nbsp;Last updated:
-                  <b>{{article.updatedAt | date}}</b>
-                </span>
-                <span class="border border-gray py-2 px-4 ml-3">
-                  <icon icon="arrow-right" class="icon" />&nbsp;Category:
-                  <b>{{article.category}}</b>
-                </span>
-              </div>
-              <div class="row m-0" v-if="updated_post && updated_post.errors">
-                <div
-                  class="alert alert-danger"
-                  v-for="error in updated_post.errors"
-                  :key="error.index"
-                >{{error}}</div>
-              </div>
-              <div></div>
-              <div id="fixed-btn">
-                <button
-                  v-on:click.prevent="updateArticle"
-                  class="btn bg-success rounded text-light ml-0"
-                >
-                  <icon icon="save" class="icon" />&nbsp;
-                  Save
-                </button>
-
+              <div class="clear"></div>
+              <h2 class="text-success my-5">You have successfully edited this article.</h2>
+              <div class="my-3">
+                <router-link
+                  :to="`/post/${updated_post.article.category}/${updated_post.article.slug}`"
+                  class="btn bg-dark px-3 rounded text-light"
+                >View post</router-link>
                 <router-link
                   :to="`/dashboard/${accountType}/my-blog`"
-                  class="btn bg-dark rounded text-light"
+                  class="btn bg-dark px-3 rounded text-light"
                 >My articles</router-link>
-                <span
-                  v-if="loaded && updated_post.loading && !updated_post.success"
-                  class="py-2 px-4 bg-danger text-light rounded"
-                >Updating...</span>
+                <router-link
+                  :to="`/dashboard/${accountType}`"
+                  class="btn bg-dark px-3 rounded text-light"
+                >Dashboard</router-link>
               </div>
-            </form>
-            <div class="clear"></div>
-          </div>
-          <div
-            class="container mb-4 mt-2 text-center"
-            v-if="loaded && !updated_post.loading && updated_post.success"
-          >
-            <div class="row">
-              <img
-                src="@/assets/images/content-creator.svg"
-                style="width:350px;margin:0 auto;display:block"
-                alt
-              />
-            </div>
-            <div class="clear"></div>
-            <h2 class="text-success my-5">You have successfully edited this article.</h2>
-            <div class="my-3">
-              <router-link
-                :to="`/post/${updated_post.article.category}/${updated_post.article.slug}`"
-                class="btn bg-dark px-3 rounded text-light"
-              >View post</router-link>
-              <router-link
-                :to="`/dashboard/${accountType}/my-blog`"
-                class="btn bg-dark px-3 rounded text-light"
-              >My articles</router-link>
-              <router-link
-                :to="`/dashboard/${accountType}`"
-                class="btn bg-dark px-3 rounded text-light"
-              >Dashboard</router-link>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </component>
   </div>
 </template>
 
@@ -128,7 +129,7 @@ import "@/assets/css/flat.min.css";
 import { setResizeListeners } from "@/helpers/TextareaAutoResizer";
 import { VueEditor } from "vue2-editor";
 import AxiosHelper from "@/helpers/AxiosHelper";
-
+const account_layout = "account";
 
 export default {
   name: "EditBlogPost",
@@ -192,6 +193,9 @@ export default {
     },
     updated_post() {
       return this.$store.getters.updated_post;
+    },
+    layout() {
+      return (this.$route.meta.layout || account_layout) + "-layout";
     },
     ...mapGetters(["updated_post", "fetch_post"])
   },

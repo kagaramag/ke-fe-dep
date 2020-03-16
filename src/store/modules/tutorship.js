@@ -53,7 +53,7 @@ export default {
       context.commit('SITE_LOADING', true)
       AxiosHelper.post(`/tutorship/${tutoringId}`, payload)
         .then(response => context.commit('COMPOSE_TUTORSHIP_SUCCESS', response.data))
-        .catch(error => console.log('hano', error))//context.commit('COMPOSE_TUTORSHIP_FAILURE', error))
+        .catch(error => context.commit('COMPOSE_TUTORSHIP_FAILURE', error))
     },
     // fetch tutoring message 
     FETCH_TUTORING_MESSAGES: (context, payload) => {

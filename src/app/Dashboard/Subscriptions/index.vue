@@ -7,37 +7,54 @@
             <Nav />
           </div>
           <div class="col-sm-12 col-md-9 col-lg-9">
-            <div class="row" v-if="fetch_services && fetch_services.services">
+            <div v-if="fetch_subscriptions && fetch_subscriptions.subscriptions">
               <div
-                class="col-sm-12 mt-3"
-                v-for="service in fetch_services.services"
-                :key="service.index"
+                class="card rounded shadow-sm mb-3"
+                v-for="(subscription, index) in fetch_subscriptions.subscriptions"
+                :key="index"
               >
-                <div
-                  class="row no-gutters border bg-white rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
-                >
-                  <div class="col-sm-3">
-                    <div class="image my-3 mx-1">
-                      <img src="@/assets/images/service-list.svg" alt />
-                    </div>
+                <div class="card-body">
+                  <h6 class="card-title">
+                    Service status
+                    <span class="badge badge-warning py-1 px-2 rounded">Inactive</span>
+                  </h6>
+                  <h5 class="card-title">{{subscription.service.name}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    <span>{{subscription.service.type | capitalize}}</span>
+                  </h6>
+                  <div class="card-text">{{subscription.kid.names}}</div>
+                  <div class="card-text">
+                    Expires:
+                    <span class="text-danger">{{subscription.endingDate | date}}</span>
                   </div>
-                  <div class="col-sm-9 p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-success">{{service.type | capitalize }}</strong>
-                    <h2 class="mb-0">{{service.name}}</h2>
-                    <div>
-                      Price:
-                      <strong>{{service.price}}</strong>
-                    </div>
-                    <div>
-                      <b>Allow discount</b>
-                      : {{service.discountable ? 'Yes' : 'No' }}
-                    </div>
-                    <div class="mb-1 text-muted">{{service.createdAt | date}}</div>
+                  <div class="my-3">
+                    <router-link :to="'/'" class="btn border-primary rounded px-4">Details</router-link>
+                    <router-link :to="'/'" class="btn border-success rounded px-4">Renewal subscribe now</router-link>
                   </div>
-                <div class="divider bg-gray"></div>
-                <div class="p-3 border border-light text-center ">No subscribed customers yet</div>
                 </div>
               </div>
+            </div>
+            <!-- IF ERROR OCCURED WHILE RETRIEVING -->
+            <!-- <div
+              v-if="loaded && fetch_subscriptions && fetch_subscriptions.errors && !fetch_subscriptions.loading  && !fetch_subscriptions.success"
+            >
+              <div
+                class="alert alert-danger"
+                v-for="(error, index) in fetch_subscriptions.errors"
+                :key="index"
+              >{{error}}</div>
+            </div>-->
+            <!-- IF NO SUBSCRIPTION FOUND -->
+            <div
+              v-if="loaded && fetch_subscriptions && !fetch_subscriptions.subscriptions.length && fetch_subscriptions.errors && !fetch_subscriptions.loading  && !fetch_subscriptions.success"
+            >
+              <NotFound
+                message="No subscriptions found"
+                description="You did not subscribe to any tutorship service yet"
+                icon="blog"
+                link="/tutors"
+                linkText="Search and hire a tutor"
+              />
             </div>
           </div>
         </div>
@@ -47,36 +64,38 @@
 </template>
 <script>
 import Vue from "vue";
+import NotFound from "@/app/NotFound/ContentNotFound";
 import { mapGetters, mapActions } from "vuex";
 import Nav from "./Nav";
 const account_layout = "account";
 export default {
-  name: "DashboardServicesIndex",
-  props: ["data"],
+  name: "DashboardSubscriptionsIndex",
   components: {
-    Nav
+    Nav,
+    NotFound
   },
   data() {
     return {
       loaded: false
     };
   },
-
-  mounted() {
-    this.FETCH_SERVICES();
+  created() {
     this.loaded = true;
   },
+  mounted() {
+    this.fetchSubscriptions();
+  },
   computed: {
-    fetch_services() {
-      return this.$store.getters.fetch_services;
+    fetch_subscriptions() {
+      return this.$store.getters.fetch_subscriptions;
     },
-    ...mapGetters(["fetch_services"]),
+    ...mapGetters(["fetch_subscriptions"]),
     layout() {
       return (this.$route.meta.layout || account_layout) + "-layout";
     }
   },
   methods: {
-    ...mapActions(["FETCH_SERVICES"])
+    ...mapActions(["fetchSubscriptions"])
   }
 };
 </script>
