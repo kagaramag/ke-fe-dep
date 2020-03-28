@@ -10,7 +10,7 @@
                 Training solutions for individuals, organizations and businesses
               </h2>
               <h3 class="font-weight-light mb-3">
-                We offers a wide range of lifelong-learning solutions to choose from: in a training centre or in companies 
+                We offers a wide range of lifelong-learning solutions to choose from: in a training centre or in companies!
               </h3>
             </div>
           </div>
