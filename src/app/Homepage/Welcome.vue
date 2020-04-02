@@ -62,7 +62,7 @@ export default {
   overflow: hidden;
   height: 75vh;
   position: relative;
-  background-image: url("../../assets/images/person-tutoring.jpg");
+  background-image: url("./../../assets/images/person-tutoring.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
@@ -100,19 +100,19 @@ export default {
   content: "";
   z-index: 0;
   position: absolute;
-  background: url("../../assets/images/stars.png");
+  background: url("https://res.cloudinary.com/ninjas/image/upload/v1585781818/keetela/stars_iylxbc.png");
   background-position: 0 0;
   background-size: cover;
   opacity: 0.5;
 }
 .plane-1 {
-  background: url("../../assets/images/plane-1.png");
+  background: url("https://res.cloudinary.com/ninjas/image/upload/v1585781846/keetela/plane-1_qxkpmj.png");
   -webkit-animation: plane-1 35s infinite;
   animation: plane-1 35s infinite;
 }
 
 .plane-2 {
-  background: url("../../assets/images/plane-1.png");
+  background: url("https://res.cloudinary.com/ninjas/image/upload/v1585781846/keetela/plane-1_qxkpmj.png");
   -webkit-animation: plane-2 30s infinite;
   animation: plane-2 30s infinite;
   transform: rotate(-25deg);

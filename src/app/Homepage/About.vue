@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-6">
             <img
-              src="./../../assets/images/about-bg.svg"
+              src="https://res.cloudinary.com/ninjas/image/upload/v1585781849/keetela/about-bg_zm0rvj.svg"
               class="card-img-top center"
               alt="about us"
             />
@@ -56,18 +56,4 @@ export default {
   position: relative;
   z-index: 3;
 }
-/*
-#about h1 span::before {
-  position: absolute;
-  width: 100%;
-  height: 50px;
-  top: 0;
-  margin: 5px 0;
-  left: 0;
-  background: #403ea8;
-  z-index: -1;
-  content: "";
-  transform: rotate(-2deg);
-}
-*/
 </style>

@@ -6,14 +6,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "./assets/css/styles.css";
 import Default from "./layouts/Default.vue";
-import Minima from "./layouts/Minima.vue";
 import store from "./store";
 import VueLazyload from "vue-lazyload";
 import VueAnalytics from "vue-analytics";
 import VueMeta from 'vue-meta'
-
-import VueToast from "vue-toast-notification";
-import "vue-toast-notification/dist/index.css";
 
 // Register icons
 
@@ -22,7 +18,6 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
-Vue.use(VueToast);
 Vue.use(VueMeta);
 
 Vue.use(VueLazyload, {
@@ -33,7 +28,6 @@ Vue.use(VueLazyload, {
 });
 
 Vue.component("default-layout", Default);
-Vue.component("minima-layout", Minima);
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 
@@ -130,8 +124,8 @@ Vue.mixin({
   data: function() {
     return {
       CDN_IMAGE: "http://res.cloudinary.com/ninjas/image/upload",
-      avatar: require("@/assets/images/profile.png"),
-      image: require("@/assets/images/image_placeholder.svg")
+      avatar: 'https://res.cloudinary.com/ninjas/image/upload/v1585781861/keetela/profile_anka6f.png',
+      image: 'https://res.cloudinary.com/ninjas/image/upload/v1585781846/keetela/profile_placeholder_qnvcjo.png'
     };
   },
   computed: {

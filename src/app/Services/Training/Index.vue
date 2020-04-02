@@ -35,7 +35,7 @@
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6">
               <div class="image bg-primary">
-                <img src="./../../../assets/images/training-proram.jpg" alt="training program" />
+                <img src="https://res.cloudinary.com/ninjas/image/upload/v1585781840/keetela/training-program_qxx5dv.jpg" alt="training program" />
               </div>
             </div>
           </div>
@@ -109,7 +109,7 @@ export default {
 
 <style scoped>
 .training-cover {
-  background-image: url("../../../assets/images/training-cover.jpg");
+  background-image: url("https://res.cloudinary.com/ninjas/image/upload/v1585781829/keetela/training-cover_yoeuxo.jpg");
 }
 .mentorship-for-everyone img {
   margin: 0 auto;

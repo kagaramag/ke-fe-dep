@@ -2,7 +2,7 @@
   <div class="card border border-warning shadow mb-3 p-4 radius-1">
     <div class="row no-gutters">
        <div class="col-2">
-      <img src="./../../assets/images/alert.svg" class="card-img" alt="not found">
+      <img src="https://res.cloudinary.com/ninjas/image/upload/v1585781819/keetela/alert_nwl82u.svg" class="card-img" alt="not found">
     </div>
       <div class="col-10">
         <div class="card-body">

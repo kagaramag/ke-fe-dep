@@ -59,9 +59,9 @@
             <div class="col-sm-12 col-md-6">
               <div class="my-4">
                 <img
-                  src="./../../assets/images/contact.svg"
+                  src="https://res.cloudinary.com/ninjas/image/upload/v1585781846/keetela/contact_do4cvj.svg"
                   class="card-img-top center"
-                  alt="about us"
+                  alt="contact us"
                 />
               </div>
             </div>

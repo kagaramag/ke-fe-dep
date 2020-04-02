@@ -45,7 +45,7 @@
           </div>
           <div class="col-sm-12 col-md-3 col-lg-3 p-0">
             <img
-              src="@/assets/images/coding-class-1.jpg"
+              src="https://res.cloudinary.com/ninjas/image/upload/v1585781820/keetela/coding-class-1_pvbgzn.jpg"
               class="img-fluid shadow-2 rounded my-2"
               alt="Coding Class Ads"
               style="max-width:300px;margin:0 auto;display:block"

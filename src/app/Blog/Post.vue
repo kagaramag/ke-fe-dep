@@ -11,12 +11,12 @@
                 Posted
                 <b>{{ article.createdAt | date }}</b>
                 by
-                <router-link :to="`/@${article.author.username}`">
+                <span>
                   <b
                     >{{ article.author.firstName }}
                     {{ article.author.lastName }}</b
                   >
-                </router-link>
+                </span>
                 <span class="pl-2">
                   Read time:
                   <b>{{
@@ -68,7 +68,7 @@
           </div>
           <div class="col-sm-12 col-md-4 col-lg-4">
             <img
-              src="@/assets/images/coding-class-1.jpg"
+              src="https://res.cloudinary.com/ninjas/image/upload/v1585781820/keetela/coding-class-1_pvbgzn.jpg"
               class="img-fluid img-thumbnail rounded"
               alt="Coding Class Ads"
             />

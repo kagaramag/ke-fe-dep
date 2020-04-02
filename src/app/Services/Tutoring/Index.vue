@@ -71,7 +71,7 @@
             <div class="col-sm-12 col-md-6">
               <div class="image mb-sm-3">
                 <img
-                  src="./../../../assets/images/tutoring-connect.svg"
+                  src="https://res.cloudinary.com/ninjas/image/upload/v1585781849/keetela/tutoring-connect_kf5xyx.svg"
                   alt="connect"
                   class="float-lg-right"
                 />
@@ -88,8 +88,8 @@
             <div class="col-sm-12 col-md-6">
               <div class="image mb-sm-3">
                 <img
-                  src="./../../../assets/images/tutoring-terms.svg"
-                  alt="connect"
+                  src="https://res.cloudinary.com/ninjas/image/upload/v1585781857/keetela/tutoring-terms_nrl9on.svg"
+                  alt="terms"
                   class="float-lg-right"
                 />
               </div>
@@ -106,8 +106,8 @@
             <div class="col-sm-12 col-md-6">
               <div class="image mb-sm-3">
                 <img
-                  src="./../../../assets/images/tutoring-enjoy.svg"
-                  alt="connect"
+                  src="https://res.cloudinary.com/ninjas/image/upload/v1585781861/keetela/tutoring-enjoy_fd2jsa.svg"
+                  alt="enjoy"
                   class="float-lg-right"
                 />
               </div>
@@ -137,7 +137,7 @@
           >
             <div class="image">
               <img
-                src="./../../../assets/images/bg-tutor-req.jpg"
+                src="https://res.cloudinary.com/ninjas/image/upload/v1585781828/keetela/bg-tutor-req_yowbgr.jpg"
                 style="max-width: 460px"
               />
             </div>
@@ -259,7 +259,7 @@
           >
             <div class="image">
               <img
-                src="./../../../assets/images/bg-tutor-req.jpg"
+                src="https://res.cloudinary.com/ninjas/image/upload/v1585781828/keetela/bg-tutor-req_yowbgr.jpg"
                 style="max-width: 460px"
               />
             </div>
@@ -477,10 +477,10 @@ export default {
 
 <style scoped>
 .tutoring-cover {
-  background: url("../../../assets/images/bg-tutoring.jpg");
+  background: url("https://res.cloudinary.com/ninjas/image/upload/v1585781819/keetela/bg-tutoring_fsxvoz.jpg");
 }
 .courses-cover {
-  background: url("../../../assets/images/bg-courses.jpg");
+  background: url("https://res.cloudinary.com/ninjas/image/upload/v1585781818/keetela/bg-courses_ki6vdk.jpg");
   background-attachment: scroll;
   background-position: center top;
   background-size: cover;

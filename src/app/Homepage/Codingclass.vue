@@ -30,7 +30,7 @@
   overflow: hidden;
   height: 75vh;
   position: relative;
-  background: url("../../assets/images/computer.jpg");
+  background: url("https://res.cloudinary.com/ninjas/image/upload/v1585781829/keetela/computer_bgi9wm.jpg");
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;

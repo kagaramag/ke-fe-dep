@@ -16,7 +16,7 @@
       </div>
       <div class="col-md-5">
         <div class="image">
-          <img src="@/assets/images/404-01.png" />
+          <img src="https://res.cloudinary.com/ninjas/image/upload/v1585781834/keetela/404-01_acjrhn.png" />
         </div>
       </div>
       <div class="clear"></div>

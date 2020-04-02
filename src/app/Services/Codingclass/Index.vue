@@ -67,7 +67,7 @@ export default {
 <style scoped>
 .grab-apply-cover {
   height: 50vh;
-  background: url("../../../assets/images/coaching-kig.jpg");
+  background: url("https://res.cloudinary.com/ninjas/image/upload/v1585781826/keetela/coaching-kig_zcln0d.jpg");
   background-attachment: scroll;
   background-position: center top;
   background-size: cover;

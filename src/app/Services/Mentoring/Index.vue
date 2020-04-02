@@ -39,8 +39,8 @@
               <h4 class="font-weight-light">Students</h4>
               <div class="image">
                 <img
-                  src="./../../../assets/images/mentor-student.svg"
-                  alt="connect"
+                  src="https://res.cloudinary.com/ninjas/image/upload/v1585781843/keetela/mentor-student_omo1yi.svg"
+                  alt="Students"
                 />
               </div>
             </div>
@@ -48,8 +48,8 @@
               <h4 class="font-weight-light">Professionals</h4>
               <div class="image">
                 <img
-                  src="./../../../assets/images/mentor-professional.svg"
-                  alt="connect"
+                  src="https://res.cloudinary.com/ninjas/image/upload/v1585781846/keetela/mentor-professional_ca5dl7.svg"
+                  alt="Professional"
                 />
               </div>
             </div>
@@ -57,8 +57,8 @@
               <h4 class="font-weight-light">Individuals</h4>
               <div class="image">
                 <img
-                  src="./../../../assets/images/mentor-individual.svg"
-                  alt="connect"
+                  src="https://res.cloudinary.com/ninjas/image/upload/v1585781844/keetela/mentor-individual_ijdwsi.svg"
+                  alt="Individuals"
                 />
               </div>
             </div>
@@ -175,10 +175,10 @@ export default {
 
 <style scoped>
 .mentoring-cover {
-  background-image: url("../../../assets/images/mentoring-cover.jpg");
+  background-image: url("https://res.cloudinary.com/ninjas/image/upload/v1585781837/keetela/mentoring-cover_nt1wtb.jpg");
 }
 .courses-cover {
-  background-image: url("../../../assets/images/mentoring-topics-bg.jpg");
+  background-image: url("https://res.cloudinary.com/ninjas/image/upload/v1585781833/keetela/mentoring-topics-bg_cwx7ag.jpg");
   background-color: #fff;
   background-attachment: fixed;
   background-position: top center;

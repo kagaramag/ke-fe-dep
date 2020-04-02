@@ -13,9 +13,9 @@
           <div class="col-sm-12 col-md-4 mb-4 one-step">
             <div class="card pt-4 shadow radius-3">
               <img
-                src="./../../assets/images/grow.svg"
+                src="https://res.cloudinary.com/ninjas/image/upload/v1585781859/keetela/grow_b72a1l.svg"
                 class="card-img-top center"
-                alt="..."
+                alt="grow"
               />
               <div class="card-body">
                 <h2 class="card-title">Grow</h2>
@@ -28,9 +28,9 @@
           <div class="col-sm-12 col-md-4 mb-4 one-step">
             <div class="card pt-4 shadow radius-3">
               <img
-                src="./../../assets/images/connect.svg"
+                src="https://res.cloudinary.com/ninjas/image/upload/v1585781821/keetela/connect_jitmhe.svg"
                 class="card-img-top center"
-                alt="..."
+                alt="connect"
               />
               <div class="card-body">
                 <h2 class="card-title">Connect</h2>
@@ -43,9 +43,9 @@
           <div class="col-sm-12 col-md-4 mb-4 one-step">
             <div class="card pt-4 shadow radius-3">
               <img
-                src="./../../assets/images/spark.svg"
+                src="https://res.cloudinary.com/ninjas/image/upload/v1585781854/keetela/spark_dp4v2g.svg"
                 class="card-img-top center"
-                alt="..."
+                alt="spart"
               />
               <div class="card-body">
                 <h2 class="card-title">Spark</h2>

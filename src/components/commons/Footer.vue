@@ -17,7 +17,7 @@
           <div class="col-sm-6 col-md-6 col-lg-6">
             <div class="image">
               <router-link class="navbar-brand pl-1" :to="'/'">
-                <img src="@/assets/images/logo_XII.svg" />
+                <img src="https://res.cloudinary.com/ninjas/image/upload/v1585781851/keetela/logo_XII_m28izl.svg" />
               </router-link>
             </div>
             <div class="my-3" style="max-width:300px">
