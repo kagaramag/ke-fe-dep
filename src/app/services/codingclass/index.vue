@@ -78,7 +78,7 @@ export default {
   top: 0;
   left: 0;
   content: "";
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(50, 73, 148, 0.6);
   width: 100%;
   height: 100%;
   z-index: 1;
