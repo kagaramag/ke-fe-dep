@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="py-4 bg-blue-gradient">
+    <section class="py-4 bg-help">
       <div class="container pt-2 pb-5 text-white">
         <h1 class="text-md-center text-lg-center font-weight-light my-4">
           Need <span class="bold">Help?</span>
@@ -25,9 +25,6 @@
               and personal growth.
             </div>
             <div class="social-media">
-              <a href="https://www.twitter.com/keetela/" target="_blank">
-                <icon :icon="[ 'fab', 'twitter' ]" class="icon" />
-              </a>
               <a href="https://www.instagram.com/keetela/" target="_blank">
                 <icon :icon="[ 'fab', 'linkedin' ]" class="icon" />
               </a>
@@ -38,32 +35,26 @@
           </div>
           <div class="col-sm-6 col-md-6 col-lg-6">
             <div class="row">
-              <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="col-sm-6 col-md-6 col-lg-4">
                 <h4>Services</h4>
                 <ul class="list-unstyled">
                   <li class="list-group-item">
+                    <router-link :to="'/tutors'">Tutors</router-link>
+                  </li>
+                  <li class="list-group-item">
+                    <router-link :to="'/mentors'">Mentors</router-link>
+                  </li>
+                  <li class="list-group-item">
                     <router-link :to="'/codingclass'">Coding Class</router-link>
-                  </li>
-                  <li class="list-group-item">
-                    <router-link :to="'/tutoring'">Tutoring</router-link>
-                  </li>
-                  <li class="list-group-item">
-                    <router-link :to="'/mentorship'">Mentorship</router-link>
                   </li>
                   <li class="list-group-item">
                     <router-link :to="'/training'">Training</router-link>
                   </li>
                 </ul>
               </div>
-              <div class="col-sm-6 col-md-6 col-lg-6">
+              <div class="col-sm-6 col-md-6 col-lg-4">
                 <h4>About</h4>
                 <ul class="list-unstyled">
-                  <!-- <li class="list-group-item">
-                    <router-link :to="'/login'">Login</router-link>
-                  </li>
-                  <li class="list-group-item">
-                    <router-link :to="'/register'">Register</router-link>
-                  </li> -->
                   <li class="list-group-item">
                     <router-link :to="'/contact'">Contact</router-link>
                   </li>
@@ -75,17 +66,14 @@
                   </li>
                 </ul>
               </div>
-              <!-- <div class="col-sm-6 col-md-6 col-lg-4">
+              <div class="col-sm-6 col-md-6 col-lg-4">
                 <h4>More</h4>
                 <ul class="list-unstyled">
                   <li class="list-group-item">
                     <router-link :to="'/tutors/apply'">Become a tutor</router-link>
                   </li>
-                  <li class="list-group-item">
-                    <router-link :to="'/tutors'">Become a mentor</router-link>
-                  </li>
                 </ul>
-              </div> -->
+              </div>
             </div>
           </div>
           <br />
@@ -96,11 +84,11 @@
       <div class="copyright py-4">
         <div class="container">
           <div class="row">
-            <div class="col-sm-12 col-md-6 text-center">
-              &copy;Copyright {{ new Date().getFullYear() }},
+            <div class="col-sm-12 col-md-12 text-center">
+              &copy; Copyright {{ new Date().getFullYear() }},
               <b>Keetela</b> Ltd. All Rights Reserved
             </div>
-            <div class="col-sm-12 col-md-6 text-center">
+            <!-- <div class="col-sm-12 col-md-6 text-center">
               <router-link :to="'terms'">Terms and Conditions</router-link>
               <router-link class="mx-3" :to="'policy-privacy'"
                 >Policy Privacy</router-link
@@ -108,7 +96,7 @@
               <router-link class="mx-3" :to="'/credits'"
                 >Credits</router-link
               >
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -125,6 +113,9 @@ export default {
   padding: 60px 0 0 0;
   background: #111030;
   color: #989898;
+}
+.bg-help {
+  background: #252444;
 }
 .footer h4 {
   font-weight: 100 !important;

@@ -9,7 +9,7 @@ module.exports = {
      plugins: [
        new PrerenderSpaPlugin(
          path.resolve(__dirname, 'dist'),
-         [ '/', '/contact'],
+         [ '/', '/tutors'],
        ),
      ]
    }

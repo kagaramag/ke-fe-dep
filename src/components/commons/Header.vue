@@ -5,6 +5,29 @@
         <router-link class="navbar-brand" :to="'/'">
           <img src="@/assets/images/logo_XII.svg" />
         </router-link>
+
+        <div class="nav-menu float-right">
+          <ul>
+            <li><router-link :to="'/'">Home</router-link></li>
+            <li><router-link :to="'/tutors'">Tutors</router-link></li>
+            <li><router-link :to="'/mentors'">Mentors</router-link></li>
+            <li><router-link :to="'/training'">Training</router-link></li>
+            <li><router-link :to="'/codingclass'">Coding Class</router-link></li>
+            <li><router-link :to="'/blog'">Blog</router-link></li>
+            <li><router-link class="btn btn-light text-primary shadow rounded px-4" :to="'/tutors/apply'">Apply</router-link></li>
+            <li><router-link :to="'/contact'">Contact</router-link></li>
+          </ul>
+          <span>
+            <button
+              ref="button"
+              class="toggle-button border-0 px-2 mx-2 text-secondary d-lg-none"
+              style="font-size:25px"
+              @click="OpenNavBar()"
+            >
+              <icon class="icon" icon="bars" />
+            </button>
+          </span>
+        </div>
         <button
           ref="button"
           class="toggle-button border-0 p-1 mx-2 bg-transparent text-white d-lg-none"
@@ -13,7 +36,7 @@
         >
           <icon class="icon" icon="bars" />
         </button>
-        <div class="collapse navbar-collapse">
+        <!-- <div class="collapse navbar-collapse">
           <ul class="navbar-nav main-nav float-right mt-2 pt-2 mt-lg-0 ml-4">
             <li class="nav-item">
               <router-link class="nav-link text-white" :to="'/'">Home</router-link>
@@ -38,10 +61,10 @@
             </li>
           </ul>
           <div class="float-right"></div>
-        </div>
+        </div>-->
       </div>
     </nav>
-    <div class="grab-nav-bar" v-if="showPopup">
+    <!-- <div class="grab-nav-bar" v-if="showPopup">
       <button
         class="border-0 p-1 mx-2 bg-transparent text-white d-lg-none"
         style="font-size:25px"
@@ -74,7 +97,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 <script>
@@ -83,10 +106,10 @@ export default {
   props: ["maxHeader"],
   data() {
     return {
-      showPopup: false,
+      showPopup: false
     };
   },
-  created(){
+  created() {
     document.documentElement.style.overflow = "auto";
   },
   computed: {
@@ -110,48 +133,26 @@ export default {
 </script>
 
 <style scoped>
-.navbar-nav.main-nav a {
-  transition: 0.3s;
-  font-weight: 300;
+.nav-menu ul {
+  display: inline;
 }
-.navbar-nav.main-nav .nav-item {
-  padding-left: 5px !important;
-  padding-right: 5px !important;
-  position: relative;
+.nav-menu ul li {
+  display: inline;
+  padding: 10px;
 }
-
-.navbar-nav.main-nav li:before {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  top: 8px;
-  left: 0;
-  content: "";
-  width: 1px;
-  height: 26px;
+.nav-menu ul li:last-child {
+  padding-right:0;
+}
+.nav-menu a {
+  color: #fdfdfd;
+  padding: 10px auto;
 }
 
-.navbar-nav.main-nav li:nth-child(1):before {
-  background: none;
-}
 
 @media only screen and (max-width: 991px) {
   .navbar-brand {
     margin-left: 10px !important;
   }
-}
-.grab-nav-bar {
-  background: #403ea8;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  z-index: 300000;
-  top: 0;
-  left: 0;
-}
-.grab-nav-bar button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
 }
 .nav-bar {
   position: relative;

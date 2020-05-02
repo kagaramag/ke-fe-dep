@@ -6,7 +6,7 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12 col-md-6">
-              <div class="p-4 my-3 radius-2 bg-white shadow-3">
+              <div class="p-4 my-3 radius-2 bg-white border shadow-sm">
                 <h1 class="font-weight-light my-2">
                   <span class="bold">Contact us</span>
                   <br />
@@ -31,7 +31,7 @@
                       <h4>Social Media</h4>
                       <div>
                         <router-link
-                          class="btn btn-dark px-3 radius-1"
+                          class="btn btn-dark px-3 mr-3 radius-1"
                           :to="'/'"
                         >
                           <icon :icon="['fab', 'linkedin']" class="icon" />
@@ -48,8 +48,7 @@
                     </li>
                     <li class="list-group-item">
                       <h4>Send Us Feedback</h4>
-                      We love to hear from our users! If you have any
-                      suggestions, clarification or inquiry, please send us an
+                      We love to hear from our beloved visitors! If you have any or inquiry, please send us an
                       email right away.
                     </li>
                   </ul>

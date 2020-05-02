@@ -5,7 +5,7 @@
         <div class="grab-bg-page mentoring-cover d-flex align-items-center">
           <div class="container">
             <div class="py-4 px-2 text-white">
-              <h1 class="font-weight-bold">Mentoring</h1>
+              <h1 class="font-weight-bold">Mentors</h1>
               <h2 class="text-light mb-3">
                 Small &amp; medium business owners who receive 3 hours of
                 mentoring report higher revenues.
@@ -14,9 +14,6 @@
                 Let us help you find the best mentor and start achieving your
                 goals.
               </h3>
-              <button class="btn btn-lg px-3 btn-success rounded">
-                Request a mentor
-              </button>
             </div>
           </div>
         </div>
@@ -191,7 +188,7 @@ export default {
   top: 0;
   left: 0;
   content: "";
-  background: rgba(64, 62, 168, 0.75);
+  background: rgba(50, 73, 148, 0.75);
   width: 100%;
   height: 100%;
 }

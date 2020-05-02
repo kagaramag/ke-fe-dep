@@ -79,12 +79,12 @@ h5 {
 
 .bg-primary,
 .btn-primary {
-  background: #403ea8 !important;
+  background: #324994 !important;
   border: none !important;
 }
 
 .text-primary {
-  color: #403ea8 !important;
+  color: #324994 !important;
 }
 
 .bg-light,
@@ -295,11 +295,11 @@ label:focus,
 }
 
 .bg-tutella {
-  background: #403ea8;
+  background: #324994;
 }
 
 .text-tutella {
-  background: #403ea8;
+  background: #324994;
 }
 
 .navbar-brand,
@@ -460,16 +460,16 @@ label:focus,
   height: 4px;
   content: "";
   z-index: 2;
-  background: rgb(66, 88, 158) 0%;
+  background: rgb(50, 73, 148) 0%;
   background: linear-gradient(35deg,
-      rgb(66, 88, 158) 0%,
+      rgb(50, 73, 148) 0%,
       rgb(62, 128, 216) 100%);
 }
 
 .gradient-primary {
-  background: rgb(66, 88, 158) 0%;
+  background: rgb(50, 73, 148) 0%;
   background: linear-gradient(35deg,
-      rgb(66, 88, 158) 0%,
+      rgb(50, 73, 148) 0%,
       rgb(62, 128, 216) 100%);
 }
 
@@ -545,7 +545,7 @@ label:focus,
 }
 
 .mini-nav a:hover {
-  color: #403ea8;
+  color: #324994;
 }
 
 .mini-nav a .icon {
@@ -612,10 +612,10 @@ label:focus,
 }
 
 .bg-blue-gradient {
-  background: #151577;
-  background: -moz-linear-gradient(-45deg, #151577 0%, #4d4daf 100%);
-  background: -webkit-linear-gradient(-45deg, #151577 0%, #4d4daf 100%);
-  background: linear-gradient(135deg, #151577 0%, #4d4daf 100%);
+  background: #324994;
+  background: -moz-linear-gradient(-45deg, #324994 0%, #5078c0 100%);
+  background: -webkit-linear-gradient(-45deg, #324994 0%, #5078c0 100%);
+  background: linear-gradient(135deg, #324994 0%, #5078c0 100%);
 }
 
 .grab-bg-page {

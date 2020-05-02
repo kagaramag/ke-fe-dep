@@ -25,12 +25,17 @@ const router = new Router({
       component: () => import("@/app/services/codingclass")
     },
     {
-      path: "/tutoring",
+      path: "/tutors",
       name: "service-tutoring",
       component: () => import("@/app/services/tutoring")
     },
     {
-      path: "/mentoring",
+      path: "/tutors/apply",
+      name: "tutor-apply",
+      component: () => import("@/app/apply/tutor")
+    },
+    {
+      path: "/mentors",
       name: "service-mentoring",
       component: () => import("@/app/services/mentoring")
     },
@@ -50,8 +55,8 @@ const router = new Router({
       component: () => import("@/app/blog/post")
     },
     {
-      path: "/articles",
-      name: "articles",
+      path: "/blog",
+      name: "blog",
       component: () => import("@/app/blog/blogs")
     },
     {

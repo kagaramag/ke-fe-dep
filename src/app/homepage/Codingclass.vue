@@ -43,6 +43,6 @@
   content: "";
   width: 100%;
   height: 100%;
-  background: rgba(64, 62, 168, 0.75);
+  background: rgba(50, 73, 148, 0.75);
 }
 </style>

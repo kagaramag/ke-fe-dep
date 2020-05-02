@@ -54,10 +54,10 @@
         </div>
         <Loading v-if="posts && posts.loading && !posts.posts.length" />
         <div  v-if="posts && posts.loading && !posts.posts.length" class="blog-loading"></div>
-        <div class="row" v-if="posts && !posts.loading && !posts.success && !posts.posts.length">
+        <div class="row my-5" v-if="posts && !posts.loading && !posts.success && !posts.posts.length">
           <NotFound
-            message="No articles found"
-            description="Something wrong occured while retrieving informations"
+            message="This page is under construction"
+            description="We are building something cool. check this page again soon!"
             icon="blog"
           />
         </div>

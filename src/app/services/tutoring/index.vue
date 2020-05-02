@@ -2,26 +2,27 @@
   <div>
     <component :is="layout">
       <section id="mentoring" class="m-0 bg-light">
-        <div class="grab-bg-page tutoring-cover d-flex align-items-center">
-          <div class="container">
-            <div class="py-4 px-2 text-white">
-              <h1 class="font-weight-bold">Tutoring</h1>
-              <h2 class="text-light mb-3">
-                We connect you with trusted &amp; verified one-on-one tutor near
-                you!
-              </h2>
-              <h3 class="font-weight-light mb-3">
-                Let your children start achieving more today!
-              </h3>
-              <button
-                class="btn btn-lg px-3 btn-success radius-1"
-                @click="$bvModal.show('request-tutor')"
-              >
-                Request a tutor
-              </button>
+      <div class="grab-bg-page tutoring-cover d-flex align-items-center">
+        <div class="container">
+          <div class="py-4 px-2 text-white">
+            <div class="grab-tutoring-caption">
+              <h1 class="font-weight-bold">Trusted Tutors</h1>
+              <h2 class="text-light mb-3">The Home of Skilled and Experienced Tutors</h2>
+              <h3
+                class="font-weight-light mb-3"
+              >We connect tutors with parents/kids in one-on-one coaching program.</h3>
+              <div class="my-5">
+                <button @click="$bvModal.show('request-tutor')" class="btn btn-lg text-success bold shadow px-4 radius-1 btn-light">
+                  Request a tutor
+                </button>
+                <router-link :to="'/tutors/apply'" class="btn btn-lg text-light bold shadow px-4 radius-1 btn-success ml-3">
+                  Become a tutor
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
+      </div>
       </section>
       <section
         class="courses-cover py-4"
@@ -59,7 +60,7 @@
           </div>
         </div>
       </section>
-      <section class="py-4">
+      <section class="py-4 mb-5">
         <div class="container">
           <h1 class="text-center text-primary font-weight-light my-4">
             How Our
@@ -67,34 +68,29 @@
             <span class="bold">Tutoring Program</span>
             <br />Works!
           </h1>
-          <div class="row tutoring-steps">
-            <div class="col-sm-12 col-md-6">
-              <div class="image mb-sm-3">
-                <img
-                  src="https://res.cloudinary.com/ninjas/image/upload/v1585781849/keetela/tutoring-connect_kf5xyx.svg"
-                  alt="connect"
-                  class="float-lg-right"
-                />
-              </div>
+          <div class="row ">
+            <div class="col-sm-12 col-md-4 text-center">
+                <div class="image mb-3">
+                  <img
+                    src="https://res.cloudinary.com/ninjas/image/upload/v1585781849/keetela/tutoring-connect_kf5xyx.svg"
+                    alt="connect"
+                    style="max-width: 150px"
+                  />
+                </div>
+                <h2>Connect</h2>
+                <h3 class="font-weight-light">With the best tutor</h3>
+                <div>
+                  Specify your preferred subject,<br> grade, area, price range and get<br> a list of matching tutors.
+                </div>
             </div>
-            <div class="col-sm-12 col-md-6 text-sm-center text-md-center">
-              <h2>Connect</h2>
-              <h3 class="font-weight-light">With the best tutor</h3>
-              <div>
-                Specify your preferred subject, grade, area,  price range and get a list of matching tutors.
-              </div>
-            </div>
-            <div class="py-5 w-100"></div>
-            <div class="col-sm-12 col-md-6">
-              <div class="image mb-sm-3">
+            <div class="col-sm-12 col-md-4 text-center">
+              <div class="image mb-3">
                 <img
                   src="https://res.cloudinary.com/ninjas/image/upload/v1585781857/keetela/tutoring-terms_nrl9on.svg"
                   alt="terms"
-                  class="float-lg-right"
+                    style="max-width: 150px"
                 />
               </div>
-            </div>
-            <div class="col-sm-12 col-md-6 text-sm-center text-md-center">
               <h2>Discuss</h2>
               <h3 class="font-weight-light">Working Terms</h3>
               <div>
@@ -102,17 +98,14 @@
                 with the suggested tutors and choose one that matches your specific needs.
               </div>
             </div>
-            <div class="py-5 w-100"></div>
-            <div class="col-sm-12 col-md-6">
-              <div class="image mb-sm-3">
+            <div class="col-sm-12 col-md-4 text-center">
+              <div class="image mb-3">
                 <img
                   src="https://res.cloudinary.com/ninjas/image/upload/v1585781861/keetela/tutoring-enjoy_fd2jsa.svg"
                   alt="enjoy"
-                  class="float-lg-right"
+                  style="max-width: 150px"
                 />
               </div>
-            </div>
-            <div class="col-sm-12 col-md-6 text-sm-center text-md-center">
               <h2>Experience</h2>
               <h3 class="font-weight-light">noticeable growth</h3>
               <div>
@@ -217,7 +210,7 @@
               </div>
               <div class="py-3">
                 <b-button
-                  class="mt-3 px-3 bg-primary rounded"
+                  class="mt-3 px-3 mr-3 bg-primary rounded"
                   @click.prevent
                   @click="requestTutorNow"
                   >Request now</b-button
@@ -476,6 +469,15 @@ export default {
 
 <style scoped>
 .tutoring-cover {
+  background-image: url("https://res.cloudinary.com/ninjas/image/upload/v1587542008/keetela/colored-pencils-and-water-color-beside-picture-frame-3774088_w3v3sl.jpg");
+}
+.grab-tutoring-caption {
+  max-width: 660px;
+}
+.grab-tutoring-caption .btn.border{
+  border-width: 3px !important;
+}
+.tutoring-cover {
   background: url("https://res.cloudinary.com/ninjas/image/upload/v1585781819/keetela/bg-tutoring_fsxvoz.jpg");
 }
 .courses-cover {
@@ -514,39 +516,14 @@ export default {
   top: 10px;
   left: 15px;
 }
-.tutoring-steps {
-  padding: 45px 0;
-  position: relative;
-}
-.tutoring-steps::before {
-  content: "";
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  display: block;
-  width: 1px;
-  height: 100%;
-  background: #cdcdcd;
-  position: absolute;
-}
-.tutoring-steps img {
-  width: 120px;
-}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .one-course {
     width: 49%;
-  }
-  .tutoring-steps::before{
-    display: none;
   }
 }
 @media only screen and (max-width: 767px) {
   .one-course {
     width: 99%;
-  }
-  .tutoring-steps::before{
-    display: none;
   }
 }
 </style>
