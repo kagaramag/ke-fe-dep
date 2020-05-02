@@ -12,10 +12,10 @@
                 class="font-weight-light mb-3"
               >We connect tutors with parents/kids in one-on-one coaching program.</h3>
               <div class="my-5">
-                <button @click="$bvModal.show('request-tutor')" class="btn btn-lg text-success bold shadow px-4 radius-1 btn-light">
+                <button @click="$bvModal.show('request-tutor')" class="btn btn-lg text-success bold shadow px-4 radius-1 btn-light ml-3 mb-3">
                   Request a tutor
                 </button>
-                <router-link :to="'/tutors/apply'" class="btn btn-lg text-light bold shadow px-4 radius-1 btn-success ml-3">
+                <router-link :to="'/tutors/apply'" class="btn btn-lg text-light bold shadow px-4 radius-1 btn-success ml-3 mb-3">
                   Become a tutor
                 </router-link>
               </div>

@@ -48,7 +48,7 @@
         </button>
       </div>
     </nav>
-    <div class="grab-nav-bar" v-if="showPopup">
+    <div class="grab-nav-bar bg-primary" v-if="showPopup">
       <button
         class="border-0 p-1 mx-2 float-right bg-transparent text-white d-lg-none"
         style="font-size:25px"
@@ -146,7 +146,6 @@ export default {
   }
 }
 .grab-nav-bar {
-  background:#232323;
   height: 100%;
   width: 100%;
   position: absolute;
