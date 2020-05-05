@@ -128,35 +128,8 @@ Vue.mixin({
       image: 'https://res.cloudinary.com/ninjas/image/upload/v1585781846/keetela/profile_placeholder_qnvcjo.png'
     };
   },
-  computed: {
-    accountType() {
-      let accountType;
-      if (
-        JSON.parse(localStorage.getItem("isAuth")) === true &&
-        localStorage.getItem("user")
-      ) {
-        switch (JSON.parse(localStorage.getItem("user")).role) {
-          case "parent":
-            accountType = "p";
-            break;
-          case "learner":
-            accountType = "l";
-            break;
-          case "tutor":
-            accountType = "t";
-            break;
-          case "admin":
-            accountType = "a";
-            break;
-          default:
-            accountType = "n";
-            break;
-        }
-        return accountType;
-      }
-    }
-  }
 });
+
 library.add(fas);
 library.add(fab);
 Vue.component("icon", FontAwesomeIcon);
