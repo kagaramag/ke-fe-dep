@@ -60,6 +60,11 @@ const router = new Router({
       component: () => import("@/app/blog/blogs")
     },
     {
+      path: "/tutoring-terms",
+      name: "blog",
+      component: () => import("@/app/terms/tutoringTerms10")
+    },
+    {
       path: "*",
       component: () => import("@/app/notfound/PageNotFound")
     }

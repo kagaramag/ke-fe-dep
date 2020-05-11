@@ -72,6 +72,9 @@
                   <li class="list-group-item">
                     <router-link :to="'/tutors/apply'">Become a tutor</router-link>
                   </li>
+                  <li class="list-group-item">
+                    <router-link :to="'/tutoring-terms'">Tutoring Terms</router-link>
+                  </li>
                 </ul>
               </div>
             </div>
