@@ -26,7 +26,8 @@
           <p></p>
           <ul>
             <li>The Tutor undertakes to do all preparation prior to lessons and to structure lessons in such a way as to optimize time to the benefit of the Student.</li>
-            <li>The Tutor shall not accept any booking for his school class students in case he is a formal school teacher The Tutors are not employees of Keetela and are solely responsible for their own actions both on and off the platform.</li>
+            <li>The Tutor shall not accept any booking for his school class students in case he is a formal school teacher</li>
+            <li>The Tutors are not employees of Keetela and are solely responsible for their own actions both on and off the platform.</li>
             <li>The Tutor and Keetela will have an Income Share Agreement. Which includes a fixed percentage of the Earned Income that the Tutor owes Keetela at the time the booking is comfirmed.</li>
             <li>The Tutors are responsible for ensuring that the personal information they provide and their personal statements on the Platform are accurate and in no way misleading.</li>
             <li>They must update this information to maintain its accuracy. The Tutor agrees that there will be no attempts to disintermediate Keetela in any way, either at the time of booking or at any point in future and that all future lessons with a student found through the Platform will be booked through Keetela.</li>
@@ -68,7 +69,7 @@
             <li>The Student agrees that assignments, exercises or homework form an integral part of tutoring and undertakes to complete such work timeously.</li>
           </ul>
 
-          <h4 class="font-weight-bold">Relazation of Terms</h4>
+          <h4 class="font-weight-bold">Relaxation of Terms</h4>
           <p>No relaxation, indulgence, waiver or release by any party of any of the rights in terms of this agreement on one occasion shall prevent the subsequent enforcement of such rights and shall not be deemed to be a waiver of any subsequent breach of any of the terms.</p>
 
           <h4 class="font-weight-bold">Changes to the Terms and Conditions</h4>

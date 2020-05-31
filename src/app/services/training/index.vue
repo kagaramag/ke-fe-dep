@@ -6,7 +6,7 @@
           <div class="container">
             <div class="py-4 px-2 text-white">
               <h1 class="font-weight-bold">Training</h1>
-              <h2 class="text-light mb-3">Solutions for individuals and group of businesses</h2>
+              <h2 class="text-light mb-3">Solutions for individuals and group of people</h2>
               <h3
                 class="font-weight-light mb-3"
               >We offers a wide range of lifelong-learning solutions in training centres, meetups, campuses and tailored remote program!</h3>
