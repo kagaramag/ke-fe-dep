@@ -5,7 +5,7 @@
         <div class="py-4 px-2 text-center text-white">
           <h1>Keetela Coding Class</h1>
           <div>
-            <div>Tel: +250-788-867-447</div>
+            <div>Tel: +250-783-699-653</div>
             <div>Email: support@keetela.com</div>
           </div>
         </div>

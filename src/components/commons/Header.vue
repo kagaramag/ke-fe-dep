@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar bg-white sticky-top m-0 p-0 shadow-sm navbar-expand-lg">
+    <nav class="navbar bg-white fixed-top m-0 p-0 shadow-sm navbar-expand-lg">
       <div class="container my-0">
         <router-link class="navbar-brand" :to="'/'">
           <img src="@/assets/images/K_LOGO_COLORED_MAIN_V1.svg" />

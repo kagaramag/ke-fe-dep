@@ -1,8 +1,10 @@
 <template>
   <div>
-  <Header />
-    <slot />
-  <Footer />
+    <Header />
+    <div class="wrap-app">
+      <slot />
+    </div>
+    <Footer />
   </div>
 </template>
 
@@ -16,3 +18,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.wrap-app {
+  margin-top: 60px;
+}
+</style>

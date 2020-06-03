@@ -6,7 +6,7 @@
           <h1>Become a tutor? <br> <span class="font-weight-bold">Apply now</span></h1>
           <div class="my-4">
             <div>Need help?</div>
-            <div>Tel: +250-788-867-447 &bull; Email: support@keetela.com</div>
+            <div>Tel: +250-783-699-653 &bull; Email: support@keetela.com</div>
             <div></div>
           </div>
         </div>

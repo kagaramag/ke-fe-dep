@@ -31,7 +31,13 @@
               <a href="https://www.instagram.com/keetela/" target="_blank">
                 <icon :icon="[ 'fab', 'instagram' ]" class="icon" />
               </a>
-            </div>
+              <a href="https://www.twitter.com/keetelaapp/" target="_blank">
+                <icon :icon="[ 'fab', 'twitter' ]" class="icon" />
+              </a>
+
+              <a href="https://www.facebook.com/keetela/" target="_blank">
+                <icon :icon="[ 'fab', 'facebook' ]" class="icon" />
+              </a>            </div>
           </div>
           <div class="col-sm-12 col-md-6 col-lg-6">
             <div class="row">
@@ -115,14 +121,14 @@ export default {
 .footer {
   padding: 60px 0 0 0;
   background: #202020;
-  color: #989898;
+  color: #c4c4c4;
 }
 .bg-help {
   background: #272727;
 }
 .footer h4 {
-  font-weight: 100 !important;
-  color: #767676;
+  font-weight: 300 !important;
+  color: #ffffff;
   font-size: 20px;
   margin-bottom: 24px;
 }
@@ -145,7 +151,7 @@ export default {
   background: #0a0a0a !important;
 }
 .copyright a {
-  color: #b6b6b6;
+  color: #d3d3d3;
   font-weight: 100 !important;
 }
 </style>

@@ -33,7 +33,7 @@
                     <h1 class="font-weight-light">
                       <span class="float-left">{{get_tutor.tutor.user.names}}</span>
                       <span class="float-right">
-                        <router-link :to="'/tutors/all'" class="btn rounded px-4 mr-3">
+                        <router-link :to="'/tutors'" class="btn rounded px-4 mr-3">
                           <icon class="icon" icon="arrow-left" />&nbsp;&nbsp;All tutors
                         </router-link>
                         <!-- <router-link :to="'/'" class="btn btn-success rounded px-4 shadow">
@@ -91,16 +91,20 @@
           </div>
         </div>
       </div>
+      <div v-if="get_tutor && get_tutor.loading">
+        <Loading />
+      </div>
     </component>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Loading from "@/components/commons/Loading";
 const default_layout = "default";
 export default {
+  components: { Loading },
   name: "contact",
-
   created() {
     this.loaded = true;
     this.$store.dispatch("resetTutor");
