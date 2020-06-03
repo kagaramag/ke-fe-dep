@@ -2,6 +2,7 @@
   <div>
     <component :is="layout">
       <Welcome />
+      <Covid />
       <Drivers />
       <Codingclass />
       <About />
@@ -14,6 +15,7 @@ import Welcome from "./Welcome";
 import About from "./About";
 import Codingclass from "./Codingclass";
 import Drivers from "./Drivers";
+import Covid from "./Covid";
 const default_layout = "default";
 export default {
   metaInfo: {
@@ -36,7 +38,8 @@ export default {
     Welcome,
     About,
     Codingclass,
-    Drivers
+    Drivers,
+    Covid
   },
   computed: {
     layout() {

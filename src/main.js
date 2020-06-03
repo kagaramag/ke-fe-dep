@@ -9,7 +9,7 @@ import Default from "./layouts/Default.vue";
 import store from "./store";
 import VueLazyload from "vue-lazyload";
 import VueAnalytics from "vue-analytics";
-import VueMeta from 'vue-meta'
+import VueMeta from 'vue-meta';
 
 // Register icons
 
@@ -54,7 +54,7 @@ new Vue({
   store,
   render: h => h(App),
   // RenderAfterDocument Event:'render-event'name must correspond to vue-config.js
-  mounted () {
+  mounted() {
     document.dispatchEvent(new Event('render-event'))
   }
 }).$mount('#app')

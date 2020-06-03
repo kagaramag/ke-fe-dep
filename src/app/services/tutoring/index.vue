@@ -7,15 +7,15 @@
           <div class="py-4 px-2 text-white">
             <div class="grab-tutoring-caption">
               <h1 class="font-weight-bold">Trusted Tutors</h1>
-              <h2 class="text-light mb-3">The Home of Skilled and Experienced Tutors</h2>
+              <h2 class="text-light font-weight-light mb-3">The Home of Skilled and Experienced Tutors</h2>
               <h3
-                class="font-weight-light mb-3"
+                class="font-weight-light h4 mb-3"
               >We connect tutors with parents/kids in one-on-one coaching program.</h3>
               <div class="my-5">
-                <button @click="$bvModal.show('request-tutor')" class="btn btn-lg text-success bold shadow px-4 radius-1 btn-light ml-3 mb-3">
+                <button @click="$bvModal.show('request-tutor')" class="btn btn-lg text-black shadow px-4 radius-1 btn-light mb-3">
                   Request a tutor
                 </button>
-                <router-link :to="'/tutors/apply'" class="btn btn-lg text-light bold shadow px-4 radius-1 btn-success ml-3 mb-3">
+                <router-link :to="'/tutors/apply'" class="btn btn-lg text-light bold shadow px-4 radius-1 btn-black ml-3 mb-3">
                   Become a tutor
                 </router-link>
               </div>
@@ -24,6 +24,7 @@
         </div>
       </div>
       </section>
+      <AllTutors />
       <section
         class="courses-cover py-4"
         v-if="get_courses && get_courses.courses && get_courses.loaded"
@@ -49,11 +50,11 @@
                     </div>
                   </div>
                   <div class="clear"></div>
-                  <div class="py-3">
+                  <!-- <div class="py-3">
                     <button class="btn btn-lg btn-primary rounded">
                       <icon class="icon" icon="plus" />&nbsp; See more
                     </button>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -348,6 +349,7 @@
 <script>
 import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
+import AllTutors from "./../../tutors"
 import {
   required,
   minLength,
@@ -360,6 +362,9 @@ const {  default: Vuelidate } = require("vuelidate");
 Vue.use(Vuelidate);
 const default_layout = "default";
 export default {
+  components: {
+    AllTutors
+  },
   metaInfo: {
     title: "Trusted & verified personal tutors",
     titleTemplate: "%s - | Keetela.com | Igniting minds for success!",

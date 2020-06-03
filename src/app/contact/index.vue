@@ -6,8 +6,8 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12 col-md-6">
-              <div class="p-4 my-3 radius-2 bg-white border shadow-sm">
-                <h1 class="font-weight-light my-2">
+              <div class="p-4 my-3 radius-2">
+                <h1 class="font-weight-light my-2 px-3">
                   <span class="bold">Contact us</span>
                   <br />
                 </h1>
@@ -22,7 +22,7 @@
                       <div>Address: Kigali, Rwanda</div>
                     </li>
                     <li class="list-group-item">
-                      <div>Tel: +250-788-867-447</div>
+                      <div>Tel: +250-783-699653</div>
                     </li>
                     <li class="list-group-item">
                       <div>Email: support@keetela.com</div>
@@ -95,5 +95,8 @@ export default {
 }
 .one-step h2 {
   font-size: 3em;
+}
+.list-group-item {
+  background: none;
 }
 </style>

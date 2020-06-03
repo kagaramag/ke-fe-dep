@@ -1,9 +1,9 @@
 <template>
   <div>
-    <nav class="navbar bg-primary sticky-top m-0 p-0 navbar-expand-lg">
+    <nav class="navbar bg-white sticky-top m-0 p-0 shadow-sm navbar-expand-lg">
       <div class="container my-0">
         <router-link class="navbar-brand" :to="'/'">
-          <img src="@/assets/images/logo_XII.svg" />
+          <img src="@/assets/images/K_LOGO_COLORED_MAIN_V1.svg" />
         </router-link>
 
         <div class="nav-menu float-right">
@@ -24,11 +24,8 @@
               <router-link :to="'/codingclass'">Coding Class</router-link>
             </li>
             <li>
-              <router-link  class="d-md-none d-lg-block" :to="'/blog'">Blog</router-link>
-            </li>
-            <li>
               <router-link
-                class="btn btn-light text-primary shadow rounded px-4"
+                class="btn btn-dark text-white rounded px-4"
                 :to="'/tutors/apply'"
                 >Apply</router-link
               >
@@ -118,18 +115,18 @@ export default {
 
 <style scoped>
 .nav-menu ul{
-  margin: 10px 0;
+  margin: 6px 0;
 }
 .nav-menu ul li {
   display: inline-block;
-  padding: 10px;
+  padding: 6px;
 }
 .nav-menu ul li:last-child {
   padding-right: 0;
 }
 .nav-menu a {
-  color: #fdfdfd;
-  padding: 10px auto;
+  color: #141414;
+  padding: 8px auto;
 }
 
 @media only screen and (max-width: 990px) {

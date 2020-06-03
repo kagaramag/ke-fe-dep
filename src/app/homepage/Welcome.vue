@@ -10,13 +10,13 @@
                 <span class="stress-underline">Develop</span> &amp;
                 <span class="stress-underline">Deliver</span> World-class Learning Programs
               </h1>
-              <h3 class="text-light font-weight-light mb-3">
+              <h2 class="text-light h3 font-weight-light mb-3">
                 Welcoming everyone in online &amp; offline learning experience built &amp; delivered on top of
                 <span
                   class="bold"
                 >digital solutions</span>
-              </h3>
-              <h4 class="font-weight-light text-light">Everyone has something to share.</h4>
+              </h2>
+              <h3 class="font-weight-light h5 text-light">Everyone has something to share.</h3>
             </div>
           </div>
         </div>
@@ -75,13 +75,15 @@ export default {
   content: "";
   width: 100%;
   height: 100%;
-  background: rgba(50, 73, 148, 0.75);
+  background: rgba(26, 26, 26, 0.8);
 }
-#intro .welcome-note h2 {
-  color: #ffffff;
-  margin-top: 130px;
-  font-size: 48px;
+#intro h2 {
+  color: #8f8e8e;
   font-weight: 700;
+  max-width: 700px;
+}
+#intro h1 {
+  max-width: 900px;
 }
 #intro .welcome-note h3 {
   color: #ffffff;

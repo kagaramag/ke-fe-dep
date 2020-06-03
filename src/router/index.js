@@ -30,6 +30,16 @@ const router = new Router({
       component: () => import("@/app/services/tutoring")
     },
     {
+      path: "/tutors/all",
+      name: "all-tutors",
+      component: () => import("@/app/tutors")
+    },
+    {
+      path: "/tutor/:uuid/:names",
+      name: "service-tutoring",
+      component: () => import("@/app/tutor")
+    },
+    {
       path: "/tutors/apply",
       name: "tutor-apply",
       component: () => import("@/app/apply/tutor")

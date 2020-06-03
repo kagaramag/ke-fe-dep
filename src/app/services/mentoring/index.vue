@@ -129,10 +129,6 @@
                     </div>
                   </div>
                   <br />
-                  <button class="btn btn-lg btn-primary radius-1">
-                    <icon class="icon" icon="plus" />
-                    See more
-                  </button>
                 </div>
               </div>
             </div>
@@ -188,7 +184,7 @@ export default {
   top: 0;
   left: 0;
   content: "";
-  background: rgba(50, 73, 148, 0.75);
+  background: rgba(22, 22, 22, 0.75);
   width: 100%;
   height: 100%;
 }

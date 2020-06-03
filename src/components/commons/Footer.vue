@@ -6,7 +6,7 @@
           Need <span class="bold">Help?</span>
         </h1>
         <div class="row">
-          <div class="col-sm-12 col-md-6 col-lg-6 text-lg-right">Tel: +250-788-867-447</div>
+          <div class="col-sm-12 col-md-6 col-lg-6 text-lg-right">Tel: +250-783-699-653</div>
           <div class="col-sm-12 col-md-6 col-lg-6">Email: support@keetela.com</div>
         </div>
       </div>
@@ -114,11 +114,11 @@ export default {
 <style scoped>
 .footer {
   padding: 60px 0 0 0;
-  background: #111030;
+  background: #202020;
   color: #989898;
 }
 .bg-help {
-  background: #252444;
+  background: #272727;
 }
 .footer h4 {
   font-weight: 100 !important;
@@ -137,12 +137,12 @@ export default {
   margin-right: 15px;
 }
 .footer .list-group-item a {
-  color: #989898;
+  color: #eeeeee;
   font-weight: 100 !important;
 }
 .copyright {
   font-weight: 100;
-  background: #0d0c1a !important;
+  background: #0a0a0a !important;
 }
 .copyright a {
   color: #b6b6b6;

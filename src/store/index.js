@@ -6,6 +6,7 @@ import posts from './modules/posts';
 import blog from './modules/blog';
 import services from './modules/services';
 import courses from './modules/courses';
+import tutors from './modules/tutors';
 
 Vue.use(Vuex, axios);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     posts,
     blog,
     services,
-    courses
+    courses,
+    tutors
   }
 });
