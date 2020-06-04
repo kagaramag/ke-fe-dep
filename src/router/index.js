@@ -45,6 +45,11 @@ const router = new Router({
       component: () => import("@/app/apply/tutor")
     },
     {
+      path: "/tutors/hire",
+      name: "tutor-hire",
+      component: () => import("@/app/tutors/hire")
+    },
+    {
       path: "/mentors",
       name: "service-mentoring",
       component: () => import("@/app/services/mentoring")

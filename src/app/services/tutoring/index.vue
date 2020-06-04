@@ -12,9 +12,9 @@
                 class="font-weight-light h4 mb-3"
               >We connect tutors with parents/kids in one-on-one coaching program.</h3>
               <div class="my-5">
-                <button @click="$bvModal.show('request-tutor')" class="btn btn-lg text-black shadow px-4 radius-1 btn-light mb-3">
+                <router-link :to="`/tutors/hire`" class="btn btn-lg text-black shadow px-4 radius-1 btn-light mb-3">
                   Request a tutor
-                </button>
+                </router-link>
                 <router-link :to="'/tutors/apply'" class="btn btn-lg text-light bold shadow px-4 radius-1 btn-black ml-3 mb-3">
                   Become a tutor
                 </router-link>
@@ -116,129 +116,7 @@
           </div>
         </div>
       </section>
-      <!-- REQUEST A TUTOR: MODAL -->
-      <b-modal
-        size="xl"
-        hide-header-close
-        hide-header
-        scrollable
-        id="request-tutor"
-        hide-footer
-      >
-        <div class="row py-0 my-0 align-items-center h-100">
-          <div
-            class="d-sm-none d-md-none d-lg-block col-md-6 col-lg-7 justify-content-center align-self-center "
-          >
-            <div class="image">
-              <img
-                src="https://res.cloudinary.com/ninjas/image/upload/v1585781828/keetela/bg-tutor-req_yowbgr.jpg"
-                style="max-width: 460px"
-              />
-            </div>
-          </div>
-          <div class="col-sm-12 col-md-12 col-lg-5">
-            <form v-if="request_tutor && !request_tutor.success">
-              <h3 class="font-weight-light">Request a tutor</h3>
-              <div class="d-block">
-                <div class="form-group">
-                  <label for="names">Your names</label>
-                  <input
-                    type="names"
-                    class="form-control"
-                    v-model="requestTutor.names"
-                    id="names"
-                    autocomplete="off"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="email">Your email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    v-model="requestTutor.email"
-                    id="email"
-                    autocomplete="off"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="tel">Tel</label>
-                  <input
-                    type="tel"
-                    class="form-control"
-                    v-model="requestTutor.tel"
-                    id="tel"
-                    autocomplete="off"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="child">Name of tutee</label>
-                  <input
-                    type="child"
-                    class="form-control"
-                    v-model="requestTutor.child"
-                    id="child"
-                    autocomplete="off"
-                  />
-                </div>
-                <b-form-group
-                  label="Select subjects"
-                  v-if="get_courses && get_courses.loaded"
-                >
-                  <b-form-checkbox-group
-                    id="checkbox-group-2"
-                    v-model="requestTutor.courses"
-                    name="courses"
-                  >
-                    <b-form-checkbox
-                      v-for="(course, index) in get_courses.courses"
-                      :key="index"
-                      :value="course.course"
-                      >{{ course.course }}</b-form-checkbox
-                    >
-                  </b-form-checkbox-group>
-                </b-form-group>
-                <div
-                  class="error py-2"
-                  v-if="
-                    !$v.requestTutor.names.required ||
-                      !$v.requestTutor.email.required ||
-                      !$v.requestTutor.courses.required ||
-                      !$v.requestTutor.child.required
-                  "
-                >
-                  Please, fill the form properly
-                </div>
-              </div>
-              <div class="py-3">
-                <b-button
-                  class="mt-3 px-3 mr-3 bg-primary rounded"
-                  @click.prevent
-                  @click="requestTutorNow"
-                  >Request now</b-button
-                >
-                <b-button
-                  class="mt-3 px-3 rounded"
-                  @click="$bvModal.hide('request-tutor')"
-                  >Cancel</b-button
-                >
-              </div>
-            </form>
-            <div
-              class="py-4 text-center"
-              v-if="
-                request_tutor && request_tutor.success && !request_tutor.loaded
-              "
-            >
-              <h2 class="font-weight-light">
-                Thank you for requesting a tutor.<br />
-                We will contact you as soon as possible.
-              </h2>
-            </div>
-          </div>
-        </div>
-      </b-modal>
 
-      <!-- BECOME A TUTOR: MODAL -->
       <b-modal
         size="xl"
         hide-header-close

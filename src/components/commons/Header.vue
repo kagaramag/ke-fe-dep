@@ -25,7 +25,7 @@
             </li>
             <li>
               <router-link
-                class="btn btn-dark text-white rounded px-4"
+                class="btn gradient-primary text-white rounded px-4"
                 :to="'/tutors/apply'"
                 >Apply</router-link
               >
@@ -37,7 +37,7 @@
         </div>
         <button
           ref="button"
-          class="toggle-button border-0 p-1 mx-2 bg-transparent text-white d-lg-none"
+          class="toggle-button border-0 p-1 mx-2 text-black d-lg-none"
           style="font-size:25px"
           @click="OpenNavBar()"
         >
@@ -45,7 +45,7 @@
         </button>
       </div>
     </nav>
-    <div class="grab-nav-bar bg-primary" v-if="showPopup">
+    <div class="grab-nav-bar" v-if="showPopup">
       <button
         class="border-0 p-1 mx-2 float-right bg-transparent text-white d-lg-none"
         style="font-size:25px"
@@ -114,6 +114,10 @@ export default {
 </script>
 
 <style scoped>
+.toggle-button {
+ padding: auto 18px;
+  background: none;
+}
 .nav-menu ul{
   margin: 6px 0;
 }
@@ -145,10 +149,11 @@ export default {
 .grab-nav-bar {
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 14000;
+  background: rgba(0, 0, 0, 0.95);
 }
 .nav-bar {
   position: relative;

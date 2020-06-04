@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap");
 
 * {
   -webkit-border-radius: 0 !important;
@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background: #f3f3f3;
 }
 
@@ -461,16 +461,20 @@ label:focus,
   content: "";
   z-index: 2;
   background: rgb(50, 73, 148) 0%;
-  background: linear-gradient(35deg,
-      rgb(50, 73, 148) 0%,
-      rgb(62, 128, 216) 100%);
+  background: linear-gradient(
+    35deg,
+    rgb(50, 73, 148) 0%,
+    rgb(62, 128, 216) 100%
+  );
 }
 
 .gradient-primary {
-  background: rgb(50, 73, 148) 0%;
-  background: linear-gradient(35deg,
-      rgb(50, 73, 148) 0%,
-      rgb(62, 128, 216) 100%);
+  background: rgb(69, 69, 69);
+  background: linear-gradient(
+    45deg,
+    rgba(69, 69, 69, 1) 0%,
+    rgba(32, 32, 32, 1) 100%
+  );
 }
 
 .wrap-one-tutoring {
@@ -559,36 +563,36 @@ label:focus,
   color: #acabdd;
 }
 
-.article-body>>>p {
+.article-body >>> p {
   width: 100%;
 }
 
-.article-body>>>.ql-align-left {
+.article-body >>> .ql-align-left {
   text-align: left;
 }
 
-.article-body>>>.ql-align-right {
+.article-body >>> .ql-align-right {
   text-align: right;
 }
 
-.article-body>>>.ql-align-justify {
+.article-body >>> .ql-align-justify {
   text-align: justify;
 }
 
-.article-body>>>blockquote {
+.article-body >>> blockquote {
   border-left: 5px solid #616161;
   padding: 20px;
   font-size: 22px;
 }
 
-.article-body>>>pre {
+.article-body >>> pre {
   background: #333333;
   padding: 35px 20px 10px 20px;
   color: #cdcdcd;
   position: relative;
 }
 
-.article-body>>>pre::before {
+.article-body >>> pre::before {
   position: absolute;
   top: 0px;
   left: 0;
@@ -599,7 +603,7 @@ label:focus,
   background: #545454;
 }
 
-.article-body>>>img {
+.article-body >>> img {
   max-width: 100% !important;
   margin: 10px auto !important;
   display: block !important;
@@ -627,7 +631,6 @@ label:focus,
   background-repeat: no-repeat !important;
   position: relative;
 }
-
 
 .grab-bg-page::before {
   position: absolute;
